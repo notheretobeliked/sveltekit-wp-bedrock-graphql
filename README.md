@@ -26,13 +26,13 @@ The repo for the stock Wordpress with required plugins is [here](https://github.
 
 ## Installation
 
-### 1. clone this repo
-### 2. copy .env.example to .env and input correct values (see your local Wordpress installation for details)
-### 3. 
+1. clone this repo
+2. copy .env.example to .env and input correct values (see your local Wordpress installation for details)
+3. 
 ```
 pnpm i
 ```
-###4. 
+4. 
 ```
 pnpm dev
 ```
