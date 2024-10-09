@@ -1,5 +1,5 @@
 query PageMeta($uri: ID!) {
-  menu(id: "primary-navigation", idType: SLUG) {
+  menu(id: "main-menu", idType: SLUG) {
     menuItems {
       nodes {
         label

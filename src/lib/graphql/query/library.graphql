@@ -1,0 +1,94 @@
+query LibraryItems($language: String!) {
+  books(where: {language: $language}, first: 400) {
+    nodes {
+      slug
+      bookData {
+        edition
+        exhibition
+        notes
+        numperOfPages
+        place
+        printer
+        series
+        size
+        title
+        year
+        publisher {
+          nodes {
+            ...NameSlugFields
+          }
+        }
+        personAuthor {
+          nodes {
+            ...NameSlugFields
+          }
+        }
+        personCoverDesign {
+          nodes {
+            ...NameSlugFields
+          }
+        }
+        personCoverIllustration {
+          nodes {
+            ...NameSlugFields
+          }
+        }
+        personPageDesign {
+          nodes {
+            ...NameSlugFields
+          }
+        }
+        personPageIllustration {
+          nodes {
+            ...NameSlugFields
+          }
+        }
+        personTranslation {
+          nodes {
+            ...NameSlugFields
+          }
+        }
+        personCoverCalligraphy {
+          nodes {
+            ...NameSlugFields
+          }
+        }
+        collection {
+          nodes {
+            name
+            slug
+            translations {
+              name
+              slug
+              language {
+                code
+              }
+            }
+          }
+        }
+        images {
+          nodes {
+            mediaDetails {
+              sizes {
+                sourceUrl
+                height
+                width
+                mimeType
+              }
+            }
+            altText
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment NameSlugFields on Person {
+  name
+  slug
+  translations {
+    name
+    slug
+  }
+}
