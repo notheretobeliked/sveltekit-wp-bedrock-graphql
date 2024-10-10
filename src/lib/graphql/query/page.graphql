@@ -13,35 +13,9 @@ query PageContent($uri: ID!) {
 			...CoreButtonsFragment
 			...CoreSpacerFragment
 		}
-		seo {
-			...SeoFragment
-		}
 	}
 }
 
-fragment SeoFragment on PostTypeSEO {
-	metaDesc
-	metaKeywords
-	opengraphSiteName
-	opengraphTitle
-	opengraphPublisher
-	opengraphUrl
-	title
-	twitterDescription
-	twitterTitle
-	twitterImage {
-		altText
-		mediaDetails {
-			...MediaDetailsFragment
-		}
-	}
-	opengraphImage {
-		altText
-		mediaDetails {
-			...MediaDetailsFragment
-		}
-	}
-}
 
 fragment MediaDetailsFragment on MediaDetails {
 	sizes {

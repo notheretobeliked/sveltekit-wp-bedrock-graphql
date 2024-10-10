@@ -13,9 +13,18 @@ query LibraryItems($language: String!) {
         size
         title
         year
+        ref
         publisher {
           nodes {
-            ...NameSlugFields
+            name
+            slug
+            translations {
+              name
+              slug
+              language {
+                code
+              }
+            }
           }
         }
         personAuthor {
@@ -34,6 +43,11 @@ query LibraryItems($language: String!) {
           }
         }
         personPageDesign {
+          nodes {
+            ...NameSlugFields
+          }
+        }
+        personPageCalligraphy {
           nodes {
             ...NameSlugFields
           }

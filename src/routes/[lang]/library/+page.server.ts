@@ -1,36 +1,38 @@
-export const prerender = true
+import type { LibraryItemsQuery, LibraryItemsQueryVariables } from '$lib/graphql/generated';
+import LibraryItems from '$lib/graphql/query/library.graphql?raw';
+import { checkResponse, graphqlQuery } from '$lib/utilities/graphql';
+import { error } from '@sveltejs/kit';
+import type { PageServerLoad } from './$types';
 
-import LibraryItems from '$lib/graphql/query/library.graphql?raw'
-import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
-import { error } from '@sveltejs/kit'
-import type { PageServerLoad } from './$types'
-import {flatListToHierarchical} from '$lib/utilities/utilities'
-
+export const prerender = true;
 
 export const load: PageServerLoad = async function load({ params, url }) {
-  const uri = `/`
+  const uri = `/`;
 
   try {
-    const response = await graphqlQuery(LibraryItems, { language: params.lang })
-    checkResponse(response)
-    const { data }: { data: any } = await response.json()
+    const response = await graphqlQuery<LibraryItemsQuery, LibraryItemsQueryVariables>(
+      LibraryItems,
+      { language: params.lang }
+    );
+    
+    checkResponse(response);
+    const { data } = await response.json() as { data: LibraryItemsQuery };
 
-    if (data.page === null) {
-      error(404, {
+    if (data === null) {
+      throw error(404, {
         message: 'Not found',
-      })
+      });
     }
 
     return {
-      data: data,
-      uri: uri,
+      data,
+      uri,
       language: params.lang,
-    }
+    };
   } catch (err: unknown) {
-    const httpError = err as { status: number; message: string }
-    if (httpError.message) {
-      error(httpError.status ?? 500, httpError.message);
+    if (err instanceof Error) {
+      throw error(500, err.message);
     }
-    error(500, err as string);
+    throw error(500, 'An unknown error occurred');
   }
-}
+};
