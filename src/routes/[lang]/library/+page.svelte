@@ -1,9 +1,10 @@
 <script lang="ts">
+	import { slide } from 'svelte/transition'
 	import type { PageData } from './$types'
 	import type { Book } from '$lib/types/general'
 	import LabelItem from '$components/atoms/labelItem.svelte'
 	export let data: PageData
-	
+
 	const books: Book[] = data.books ?? []
 	const artists: { name: string; slug: string }[] = data.artists ?? []
 	const authors: { name: string; slug: string }[] = data.authors ?? []
@@ -13,7 +14,14 @@
 	let selectedArtist = ''
 	let selectedAuthor = ''
 	let selectedPublisher = ''
-	let titleFilter = ''
+	let searchFilter = ''
+	// Add these new filter state variables
+	let yearFrom = ''
+	let yearTo = ''
+
+	// Generate an array of years from 1900 to current year
+	const currentYear = new Date().getFullYear()
+	const years = Array.from({ length: currentYear - 1899 }, (_, i) => (currentYear - i).toString())
 
 	/**
 	 * Preprocess books to include filtered label groups.
@@ -59,13 +67,18 @@
 		].filter((item) => item.title)
 	}))
 
-	// Reactive filtered books
-	$: filteredBooks = processedBooks.filter(book => 
-		(!selectedArtist || book.artistFilterTerm?.includes(selectedArtist)) &&
-		(!selectedAuthor || book.authorFilterTerm?.includes(selectedAuthor)) &&
-		(!selectedPublisher || book.publisherFilterTerm?.includes(selectedPublisher)) &&
-		(!titleFilter || book.title?.toLowerCase().includes(titleFilter.toLowerCase()))
-	)
+	// Update the reactive filtered books statement
+    $: filteredBooks = processedBooks.filter(
+        (book) =>
+            (!selectedArtist || book.artistFilterTerm?.includes(selectedArtist)) &&
+            (!selectedAuthor || book.authorFilterTerm?.includes(selectedAuthor)) &&
+            (!selectedPublisher || book.publisherFilterTerm?.includes(selectedPublisher)) &&
+            (!yearFrom || (book.year && parseInt(book.year) >= parseInt(yearFrom))) &&
+            (!yearTo || (book.year && parseInt(book.year) <= parseInt(yearTo))) &&
+            (!searchFilter || Object.values(book).some(value => 
+                typeof value === 'string' && value.toLowerCase().includes(searchFilter.toLowerCase())
+            ))
+    )
 
 	/**
 	 * Determines whether to underline a LabelItem.
@@ -80,19 +93,37 @@
 	console.log('Data received:', data)
 </script>
 
-<main class="py-24 min-h-screen">
-	<div class="mb-8">
+<main class="py-24 min-h-screen mx-auto font-sans max-w-screen-xl">
+	<header class="mb-8">
+		<h1 class="text-center text-2xl !font-sans">Library</h1>
+	</header>
+	<div class="mb-8 grid lg:grid-cols-6 gap-4 mx-auto font-sans max-w-screen-xl">
 		{#if artists.length > 0}
-			<select bind:value={selectedArtist}>
+			<select bind:value={selectedArtist} class="border-white border rounded-md p-2 bg-black">
 				<option value="">All Artists</option>
 				{#each artists as artist}
 					<option value={artist.slug}>{artist.name}</option>
 				{/each}
 			</select>
+			<div class="grid grid-cols-2 gap-4">
+				<select bind:value={yearFrom} class="border-white border rounded-md p-2 bg-black">
+					<option value="">Year from</option>
+					{#each years as year}
+						<option value={year}>{year}</option>
+					{/each}
+				</select>
+
+				<select bind:value={yearTo} class="border-white border rounded-md p-2 bg-black">
+					<option value="">Year to</option>
+					{#each years as year}
+						<option value={year}>{year}</option>
+					{/each}
+				</select>
+			</div>
 		{/if}
 
 		{#if authors.length > 0}
-			<select bind:value={selectedAuthor}>
+			<select bind:value={selectedAuthor} class="border-white border rounded-md p-2 bg-black">
 				<option value="">All Authors</option>
 				{#each authors as author}
 					<option value={author.slug}>{author.name}</option>
@@ -101,7 +132,7 @@
 		{/if}
 
 		{#if publishers.length > 0}
-			<select bind:value={selectedPublisher}>
+			<select bind:value={selectedPublisher} class="border-white border rounded-md p-2 bg-black">
 				<option value="">All Publishers</option>
 				{#each publishers as publisher}
 					<option value={publisher.slug}>{publisher.name}</option>
@@ -109,13 +140,21 @@
 			</select>
 		{/if}
 
-		<input type="text" bind:value={titleFilter} placeholder="Filter by title...">
+		<input
+			type="text"
+			bind:value={searchFilter}
+			placeholder="Search in all fields..."
+			class="border-white border rounded-md p-2 bg-black col-span-2"
+		/>
 	</div>
 
 	{#if filteredBooks.length > 0}
 		<ul>
 			{#each filteredBooks as book}
-				<li class="mt-8 mx-auto font-sans max-w-screen-xl bg-black text-white">
+				<li
+					class="font-sans bg-black text-white py-4 border-b border-white"
+					transition:slide={{ duration: 300 }}
+				>
 					<div class="xl:grid-cols-6 grid gap-4">
 						<!-- Group 1 -->
 						<div class="py-3 flex flex-col gap-2">
@@ -168,3 +207,9 @@
 		<p>No books found matching the current filters.</p>
 	{/if}
 </main>
+
+<style>
+	:global(body) {
+		@apply bg-black text-white;
+	}
+</style>

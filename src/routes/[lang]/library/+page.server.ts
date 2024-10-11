@@ -22,6 +22,7 @@ type BookDataField =
 
 const restructureLibraryItems = (data: LibraryItemsQuery) => {
 	return data.books?.nodes
+		?.sort((a, b) => a.slug.localeCompare(b.slug))
 		.map((book) => {
 			const bookData = book.bookData
 			if (!bookData) return null
