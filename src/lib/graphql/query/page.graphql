@@ -17,14 +17,7 @@ query PageContent($uri: ID!) {
 }
 
 
-fragment MediaDetailsFragment on MediaDetails {
-	sizes {
-		name
-		sourceUrl
-		width
-		height
-	}
-}
+
 
 fragment CoreGroupFragment on CoreGroup {
 	attributes {

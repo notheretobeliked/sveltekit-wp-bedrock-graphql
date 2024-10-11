@@ -6,6 +6,7 @@ import { error } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
 import {flatListToHierarchical} from '$lib/utilities/utilities'
 
+// ... existing imports ...
 
 export const load: PageServerLoad = async function load({ params, url }) {
   const uri = `/`
@@ -13,11 +14,24 @@ export const load: PageServerLoad = async function load({ params, url }) {
   try {
     const response = await graphqlQuery(PageContent, { uri: uri })
     checkResponse(response)
-    const { data }: { data: any } = await response.json()
+    const responseData = await response.json()
 
-    if (data.page === null) {
+    // Log the entire response
+    console.log('GraphQL response:', JSON.stringify(responseData, null, 2))
+
+    // Check if responseData has the expected structure
+    if (!responseData || typeof responseData !== 'object' || !('data' in responseData)) {
+      console.error('Unexpected response structure:', responseData)
+      throw new Error('Invalid GraphQL response structure')
+    }
+
+    const { data } = responseData
+
+    // Check if data.page exists
+    if (!data || !data.page) {
+      console.error('Page data not found in response:', data)
       error(404, {
-        message: 'Not found',
+        message: 'Page not found',
       })
     }
 
@@ -29,10 +43,11 @@ export const load: PageServerLoad = async function load({ params, url }) {
       editorBlocks: editorBlocks,
     }
   } catch (err: unknown) {
-    const httpError = err as { status: number; message: string }
-    if (httpError.message) {
-      error(httpError.status ?? 500, httpError.message);
+    console.error('Error in load function:', err)
+    if (err instanceof Error) {
+      error(500, err.message)
+    } else {
+      error(500, 'An unexpected error occurred')
     }
-    error(500, err as string);
   }
 }

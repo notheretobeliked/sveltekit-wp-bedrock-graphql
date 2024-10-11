@@ -105,21 +105,6 @@
 					<option value={artist.slug}>{artist.name}</option>
 				{/each}
 			</select>
-			<div class="grid grid-cols-2 gap-4">
-				<select bind:value={yearFrom} class="border-white border rounded-md p-2 bg-black">
-					<option value="">Year from</option>
-					{#each years as year}
-						<option value={year}>{year}</option>
-					{/each}
-				</select>
-
-				<select bind:value={yearTo} class="border-white border rounded-md p-2 bg-black">
-					<option value="">Year to</option>
-					{#each years as year}
-						<option value={year}>{year}</option>
-					{/each}
-				</select>
-			</div>
 		{/if}
 
 		{#if authors.length > 0}
@@ -139,6 +124,22 @@
 				{/each}
 			</select>
 		{/if}
+
+		<div class="grid grid-cols-2 gap-4">
+			<select bind:value={yearFrom} class="border-white border rounded-md p-2 bg-black">
+				<option value="">Year from</option>
+				{#each years as year}
+					<option value={year}>{year}</option>
+				{/each}
+			</select>
+
+			<select bind:value={yearTo} class="border-white border rounded-md p-2 bg-black">
+				<option value="">Year to</option>
+				{#each years as year}
+					<option value={year}>{year}</option>
+				{/each}
+			</select>
+		</div>
 
 		<input
 			type="text"
