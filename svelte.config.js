@@ -1,5 +1,5 @@
-import adapter from '@sveltejs/adapter-auto';
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import adapter from '@sveltejs/adapter-auto'
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -13,10 +13,16 @@ const config = {
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter(),
 		alias: {
-			$components: "src/components",
-			$types: "src/types",
-		  },
+			$components: 'src/components',
+			$types: 'src/types'
+		},
+		prerender: {
+			entries: [
+				'/en/library', // English version of the library page
+				'/ar/library' // Arabic version of the library page
+			]
+		}
 	}
-};
+}
 
-export default config;
+export default config
