@@ -4,7 +4,7 @@ import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
 import { error } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
 
-// export const prerender = true
+export const prerender = true
 // ... existing imports ...
 // ... existing imports ...
 
