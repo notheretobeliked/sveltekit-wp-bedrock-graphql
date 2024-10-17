@@ -3,6 +3,8 @@
 	import type { PageData } from './$types'
 	import type { Book } from '$lib/types/general'
 	import LabelItem from '$components/atoms/labelItem.svelte'
+	import Image from '$components/Image.svelte'
+	import Label from '$components/molecules/label.svelte'
 	export let data: PageData
 
 	const books: Book[] = data.books ?? []
@@ -22,63 +24,67 @@
 	// Generate an array of years from 1900 to current year
 	const currentYear = new Date().getFullYear()
 	const years = Array.from({ length: currentYear - 1899 }, (_, i) => (currentYear - i).toString())
-
+	const lang = data.language
+	const labelTranslations = data.labelTranslations
+	console.log(labelTranslations)
 	/**
 	 * Preprocess books to include filtered label groups.
 	 */
 	const processedBooks = books.map((book) => ({
 		...book,
 		group1: [
-			{ label: 'Ref: ' + book.ref, title: null }, // Always include Ref
+			{ label: `${labelTranslations.ref[lang]}: ${book.ref}`, title: null }, // Ref label based on language
 			...[
-				{ label: 'Title', title: book.title },
-				{ label: 'Author', title: book.author },
-				{ label: 'Translator', title: book.translation }
+				{ label: labelTranslations.title[lang], title: book.title },
+				{ label: labelTranslations.author[lang], title: book.author },
+				{ label: labelTranslations.translator[lang], title: book.translation }
 			].filter((item) => item.title) // Filter other items based on title
 		],
 
 		group2: [
-			{ label: 'Publisher', title: book.publisher },
-			{ label: 'Place', title: book.place },
-			{ label: 'Year', title: book.year },
-			{ label: 'Edition', title: book.edition }
+			{ label: labelTranslations.publisher[lang], title: book.publisher },
+			{ label: labelTranslations.place[lang], title: book.place },
+			{ label: labelTranslations.year[lang], title: book.year },
+			{ label: labelTranslations.edition[lang], title: book.edition }
 		].filter((item) => item.title),
 
 		group3: [
-			{ label: 'Cover Design', title: book.coverDesign },
-			{ label: 'Cover Illustration', title: book.coverIllustration },
-			{ label: 'Cover Calligraphy', title: book.coverCalligraphy }
+			{ label: labelTranslations.coverDesign[lang], title: book.coverDesign },
+			{ label: labelTranslations.coverIllustration[lang], title: book.coverIllustration },
+			{ label: labelTranslations.coverCalligraphy[lang], title: book.coverCalligraphy }
 		].filter((item) => item.title),
 
 		group4: [
-			{ label: 'Page Design', title: book.pageDesign },
-			{ label: 'Page Illustration', title: book.pageIllustration },
-			{ label: 'Page Calligraphy', title: book.pageCalligraphy }
+			{ label: labelTranslations.pageDesign[lang], title: book.pageDesign },
+			{ label: labelTranslations.pageIllustration[lang], title: book.pageIllustration },
+			{ label: labelTranslations.pageCalligraphy[lang], title: book.pageCalligraphy }
 		].filter((item) => item.title),
 
 		group5: [
-			{ label: 'Printer', title: book.printer },
-			{ label: 'Size', title: book.size ? `${book.size} cm` : null },
+			{ label: labelTranslations.printer[lang], title: book.printer },
+			{ label: labelTranslations.size[lang], title: book.size ? `${book.size} cm` : null },
 			{
-				label: 'Number of Pages',
-				title: book.numperOfPages ? `${book.numperOfPages} pages` : null
+				label: labelTranslations.numberOfPages[lang],
+				title: book.numperOfPages ? `${book.numperOfPages} ${labelTranslations.pages[lang]}` : null
 			},
-			{ label: 'Collection', title: book.collection }
+			{ label: labelTranslations.collection[lang], title: book.collection }
 		].filter((item) => item.title)
 	}))
 
 	// Update the reactive filtered books statement
-    $: filteredBooks = processedBooks.filter(
-        (book) =>
-            (!selectedArtist || book.artistFilterTerm?.includes(selectedArtist)) &&
-            (!selectedAuthor || book.authorFilterTerm?.includes(selectedAuthor)) &&
-            (!selectedPublisher || book.publisherFilterTerm?.includes(selectedPublisher)) &&
-            (!yearFrom || (book.year && parseInt(book.year) >= parseInt(yearFrom))) &&
-            (!yearTo || (book.year && parseInt(book.year) <= parseInt(yearTo))) &&
-            (!searchFilter || Object.values(book).some(value => 
-                typeof value === 'string' && value.toLowerCase().includes(searchFilter.toLowerCase())
-            ))
-    )
+	$: filteredBooks = processedBooks.filter(
+		(book) =>
+			(!selectedArtist || book.artistFilterTerm?.includes(selectedArtist)) &&
+			(!selectedAuthor || book.authorFilterTerm?.includes(selectedAuthor)) &&
+			(!selectedPublisher || book.publisherFilterTerm?.includes(selectedPublisher)) &&
+			(!yearFrom || (book.year && parseInt(book.year) >= parseInt(yearFrom))) &&
+			(!yearTo || (book.year && parseInt(book.year) <= parseInt(yearTo))) &&
+			(!searchFilter ||
+				Object.values(book).some(
+					(value) =>
+						typeof value === 'string' && value.toLowerCase().includes(searchFilter.toLowerCase())
+				))
+	)
 
 	/**
 	 * Determines whether to underline a LabelItem.
@@ -129,14 +135,14 @@
 			<select bind:value={yearFrom} class="border-white border rounded-md p-2 bg-black">
 				<option value="">Year from</option>
 				{#each years as year}
-					<option value={year}>{year}</option>
+					<option value={year} class={lang === 'ar' ? 'text-right' : ''}>{year}</option>
 				{/each}
 			</select>
 
 			<select bind:value={yearTo} class="border-white border rounded-md p-2 bg-black">
-				<option value="">Year to</option>
+				<option value="" class={lang === 'ar' ? 'text-right' : ''}>Year to</option>
 				{#each years as year}
-					<option value={year}>{year}</option>
+					<option value={year} class={lang === 'ar' ? 'text-right' : ''}>{year}</option>
 				{/each}
 			</select>
 		</div>
@@ -145,7 +151,7 @@
 			type="text"
 			bind:value={searchFilter}
 			placeholder="Search in all fields..."
-			class="border-white border rounded-md p-2 bg-black col-span-2"
+			class="border-white border rounded-md p-2 bg-black col-span-2 {lang === 'ar' ? 'text-right' : ''}"
 		/>
 	</div>
 
@@ -153,7 +159,7 @@
 		<ul>
 			{#each filteredBooks as book}
 				<li
-					class="font-sans bg-black text-white py-4 border-b border-white"
+					class="font-sans bg-black text-white py-4 border-b border-white {lang === 'ar' ? 'text-right' : ''}"
 					transition:slide={{ duration: 300 }}
 				>
 					<div class="xl:grid-cols-6 grid gap-4">
@@ -195,9 +201,7 @@
 						<!-- Thumbnail Cover Image -->
 						<div>
 							{#if book.thumbnailCoverImage}
-								<figure>
-									<img src={book.thumbnailCoverImage.sourceUrl} alt={book.title} />
-								</figure>
+								<Image imageObject={book.thumbnailCoverImage} fit="contain" />
 							{/if}
 						</div>
 					</div>

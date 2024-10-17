@@ -4,6 +4,7 @@ import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
 import type { PageServerLoad } from './$types'
 import { error } from '@sveltejs/kit'
 import { PUBLIC_SITE_URL } from '$env/static/public'; // Ensure this import is correct
+import { labelTranslations } from '$lib/labeltranslations'
 
 
 
@@ -26,7 +27,8 @@ export const load: PageServerLoad = async function load({ params }) {
     }
 
     const siteUrl = data.page.seo.opengraphUrl.replace(new URL(data.page.seo.opengraphUrl).origin, PUBLIC_SITE_URL);
-    
+    const lang = params.lang || 'en'; // Get the lang from the URL params, default to 'en'
+
 
 
     // Assuming your GraphQL query correctly fetches the SEO data as per your LayoutAPIResponse type
@@ -34,6 +36,7 @@ export const load: PageServerLoad = async function load({ params }) {
 
     return {
       data: data,
+      labelTranslations: labelTranslations,
       menu: data.menu,
       seo: { ...data.page.seo, opengraphUrl: siteUrl }, // Update seo with the new siteUrl
       uri: uri,
