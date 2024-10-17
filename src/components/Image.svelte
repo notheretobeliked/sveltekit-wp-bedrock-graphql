@@ -4,7 +4,7 @@ import type { ImageObject, ImageSizeName } from '$lib/types/wp-types.ts'
 
   export let imageObject: ImageObject
   export let lazy: boolean = true
-  export let imageSize: ImageSizeName
+  export let imageSize: ImageSizeName = 'thumbnail'
   export let fit: 'cover' | 'contain' | 'fill' | 'none' = 'none'
   export let extraClasses: string = ''
 
