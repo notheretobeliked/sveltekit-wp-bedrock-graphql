@@ -5,8 +5,34 @@ import { error } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
 
 export const prerender = true
-// ... existing imports ...
-// ... existing imports ...
+
+async function fetchAllLibraryItems(language: string) {
+	let hasNextPage = true
+	let after: string | null = null
+	const allBooks: LibraryItemsQuery['books']['nodes'] = []
+
+	while (hasNextPage) {
+		const response = await graphqlQuery<LibraryItemsQuery, LibraryItemsQueryVariables>(
+			LibraryItems,
+			{ language, after }
+		)
+
+		checkResponse(response)
+		const { data } = (await response.json()) as { data: LibraryItemsQuery }
+
+		if (!data || !data.books) {
+			throw error(404, { message: 'Books not found' })
+		}
+
+		allBooks.push(...data.books.nodes)
+
+		// Update the pagination information
+		hasNextPage = data.books.pageInfo.hasNextPage
+		after = data.books.pageInfo.endCursor
+	}
+
+	return allBooks
+}
 
 function isPersonType(author: any): author is { name: string; slug: string; translations?: any[] } {
 	return author && typeof author.name === 'string' && typeof author.slug === 'string'
@@ -173,31 +199,20 @@ function extractPublishers(data: LibraryItemsQuery) {
 }
 
 export const load: PageServerLoad = async function load({ params, url }) {
-	const uri = `/`
+	const uri = params.uri
 
 	try {
-		const response = await graphqlQuery<LibraryItemsQuery, LibraryItemsQueryVariables>(
-			LibraryItems,
-			{ language: params.lang }
-		)
+		const books = await fetchAllLibraryItems(params.lang)
 
-		checkResponse(response)
-		const { data } = (await response.json()) as { data: LibraryItemsQuery }
+		// Now restructure the data just as before
+		const restructuredData = restructureLibraryItems({ books: { nodes: books } })
 
-		if (data === null) {
-			throw error(404, {
-				message: 'Not found'
-			})
-		}
-
-		// Use the helper functions to process the data
-		const restructuredData = restructureLibraryItems(data)
 		return {
 			books: restructuredData,
 			uri,
-			artists: extractArtists(data),
-			publishers: extractPublishers(data),
-			authors: extractAuthors(data),
+			artists: extractArtists({ books: { nodes: books } }),
+			publishers: extractPublishers({ books: { nodes: books } }),
+			authors: extractAuthors({ books: { nodes: books } }),
 			language: params.lang
 		}
 	} catch (err: unknown) {
