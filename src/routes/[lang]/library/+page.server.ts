@@ -27,7 +27,7 @@ const restructureLibraryItems = (data: LibraryItemsQuery) => {
 			const bookData = book.bookData
 			if (!bookData) return null
 
-			const firstImage = bookData.images?.nodes[0]?.mediaDetails.sizes[0] || null
+			const firstImage = bookData.images?.nodes[0]
 
 			// Create sets for unique artists, authors, and publishers
 			const artists = new Set(
@@ -93,21 +93,8 @@ const restructureLibraryItems = (data: LibraryItemsQuery) => {
 				coverCalligraphy:
 					bookData.personCoverCalligraphy?.nodes.map((c) => c.name).join(', ') ?? null,
 				collection: bookData.collection?.nodes.map((c) => c.name).join(', ') ?? null,
-				thumbnailCoverImage: firstImage
-					? {
-							sourceUrl: firstImage.sourceUrl,
-							height: firstImage.height,
-							width: firstImage.width,
-							mimeType: firstImage.mimeType
-						}
-					: null,
-				thumbnailImages:
-					bookData.images?.nodes.map((image) => ({
-						sourceUrl: image.mediaDetails.sizes[0].sourceUrl,
-						height: image.mediaDetails.sizes[0].height,
-						width: image.mediaDetails.sizes[0].width,
-						mimeType: image.mediaDetails.sizes[0].mimeType
-					})) || [],
+				thumbnailCoverImage: firstImage,
+				thumbnailImages: bookData.images?.nodes,
 				artistFilterTerm,
 				authorFilterTerm,
 				publisherFilterTerm,
