@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
+@import 'fonts.css';
 
 @tailwind base;
 @tailwind components;
@@ -6,7 +6,7 @@
 
 .text-2xl,
 .text-3xl {
-    @apply font-display;
+    @apply font-boogy;
 }
 
 .alignwide {

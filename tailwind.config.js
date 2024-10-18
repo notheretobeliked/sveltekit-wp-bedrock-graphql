@@ -20,7 +20,9 @@ export default {
   theme: {
     fontFamily: {
       'sans': ['Inter Tight'],
-      'display': ['Didot'],
+      'martina': ['Martina Plantijn'],
+      'manchette': ['Manchette Fine'],
+      'boogy': ['Boogy Brut Poster'],
     },
     colors: {
       transparent: 'transparent',
