@@ -14,7 +14,8 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			$components: 'src/components',
-			$types: 'src/types'
+			$types: 'src/types',
+			$stores: 'src/stores'
 		},
 		prerender: {
 			entries: [
