@@ -1,3 +1,5 @@
+import type { ImageObject } from '$lib/types/wp-types.ts'
+
 export interface Book {
 	slug: string
 	edition: string | null
@@ -25,16 +27,6 @@ export interface Book {
 	translation: string | null
 	coverCalligraphy: string | null
 	collection: string | null
-	thumbnailCoverImage: {
-		sourceUrl: string
-		height: number
-		width: number
-		mimeType: string
-	} | null
-	thumbnailImages: Array<{
-		sourceUrl: string
-		height: number
-		width: number
-		mimeType: string
-	}>
+	thumbnailCoverImage: ImageObject| null
+	thumbnailImages: Array<ImageObject> | null
 }

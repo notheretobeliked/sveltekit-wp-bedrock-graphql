@@ -78,6 +78,7 @@ query LibraryItems($language: String!, $after: String) {
                 height
                 width
                 mimeType
+                name
               }
             }
             altText
