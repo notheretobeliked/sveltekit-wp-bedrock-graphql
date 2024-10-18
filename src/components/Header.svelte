@@ -22,10 +22,10 @@
 
   </script>
 <header>
-    <div class="fixed top-0 bg-white w-full h-12 z-50">
+    <div class="fixed top-0 bg-white w-full pt-4 pb-3 z-50">
       <div class="grid md:grid-cols-3 items-center h-full px-4 w-full max-w-screen-xl mx-auto text-black">
         <h1 class="z-30 font-boogy text-xl text-black">Decolonising the page</h1>
-        <div class="language-switcher text-center">
+        <div class="language-switcher text-center font-martina">
           <a href={currentLanguage === 'en' ? currentPagePath : otherLanguagePath}>English</a>
            | 
           <a class="font-manchette" href={currentLanguage === 'ar' ? currentPagePath : otherLanguagePath}>العربية</a>
