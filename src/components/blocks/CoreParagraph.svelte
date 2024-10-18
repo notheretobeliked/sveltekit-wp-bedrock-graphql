@@ -14,13 +14,13 @@
 				textClasses = 'text-sans text-sm md:text-base'
 				break
 			case 'lg':
-				textClasses = 'font-display text-base md:text-lg'
+				textClasses = 'font-martina text-base md:text-lg'
 				break
 			case 'xl':
-				textClasses = 'font-display text-lg md:text-xl'
+				textClasses = 'font-martina text-lg md:text-xl'
 				break
 			case '2xl':
-				textClasses = 'font-display text-xl md:text-2xl'
+				textClasses = 'font-martina text-xl md:text-2xl'
 				break
 			case null:
 				textClasses = 'text-sans text-sm md:text-base'

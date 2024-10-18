@@ -48,17 +48,17 @@
 </script>
 
 {#if level === 1}
-	<h1 class="{classNames(fontSize, textColor, textAlign)} font-display">
+	<h1 class="{classNames(fontSize, textColor, textAlign)} font-boogy">
 		{@html content}
 	</h1>
 {/if}
 {#if level === 2}
-	<h2 class="{classNames(fontSize, textColor, textAlign)}  font-display">
+	<h2 class="{classNames(fontSize, textColor, textAlign)}  font-boogy">
 		{@html content}
 	</h2>
 {/if}
 {#if level === 3}
-	<h3 class="{classNames(fontSize, textColor, textAlign)}  font-display">
+	<h3 class="{classNames(fontSize, textColor, textAlign)}  font-boogy">
 		{@html content}
 	</h3>
 {/if}
