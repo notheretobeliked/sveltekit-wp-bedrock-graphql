@@ -33,7 +33,7 @@ import type { ImageObject, ImageSizeName } from '$lib/types/wp-types.ts'
 
 <img
   loading={lazy ? 'lazy' : 'eager'}
-  class={`w-full h-full object-${fit} ${extraClasses}`}
+  class={`h-full w-full object-${fit} ${extraClasses}`}
   {src}
   alt={imageObject.altText}
   {width}

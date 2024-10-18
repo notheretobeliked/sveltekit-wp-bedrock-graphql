@@ -17,7 +17,7 @@ export const load: PageServerLoad = async function load({ params, url }) {
     const responseData = await response.json()
 
     // Log the entire response
-    console.log('GraphQL response:', JSON.stringify(responseData, null, 2))
+//  console.log('GraphQL response:', JSON.stringify(responseData, null, 2))
 
     // Check if responseData has the expected structure
     if (!responseData || typeof responseData !== 'object' || !('data' in responseData)) {
