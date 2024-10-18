@@ -99,12 +99,12 @@
 	console.log('Data received:', data)
 </script>
 
-<main class="py-24 min-h-screen mx-auto font-sans max-w-screen-xl">
+<main class="py-24 min-h-screen mx-auto font-martina max-w-screen-xl">
 	<header class="mb-8">
 		<h1 class="text-center text-2xl !font-manchette">مكتبة</h1>
 		<h1 class="text-center text-2xl !font-boogy">Library</h1>
 	</header>
-	<div class="mb-8 grid lg:grid-cols-6 gap-4 mx-auto font-sans max-w-screen-xl sticky top-8">
+	<div class="mb-8 grid md:grid-cols-6 gap-4 mx-auto font-martina max-w-screen-xl sticky top-8">
 		{#if artists.length > 0}
 			<select bind:value={selectedArtist} class="border-white border rounded-md p-2 bg-black">
 				<option value="">All Artists</option>
@@ -160,10 +160,10 @@
 		<ul>
 			{#each filteredBooks as book}
 				<li
-					class="font-sans bg-black text-white py-4 border-b border-white {lang === 'ar' ? 'text-right' : ''}"
+					class="font-martina bg-black text-white py-4 border-b border-white {lang === 'ar' ? 'text-right' : ''}"
 					transition:slide={{ duration: 300 }}
 				>
-					<div class="xl:grid-cols-6 grid gap-4">
+					<div class="md:grid-cols-6 grid gap-4">
 						<!-- Group 1 -->
 						<div class="py-3 flex flex-col gap-2">
 							{#each book.group1 as { label, title }, index}
