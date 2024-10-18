@@ -101,9 +101,10 @@
 
 <main class="py-24 min-h-screen mx-auto font-sans max-w-screen-xl">
 	<header class="mb-8">
-		<h1 class="text-center text-2xl !font-sans">Library</h1>
+		<h1 class="text-center text-2xl !font-manchette">مكتبة</h1>
+		<h1 class="text-center text-2xl !font-boogy">Library</h1>
 	</header>
-	<div class="mb-8 grid lg:grid-cols-6 gap-4 mx-auto font-sans max-w-screen-xl">
+	<div class="mb-8 grid lg:grid-cols-6 gap-4 mx-auto font-sans max-w-screen-xl sticky top-8">
 		{#if artists.length > 0}
 			<select bind:value={selectedArtist} class="border-white border rounded-md p-2 bg-black">
 				<option value="">All Artists</option>
