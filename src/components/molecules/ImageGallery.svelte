@@ -3,6 +3,7 @@
 	import ImageOverlay from './ImageOverlay.svelte';
 	import type { ImageObject } from '$lib/types/wp-types';
 	export let images: ImageObject[];
+	images = images.reverse();
 
 	let selectedImageIndex: number | null = null;
 
