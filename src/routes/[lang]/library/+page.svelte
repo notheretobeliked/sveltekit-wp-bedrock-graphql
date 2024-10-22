@@ -15,6 +15,7 @@
 	const artists: { name: string; slug: string }[] = data.artists ?? []
 	const authors: { name: string; slug: string }[] = data.authors ?? []
 	const publishers: { name: string; slug: string }[] = data.publishers ?? []
+    const lang = data.language as 'ar' | 'en'
 
 	// Filter state
 	let selectedArtist = ''
