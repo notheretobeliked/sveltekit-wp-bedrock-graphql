@@ -46,12 +46,7 @@
   <nav class="w-full flex px-4 pt-4 justify-between items-center h-12 md:h-24">
     <div class="fixed top-[45vh] z-50"><Hamburger bind:open /></div>
     <ul role="navigation" aria-label="Main" class="fixed w-full items-center h-screen inset-0 z-30 bg-white justify-center flex-row gap-6  {open ? 'flex flex-col' : 'hidden' }" >
-      <Button label={"Home"} url={"/"} />
-      {#each menuItems as menuItem}
-      <li>
-      <Button active={menuItem.current} label={menuItem.label} url={menuItem.uri} />
-      </li>
-      {/each}
+
     </ul>
   </nav>
 </header>
