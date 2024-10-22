@@ -15,7 +15,7 @@
 	const artists: { name: string; slug: string }[] = data.artists ?? []
 	const authors: { name: string; slug: string }[] = data.authors ?? []
 	const publishers: { name: string; slug: string }[] = data.publishers ?? []
-    const lang = data.language as 'ar' | 'en'
+
 	// Filter state
 	let selectedArtist = ''
 	let selectedAuthor = ''
@@ -30,7 +30,7 @@
 	const yearsAscending = yearRange.minYear && yearRange.maxYear
 		? Array.from(
 				{ length: yearRange.maxYear - yearRange.minYear + 1 },
-				(_, i) => (yearRange.minYear + i).toString()
+				(_, i) => (yearRange.minYear! + i).toString()
 			)
 		: [];
 	
@@ -142,14 +142,14 @@
 		<div class="grid grid-cols-2 gap-4">
 			<select bind:value={yearFrom} class="border-white border rounded-md p-2 bg-black">
 				<option value="">Year from</option>
-				{#each yearsAscending as year}
+				{#each years as year}
 					<option value={year} class={lang === 'ar' ? 'text-right' : ''}>{year}</option>
 				{/each}
 			</select>
 
 			<select bind:value={yearTo} class="border-white border rounded-md p-2 bg-black">
 				<option value="" class={lang === 'ar' ? 'text-right' : ''}>Year to</option>
-				{#each yearsDescending as year}
+				{#each years as year}
 					<option value={year} class={lang === 'ar' ? 'text-right' : ''}>{year}</option>
 				{/each}
 			</select>
