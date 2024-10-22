@@ -1,21 +1,27 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition'
 	import { onMount } from 'svelte'
+	import { labelTranslations } from '$stores/translations'
+	import { get } from 'svelte/store'
+	import { page } from '$app/stores'
+
+	const translations = get(labelTranslations)
+
 
 	import type { PageData } from './$types'
 	import type { Book } from '$lib/types/general'
 	import Label from '$components/molecules/label.svelte'
 	export let data: PageData
 
-	const books: Book[] = (data.books ?? []).map((book) => ({
+	let books: Book[] = (data.books ?? []).map((book) => ({
 		...book,
 		slug: book.slug ?? '',
 		thumbnailCoverImage: book.thumbnailCoverImage as unknown as ImageObject | null
 	})) as Book[]
-	const artists: { name: string; slug: string }[] = data.artists ?? []
-	const authors: { name: string; slug: string }[] = data.authors ?? []
-	const publishers: { name: string; slug: string }[] = data.publishers ?? []
-    const lang = data.language as 'ar' | 'en'
+	let artists: { name: string; slug: string }[] = data.artists ?? []
+	let authors: { name: string; slug: string }[] = data.authors ?? []
+	let publishers: { name: string; slug: string }[] = data.publishers ?? []
+	let lang = data.language as 'ar' | 'en'
 
 	// Filter state
 	let selectedArtist = ''
@@ -27,19 +33,19 @@
 	let yearTo = ''
 
 	// Use the yearRange from the server data
-	const yearRange = data.yearRange;
-	const yearsAscending = yearRange.minYear && yearRange.maxYear
-		? Array.from(
-				{ length: yearRange.maxYear - yearRange.minYear + 1 },
-				(_, i) => (yearRange.minYear! + i).toString()
-			)
-		: [];
-	
-	const yearsDescending = [...yearsAscending].reverse();
+	let yearRange = data.yearRange
+	let yearsAscending =
+		yearRange.minYear && yearRange.maxYear
+			? Array.from({ length: yearRange.maxYear - yearRange.minYear + 1 }, (_, i) =>
+					(yearRange.minYear! + i).toString()
+				)
+			: []
+
+	let yearsDescending = [...yearsAscending].reverse()
 
 	// Preselect the first and last years
-	yearFrom = yearsAscending[0] || '';
-	yearTo = yearsDescending[0] || '';
+	yearFrom = yearsAscending[0] || ''
+	yearTo = yearsDescending[0] || ''
 
 	/**
 	 * Preprocess books to include filtered label groups.
@@ -86,7 +92,26 @@
 
 	// Apply filters whenever any filter changes
 	$: {
-		selectedArtist, selectedAuthor, selectedPublisher, yearFrom, yearTo, searchFilter
+		// This reactive statement will run whenever the route params change
+		$page.params.lang
+		// Reset all state variables
+		selectedArtist = ''
+		selectedAuthor = ''
+		selectedPublisher = ''
+		searchFilter = ''
+		yearFrom = yearsAscending[0] || ''
+		yearTo = yearsDescending[0] || ''
+		// Reinitialize books and other data
+		books = (data.books ?? []).map((book) => ({
+			...book,
+			slug: book.slug ?? '',
+			thumbnailCoverImage: book.thumbnailCoverImage as unknown as ImageObject | null
+		})) as Book[]
+		artists = data.artists ?? []
+		authors = data.authors ?? []
+		publishers = data.publishers ?? []
+		lang = data.language as 'ar' | 'en'
+		// Reapply filters
 		applyFilters()
 	}
 
@@ -112,10 +137,12 @@
 		<h1 class="text-center text-2xl !font-manchette">مكتبة</h1>
 		<h1 class="text-center text-2xl !font-boogy">Library</h1>
 	</header>
-	<div class="mb-8 grid md:grid-cols-6 gap-4 mx-auto font-martina max-w-screen-xl sticky top-8 z-50">
+	<div
+		class="mb-8 grid md:grid-cols-6 gap-4 mx-auto font-martina max-w-screen-xl sticky top-8 z-10"
+	>
 		{#if artists.length > 0}
 			<select bind:value={selectedArtist} class="border-white border rounded-md p-2 bg-black">
-				<option value="">All Artists</option>
+				<option value="">{translations.artistdesigner[lang]}</option>
 				{#each artists as artist}
 					<option value={artist.slug}>{artist.name}</option>
 				{/each}
@@ -124,7 +151,7 @@
 
 		{#if authors.length > 0}
 			<select bind:value={selectedAuthor} class="border-white border rounded-md p-2 bg-black">
-				<option value="">All Authors</option>
+				<option value="">{translations.author[lang]}</option>
 				{#each authors as author}
 					<option value={author.slug}>{author.name}</option>
 				{/each}
@@ -133,7 +160,7 @@
 
 		{#if publishers.length > 0}
 			<select bind:value={selectedPublisher} class="border-white border rounded-md p-2 bg-black">
-				<option value="">All Publishers</option>
+				<option value="">{translations.publisher[lang]}</option>
 				{#each publishers as publisher}
 					<option value={publisher.slug}>{publisher.name}</option>
 				{/each}
@@ -142,15 +169,13 @@
 
 		<div class="grid grid-cols-2 gap-4">
 			<select bind:value={yearFrom} class="border-white border rounded-md p-2 bg-black">
-				<option value="">Year from</option>
-				{#each years as year}
+				{#each yearsAscending as year}
 					<option value={year} class={lang === 'ar' ? 'text-right' : ''}>{year}</option>
 				{/each}
 			</select>
 
 			<select bind:value={yearTo} class="border-white border rounded-md p-2 bg-black">
-				<option value="" class={lang === 'ar' ? 'text-right' : ''}>Year to</option>
-				{#each years as year}
+				{#each yearsDescending as year}
 					<option value={year} class={lang === 'ar' ? 'text-right' : ''}>{year}</option>
 				{/each}
 			</select>
@@ -159,7 +184,7 @@
 		<input
 			type="text"
 			bind:value={searchFilter}
-			placeholder="Search in all fields..."
+			placeholder={translations.search[lang]}
 			class="border-white border rounded-md p-2 bg-black col-span-2 {lang === 'ar'
 				? 'text-right'
 				: ''}"
@@ -168,7 +193,7 @@
 
 	{#if filteredBooks.length > 0}
 		<ul>
-			{#each filteredBooks as book}
+			{#each filteredBooks as book(book.slug)}
 				<li
 					class="font-martina bg-black text-white py-4 border-b border-white {lang === 'ar'
 						? 'text-right'
@@ -180,12 +205,18 @@
 			{/each}
 		</ul>
 	{:else}
-		<p>No books found matching the current filters.</p>
+		<p>{translations.nobooks[lang]}</p>
 	{/if}
 </main>
 
-<style>
+<style lang="postcss">
 	:global(body) {
 		@apply bg-black text-white;
 	}
+	:root {
+		--color: white;
+		--active-color: black;
+	}
+	
+
 </style>

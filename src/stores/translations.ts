@@ -96,5 +96,25 @@ export const labelTranslations = writable({
 	pages: {
 		en: 'pages',
 		ar: 'الصفحات'
-	}
+	},
+    image: {
+        en: 'image',
+        ar: 'صورة'
+    },
+    images: {
+        en: 'images',
+        ar: 'صور'
+    },
+    artistdesigner: {
+        en: 'Artist/designer',
+        ar: 'الفنان/المُصمّم'
+    },
+    search: {
+        en: 'Search',
+        ar: 'بحث'
+    },
+    nobooks: {
+        en: 'No books found matching the current filters.',
+        ar: 'لم يتم العثور على كتب تطابق المرشحات الحالية.'
+    }
 })

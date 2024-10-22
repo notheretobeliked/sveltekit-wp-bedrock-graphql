@@ -172,7 +172,7 @@ function extractArtists(data: LibraryItemsQuery) {
 					})
 				}
 			})
-		}
+		} 
 	})
 
 	const artists = Array.from(artistsMap.values())
@@ -216,8 +216,9 @@ function getYearRange(data: LibraryItemsQuery) {
 	};
 }
 
-export const load: PageServerLoad = async function load({ params, url }) {
+export const load: PageServerLoad = async function load({ params }) {
 	const uri = params.uri
+  console.log(params)
 
 	try {
 		const books = await fetchAllLibraryItems(params.lang)
@@ -226,7 +227,7 @@ export const load: PageServerLoad = async function load({ params, url }) {
 		const restructuredData = restructureLibraryItems({ books: { nodes: books } })
 
 		const yearRange = getYearRange({ books: { nodes: books } })
-
+    console.log(restructuredData)
 		return {
 			books: restructuredData,
 			uri,

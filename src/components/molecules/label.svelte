@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Book } from '$lib/types/general'
-	import LabelItem from '$components/atoms/labelItem.svelte'
+	import LabelItem from '$components/atoms/LabelItem.svelte'
 
 	import Image from '$components/Image.svelte'
 	import ImageOverlay from '$components/molecules/ImageOverlay.svelte'
@@ -15,7 +15,6 @@
 	export let book: Book
 	export let lang: 'en' | 'ar' // Add this line to explicitly type lang
 	const translations = get(labelTranslations)
-	console.log(book)
 	let selectedImageIndex: number | null = null
 
 	interface LabelGroup {
@@ -96,6 +95,13 @@
 		selectedImageIndex = null
 	}
 
+	function navigateImage(direction: 'prev' | 'next') {
+		if (selectedImageIndex !== null) {
+			selectedImageIndex =
+				(selectedImageIndex + (direction === 'next' ? 1 : -1) + images.length) % images.length
+		}
+	}
+
 	let scrollContainer: HTMLDivElement
 
 	onMount(() => {
@@ -103,8 +109,6 @@
 			scrollContainer.scrollLeft = scrollContainer.scrollWidth
 		}
 	})
-
-	console.log('Initial showImages value:', showImages)
 </script>
 
 <div class="md:grid-cols-6 grid gap-4 label-grid">
@@ -168,7 +172,9 @@
 					>
 						<Image imageObject={book.thumbnailCoverImage} fit="contain" />
 						<div
-							class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+							class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center {showImages
+								? 'opacity-100'
+								: 'opacity-0'} group-hover:opacity-100 transition-opacity duration-300"
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -186,7 +192,7 @@
 							</svg>
 						</div>
 					</button>
-					<p class="text-center text-sm">{images.length} images</p>
+					<LabelItem align="center" label={`${images.length} ${translations.images[lang]}`} />
 				{:else}
 					<button
 						on:click={() => openOverlay(0)}
@@ -213,7 +219,7 @@
 							</svg>
 						</div>
 					</button>
-					<p class="text-center text-sm">{images.length} image</p>
+					<LabelItem align="center" label={`${images.length} ${translations.image[lang]}`} />
 				{/if}
 			</figure>
 		{/if}
@@ -224,6 +230,7 @@
 	<ImageOverlay
 		image={images[selectedImageIndex]}
 		on:close={closeOverlay}
+		on:navigate={({ detail }) => navigateImage(detail)}
 		{images}
 		currentIndex={selectedImageIndex}
 	/>
