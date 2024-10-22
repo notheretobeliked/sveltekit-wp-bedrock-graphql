@@ -62,7 +62,6 @@
 
 	// Function to apply filters
 	function applyFilters() {
-		logState('Before applying filters')
 		filteredBooks = books.filter((book) => {
 			const artistMatch =
 				!$filterStore.selectedArtist ||
@@ -91,18 +90,16 @@
 				artistMatch && authorMatch && publisherMatch && yearFromMatch && yearToMatch && searchMatch
 			)
 		})
-		logState('After applying filters')
+
 	}
 
 	// Apply filters whenever the store changes
 	$: {
-		console.log('Store changed:', $filterStore)
 		applyFilters()
 	}
 
 	// Handle route changes
 	$: if ($page.params.lang !== lang) {
-		logState('Route changed - Before reset')
 		// Reset all state variables
 		filterStore.set({
 			selectedArtist: '',
@@ -122,7 +119,6 @@
 		authors = data.authors ?? []
 		publishers = data.publishers ?? []
 		lang = data.language as 'ar' | 'en'
-		logState('Route changed - After reset')
 		// Reapply filters
 		applyFilters()
 	}
@@ -130,7 +126,6 @@
 	onMount(() => {
 		// Initialize filteredBooks with all books
 		filteredBooks = [...books]
-		logState('Component mounted')
 	})
 </script>
 
