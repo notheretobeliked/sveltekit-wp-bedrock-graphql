@@ -99,28 +99,21 @@
 	}
 
 	// Handle route changes
-	$: if ($page.params.lang !== lang) {
-		// Reset all state variables
-		filterStore.set({
-			selectedArtist: '',
-			selectedAuthor: '',
-			selectedPublisher: '',
-			yearFrom: yearsAscending[0] || '',
-			yearTo: yearsDescending[0] || '',
-			searchFilter: ''
-		})
-		// Reinitialize books and other data
-		books = (data.books ?? []).map((book) => ({
-			...book,
-			slug: book.slug ?? '',
-			thumbnailCoverImage: book.thumbnailCoverImage as unknown as ImageObject | null
-		})) as Book[]
-		artists = data.artists ?? []
-		authors = data.authors ?? []
-		publishers = data.publishers ?? []
-		lang = data.language as 'ar' | 'en'
-		// Reapply filters
-		applyFilters()
+	$: {
+	  $page.params.lang
+
+	  // Reinitialize books and other data
+	  books = (data.books ?? []).map((book) => ({
+		...book,
+		slug: book.slug ?? '',
+		thumbnailCoverImage: book.thumbnailCoverImage as unknown as ImageObject | null
+	  })) as Book[]
+	  artists = data.artists ?? []
+	  authors = data.authors ?? []
+	  publishers = data.publishers ?? []
+	  lang = data.language as 'ar' | 'en'
+	  // Reapply filters
+	  applyFilters()
 	}
 
 	onMount(() => {
