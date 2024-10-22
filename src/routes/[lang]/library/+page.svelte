@@ -2,11 +2,11 @@
 	import { slide } from 'svelte/transition'
 	import { onMount } from 'svelte'
 	import { labelTranslations } from '$stores/translations'
+	import { filterStore } from '$stores/filterStore'
 	import { get } from 'svelte/store'
 	import { page } from '$app/stores'
 
 	const translations = get(labelTranslations)
-
 
 	import type { PageData } from './$types'
 	import type { Book } from '$lib/types/general'
@@ -23,15 +23,6 @@
 	let publishers: { name: string; slug: string }[] = data.publishers ?? []
 	let lang = data.language as 'ar' | 'en'
 
-	// Filter state
-	let selectedArtist = ''
-	let selectedAuthor = ''
-	let selectedPublisher = ''
-	let searchFilter = ''
-	// Add these new filter state variables
-	let yearFrom = ''
-	let yearTo = ''
-
 	// Use the yearRange from the server data
 	let yearRange = data.yearRange
 	let yearsAscending =
@@ -43,64 +34,84 @@
 
 	let yearsDescending = [...yearsAscending].reverse()
 
-	// Preselect the first and last years
-	yearFrom = yearsAscending[0] || ''
-	yearTo = yearsDescending[0] || ''
-
-	/**
-	 * Preprocess books to include filtered label groups.
-	 */
-
-	// Update the reactive filtered books statement
 	let filteredBooks: typeof books = []
+
+	// Initialize filterStore with default values
+	filterStore.set({
+		selectedArtist: '',
+		selectedAuthor: '',
+		selectedPublisher: '',
+		yearFrom: yearsAscending[0] || '',
+		yearTo: yearsDescending[0] || '',
+		searchFilter: ''
+	})
+
+	// Debugging function
+	function logState(message: string) {
+		console.log(message, {
+			...$filterStore,
+			filteredBooksCount: filteredBooks.length
+		})
+	}
+
+	// Function to update a single filter value
+	function updateFilter(key: string, value: string) {
+		filterStore.update((store) => ({ ...store, [key]: value }))
+		logState(`${key} filter changed`)
+	}
 
 	// Function to apply filters
 	function applyFilters() {
-		filteredBooks = [] // Clear the array first
-		setTimeout(() => {
-			// Use setTimeout to ensure the clearing has taken effect
-			filteredBooks = books.filter((book) => {
-				const artistMatch =
-					!selectedArtist || (book.artistFilterTerm?.split(' ') ?? []).includes(selectedArtist)
-				const authorMatch =
-					!selectedAuthor || (book.authorFilterTerm?.split(' ') ?? []).includes(selectedAuthor)
-				const publisherMatch =
-					!selectedPublisher ||
-					(book.publisherFilterTerm?.split(' ') ?? []).includes(selectedPublisher)
+		logState('Before applying filters')
+		filteredBooks = books.filter((book) => {
+			const artistMatch =
+				!$filterStore.selectedArtist ||
+				(book.artistFilterTerm?.split(' ') ?? []).includes($filterStore.selectedArtist)
+			const authorMatch =
+				!$filterStore.selectedAuthor ||
+				(book.authorFilterTerm?.split(' ') ?? []).includes($filterStore.selectedAuthor)
+			const publisherMatch =
+				!$filterStore.selectedPublisher ||
+				(book.publisherFilterTerm?.split(' ') ?? []).includes($filterStore.selectedPublisher)
 
-				const yearFromMatch = !yearFrom || (book.year && book.year >= parseInt(yearFrom))
-				const yearToMatch = !yearTo || (book.year && book.year <= parseInt(yearTo))
+			const yearFromMatch =
+				!$filterStore.yearFrom || (book.year && book.year >= parseInt($filterStore.yearFrom))
+			const yearToMatch =
+				!$filterStore.yearTo || (book.year && book.year <= parseInt($filterStore.yearTo))
 
-				const searchMatch =
-					!searchFilter ||
-					Object.values(book).some(
-						(value) =>
-							typeof value === 'string' && value.toLowerCase().includes(searchFilter.toLowerCase())
-					)
-
-				return (
-					artistMatch &&
-					authorMatch &&
-					publisherMatch &&
-					yearFromMatch &&
-					yearToMatch &&
-					searchMatch
+			const searchMatch =
+				!$filterStore.searchFilter ||
+				Object.values(book).some(
+					(value) =>
+						typeof value === 'string' &&
+						value.toLowerCase().includes($filterStore.searchFilter.toLowerCase())
 				)
-			})
-		}, 0)
+
+			return (
+				artistMatch && authorMatch && publisherMatch && yearFromMatch && yearToMatch && searchMatch
+			)
+		})
+		logState('After applying filters')
 	}
 
-	// Apply filters whenever any filter changes
+	// Apply filters whenever the store changes
 	$: {
-		// This reactive statement will run whenever the route params change
-		$page.params.lang
+		console.log('Store changed:', $filterStore)
+		applyFilters()
+	}
+
+	// Handle route changes
+	$: if ($page.params.lang !== lang) {
+		logState('Route changed - Before reset')
 		// Reset all state variables
-		selectedArtist = ''
-		selectedAuthor = ''
-		selectedPublisher = ''
-		searchFilter = ''
-		yearFrom = yearsAscending[0] || ''
-		yearTo = yearsDescending[0] || ''
+		filterStore.set({
+			selectedArtist: '',
+			selectedAuthor: '',
+			selectedPublisher: '',
+			yearFrom: yearsAscending[0] || '',
+			yearTo: yearsDescending[0] || '',
+			searchFilter: ''
+		})
 		// Reinitialize books and other data
 		books = (data.books ?? []).map((book) => ({
 			...book,
@@ -111,6 +122,7 @@
 		authors = data.authors ?? []
 		publishers = data.publishers ?? []
 		lang = data.language as 'ar' | 'en'
+		logState('Route changed - After reset')
 		// Reapply filters
 		applyFilters()
 	}
@@ -118,17 +130,7 @@
 	onMount(() => {
 		// Initialize filteredBooks with all books
 		filteredBooks = [...books]
-	})
-
-	// For debugging
-	$: console.log('Filtered Books:', filteredBooks)
-	$: console.log('Filters:', {
-		selectedArtist,
-		selectedAuthor,
-		selectedPublisher,
-		yearFrom,
-		yearTo,
-		searchFilter
+		logState('Component mounted')
 	})
 </script>
 
@@ -141,7 +143,11 @@
 		class="mb-8 grid md:grid-cols-6 gap-4 mx-auto font-martina max-w-screen-xl sticky top-8 z-10"
 	>
 		{#if artists.length > 0}
-			<select bind:value={selectedArtist} class="border-white border rounded-md p-2 bg-black">
+			<select
+				bind:value={$filterStore.selectedArtist}
+				on:change={(e) => updateFilter('selectedArtist', e.currentTarget.value)}
+				class="border-white border rounded-md p-2 bg-black"
+			>
 				<option value="">{translations.artistdesigner[lang]}</option>
 				{#each artists as artist}
 					<option value={artist.slug}>{artist.name}</option>
@@ -150,7 +156,11 @@
 		{/if}
 
 		{#if authors.length > 0}
-			<select bind:value={selectedAuthor} class="border-white border rounded-md p-2 bg-black">
+			<select
+				bind:value={$filterStore.selectedAuthor}
+				on:change={(e) => updateFilter('selectedAuthor', e.currentTarget.value)}
+				class="border-white border rounded-md p-2 bg-black"
+			>
 				<option value="">{translations.author[lang]}</option>
 				{#each authors as author}
 					<option value={author.slug}>{author.name}</option>
@@ -159,7 +169,11 @@
 		{/if}
 
 		{#if publishers.length > 0}
-			<select bind:value={selectedPublisher} class="border-white border rounded-md p-2 bg-black">
+			<select
+				bind:value={$filterStore.selectedPublisher}
+				on:change={(e) => updateFilter('selectedPublisher', e.currentTarget.value)}
+				class="border-white border rounded-md p-2 bg-black"
+			>
 				<option value="">{translations.publisher[lang]}</option>
 				{#each publishers as publisher}
 					<option value={publisher.slug}>{publisher.name}</option>
@@ -168,13 +182,31 @@
 		{/if}
 
 		<div class="grid grid-cols-2 gap-4">
-			<select bind:value={yearFrom} class="border-white border rounded-md p-2 bg-black">
+			<select
+				bind:value={$filterStore.yearFrom}
+				on:change={(e) => {
+					updateFilter('yearFrom', e.currentTarget.value)
+					if (parseInt(e.currentTarget.value) > parseInt($filterStore.yearTo)) {
+						updateFilter('yearTo', e.currentTarget.value)
+					}
+				}}
+				class="border-white border rounded-md p-2 bg-black"
+			>
 				{#each yearsAscending as year}
 					<option value={year} class={lang === 'ar' ? 'text-right' : ''}>{year}</option>
 				{/each}
 			</select>
 
-			<select bind:value={yearTo} class="border-white border rounded-md p-2 bg-black">
+			<select
+				bind:value={$filterStore.yearTo}
+				on:change={(e) => {
+					updateFilter('yearTo', e.currentTarget.value)
+					if (parseInt(e.currentTarget.value) < parseInt($filterStore.yearFrom)) {
+						updateFilter('yearFrom', e.currentTarget.value)
+					}
+				}}
+				class="border-white border rounded-md p-2 bg-black"
+			>
 				{#each yearsDescending as year}
 					<option value={year} class={lang === 'ar' ? 'text-right' : ''}>{year}</option>
 				{/each}
@@ -183,7 +215,8 @@
 
 		<input
 			type="text"
-			bind:value={searchFilter}
+			bind:value={$filterStore.searchFilter}
+			on:input={(e) => updateFilter('searchFilter', e.currentTarget.value)}
 			placeholder={translations.search[lang]}
 			class="border-white border rounded-md p-2 bg-black col-span-2 {lang === 'ar'
 				? 'text-right'
@@ -193,7 +226,7 @@
 
 	{#if filteredBooks.length > 0}
 		<ul>
-			{#each filteredBooks as book(book.slug)}
+			{#each filteredBooks as book (book.slug)}
 				<li
 					class="font-martina bg-black text-white py-4 border-b border-white {lang === 'ar'
 						? 'text-right'
@@ -217,6 +250,4 @@
 		--color: white;
 		--active-color: black;
 	}
-	
-
 </style>
