@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition'
+	import { onMount } from 'svelte'
+
 	import type { PageData } from './$types'
 	import type { Book } from '$lib/types/general'
 	import Label from '$components/molecules/label.svelte'
@@ -7,7 +9,8 @@
 
 	const books: Book[] = (data.books ?? []).map((book) => ({
 		...book,
-		slug: book.slug ?? ''
+		slug: book.slug ?? '',
+		thumbnailCoverImage: book.thumbnailCoverImage as unknown as ImageObject | null
 	})) as Book[]
 	const artists: { name: string; slug: string }[] = data.artists ?? []
 	const authors: { name: string; slug: string }[] = data.authors ?? []
@@ -17,7 +20,7 @@
 	let selectedArtist = ''
 	let selectedAuthor = ''
 	let selectedPublisher = ''
-	let searchFilter = ''	
+	let searchFilter = ''
 	// Add these new filter state variables
 	let yearFrom = ''
 	let yearTo = ''
@@ -25,27 +28,73 @@
 	// Generate an array of years from 1900 to current year
 	const currentYear = new Date().getFullYear()
 	const years = Array.from({ length: currentYear - 1899 }, (_, i) => (currentYear - i).toString())
-	const lang = data.language
+	const lang = data.language as 'ar' | 'en'
+
 
 	/**
 	 * Preprocess books to include filtered label groups.
 	 */
 
 	// Update the reactive filtered books statement
-	$: filteredBooks = books.filter(
-		(book) =>
-			(!selectedArtist || book.artistFilterTerm?.includes(selectedArtist)) &&
-			(!selectedAuthor || book.authorFilterTerm?.includes(selectedAuthor)) &&
-			(!selectedPublisher || book.publisherFilterTerm?.includes(selectedPublisher)) &&
-			(!yearFrom || (book.year && parseInt(book.year) >= parseInt(yearFrom))) &&
-			(!yearTo || (book.year && parseInt(book.year) <= parseInt(yearTo))) &&
-			(!searchFilter ||
-				Object.values(book).some(
-					(value) =>
-						typeof value === 'string' && value.toLowerCase().includes(searchFilter.toLowerCase())
-				))
-	)
+	let filteredBooks: typeof books = []
 
+	// Function to apply filters
+	function applyFilters() {
+		filteredBooks = [] // Clear the array first
+		setTimeout(() => {
+			// Use setTimeout to ensure the clearing has taken effect
+			filteredBooks = books.filter((book) => {
+				const artistMatch =
+					!selectedArtist || (book.artistFilterTerm?.split(' ') ?? []).includes(selectedArtist)
+				const authorMatch =
+					!selectedAuthor || (book.authorFilterTerm?.split(' ') ?? []).includes(selectedAuthor)
+				const publisherMatch =
+					!selectedPublisher ||
+					(book.publisherFilterTerm?.split(' ') ?? []).includes(selectedPublisher)
+
+				const yearFromMatch = !yearFrom || (book.year && book.year >= parseInt(yearFrom))
+				const yearToMatch = !yearTo || (book.year && book.year <= parseInt(yearTo))
+
+				const searchMatch =
+					!searchFilter ||
+					Object.values(book).some(
+						(value) =>
+							typeof value === 'string' && value.toLowerCase().includes(searchFilter.toLowerCase())
+					)
+
+				return (
+					artistMatch &&
+					authorMatch &&
+					publisherMatch &&
+					yearFromMatch &&
+					yearToMatch &&
+					searchMatch
+				)
+			})
+		}, 0)
+	}
+
+	// Apply filters whenever any filter changes
+	$: {
+		selectedArtist, selectedAuthor, selectedPublisher, yearFrom, yearTo, searchFilter
+		applyFilters()
+	}
+
+	onMount(() => {
+		// Initialize filteredBooks with all books
+		filteredBooks = [...books]
+	})
+
+	// For debugging
+	$: console.log('Filtered Books:', filteredBooks)
+	$: console.log('Filters:', {
+		selectedArtist,
+		selectedAuthor,
+		selectedPublisher,
+		yearFrom,
+		yearTo,
+		searchFilter
+	})
 </script>
 
 <main class="py-24 min-h-screen mx-auto font-martina max-w-screen-xl">

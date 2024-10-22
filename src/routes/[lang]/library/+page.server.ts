@@ -64,33 +64,20 @@ const restructureLibraryItems = (data: LibraryItemsQuery) => {
 					...(bookData.personPageCalligraphy?.nodes || []),
 					...(bookData.personPageIllustration?.nodes || []),
 					...(bookData.personCoverCalligraphy?.nodes || [])
-				].map((person) => ({ name: person.name, slug: person.slug }))
+				].map((person) => person.slug)
 			)
 
 			const authors = new Set(
-				bookData.personAuthor?.nodes.map((author) => ({ name: author.name, slug: author.slug })) ||
-					[]
+				bookData.personAuthor?.nodes.map((author) => author.slug) || []
 			)
 			const publishers = new Set(
-				bookData.publisher?.nodes.map((publisher) => ({
-					name: publisher.name,
-					slug: publisher.slug
-				})) || []
+				bookData.publisher?.nodes.map((publisher) => publisher.slug) || []
 			)
 
-			// Create filter terms
-			const artistFilterTerm = Array.from(artists)
-				.map((artist) => `${artist.name} ${artist.slug}`)
-				.join(' ')
-				.toLowerCase()
-			const authorFilterTerm = Array.from(authors)
-				.map((author) => `${author.name} ${author.slug}`)
-				.join(' ')
-				.toLowerCase()
-			const publisherFilterTerm = Array.from(publishers)
-				.map((publisher) => `${publisher.name} ${publisher.slug}`)
-				.join(' ')
-				.toLowerCase()
+			// Create filter terms using only slugs
+			const artistFilterTerm = Array.from(artists).join(' ').toLowerCase()
+			const authorFilterTerm = Array.from(authors).join(' ').toLowerCase()
+			const publisherFilterTerm = Array.from(publishers).join(' ').toLowerCase()
 
 			return {
 				slug: book.slug,
