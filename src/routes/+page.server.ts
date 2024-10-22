@@ -1,4 +1,4 @@
-export const prerender = true
+export const prerender = false
 
 import PageContent from '$lib/graphql/query/page.graphql?raw'
 import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
