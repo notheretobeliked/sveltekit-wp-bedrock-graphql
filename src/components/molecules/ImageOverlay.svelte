@@ -47,6 +47,7 @@
 				<Image imageObject={image} imageSize="large" fit="contain" />
 			</div>
 		{/key}
+        {#if images.length > 1}
 		<button
 			class="fixed top-1/2 left-12 transform -translate-y-1/2 text-white"
 			on:click|stopPropagation={() => navigate('prev')}
@@ -89,6 +90,7 @@
 				/>
 			</svg>
 		</button>
+        {/if}
 		<button
 			class="fixed top-12 right-12 text-white"
 			on:click={close}
