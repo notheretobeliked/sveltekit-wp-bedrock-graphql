@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Book } from '$lib/types/general'
-	import LabelItem from '$components/atoms/LabelItem.svelte'
+	import LabelAndTitle from '$components/atoms/LabelAndTitle.svelte'
 
 	import Image from '$components/Image.svelte'
 	import ImageOverlay from '$components/molecules/ImageOverlay.svelte'
@@ -126,35 +126,35 @@
 			<!-- Group 1 -->
 			<div class="py-3 flex flex-col gap-2">
 				{#each labelData.group1 as { label, title }, index}
-					<LabelItem {label} {title} underline={shouldUnderline(index, labelData.group1.length)} />
+					<LabelAndTitle {label} {title} underline={shouldUnderline(index, labelData.group1.length)} />
 				{/each}
 			</div>
 
 			<!-- Group 2 -->
 			<div class="py-3 flex flex-col gap-2">
 				{#each labelData.group2 as { label, title }, index}
-					<LabelItem {label} {title} underline={shouldUnderline(index, labelData.group2.length)} />
+					<LabelAndTitle {label} {title} underline={shouldUnderline(index, labelData.group2.length)} />
 				{/each}
 			</div>
 
 			<!-- Group 3 -->
 			<div class="py-3 flex flex-col gap-2">
 				{#each labelData.group3 as { label, title }, index}
-					<LabelItem {label} {title} underline={shouldUnderline(index, labelData.group3.length)} />
+					<LabelAndTitle {label} {title} underline={shouldUnderline(index, labelData.group3.length)} />
 				{/each}
 			</div>
 
 			<!-- Group 4 -->
 			<div class="py-3 flex flex-col gap-2">
 				{#each labelData.group4 as { label, title }, index}
-					<LabelItem {label} {title} underline={shouldUnderline(index, labelData.group4.length)} />
+					<LabelAndTitle {label} {title} underline={shouldUnderline(index, labelData.group4.length)} />
 				{/each}
 			</div>
 
 			<!-- Group 5 -->
 			<div class="py-3 flex flex-col gap-2">
 				{#each labelData.group5 as { label, title }, index}
-					<LabelItem {label} {title} underline={shouldUnderline(index, labelData.group5.length)} />
+					<LabelAndTitle {label} {title} underline={shouldUnderline(index, labelData.group5.length)} />
 				{/each}
 			</div>
 		</div>
@@ -192,7 +192,7 @@
 							</svg>
 						</div>
 					</button>
-					<LabelItem align="center" label={`${images.length} ${translations.images[lang]}`} />
+					<LabelAndTitle align="center" label={`${images.length} ${translations.images[lang]}`} />
 				{:else}
 					<button
 						on:click={() => openOverlay(0)}
@@ -219,7 +219,7 @@
 							</svg>
 						</div>
 					</button>
-					<LabelItem align="center" label={`${images.length} ${translations.image[lang]}`} />
+					<LabelAndTitle align="center" label={`${images.length} ${translations.image[lang]}`} />
 				{/if}
 			</figure>
 		{/if}
