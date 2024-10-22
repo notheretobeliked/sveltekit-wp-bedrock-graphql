@@ -64,20 +64,33 @@ const restructureLibraryItems = (data: LibraryItemsQuery) => {
 					...(bookData.personPageCalligraphy?.nodes || []),
 					...(bookData.personPageIllustration?.nodes || []),
 					...(bookData.personCoverCalligraphy?.nodes || [])
-				].map((person) => person.slug)
+				].map((person) => ({ name: person.name, slug: person.slug }))
 			)
 
 			const authors = new Set(
-				bookData.personAuthor?.nodes.map((author) => author.slug) || []
+				bookData.personAuthor?.nodes.map((author) => ({ name: author.name, slug: author.slug })) ||
+					[]
 			)
 			const publishers = new Set(
-				bookData.publisher?.nodes.map((publisher) => publisher.slug) || []
+				bookData.publisher?.nodes.map((publisher) => ({
+					name: publisher.name,
+					slug: publisher.slug
+				})) || []
 			)
 
-			// Create filter terms using only slugs
-			const artistFilterTerm = Array.from(artists).join(' ').toLowerCase()
-			const authorFilterTerm = Array.from(authors).join(' ').toLowerCase()
-			const publisherFilterTerm = Array.from(publishers).join(' ').toLowerCase()
+			// Create filter terms
+			const artistFilterTerm = Array.from(artists)
+				.map((artist) => `${artist.name} ${artist.slug}`)
+				.join(' ')
+				.toLowerCase()
+			const authorFilterTerm = Array.from(authors)
+				.map((author) => `${author.name} ${author.slug}`)
+				.join(' ')
+				.toLowerCase()
+			const publisherFilterTerm = Array.from(publishers)
+				.map((publisher) => `${publisher.name} ${publisher.slug}`)
+				.join(' ')
+				.toLowerCase()
 
 			return {
 				slug: book.slug,
@@ -132,7 +145,7 @@ function extractAuthors(data: LibraryItemsQuery) {
 	})
 
 	const authors = Array.from(authorsMap.values())
-	return authors
+	return authors.sort((a, b) => a.name.localeCompare(b.name))
 }
 
 function extractArtists(data: LibraryItemsQuery) {
@@ -163,7 +176,7 @@ function extractArtists(data: LibraryItemsQuery) {
 	})
 
 	const artists = Array.from(artistsMap.values())
-	return artists
+  return artists.sort((a, b) => a.name.localeCompare(b.name))
 }
 
 function extractPublishers(data: LibraryItemsQuery) {
@@ -182,7 +195,25 @@ function extractPublishers(data: LibraryItemsQuery) {
 	})
 
 	// Convert the map values to an array
-	return Array.from(publishersMap.values())
+	return Array.from(publishersMap.values()).sort((a, b) => a.name.localeCompare(b.name))
+}
+
+function getYearRange(data: LibraryItemsQuery) {
+	let minYear = Infinity;
+	let maxYear = -Infinity;
+
+	data.books?.nodes.forEach((book) => {
+		const year = book.bookData?.year;
+		if (year) {
+			minYear = Math.min(minYear, year);
+			maxYear = Math.max(maxYear, year);
+		}
+	});
+
+	return {
+		minYear: minYear !== Infinity ? minYear : null,
+		maxYear: maxYear !== -Infinity ? maxYear : null
+	};
 }
 
 export const load: PageServerLoad = async function load({ params, url }) {
@@ -194,13 +225,16 @@ export const load: PageServerLoad = async function load({ params, url }) {
 		// Now restructure the data just as before
 		const restructuredData = restructureLibraryItems({ books: { nodes: books } })
 
+		const yearRange = getYearRange({ books: { nodes: books } })
+
 		return {
 			books: restructuredData,
 			uri,
 			artists: extractArtists({ books: { nodes: books } }),
 			publishers: extractPublishers({ books: { nodes: books } }),
 			authors: extractAuthors({ books: { nodes: books } }),
-			language: params.lang
+			language: params.lang,
+			yearRange: yearRange
 		}
 	} catch (err: unknown) {
 		if (err instanceof Error) {

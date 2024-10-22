@@ -15,7 +15,7 @@
 	const artists: { name: string; slug: string }[] = data.artists ?? []
 	const authors: { name: string; slug: string }[] = data.authors ?? []
 	const publishers: { name: string; slug: string }[] = data.publishers ?? []
-
+    const lang = data.language as 'ar' | 'en'
 	// Filter state
 	let selectedArtist = ''
 	let selectedAuthor = ''
@@ -25,11 +25,20 @@
 	let yearFrom = ''
 	let yearTo = ''
 
-	// Generate an array of years from 1900 to current year
-	const currentYear = new Date().getFullYear()
-	const years = Array.from({ length: currentYear - 1899 }, (_, i) => (currentYear - i).toString())
-	const lang = data.language as 'ar' | 'en'
+	// Use the yearRange from the server data
+	const yearRange = data.yearRange;
+	const yearsAscending = yearRange.minYear && yearRange.maxYear
+		? Array.from(
+				{ length: yearRange.maxYear - yearRange.minYear + 1 },
+				(_, i) => (yearRange.minYear + i).toString()
+			)
+		: [];
+	
+	const yearsDescending = [...yearsAscending].reverse();
 
+	// Preselect the first and last years
+	yearFrom = yearsAscending[0] || '';
+	yearTo = yearsDescending[0] || '';
 
 	/**
 	 * Preprocess books to include filtered label groups.
@@ -102,7 +111,7 @@
 		<h1 class="text-center text-2xl !font-manchette">مكتبة</h1>
 		<h1 class="text-center text-2xl !font-boogy">Library</h1>
 	</header>
-	<div class="mb-8 grid md:grid-cols-6 gap-4 mx-auto font-martina max-w-screen-xl sticky top-8">
+	<div class="mb-8 grid md:grid-cols-6 gap-4 mx-auto font-martina max-w-screen-xl sticky top-8 z-50">
 		{#if artists.length > 0}
 			<select bind:value={selectedArtist} class="border-white border rounded-md p-2 bg-black">
 				<option value="">All Artists</option>
@@ -133,14 +142,14 @@
 		<div class="grid grid-cols-2 gap-4">
 			<select bind:value={yearFrom} class="border-white border rounded-md p-2 bg-black">
 				<option value="">Year from</option>
-				{#each years as year}
+				{#each yearsAscending as year}
 					<option value={year} class={lang === 'ar' ? 'text-right' : ''}>{year}</option>
 				{/each}
 			</select>
 
 			<select bind:value={yearTo} class="border-white border rounded-md p-2 bg-black">
 				<option value="" class={lang === 'ar' ? 'text-right' : ''}>Year to</option>
-				{#each years as year}
+				{#each yearsDescending as year}
 					<option value={year} class={lang === 'ar' ? 'text-right' : ''}>{year}</option>
 				{/each}
 			</select>
