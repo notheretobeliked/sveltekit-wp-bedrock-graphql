@@ -1,10 +1,12 @@
 <script lang="ts">
     import '../app.css'
-    import { page } from '$app/stores'
+    import { page, navigating } from '$app/stores'
     import type { PageData } from './$types'
     import Twitter from '$components/SEO/Twitter.svelte'
     import OpenGraph from '$components/SEO/OpenGraph.svelte'
     import Header from '$components/Header.svelte'
+    import LoadingSpinner from '$components/atoms/LoadingSpinner.svelte'
+
     export let data: PageData
     let { seo, menu, uri } = data
   
@@ -37,5 +39,12 @@
   {/key}
   
   
-  <slot />
-  
+  {#if $navigating}
+  <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <LoadingSpinner />
+  </div>
+{/if}
+
+<main>
+  <slot {data}  />
+</main>
