@@ -145,7 +145,7 @@ function extractAuthors(data: LibraryItemsQuery) {
 	})
 
 	const authors = Array.from(authorsMap.values())
-	return authors
+	return authors.sort((a, b) => a.name.localeCompare(b.name))
 }
 
 function extractArtists(data: LibraryItemsQuery) {
@@ -172,11 +172,11 @@ function extractArtists(data: LibraryItemsQuery) {
 					})
 				}
 			})
-		}
+		} 
 	})
 
 	const artists = Array.from(artistsMap.values())
-	return artists
+  return artists.sort((a, b) => a.name.localeCompare(b.name))
 }
 
 function extractPublishers(data: LibraryItemsQuery) {
@@ -195,11 +195,30 @@ function extractPublishers(data: LibraryItemsQuery) {
 	})
 
 	// Convert the map values to an array
-	return Array.from(publishersMap.values())
+	return Array.from(publishersMap.values()).sort((a, b) => a.name.localeCompare(b.name))
 }
 
-export const load: PageServerLoad = async function load({ params, url }) {
+function getYearRange(data: LibraryItemsQuery) {
+	let minYear = Infinity;
+	let maxYear = -Infinity;
+
+	data.books?.nodes.forEach((book) => {
+		const year = book.bookData?.year;
+		if (year) {
+			minYear = Math.min(minYear, year);
+			maxYear = Math.max(maxYear, year);
+		}
+	});
+
+	return {
+		minYear: minYear !== Infinity ? minYear : null,
+		maxYear: maxYear !== -Infinity ? maxYear : null
+	};
+}
+
+export const load: PageServerLoad = async function load({ params }) {
 	const uri = params.uri
+  console.log(params)
 
 	try {
 		const books = await fetchAllLibraryItems(params.lang)
@@ -207,13 +226,16 @@ export const load: PageServerLoad = async function load({ params, url }) {
 		// Now restructure the data just as before
 		const restructuredData = restructureLibraryItems({ books: { nodes: books } })
 
+		const yearRange = getYearRange({ books: { nodes: books } })
+    console.log(restructuredData)
 		return {
 			books: restructuredData,
 			uri,
 			artists: extractArtists({ books: { nodes: books } }),
 			publishers: extractPublishers({ books: { nodes: books } }),
 			authors: extractAuthors({ books: { nodes: books } }),
-			language: params.lang
+			language: params.lang,
+			yearRange: yearRange
 		}
 	} catch (err: unknown) {
 		if (err instanceof Error) {

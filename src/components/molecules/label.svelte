@@ -1,17 +1,33 @@
 <script lang="ts">
 	import type { Book } from '$lib/types/general'
-	import LabelItem from '$components/atoms/labelItem.svelte'
+	import LabelAndTitle from '$components/atoms/LabelAndTitle.svelte'
+
 	import Image from '$components/Image.svelte'
-    import ImageGallery from './ImageGallery.svelte'
+	import ImageOverlay from '$components/molecules/ImageOverlay.svelte'
+	import ImageGallery from './ImageGallery.svelte'
+	import { slide } from 'svelte/transition'
+
 	import { onMount } from 'svelte'
 	import { get } from 'svelte/store'
 	import { labelTranslations } from '$stores/translations'
+	const duration = 300 // Duration of the slide animation in milliseconds
 
 	export let book: Book
 	export let lang: 'en' | 'ar' // Add this line to explicitly type lang
 	const translations = get(labelTranslations)
-	console.log(book)
-	const labelData = {
+	let selectedImageIndex: number | null = null
+
+	interface LabelGroup {
+		label: string
+		title: string | null
+		alwaysShow?: boolean
+	}
+
+	interface LabelData {
+		[key: string]: LabelGroup[]
+	}
+
+	const labelData: LabelData = {
 		group1: [
 			{ label: `${translations.ref[lang]}: ${book.ref}`, title: null }, // Ref label based on language
 			...[
@@ -24,7 +40,7 @@
 		group2: [
 			{ label: translations.publisher[lang], title: book.publisher },
 			{ label: translations.place[lang], title: book.place },
-			{ label: translations.year[lang], title: book.year },
+			{ label: translations.year[lang], title: book.year?.toString() || null },
 			{ label: translations.edition[lang], title: book.edition }
 		].filter((item) => item.title),
 
@@ -71,6 +87,21 @@
 		}
 	}
 
+	function openOverlay(index: number) {
+		selectedImageIndex = index
+	}
+
+	function closeOverlay() {
+		selectedImageIndex = null
+	}
+
+	function navigateImage(direction: 'prev' | 'next') {
+		if (selectedImageIndex !== null) {
+			selectedImageIndex =
+				(selectedImageIndex + (direction === 'next' ? 1 : -1) + images.length) % images.length
+		}
+	}
+
 	let scrollContainer: HTMLDivElement
 
 	onMount(() => {
@@ -78,70 +109,129 @@
 			scrollContainer.scrollLeft = scrollContainer.scrollWidth
 		}
 	})
-
-	console.log('Initial showImages value:', showImages)
 </script>
 
-<div class="md:grid-cols-6 grid gap-4">
-	{#if !showImages}
-		<div class="contents">
+<div class="md:grid-cols-6 grid gap-4 label-grid">
+	<div class="col-span-5">
+		{#if showImages}
+			<div transition:slide={{ duration }}>
+				{#if images.length > 1}
+					<div class="overflow-x-auto w-full" bind:this={scrollContainer}>
+						<ImageGallery {images} />
+					</div>
+				{/if}
+			</div>
+		{/if}
+		<div class="grid grid-cols-5 gap-4">
 			<!-- Group 1 -->
 			<div class="py-3 flex flex-col gap-2">
 				{#each labelData.group1 as { label, title }, index}
-					<LabelItem {label} {title} underline={shouldUnderline(index, labelData.group1.length)} />
+					<LabelAndTitle {label} {title} underline={shouldUnderline(index, labelData.group1.length)} />
 				{/each}
 			</div>
 
 			<!-- Group 2 -->
 			<div class="py-3 flex flex-col gap-2">
 				{#each labelData.group2 as { label, title }, index}
-					<LabelItem {label} {title} underline={shouldUnderline(index, labelData.group2.length)} />
+					<LabelAndTitle {label} {title} underline={shouldUnderline(index, labelData.group2.length)} />
 				{/each}
 			</div>
 
 			<!-- Group 3 -->
 			<div class="py-3 flex flex-col gap-2">
 				{#each labelData.group3 as { label, title }, index}
-					<LabelItem {label} {title} underline={shouldUnderline(index, labelData.group3.length)} />
+					<LabelAndTitle {label} {title} underline={shouldUnderline(index, labelData.group3.length)} />
 				{/each}
 			</div>
 
 			<!-- Group 4 -->
 			<div class="py-3 flex flex-col gap-2">
 				{#each labelData.group4 as { label, title }, index}
-					<LabelItem {label} {title} underline={shouldUnderline(index, labelData.group4.length)} />
+					<LabelAndTitle {label} {title} underline={shouldUnderline(index, labelData.group4.length)} />
 				{/each}
 			</div>
 
 			<!-- Group 5 -->
 			<div class="py-3 flex flex-col gap-2">
 				{#each labelData.group5 as { label, title }, index}
-					<LabelItem {label} {title} underline={shouldUnderline(index, labelData.group5.length)} />
+					<LabelAndTitle {label} {title} underline={shouldUnderline(index, labelData.group5.length)} />
 				{/each}
 			</div>
 		</div>
-	{:else}
-		<div class="col-span-5">
-			{#if images.length > 1}
-				<div class="overflow-x-auto w-full" bind:this={scrollContainer}>
-                    <ImageGallery {images} />
-                </div>
-			{/if}
-		</div>
-	{/if}
+	</div>
 
 	<!-- Thumbnail Cover Image -->
-	<div>
+	<div class="label-grid-image">
 		{#if book.thumbnailCoverImage}
-			<figure class="h-[160px]">
+			<figure class="h-[160px] relative group">
 				{#if images.length > 1}
-					<a on:click={toggleImages} class="cursor-pointer">
+					<button
+						on:click={toggleImages}
+						on:keydown={(e) => e.key === 'Enter' && toggleImages()}
+						class="cursor-pointer block relative w-full h-full"
+					>
 						<Image imageObject={book.thumbnailCoverImage} fit="contain" />
-					</a>
+						<div
+							class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center {showImages
+								? 'opacity-100'
+								: 'opacity-0'} group-hover:opacity-100 transition-opacity duration-300"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="h-8 w-8 text-white"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+								stroke-width="1"
+							>
+								{#if showImages}
+									<path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+								{:else}
+									<path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+								{/if}
+							</svg>
+						</div>
+					</button>
+					<LabelAndTitle align="center" label={`${images.length} ${translations.images[lang]}`} />
 				{:else}
-					<Image imageObject={book.thumbnailCoverImage} fit="contain" />
+					<button
+						on:click={() => openOverlay(0)}
+						on:keydown={(e) => e.key === 'Enter' && openOverlay(0)}
+						class="cursor-pointer block relative w-full h-full"
+					>
+						<Image imageObject={book.thumbnailCoverImage} fit="contain" />
+						<div
+							class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="h-8 w-8 text-white"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="1"
+									d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+								/>
+							</svg>
+						</div>
+					</button>
+					<LabelAndTitle align="center" label={`${images.length} ${translations.image[lang]}`} />
 				{/if}
 			</figure>
 		{/if}
 	</div>
 </div>
+
+{#if selectedImageIndex !== null}
+	<ImageOverlay
+		image={images[selectedImageIndex]}
+		on:close={closeOverlay}
+		on:navigate={({ detail }) => navigateImage(detail)}
+		{images}
+		currentIndex={selectedImageIndex}
+	/>
+{/if}

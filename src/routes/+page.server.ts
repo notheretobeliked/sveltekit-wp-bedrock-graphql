@@ -1,14 +1,17 @@
-export const prerender = true
+export const prerender = false
 
 import PageContent from '$lib/graphql/query/page.graphql?raw'
 import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
 import { error } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
 import {flatListToHierarchical} from '$lib/utilities/utilities'
+import { redirect } from '@sveltejs/kit'
 
 // ... existing imports ...
 
 export const load: PageServerLoad = async function load({ params, url }) {
+  throw redirect(307, '/en/library')
+
   const uri = `/`
 
   try {
