@@ -90,7 +90,6 @@
 				artistMatch && authorMatch && publisherMatch && yearFromMatch && yearToMatch && searchMatch
 			)
 		})
-
 	}
 
 	// Apply filters whenever the store changes
@@ -100,20 +99,20 @@
 
 	// Handle route changes
 	$: {
-	  $page.params.lang
+		$page.params.lang
 
-	  // Reinitialize books and other data
-	  books = (data.books ?? []).map((book) => ({
-		...book,
-		slug: book.slug ?? '',
-		thumbnailCoverImage: book.thumbnailCoverImage as unknown as ImageObject | null
-	  })) as Book[]
-	  artists = data.artists ?? []
-	  authors = data.authors ?? []
-	  publishers = data.publishers ?? []
-	  lang = data.language as 'ar' | 'en'
-	  // Reapply filters
-	  applyFilters()
+		// Reinitialize books and other data
+		books = (data.books ?? []).map((book) => ({
+			...book,
+			slug: book.slug ?? '',
+			thumbnailCoverImage: book.thumbnailCoverImage as unknown as ImageObject | null
+		})) as Book[]
+		artists = data.artists ?? []
+		authors = data.authors ?? []
+		publishers = data.publishers ?? []
+		lang = data.language as 'ar' | 'en'
+		// Reapply filters
+		applyFilters()
 	}
 
 	onMount(() => {
@@ -216,7 +215,7 @@
 		<ul>
 			{#each filteredBooks as book (book.slug)}
 				<li
-					class="font-martina bg-black text-white py-4 border-b border-white {lang === 'ar'
+					class="font-martina bg-black text-white-pure py-4 border-b border-white {lang === 'ar'
 						? 'text-right'
 						: ''}"
 					transition:slide={{ duration: 300 }}
@@ -232,7 +231,7 @@
 
 <style lang="postcss">
 	:global(body) {
-		@apply bg-black text-white;
+		@apply bg-black text-white-pure;
 	}
 	:root {
 		--color: white;

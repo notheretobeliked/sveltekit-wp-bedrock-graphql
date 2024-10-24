@@ -24,8 +24,9 @@
 	import CoreSpacer from './blocks/CoreSpacer.svelte'
 	import CoreButtons from './blocks/CoreButtons.svelte'
 	import CoreButton from './blocks/CoreButton.svelte'
-
+	import HomePageSection from './blocks/HomePageSection.svelte'
 	export let block: EditorBlock
+	console.log(block)
 
 	let align = block.attributes.align || 'none'
 	if (forceFull) align = 'full'
@@ -79,6 +80,10 @@
 <div class="{classNames(align)} bg-{bgColor} !px-0">
 	{#if block.name === 'core/group'}
 		<CoreGroup {block} />
+	{/if}
+
+	{#if block.name === 'acf/home-page-section'}
+		<HomePageSection {block} />
 	{/if}
 
 	{#if block.name === 'core/buttons'}

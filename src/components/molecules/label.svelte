@@ -126,35 +126,55 @@
 			<!-- Group 1 -->
 			<div class="py-3 flex flex-col gap-2">
 				{#each labelData.group1 as { label, title }, index}
-					<LabelAndTitle {label} {title} underline={shouldUnderline(index, labelData.group1.length)} />
+					<LabelAndTitle
+						{label}
+						{title}
+						underline={shouldUnderline(index, labelData.group1.length)}
+					/>
 				{/each}
 			</div>
 
 			<!-- Group 2 -->
 			<div class="py-3 flex flex-col gap-2">
 				{#each labelData.group2 as { label, title }, index}
-					<LabelAndTitle {label} {title} underline={shouldUnderline(index, labelData.group2.length)} />
+					<LabelAndTitle
+						{label}
+						{title}
+						underline={shouldUnderline(index, labelData.group2.length)}
+					/>
 				{/each}
 			</div>
 
 			<!-- Group 3 -->
 			<div class="py-3 flex flex-col gap-2">
 				{#each labelData.group3 as { label, title }, index}
-					<LabelAndTitle {label} {title} underline={shouldUnderline(index, labelData.group3.length)} />
+					<LabelAndTitle
+						{label}
+						{title}
+						underline={shouldUnderline(index, labelData.group3.length)}
+					/>
 				{/each}
 			</div>
 
 			<!-- Group 4 -->
 			<div class="py-3 flex flex-col gap-2">
 				{#each labelData.group4 as { label, title }, index}
-					<LabelAndTitle {label} {title} underline={shouldUnderline(index, labelData.group4.length)} />
+					<LabelAndTitle
+						{label}
+						{title}
+						underline={shouldUnderline(index, labelData.group4.length)}
+					/>
 				{/each}
 			</div>
 
 			<!-- Group 5 -->
 			<div class="py-3 flex flex-col gap-2">
 				{#each labelData.group5 as { label, title }, index}
-					<LabelAndTitle {label} {title} underline={shouldUnderline(index, labelData.group5.length)} />
+					<LabelAndTitle
+						{label}
+						{title}
+						underline={shouldUnderline(index, labelData.group5.length)}
+					/>
 				{/each}
 			</div>
 		</div>
@@ -178,7 +198,7 @@
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
-								class="h-8 w-8 text-white"
+								class="h-8 w-8 text-white-pure"
 								fill="none"
 								viewBox="0 0 24 24"
 								stroke="currentColor"
@@ -205,7 +225,7 @@
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
-								class="h-8 w-8 text-white"
+								class="h-8 w-8 text-white-pure"
 								fill="none"
 								viewBox="0 0 24 24"
 								stroke="currentColor"

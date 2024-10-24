@@ -12,12 +12,42 @@ query PageContent($uri: ID!) {
 			...CoreButtonFragment
 			...CoreButtonsFragment
 			...CoreSpacerFragment
+			... on AcfHomePageSection {
+				apiVersion
+				blockEditorCategoryName
+				homePageSection {
+					images {
+						nodes {
+							mediaDetails {
+								sizes(exclude: [MEDIUM_LARGE, MEDIUM]) {
+									sourceUrl
+									height
+									width
+									mimeType
+									name
+								}
+							}
+							altText
+							caption
+						}
+					}
+				}
+				innerBlocks {
+					name
+					parentClientId
+					clientId
+					...CoreParagraphFragment
+					...CoreHeadingFragment
+					...CoreColumnsFragment
+					...CoreGroupFragment
+					...CoreButtonFragment
+					...CoreButtonsFragment
+					...CoreSpacerFragment
+				}
+			}
 		}
 	}
 }
-
-
-
 
 fragment CoreGroupFragment on CoreGroup {
 	attributes {
