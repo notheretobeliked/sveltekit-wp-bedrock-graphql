@@ -34,7 +34,7 @@
 		<div
 			class="grid md:grid-cols-3 items-center h-full px-4 w-full max-w-screen-xl mx-auto text-black"
 		>
-			<h1 class="z-30 font-boogy text-xl text-black">Decolonising the page</h1>
+			<h1 class="z-30 font-boogy text-xl text-black"><a href="/en">Decolonising the page</a></h1>
 			<div class="language-switcher text-center font-martina">
 				<a href={englishLanguagePath} on:click={(e) => switchLanguage(e, englishLanguagePath)}
 					>English</a
@@ -45,7 +45,7 @@
 				>
 			</div>
 			<h1 class="text-right z-30 font-manchette font-extrabold text-xl text-black">
-				إنهاء الاستعمار في الصفحة
+				<a href="/ar">إنهاء الاستعمار في الصفحة</a>
 			</h1>
 		</div>
 	</div>
@@ -54,9 +54,22 @@
 		<ul
 			role="navigation"
 			aria-label="Main"
-			class="fixed w-full items-center h-screen inset-0 z-30 bg-white-pure justify-center flex-row gap-6 {open
+			class="fixed w-full items-center h-screen inset-0 z-30 bg-white-off justify-center flex-row gap-6 text-black {open
 				? 'flex flex-col'
 				: 'hidden'}"
-		></ul>
+		>
+			<li>
+				<a href="/{currentLanguage}" class="text-center">
+					<span class="block font-manchette text-2xl"> معرض </span>
+					<span class="block font-boogy text-2xl">Exhibition</span>
+				</a>
+			</li>
+			<li>
+				<a href="/{currentLanguage}/library" class="text-center">
+					<span class="block font-manchette text-2xl">مكتبة </span>
+					<span class="block font-boogy text-2xl">Library</span>
+				</a>
+			</li>
+		</ul>
 	</nav>
 </header>

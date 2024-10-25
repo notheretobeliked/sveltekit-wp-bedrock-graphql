@@ -17,6 +17,7 @@ export const load: PageServerLoad = async function load({ params }) {
 
     // Assuming CombinedQueryResponse is correctly typed to reflect your GraphQL query structure
     const { data }: { data: LayoutAPIResponse } = await response.json()
+    
 
     // Modify menu items to add 'current' key
     if (data.menu && data.menu.menuItems && data.menu.menuItems.nodes) {
@@ -38,6 +39,8 @@ export const load: PageServerLoad = async function load({ params }) {
       data: data,
       labelTranslations: labelTranslations,
       menu: data.menu,
+      languageCode: data.page.languageCode,
+      translations: data.page.translations,
       seo: { ...data.page.seo, opengraphUrl: siteUrl }, // Update seo with the new siteUrl
       uri: uri,
     } // Directly return the data which now includes menu, SEO, and uri

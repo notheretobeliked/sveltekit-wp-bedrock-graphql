@@ -15,6 +15,12 @@ query PageContent($uri: ID!) {
 			... on AcfHomePageSection {
 				apiVersion
 				blockEditorCategoryName
+				attributes {
+					backgroundColor
+					alignment: align
+					style
+				}
+
 				homePageSection {
 					images {
 						nodes {

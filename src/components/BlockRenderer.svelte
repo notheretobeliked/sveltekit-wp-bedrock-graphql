@@ -14,7 +14,30 @@
 		isInView = detail.inView
 	}
 
-	import type { EditorBlock } from '$lib/types/wp-types'
+	import type {
+		CoreParagraph as CoreParagraphType,
+		CoreHeading as CoreHeadingType,
+		CoreGroup as CoreGroupType,
+		CoreColumns as CoreColumnsType,
+		CoreColumn as CoreColumnType,
+		CoreSpacer as CoreSpacerType,
+		CoreButtons as CoreButtonsType,
+		CoreButton as CoreButtonType,
+		HomePageSection as HomePageSectionType
+	} from '$lib/graphql/generated'
+
+	type EditorBlock =
+		| CoreParagraphType
+		| CoreHeadingType
+		| CoreGroupType
+		| CoreColumnsType
+		| CoreColumnType
+		| CoreSpacerType
+		| CoreButtonsType
+		| CoreButtonType
+		| HomePageSectionType
+
+	export let block: EditorBlock
 
 	import CoreParagraph from '$components/blocks/CoreParagraph.svelte'
 	import CoreHeading from '$components/blocks/CoreHeading.svelte'
@@ -25,15 +48,22 @@
 	import CoreButtons from './blocks/CoreButtons.svelte'
 	import CoreButton from './blocks/CoreButton.svelte'
 	import HomePageSection from './blocks/HomePageSection.svelte'
-	export let block: EditorBlock
-	console.log(block)
 
 	let align = block.attributes.align || 'none'
 	if (forceFull) align = 'full'
-	const bgColor = block.attributes.backgroundColor ?? 'white'
+	const bgColor = block.attributes.backgroundColor ?? ''
+
+	interface StyleObject {
+		spacing?: {
+			padding?: {
+				top?: string
+				bottom?: string
+			}
+		}
+	}
 
 	// Adjusted function to work directly with the style object
-	function mapSpacingToTailwind(styleObj): string {
+	function mapSpacingToTailwind(styleObj: StyleObject): string {
 		let classes = ''
 		const topPadding = styleObj?.spacing?.padding?.top?.replace('spacing|', '')
 		const bottomPadding = styleObj?.spacing?.padding?.bottom?.replace('spacing|', '')
@@ -52,9 +82,11 @@
 	}
 
 	// Use the style object directly if it exists
-	const spacingClasses = block.attributes.style ? mapSpacingToTailwind(block.attributes.style) : ''
+	const spacingClasses = block.attributes.style
+		? mapSpacingToTailwind(block.attributes.style as StyleObject)
+		: ''
 
-	const classNames = (align) => {
+	const classNames = (align: string) => {
 		let baseClasses = ''
 		switch (align) {
 			case 'full':
@@ -75,9 +107,28 @@
 		}
 		return `${baseClasses} ${spacingClasses}` // Combine base classes with spacing classes
 	}
+
+	const getBgClass = (bgColor: string | null): string => {
+		switch (bgColor) {
+			case 'green':
+				return 'bg-green'
+			case 'black':
+				return 'bg-black'
+			case 'yellow':
+				return 'bg-yellow'
+			case 'blue':
+				return 'bg-blue'
+			case 'red':
+				return 'bg-red'
+			case 'sand':
+				return 'bg-sand'
+			default:
+				return ''
+		}
+	}
 </script>
 
-<div class="{classNames(align)} bg-{bgColor} !px-0">
+<div class="{classNames(align)} {getBgClass(bgColor)} !px-0">
 	{#if block.name === 'core/group'}
 		<CoreGroup {block} />
 	{/if}

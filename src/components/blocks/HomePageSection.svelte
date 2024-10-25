@@ -1,14 +1,25 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition'
-	import type { HomePageSection } from '$lib/graphql/generated'
-	export let block: HomePageSection
-	const images = block.homePageSection.images.nodes
-	const content = block.innerBlocks
+	import type { AcfHomePageSection } from '$lib/graphql/generated'
+	export let block: AcfHomePageSection
+	const images = block.homePageSection?.images?.nodes ?? []
+	const content = block.innerBlocks ?? [] // Provide a default empty array
 	import BlockRenderer from '$components/BlockRenderer.svelte'
 	import Image from '$components/Image.svelte'
 	let currentIndex = 0
 	let previousIndex = 0
 	const totalImages = images.length
+	let showImages = false
+
+	const toggleImages = () => {
+		showImages =! showImages
+	}
+
+	type Transform = {
+		scale: number
+		translateX: number
+		translateY: number
+	}
 
 	// Function to update the current index in a loop
 	function updateIndex() {
@@ -20,7 +31,7 @@
 	$: updateIndex()
 	$: generateRandomTransforms()
 
-	let transforms = []
+	let transforms: Transform[] = []
 
 	function generateRandomTransforms() {
 		transforms = images.map(() => {
@@ -32,14 +43,19 @@
 	}
 </script>
 
-{#each content as block}
-	<BlockRenderer {block} />
-{/each}
+{#if content}
+	<div on:mouseenter={toggleImages} on:mouseleave={toggleImages}>
+		{#each content as block}
+			<BlockRenderer {block} />
+		{/each}
+	</div>
+{/if}
 
+{#if showImages}
 <div class="w-[50vw] fixed h-screen right-0 top-0 overflow-hidden">
 	{#each images as image, index}
 		{#if index === currentIndex || index === previousIndex}
-			<div class="w-full h-full absolute" transition:slide>
+			<div class="w-full h-full absolute" transition:slide={{ duration: 1000 }}>
 				<div
 					class="ken-burns"
 					style="--scale: {transforms[index].scale}; --translateX: {transforms[index]
@@ -51,6 +67,7 @@
 		{/if}
 	{/each}
 </div>
+{/if}
 
 <style>
 	.ken-burns {
