@@ -21,3 +21,7 @@ main.main-ar p {
 	direction: rtl;
 	unicode-bidi: embed;
 }
+
+p {
+    @apply text-lg;
+}

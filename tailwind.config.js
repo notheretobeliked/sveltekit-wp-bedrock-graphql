@@ -39,13 +39,13 @@ export default {
 			sand: '#DEC68C'
 		},
 		fontSize: {
-			xs: '.75rem',
-			sm: '.875rem',
-			base: ['1rem', '1.25'],
-			lg: ['1.25rem', '1.35'],
-			xl: ['1.75rem', '1.25'],
-			'2xl': ['2.875rem', '1.2']
-		},
+			xs: '.875rem',
+			sm: ['1rem', '1.25'],
+			base: ['1.25rem', '1.35'],
+			lg: ['1.75rem', '1.25'],
+			'xl': ['2.875rem', '1.2'],
+			'2xl': ['3.275rem', '1.2']
+    },
 		screens: {
 			sm: '640px',
 			// => @media (min-width: 640px) { ... }
