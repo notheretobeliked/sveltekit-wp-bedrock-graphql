@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-	import { slide } from 'svelte/transition'
+	import { slide, fade } from 'svelte/transition'
 	import type { AcfHomePageSection } from '$lib/graphql/generated'
 	export let block: AcfHomePageSection
 	const images = block.homePageSection?.images?.nodes ?? []
@@ -64,10 +64,10 @@
 {/if}
 
 {#if showImages}
-<div class="w-[50vw] fixed h-screen right-0 overflow-hidden z-10" style="top:{headerHeight}px">
+<div class="w-[50vw] fixed h-screen right-0 overflow-hidden z-10" style="top:{headerHeight}px" transition:fade={{ duration: 300 }}>
 	{#each images as image, index}
 		{#if index === currentIndex || index === previousIndex}
-			<div class="w-full h-full absolute" transition:slide={{ duration: 1000 }}>
+			<div class="w-full h-full absolute" transition:fade={{ duration: 1000 }}>
 				<div
 					class="ken-burns"
 					style="--scale: {transforms[index].scale}; --translateX: {transforms[index]

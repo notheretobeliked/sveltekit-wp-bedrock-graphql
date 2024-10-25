@@ -43,7 +43,7 @@
 		<div
 			class="grid md:grid-cols-3 items-center h-full px-4 w-full max-w-screen-xl mx-auto text-black"
 		>
-			<h1 class="z-30 font-boogy text-xl text-black"><a href="/en">Decolonising the page</a></h1>
+			<h1 class="z-30 font-boogy text-lg text-black"><a href="/en">Decolonising the page</a></h1>
 			<div class="language-switcher text-center font-martina">
 				<a href={englishLanguagePath} on:click={(e) => switchLanguage(e, englishLanguagePath)}
 					>English</a
@@ -53,7 +53,7 @@
 					>العربية</a
 				>
 			</div>
-			<h1 class="text-right z-30 font-manchette font-extrabold text-xl text-black">
+			<h1 class="text-right z-30 font-manchette font-extrabold text-lg text-black">
 				<a href="/ar">إنهاء الاستعمار في الصفحة</a>
 			</h1>
 		</div>
