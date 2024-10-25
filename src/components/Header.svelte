@@ -1,8 +1,9 @@
 <script lang="ts">
+	import { onMount } from 'svelte'
+
 	import { page } from '$app/stores'
 	import { goto } from '$app/navigation'
 	import type { MenuItem } from '$lib/types/wp-types'
-	import Button from '$components/Button.svelte'
 	import { Hamburger } from 'svelte-hamburgers'
 
 	export let menuItems: MenuItem[]
@@ -27,10 +28,18 @@
 			goto(targetPath)
 		}
 	}
+
+	onMount(() => {
+		const topBar = document.getElementById('top-bar')
+		if (topBar) {
+			const height = topBar.offsetHeight
+			document.documentElement.style.setProperty('--header-height', `${height}px`)
+		}
+	})
 </script>
 
-<header>
-	<div class="fixed top-0 bg-white-pure w-full pt-4 pb-3 z-50">
+<header class="fixed top-0 left-0 w-full">
+	<div class="fixed top-0 bg-white-pure w-full pt-4 pb-3 z-50" id="top-bar">
 		<div
 			class="grid md:grid-cols-3 items-center h-full px-4 w-full max-w-screen-xl mx-auto text-black"
 		>

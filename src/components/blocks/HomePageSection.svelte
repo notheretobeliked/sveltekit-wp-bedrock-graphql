@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte'
 	import { slide } from 'svelte/transition'
 	import type { AcfHomePageSection } from '$lib/graphql/generated'
 	export let block: AcfHomePageSection
@@ -20,6 +21,16 @@
 		translateX: number
 		translateY: number
 	}
+
+  let headerHeight: number;
+
+  onMount(() => {
+		const header = document.getElementById('top-bar');
+		if (header) {
+			headerHeight = header.clientHeight;
+		}
+	});
+
 
 	// Function to update the current index in a loop
 	function updateIndex() {
@@ -44,7 +55,8 @@
 </script>
 
 {#if content}
-	<div on:mouseenter={toggleImages} on:mouseleave={toggleImages}>
+	<div on:mouseenter={toggleImages} on:mouseleave={toggleImages} aria-hidden="true" class="h-full"
+  >
 		{#each content as block}
 			<BlockRenderer {block} />
 		{/each}
@@ -52,7 +64,7 @@
 {/if}
 
 {#if showImages}
-<div class="w-[50vw] fixed h-screen right-0 top-0 overflow-hidden">
+<div class="w-[50vw] fixed h-screen right-0 overflow-hidden z-10" style="top:{headerHeight}px">
 	{#each images as image, index}
 		{#if index === currentIndex || index === previousIndex}
 			<div class="w-full h-full absolute" transition:slide={{ duration: 1000 }}>

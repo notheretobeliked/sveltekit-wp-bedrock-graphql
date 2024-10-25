@@ -1,13 +1,19 @@
 <script lang="ts">
-	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CoreHeading } from '$lib/graphql/generated'
 
-	export let block: EditorBlock
-	const { content, fontSize, textColor, textAlign, level } = block.attributes
+	export let block: CoreHeading
+	const {
+		content = '',
+		fontSize = 'base',
+		textColor = '',
+		textAlign = 'left',
+		level = 1
+	} = block.attributes ?? {}
 
-	const classNames = (fontSize: string, textColor: string, textAlign: string) => {
-		let textClasses: string,
-			alignClasses: string,
-			colorClasses: string = ''
+	const classNames = (fontSize: string, textColor: string, align: string) => {
+		let textClasses: string = ''
+		let alignClasses: string = 'text-left' // Initialize with default value
+		let colorClasses: string = ''
 		switch (fontSize) {
 			case 'base':
 				textClasses = 'text-sm md:text-base'
@@ -25,7 +31,7 @@
 				textClasses = 'text-sm md:text-base'
 				break
 		}
-		switch (textAlign) {
+		switch (align) {
 			case 'center':
 				alignClasses = 'text-center'
 				break
@@ -40,25 +46,25 @@
 				break
 		}
 		colorClasses = `text-${textColor}`
-		if (textColor === 'nhtbl-green-base')
-			colorClasses = `${colorClasses} group-hover:text-black transition-color duration-300`
+		if (textColor === 'green')
+			colorClasses = `${colorClasses} group-hover:text-black transition-color`
 
-		return `${textClasses} ${alignClasses} ${colorClasses}` // Combine base classes with spacing classes
+		return `${textClasses} ${alignClasses} ${colorClasses} mb-4` // Combine base classes with spacing classes
 	}
 </script>
 
 {#if level === 1}
-	<h1 class="{classNames(fontSize, textColor, textAlign)} font-boogy">
+	<h1 class="{classNames(fontSize ?? '2xl', textColor ?? '', textAlign ?? 'left')} font-boogy">
 		{@html content}
 	</h1>
 {/if}
 {#if level === 2}
-	<h2 class="{classNames(fontSize, textColor, textAlign)}  font-boogy">
+	<h2 class="{classNames(fontSize ?? 'xl', textColor ?? '', textAlign ?? 'left')} font-boogy">
 		{@html content}
 	</h2>
 {/if}
 {#if level === 3}
-	<h3 class="{classNames(fontSize, textColor, textAlign)}  font-boogy">
+	<h3  class="{classNames(fontSize ?? 'lg', textColor ?? '', textAlign ?? 'left')} font-boogy">
 		{@html content}
 	</h3>
 {/if}

@@ -60,7 +60,8 @@ export const load: PageServerLoad = async function load({ params, url, parent })
 		return {
 			data: data,
 			uri: uri,
-			editorBlocks: editorBlocks
+			editorBlocks: editorBlocks,
+			languageCode: params.lang
 		}
 	} catch (err: unknown) {
 		console.error('Error in load function:', err)

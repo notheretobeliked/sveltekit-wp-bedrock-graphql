@@ -121,7 +121,7 @@
 	})
 </script>
 
-<main class="py-24 w-screen bg-black text-white-pure">
+<main class="py-24 w-screen bg-black text-white-pure {lang === 'ar' ? 'main-ar' : ''}">
 	<div class="min-h-screen mx-auto font-martina max-w-screen-xl">
 		<header class="mb-8">
 			<h1 class="text-center text-2xl !font-manchette">مكتبة</h1>

@@ -48,6 +48,7 @@
 	import CoreButtons from './blocks/CoreButtons.svelte'
 	import CoreButton from './blocks/CoreButton.svelte'
 	import HomePageSection from './blocks/HomePageSection.svelte'
+	import HomePageBlock from './blocks/HomePageBlock.svelte'
 
 	let align = block.attributes.align || 'none'
 	if (forceFull) align = 'full'
@@ -88,6 +89,7 @@
 
 	const classNames = (align: string) => {
 		let baseClasses = ''
+		if (block.name === 'core/column') return
 		switch (align) {
 			case 'full':
 				baseClasses = 'w-full max-w-full'
@@ -135,6 +137,10 @@
 
 	{#if block.name === 'acf/home-page-section'}
 		<HomePageSection {block} />
+	{/if}
+
+	{#if block.name === 'acf/home-page-block'}
+		<HomePageBlock {block} />
 	{/if}
 
 	{#if block.name === 'core/buttons'}

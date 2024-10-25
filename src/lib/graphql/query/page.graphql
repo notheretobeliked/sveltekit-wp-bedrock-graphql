@@ -12,31 +12,14 @@ query PageContent($uri: ID!) {
 			...CoreButtonFragment
 			...CoreButtonsFragment
 			...CoreSpacerFragment
-			... on AcfHomePageSection {
+			...AcfHomePageSectionFragment
+			... on AcfHomePageBlock {
 				apiVersion
 				blockEditorCategoryName
 				attributes {
 					backgroundColor
 					alignment: align
 					style
-				}
-
-				homePageSection {
-					images {
-						nodes {
-							mediaDetails {
-								sizes(exclude: [MEDIUM_LARGE, MEDIUM]) {
-									sourceUrl
-									height
-									width
-									mimeType
-									name
-								}
-							}
-							altText
-							caption
-						}
-					}
 				}
 				innerBlocks {
 					name
@@ -49,9 +32,50 @@ query PageContent($uri: ID!) {
 					...CoreButtonFragment
 					...CoreButtonsFragment
 					...CoreSpacerFragment
+					...AcfHomePageSectionFragment
 				}
 			}
 		}
+	}
+}
+
+fragment AcfHomePageSectionFragment on AcfHomePageSection {
+	apiVersion
+	blockEditorCategoryName
+	attributes {
+		backgroundColor
+		alignment: align
+		style
+	}
+
+	homePageSection {
+		images {
+			nodes {
+				mediaDetails {
+					sizes(exclude: [MEDIUM_LARGE, MEDIUM]) {
+						sourceUrl
+						height
+						width
+						mimeType
+						name
+					}
+				}
+				altText
+				caption
+			}
+		}
+	}
+	innerBlocks {
+		name
+		parentClientId
+		clientId
+		...CoreParagraphFragment
+		...CoreHeadingFragment
+		...CoreColumnsFragment
+		...CoreGroupFragment
+		...CoreButtonFragment
+		...CoreButtonsFragment
+		...CoreSpacerFragment
 	}
 }
 
