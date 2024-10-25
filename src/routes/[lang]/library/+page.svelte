@@ -90,7 +90,6 @@
 				artistMatch && authorMatch && publisherMatch && yearFromMatch && yearToMatch && searchMatch
 			)
 		})
-
 	}
 
 	// Apply filters whenever the store changes
@@ -100,20 +99,20 @@
 
 	// Handle route changes
 	$: {
-	  $page.params.lang
+		$page.params.lang
 
-	  // Reinitialize books and other data
-	  books = (data.books ?? []).map((book) => ({
-		...book,
-		slug: book.slug ?? '',
-		thumbnailCoverImage: book.thumbnailCoverImage as unknown as ImageObject | null
-	  })) as Book[]
-	  artists = data.artists ?? []
-	  authors = data.authors ?? []
-	  publishers = data.publishers ?? []
-	  lang = data.language as 'ar' | 'en'
-	  // Reapply filters
-	  applyFilters()
+		// Reinitialize books and other data
+		books = (data.books ?? []).map((book) => ({
+			...book,
+			slug: book.slug ?? '',
+			thumbnailCoverImage: book.thumbnailCoverImage as unknown as ImageObject | null
+		})) as Book[]
+		artists = data.artists ?? []
+		authors = data.authors ?? []
+		publishers = data.publishers ?? []
+		lang = data.language as 'ar' | 'en'
+		// Reapply filters
+		applyFilters()
 	}
 
 	onMount(() => {
@@ -122,118 +121,117 @@
 	})
 </script>
 
-<main class="py-24 min-h-screen mx-auto font-martina max-w-screen-xl">
-	<header class="mb-8">
-		<h1 class="text-center text-2xl !font-manchette">مكتبة</h1>
-		<h1 class="text-center text-2xl !font-boogy">Library</h1>
-	</header>
-	<div
-		class="mb-8 grid md:grid-cols-6 gap-4 mx-auto font-martina max-w-screen-xl sticky top-8 z-10"
-	>
-		{#if artists.length > 0}
-			<select
-				bind:value={$filterStore.selectedArtist}
-				on:change={(e) => updateFilter('selectedArtist', e.currentTarget.value)}
-				class="border-white border rounded-md p-2 bg-black"
-			>
-				<option value="">{translations.artistdesigner[lang]}</option>
-				{#each artists as artist}
-					<option value={artist.slug}>{artist.name}</option>
-				{/each}
-			</select>
-		{/if}
+<main class="py-24 w-screen bg-black text-white-pure {lang === 'ar' ? 'main-ar' : ''}">
+	<div class="min-h-screen mx-auto font-martina max-w-screen-xl">
+		<header class="mb-8">
+			<h1 class="text-center text-2xl !font-manchette">مكتبة</h1>
+			<h1 class="text-center text-2xl !font-boogy">Library</h1>
+		</header>
+		<div
+			class="mb-8 grid md:grid-cols-6 gap-4 mx-auto font-martina max-w-screen-xl sticky top-8 z-10"
+		>
+			{#if artists.length > 0}
+				<select
+					bind:value={$filterStore.selectedArtist}
+					on:change={(e) => updateFilter('selectedArtist', e.currentTarget.value)}
+					class="border-white border rounded-md p-2 bg-black"
+				>
+					<option value="">{translations.artistdesigner[lang]}</option>
+					{#each artists as artist}
+						<option value={artist.slug}>{artist.name}</option>
+					{/each}
+				</select>
+			{/if}
 
-		{#if authors.length > 0}
-			<select
-				bind:value={$filterStore.selectedAuthor}
-				on:change={(e) => updateFilter('selectedAuthor', e.currentTarget.value)}
-				class="border-white border rounded-md p-2 bg-black"
-			>
-				<option value="">{translations.author[lang]}</option>
-				{#each authors as author}
-					<option value={author.slug}>{author.name}</option>
-				{/each}
-			</select>
-		{/if}
+			{#if authors.length > 0}
+				<select
+					bind:value={$filterStore.selectedAuthor}
+					on:change={(e) => updateFilter('selectedAuthor', e.currentTarget.value)}
+					class="border-white border rounded-md p-2 bg-black"
+				>
+					<option value="">{translations.author[lang]}</option>
+					{#each authors as author}
+						<option value={author.slug}>{author.name}</option>
+					{/each}
+				</select>
+			{/if}
 
-		{#if publishers.length > 0}
-			<select
-				bind:value={$filterStore.selectedPublisher}
-				on:change={(e) => updateFilter('selectedPublisher', e.currentTarget.value)}
-				class="border-white border rounded-md p-2 bg-black"
-			>
-				<option value="">{translations.publisher[lang]}</option>
-				{#each publishers as publisher}
-					<option value={publisher.slug}>{publisher.name}</option>
-				{/each}
-			</select>
-		{/if}
+			{#if publishers.length > 0}
+				<select
+					bind:value={$filterStore.selectedPublisher}
+					on:change={(e) => updateFilter('selectedPublisher', e.currentTarget.value)}
+					class="border-white border rounded-md p-2 bg-black"
+				>
+					<option value="">{translations.publisher[lang]}</option>
+					{#each publishers as publisher}
+						<option value={publisher.slug}>{publisher.name}</option>
+					{/each}
+				</select>
+			{/if}
 
-		<div class="grid grid-cols-2 gap-4">
-			<select
-				bind:value={$filterStore.yearFrom}
-				on:change={(e) => {
-					updateFilter('yearFrom', e.currentTarget.value)
-					if (parseInt(e.currentTarget.value) > parseInt($filterStore.yearTo)) {
-						updateFilter('yearTo', e.currentTarget.value)
-					}
-				}}
-				class="border-white border rounded-md p-2 bg-black"
-			>
-				{#each yearsAscending as year}
-					<option value={year} class={lang === 'ar' ? 'text-right' : ''}>{year}</option>
-				{/each}
-			</select>
-
-			<select
-				bind:value={$filterStore.yearTo}
-				on:change={(e) => {
-					updateFilter('yearTo', e.currentTarget.value)
-					if (parseInt(e.currentTarget.value) < parseInt($filterStore.yearFrom)) {
+			<div class="grid grid-cols-2 gap-4">
+				<select
+					bind:value={$filterStore.yearFrom}
+					on:change={(e) => {
 						updateFilter('yearFrom', e.currentTarget.value)
-					}
-				}}
-				class="border-white border rounded-md p-2 bg-black"
-			>
-				{#each yearsDescending as year}
-					<option value={year} class={lang === 'ar' ? 'text-right' : ''}>{year}</option>
-				{/each}
-			</select>
+						if (parseInt(e.currentTarget.value) > parseInt($filterStore.yearTo)) {
+							updateFilter('yearTo', e.currentTarget.value)
+						}
+					}}
+					class="border-white border rounded-md p-2 bg-black"
+				>
+					{#each yearsAscending as year}
+						<option value={year} class={lang === 'ar' ? 'text-right' : ''}>{year}</option>
+					{/each}
+				</select>
+
+				<select
+					bind:value={$filterStore.yearTo}
+					on:change={(e) => {
+						updateFilter('yearTo', e.currentTarget.value)
+						if (parseInt(e.currentTarget.value) < parseInt($filterStore.yearFrom)) {
+							updateFilter('yearFrom', e.currentTarget.value)
+						}
+					}}
+					class="border-white border rounded-md p-2 bg-black"
+				>
+					{#each yearsDescending as year}
+						<option value={year} class={lang === 'ar' ? 'text-right' : ''}>{year}</option>
+					{/each}
+				</select>
+			</div>
+
+			<input
+				type="text"
+				bind:value={$filterStore.searchFilter}
+				on:input={(e) => updateFilter('searchFilter', e.currentTarget.value)}
+				placeholder={translations.search[lang]}
+				class="border-white border rounded-md p-2 bg-black col-span-2 {lang === 'ar'
+					? 'text-right'
+					: ''}"
+			/>
 		</div>
 
-		<input
-			type="text"
-			bind:value={$filterStore.searchFilter}
-			on:input={(e) => updateFilter('searchFilter', e.currentTarget.value)}
-			placeholder={translations.search[lang]}
-			class="border-white border rounded-md p-2 bg-black col-span-2 {lang === 'ar'
-				? 'text-right'
-				: ''}"
-		/>
+		{#if filteredBooks.length > 0}
+			<ul>
+				{#each filteredBooks as book (book.slug)}
+					<li
+						class="font-martina bg-black text-white-pure py-4 border-b border-white {lang === 'ar'
+							? 'text-right'
+							: ''}"
+						transition:slide={{ duration: 300 }}
+					>
+						<Label {book} {lang} />
+					</li>
+				{/each}
+			</ul>
+		{:else}
+			<p>{translations.nobooks[lang]}</p>
+		{/if}
 	</div>
-
-	{#if filteredBooks.length > 0}
-		<ul>
-			{#each filteredBooks as book (book.slug)}
-				<li
-					class="font-martina bg-black text-white py-4 border-b border-white {lang === 'ar'
-						? 'text-right'
-						: ''}"
-					transition:slide={{ duration: 300 }}
-				>
-					<Label {book} {lang} />
-				</li>
-			{/each}
-		</ul>
-	{:else}
-		<p>{translations.nobooks[lang]}</p>
-	{/if}
 </main>
 
 <style lang="postcss">
-	:global(body) {
-		@apply bg-black text-white;
-	}
 	:root {
 		--color: white;
 		--active-color: black;

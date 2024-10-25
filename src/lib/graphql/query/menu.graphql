@@ -12,6 +12,14 @@ query PageMeta($uri: ID!) {
     seo {
         ...SeoFragment
     }
+    languageCode
+    translations {
+      languageCode
+      slug
+      uri
+      id
+    }
+
   }
 }
 

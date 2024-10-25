@@ -1,17 +1,22 @@
 <script lang="ts">
-	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CoreParagraph } from '$lib/graphql/generated'
 
-	export let block: EditorBlock
+	export let block: CoreParagraph
 
-	const { content, fontSize, textColor, align } = block.attributes
+	const {
+		content = '',
+		fontSize = 'base',
+		textColor = 'black',
+		align = 'left'
+	} = block.attributes ?? {}
 
 	const classNames = (fontSize: string, textColor: string, align: string) => {
-		let textClasses: string,
-			alignClasses: string,
-			colorClasses: string = ''
+		let textClasses: string = ''
+		let alignClasses: string = 'text-left' // Initialize with default value
+		let colorClasses: string = ''
 		switch (fontSize) {
 			case 'base':
-				textClasses = 'text-sans text-sm md:text-base'
+				textClasses = 'font-martina text-sm md:text-base'
 				break
 			case 'lg':
 				textClasses = 'font-martina text-base md:text-lg'
@@ -23,7 +28,7 @@
 				textClasses = 'font-martina text-xl md:text-2xl'
 				break
 			case null:
-				textClasses = 'text-sans text-sm md:text-base'
+				textClasses = 'font-martina text-sm md:text-base'
 				break
 		}
 		switch (align) {
@@ -49,6 +54,8 @@
 </script>
 
 <!-- Use the class directive in Svelte to dynamically set classes -->
-<p class={classNames(fontSize, textColor, align)}>
-	{@html content}
-</p>
+{#if content}
+	<p class={classNames(fontSize ?? 'base', textColor ?? 'black', align ?? 'left')}>
+		{@html content}
+	</p>
+{/if}
