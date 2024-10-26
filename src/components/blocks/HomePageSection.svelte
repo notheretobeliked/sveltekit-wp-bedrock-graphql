@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
+	import { onMount } from 'svelte'
 	import { slide, fade } from 'svelte/transition'
 	import type { AcfHomePageSection } from '$lib/graphql/generated'
 	export let block: AcfHomePageSection
@@ -13,24 +13,31 @@
 	let showImages = false
 
 	const toggleImages = () => {
-		showImages =! showImages
+		showImages = !showImages
 	}
 
+	const transformImageObject = (image: (typeof images)[number]) => {
+		return {
+			altText: image.altText,
+			mediaDetails: {
+				sizes: image.mediaDetails?.sizes ?? []
+			}
+		}
+	}
 	type Transform = {
 		scale: number
 		translateX: number
 		translateY: number
 	}
 
-  let headerHeight: number;
+	let headerHeight: number
 
-  onMount(() => {
-		const header = document.getElementById('top-bar');
+	onMount(() => {
+		const header = document.getElementById('top-bar')
 		if (header) {
-			headerHeight = header.clientHeight;
+			headerHeight = header.clientHeight
 		}
-	});
-
+	})
 
 	// Function to update the current index in a loop
 	function updateIndex() {
@@ -55,30 +62,40 @@
 </script>
 
 {#if content}
-	<div on:mouseenter={toggleImages} on:mouseleave={toggleImages} aria-hidden="true" class="h-full"
-  >
+	<div on:mouseenter={toggleImages} on:mouseleave={toggleImages} aria-hidden="true" class="h-full">
 		{#each content as block}
-			<BlockRenderer {block} />
+			{#if block}
+				<BlockRenderer {block} />
+			{/if}
 		{/each}
 	</div>
 {/if}
 
 {#if showImages}
-<div class="w-[50vw] fixed h-screen right-0 overflow-hidden z-10" style="top:{headerHeight}px" transition:fade={{ duration: 300 }}>
-	{#each images as image, index}
-		{#if index === currentIndex || index === previousIndex}
-			<div class="w-full h-full absolute" transition:fade={{ duration: 1000 }}>
-				<div
-					class="ken-burns"
-					style="--scale: {transforms[index].scale}; --translateX: {transforms[index]
-						.translateX}%; --translateY: {transforms[index].translateY}%;"
-				>
-					<Image imageObject={image} lazy={false} imageSize="medium" fit="cover" />
+	<div
+		class="w-[50vw] fixed h-screen right-0 overflow-hidden z-10"
+		style="top:{headerHeight}px"
+		transition:fade={{ duration: 300 }}
+	>
+		{#each images as image, index}
+			{#if index === currentIndex || index === previousIndex}
+				<div class="w-full h-full absolute" transition:fade={{ duration: 1000 }}>
+					<div
+						class="ken-burns"
+						style="--scale: {transforms[index].scale}; --translateX: {transforms[index]
+							.translateX}%; --translateY: {transforms[index].translateY}%;"
+					>
+						<Image
+							imageObject={transformImageObject(image)}
+							lazy={false}
+							imageSize="medium"
+							fit="cover"
+						/>
+					</div>
 				</div>
-			</div>
-		{/if}
-	{/each}
-</div>
+			{/if}
+		{/each}
+	</div>
 {/if}
 
 <style>
