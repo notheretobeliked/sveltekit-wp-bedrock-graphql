@@ -123,12 +123,14 @@ fragment CoreParagraphFragment on CoreParagraph {
 		fontSize
 		textColor
 		align
+		className
 	}
 }
 
 fragment CoreHeadingFragment on CoreHeading {
 	attributes {
 		content
+		className
 		fontFamily
 		fontSize
 		textColor

@@ -2,6 +2,7 @@
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	safelist: [
+		'!mb-0',
 		'md:grid-cols-2',
 		'md:grid-cols-3',
 		'bg-black',
@@ -43,9 +44,9 @@ export default {
 			sm: ['1rem', '1.25'],
 			base: ['1.25rem', '1.35'],
 			lg: ['1.75rem', '1.25'],
-			'xl': ['2.875rem', '1.2'],
+			xl: ['2.875rem', '1.2'],
 			'2xl': ['3.275rem', '1.2']
-    },
+		},
 		screens: {
 			sm: '640px',
 			// => @media (min-width: 640px) { ... }

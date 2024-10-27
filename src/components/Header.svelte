@@ -53,7 +53,7 @@
 					>العربية</a
 				>
 			</div>
-			<h1 class="text-right z-30 font-manchette font-extrabold text-lg text-black">
+			<h1 class="text-right z-30 !font-manchette font-extrabold text-lg text-black">
 				<a href="/ar">إنهاء الاستعمار في الصفحة</a>
 			</h1>
 		</div>
@@ -69,14 +69,20 @@
 		>
 			<li>
 				<a href="/{currentLanguage}" class="text-center">
-					<span class="block font-manchette text-2xl"> معرض </span>
+					<span class="block !font-manchette text-2xl"> معرض </span>
 					<span class="block font-boogy text-2xl">Exhibition</span>
 				</a>
 			</li>
 			<li>
 				<a href="/{currentLanguage}/library" class="text-center">
-					<span class="block font-manchette text-2xl">مكتبة </span>
+					<span class="block !font-manchette text-2xl">مكتبة </span>
 					<span class="block font-boogy text-2xl">Library</span>
+				</a>
+			</li>
+			<li>
+				<a href="/{currentLanguage}/about" class="text-center">
+					<span class="block !font-manchette text-2xl">عن </span>
+					<span class="block font-boogy text-2xl">About</span>
 				</a>
 			</li>
 		</ul>
