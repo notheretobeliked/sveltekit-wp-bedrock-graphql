@@ -10,7 +10,7 @@
 	}
 </script>
 
-<main class="py-24 min-h-screen font-martina">
+<main class="py-24 min-h-screen">
 	{#each editorBlocks as block, index (block.clientId)}
 		<BlockRenderer {block} />
 	{/each}
