@@ -36,9 +36,9 @@ export default {
       },  
     },
     fontSize: {
-      'xs': '.75rem',
-      'sm': '.875rem',
-      'base': ['1rem', '1.25'],
+      'xs': '.5rem',
+      'sm': '.675rem',
+      'base': ['0.875rem', '1.25'],
       'lg': ['1.25rem', '1.35'],
       'xl': ['1.75rem', '1.25'],
       '2xl': ['2.875rem', '1.2'],
@@ -53,7 +53,7 @@ export default {
       'lg': '1024px',
       // => @media (min-width: 1024px) { ... }
 
-      'xl': '1280px',
+      'xl': '1204px',
       // => @media (min-width: 1280px) { ... }
 
       '2xl': '1536px',

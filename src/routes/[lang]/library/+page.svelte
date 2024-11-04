@@ -128,7 +128,7 @@
 		<h1 class="text-center text-2xl !font-boogy">Library</h1>
 	</header>
 	<div
-		class="mb-8 grid md:grid-cols-6 gap-4 mx-auto font-martina max-w-screen-xl sticky top-8 z-10"
+		class="mb-8 grid md:grid-cols-6 gap-4 mx-auto font-martina max-w-full lg:max-w-screen-xl sticky top-8 z-10 overflow-y-hidden"
 	>
 		{#if artists.length > 0}
 			<select
