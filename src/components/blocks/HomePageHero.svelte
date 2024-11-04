@@ -65,7 +65,7 @@
     {#if percentage > 90}
       Scroll for more...
     {:else if percentage > 1 && !stopped}
-      <span class="text-white">Keep scrolling...</span>
+      <span class="text-white-pure">Keep scrolling...</span>
     {/if}
   </div>
 </div>

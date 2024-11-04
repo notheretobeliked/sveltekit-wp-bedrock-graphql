@@ -5,7 +5,7 @@ export default {
     'md:grid-cols-2',
     'md:grid-cols-3',
     'bg-black',
-    'bg-white',
+    'bg-white-pure',
     'object-cover',
     'object-fit',
     'object-fill',
@@ -24,17 +24,20 @@ export default {
       'manchette': ['Manchette Fine'],
       'boogy': ['Boogy Brut Poster'],
     },
-    colors: {
-      transparent: 'transparent',
-      current: 'currentColor',
-      'black': "#282727",
-      'white': "#FFFFFF",  
-      'green': '#E0FF00',  
-      'purple': {
-        base: '#D59CE5',
-        light: '#E4D5E8',
-      },  
-    },
+	colors: {
+		transparent: 'transparent',
+		current: 'currentColor',
+		black: '#323D39',
+		white: {
+			pure: '#FFFFFF',
+			off: '#F8F3E6'
+		},
+		green: '#3BCE6C',
+		yellow: '#F0BF08',
+		blue: '#509FB9',
+		red: '#F47932',
+		sand: '#DEC68C'
+	},
     fontSize: {
       'xs': '.5rem',
       'sm': '.675rem',

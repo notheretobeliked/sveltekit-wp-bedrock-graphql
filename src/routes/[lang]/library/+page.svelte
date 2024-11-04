@@ -216,7 +216,7 @@
 		<ul>
 			{#each filteredBooks as book (book.slug)}
 				<li
-					class="font-martina bg-black text-white py-4 border-b border-white {lang === 'ar'
+					class="font-martina bg-black text-white-pure py-4 border-b border-white {lang === 'ar'
 						? 'text-right'
 						: ''}"
 					transition:slide={{ duration: 300 }}
@@ -232,7 +232,7 @@
 
 <style lang="postcss">
 	:global(body) {
-		@apply bg-black text-white;
+		@apply bg-black text-white-pure;
 	}
 	:root {
 		--color: white;

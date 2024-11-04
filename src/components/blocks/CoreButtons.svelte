@@ -24,7 +24,7 @@
 </script>
 
 <div class="px-2 md:px-0">
-  <div class={`m-auto flex ${justifyContentClass(justifyContent)} ${bgColor === 'black' ? '!text-white' : ''}`}>
+  <div class={`m-auto flex ${justifyContentClass(justifyContent)} ${bgColor === 'black' ? '!text-white-pure' : ''}`}>
     {#each children as block, index}
       <CoreButton block={block} />
     {/each}

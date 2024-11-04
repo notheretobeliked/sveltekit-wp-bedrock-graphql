@@ -49,7 +49,7 @@
 		{/key}
         {#if images.length > 1}
 		<button
-			class="fixed top-1/2 left-12 transform -translate-y-1/2 text-white"
+			class="fixed top-1/2 left-12 transform -translate-y-1/2 text-white-pure"
 			on:click|stopPropagation={() => navigate('prev')}
 			on:keydown={(e) => e.key === 'Enter' && navigate('prev')}
 		>
@@ -70,7 +70,7 @@
 			</svg>
 		</button>
 		<button
-			class="fixed top-1/2 right-12 transform -translate-y-1/2 text-white"
+			class="fixed top-1/2 right-12 transform -translate-y-1/2 text-white-pure"
 			on:click|stopPropagation={() => navigate('next')}
 			on:keydown={(e) => e.key === 'Enter' && navigate('next')}
 		>
@@ -92,7 +92,7 @@
 		</button>
         {/if}
 		<button
-			class="fixed top-12 right-12 text-white"
+			class="fixed top-12 right-12 text-white-pure"
 			on:click={close}
 			on:keydown={(e) => e.key === 'Enter' && close()}
 		>
