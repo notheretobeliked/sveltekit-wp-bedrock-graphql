@@ -218,7 +218,6 @@ function getYearRange(data: LibraryItemsQuery) {
 
 export const load: PageServerLoad = async function load({ params }) {
 	const uri = params.uri
-  console.log(params)
 
 	try {
 		const books = await fetchAllLibraryItems(params.lang)
@@ -227,7 +226,6 @@ export const load: PageServerLoad = async function load({ params }) {
 		const restructuredData = restructureLibraryItems({ books: { nodes: books } })
 
 		const yearRange = getYearRange({ books: { nodes: books } })
-    console.log(restructuredData)
 		return {
 			books: restructuredData,
 			uri,

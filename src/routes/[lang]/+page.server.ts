@@ -1,5 +1,4 @@
 export const prerender = false
-import { redirect } from '@sveltejs/kit'
 
 import PageContent from '$lib/graphql/query/page.graphql?raw'
 import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
@@ -9,16 +8,33 @@ import { flatListToHierarchical } from '$lib/utilities/utilities'
 
 // ... existing imports ...
 
-export const load: PageServerLoad = async function load({ params, url }) {
-  throw redirect(307, '/en')
+export const load: PageServerLoad = async function load({ params, url, parent }) {
 
-	const uri = `/`
+	const parentData = await parent();
+
+	console.log(parentData)
+	
+	const lang = params.lang;
+	let uri: string;
+
+	if (lang === 'en') {
+		uri = '/';
+	} else if (lang === 'ar') {
+		const arTranslation = parentData.translations.find(t => t.languageCode === 'ar');
+		uri = arTranslation ? arTranslation.slug : '/';
+	} else {
+		// Default to '/' if lang is neither 'en' nor 'ar'
+		uri = '/';
+	}
+
+	console.log('Determined URI:', uri);
 
 	try {
 		const response = await graphqlQuery(PageContent, { uri: uri })
 		checkResponse(response)
+		
 		const responseData = await response.json()
-
+		
 		// Log the entire response
 		//  console.log('GraphQL response:', JSON.stringify(responseData, null, 2))
 
@@ -29,6 +45,7 @@ export const load: PageServerLoad = async function load({ params, url }) {
 		}
 
 		const { data } = responseData
+		
 
 		// Check if data.page exists
 		if (!data || !data.page) {
@@ -39,11 +56,12 @@ export const load: PageServerLoad = async function load({ params, url }) {
 		}
 
 		let editorBlocks = data.page.editorBlocks ? flatListToHierarchical(data.page.editorBlocks) : []
-
+	
 		return {
 			data: data,
 			uri: uri,
-			editorBlocks: editorBlocks
+			editorBlocks: editorBlocks,
+			languageCode: params.lang
 		}
 	} catch (err: unknown) {
 		console.error('Error in load function:', err)

@@ -1,29 +1,30 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-	content: ['./src/**/*.{html,js,svelte,ts}'],
-	safelist: [
-		'md:grid-cols-2',
-		'md:grid-cols-3',
-		'bg-black',
-		'bg-white-pure',
-		'object-cover',
-		'object-fit',
-		'object-fill',
-		'object-none',
-		'text-xl',
-		'object-contain',
-		'stroke-green',
-		'stroke-black',
-		...Array.from({ length: 8 }, (_, i) => `pt-${i + 1}`),
-		...Array.from({ length: 8 }, (_, i) => `pb-${i + 1}`)
-	],
-	theme: {
-		fontFamily: {
-			sans: ['Inter Tight'],
-			martina: ['Martina Plantijn'],
-			manchette: ['Manchette Fine'],
-			boogy: ['Boogy Brut Poster']
-		},
+
+  content: ['./src/**/*.{html,js,svelte,ts}'],
+  safelist: [
+    'md:grid-cols-2',
+    'md:grid-cols-3',
+    'bg-black',
+    'bg-white-pure',
+    'object-cover',
+    'object-fit',
+    'object-fill',
+    'object-none',
+    'text-xl',
+    'object-contain',
+    'stroke-green',
+    'stroke-black',
+    ...Array.from({ length: 8 }, (_, i) => `pt-${i + 1}`),
+    ...Array.from({ length: 8 }, (_, i) => `pb-${i + 1}`),
+  ],
+  theme: {
+    fontFamily: {
+      'sans': ['Inter Tight'],
+      'martina': ['Martina Plantijn'],
+      'manchette': ['Manchette Fine'],
+      'boogy': ['Boogy Brut Poster'],
+    },
 		colors: {
 			transparent: 'transparent',
 			current: 'currentColor',

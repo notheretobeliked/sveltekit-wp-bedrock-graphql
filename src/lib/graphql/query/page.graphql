@@ -12,12 +12,72 @@ query PageContent($uri: ID!) {
 			...CoreButtonFragment
 			...CoreButtonsFragment
 			...CoreSpacerFragment
+			...AcfHomePageSectionFragment
+			... on AcfHomePageBlock {
+				apiVersion
+				blockEditorCategoryName
+				attributes {
+					backgroundColor
+					alignment: align
+					style
+				}
+				innerBlocks {
+					name
+					parentClientId
+					clientId
+					...CoreParagraphFragment
+					...CoreHeadingFragment
+					...CoreColumnsFragment
+					...CoreGroupFragment
+					...CoreButtonFragment
+					...CoreButtonsFragment
+					...CoreSpacerFragment
+					...AcfHomePageSectionFragment
+				}
+			}
 		}
 	}
 }
 
+fragment AcfHomePageSectionFragment on AcfHomePageSection {
+	apiVersion
+	blockEditorCategoryName
+	attributes {
+		backgroundColor
+		alignment: align
+		style
+	}
 
-
+	homePageSection {
+		images {
+			nodes {
+				mediaDetails {
+					sizes(exclude: [MEDIUM_LARGE, MEDIUM]) {
+						sourceUrl
+						height
+						width
+						mimeType
+						name
+					}
+				}
+				altText
+				caption
+			}
+		}
+	}
+	innerBlocks {
+		name
+		parentClientId
+		clientId
+		...CoreParagraphFragment
+		...CoreHeadingFragment
+		...CoreColumnsFragment
+		...CoreGroupFragment
+		...CoreButtonFragment
+		...CoreButtonsFragment
+		...CoreSpacerFragment
+	}
+}
 
 fragment CoreGroupFragment on CoreGroup {
 	attributes {
@@ -63,12 +123,14 @@ fragment CoreParagraphFragment on CoreParagraph {
 		fontSize
 		textColor
 		align
+		className
 	}
 }
 
 fragment CoreHeadingFragment on CoreHeading {
 	attributes {
 		content
+		className
 		fontFamily
 		fontSize
 		textColor
