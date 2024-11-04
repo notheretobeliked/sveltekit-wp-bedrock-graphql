@@ -135,7 +135,7 @@
 						<LabelAndTitle
 							{label}
 							{title}
-							underline={smallScreen ? (index < labelData.group1.length - 1) : shouldUnderline(index, labelData.group1.length)}
+							underline={smallScreen ? true : shouldUnderline(index, labelData.group1.length)}
 							/>
 					{/each}
 				</div>
@@ -158,7 +158,7 @@
 						<LabelAndTitle
 							{label}
 							{title}
-							underline={smallScreen ? (index < labelData.group1.length - 1) : shouldUnderline(index, labelData.group1.length)}
+							underline={smallScreen ? true : shouldUnderline(index, labelData.group1.length)}
 
 						/>
 					{/each}
@@ -170,7 +170,7 @@
 						<LabelAndTitle
 							{label}
 							{title}
-							underline={smallScreen ? (index < labelData.group1.length - 1) : shouldUnderline(index, labelData.group1.length)}
+							underline={smallScreen ? true : shouldUnderline(index, labelData.group1.length)}
 
 						/>
 					{/each}
