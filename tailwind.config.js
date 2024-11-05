@@ -3,6 +3,7 @@ export default {
 
   content: ['./src/**/*.{html,js,svelte,ts}'],
   safelist: [
+	'!mb-0',
     'md:grid-cols-2',
     'md:grid-cols-3',
     'bg-black',
