@@ -61,6 +61,7 @@ fragment AcfHomePageSectionFragment on AcfHomePageSection {
 					}
 				}
 				altText
+				sourceUrl
 				caption
 			}
 		}

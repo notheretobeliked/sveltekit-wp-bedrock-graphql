@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  openseadragon:
+    specifier: ^5.0.0
+    version: 5.0.0
+
 devDependencies:
   '@graphql-codegen/cli':
     specifier: ^5.0.3
@@ -29,6 +34,9 @@ devDependencies:
   '@types/eslint':
     specifier: ^8.56.12
     version: 8.56.12
+  '@types/openseadragon':
+    specifier: ^3.0.10
+    version: 3.0.10
   autoprefixer:
     specifier: ^10.4.20
     version: 10.4.20(postcss@8.4.47)
@@ -2006,6 +2014,10 @@ packages:
       undici-types: 6.19.8
     dev: true
 
+  /@types/openseadragon@3.0.10:
+    resolution: {integrity: sha512-nNVlu9PUNDVTudkSqVWhHtghCsyzQrJObEtN5zsVN2ghh5HYAC6U6xAcT9NQRfVfZVZkWXEYp2Hw7hQgwRxqgg==}
+    dev: true
+
   /@types/pug@2.0.10:
     resolution: {integrity: sha512-Sk/uYFOBAB7mb74XcpizmH0KOR2Pv3D2Hmrh1Dmy5BmK3MpdSa5kqZcg6EKBdklU0bFXX9gCfzvpnyUehrPIuA==}
     dev: true
@@ -3973,6 +3985,10 @@ packages:
     dependencies:
       mimic-fn: 2.1.0
     dev: true
+
+  /openseadragon@5.0.0:
+    resolution: {integrity: sha512-S9aabSjmJg7Jfow1UItR5aXiKQLtkDWyRR5fxLeqT4vSYMvfscXUDfVS9snUN3JuIrHaSPJAlR4H2DYSn5DWRg==}
+    dev: false
 
   /optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
