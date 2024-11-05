@@ -75,4 +75,5 @@
 			<span class="text-white-pure">Keep scrolling...</span>
 		{/if}
 	</div>
+
 </div>

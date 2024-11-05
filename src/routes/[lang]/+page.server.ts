@@ -1,4 +1,5 @@
 export const prerender = false
+import { redirect } from '@sveltejs/kit'
 
 import PageContent from '$lib/graphql/query/page.graphql?raw'
 import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
@@ -9,7 +10,7 @@ import { flatListToHierarchical } from '$lib/utilities/utilities'
 // ... existing imports ...
 
 export const load: PageServerLoad = async function load({ params, url, parent }) {
-
+	throw redirect(307, '/en/library')
 	const parentData = await parent();
 
 	console.log(parentData)

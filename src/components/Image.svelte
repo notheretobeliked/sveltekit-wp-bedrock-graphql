@@ -35,14 +35,22 @@
 
 	const sizes = determineSizes(imageSize)
 </script>
-
-<img
-  loading={lazy ? 'lazy' : 'eager'}
-  class={`h-full w-full object-${fit} ${extraClasses}`}
-  {src}
-  alt={altText}
-  {width}
-  {height}
-  srcset={getSrcSet(imageObject.mediaDetails.sizes)}
-  {sizes}
-/>
+<div class="relative w-full h-full">
+  <img
+    loading={lazy ? 'lazy' : 'eager'}
+    class={`h-full w-full object-${fit} ${extraClasses}`}
+    {src}
+    alt={imageObject.altText}
+    {width}
+    {height}
+    srcset={getSrcSet(imageObject.mediaDetails.sizes)}
+    {sizes}
+  />
+  <img 
+    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+    class="absolute inset-0 w-full h-full"
+    alt=""
+    {width}
+    {height}
+  />
+</div>

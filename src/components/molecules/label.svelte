@@ -64,7 +64,7 @@
 				title: book.numperOfPages ? `${book.numperOfPages} ${translations.pages[lang]}` : null
 			},
 			{ label: translations.collection[lang], title: book.collection }
-		]
+		].filter((item) => item.title)
 	}
 
 	const images = book.thumbnailImages ?? []
@@ -104,84 +104,94 @@
 
 	let scrollContainer: HTMLDivElement
 
+	let smallScreen = false
+
 	onMount(() => {
+		const mediaQuery = window.matchMedia('(min-width: 1024px)')
+		smallScreen = !mediaQuery.matches
+		smallScreen && toggleImages()
 		if (scrollContainer) {
 			scrollContainer.scrollLeft = scrollContainer.scrollWidth
 		}
 	})
 </script>
 
-<div class="md:grid-cols-6 grid gap-4 label-grid">
-	<div class="col-span-5">
+<div class="grid-cols-6 grid gap-4 label-grid">
+	<div class="col-span-6 lg:col-span-5 flex flex-col">
 		{#if showImages}
-			<div transition:slide={{ duration }}>
-				{#if images.length > 1}
+			<div transition:slide={{ duration }} class="order-2 lg:order-1">
+				{#if (images.length > 1) || smallScreen }
 					<div class="overflow-x-auto w-full" bind:this={scrollContainer}>
 						<ImageGallery {images} />
 					</div>
 				{/if}
 			</div>
 		{/if}
-		<div class="grid grid-cols-5 gap-4">
+		<div class="grid grid-cols-2 lg:grid-cols-5 gap-4 order-1 lg:order-2">
 			<!-- Group 1 -->
-			<div class="py-3 flex flex-col gap-2">
-				{#each labelData.group1 as { label, title }, index}
-					<LabelAndTitle
-						{label}
-						{title}
-						underline={shouldUnderline(index, labelData.group1.length)}
-					/>
-				{/each}
-			</div>
+			<div class="lg:contents pl-4 lg:pl-0">
+				<div class="lg:py-3 flex flex-col gap-2">
+					{#each labelData.group1 as { label, title }, index}
+						<LabelAndTitle
+							{label}
+							{title}
+							underline={smallScreen ? true : shouldUnderline(index, labelData.group1.length)}
+							/>
+					{/each}
+				</div>
 
-			<!-- Group 2 -->
-			<div class="py-3 flex flex-col gap-2">
-				{#each labelData.group2 as { label, title }, index}
-					<LabelAndTitle
-						{label}
-						{title}
-						underline={shouldUnderline(index, labelData.group2.length)}
-					/>
-				{/each}
+				<!-- Group 2 -->
+				<div class="lg:py-3 flex flex-col gap-2">
+					{#each labelData.group2 as { label, title }, index}
+						<LabelAndTitle
+							{label}
+							{title}
+							underline={shouldUnderline(index, labelData.group2.length)}
+						/>
+					{/each}
+				</div>
 			</div>
+			<div class="lg:contents pr-4 lg:pr-0">
+				<!-- Group 3 -->
+				<div class="lg:py-3 flex flex-col gap-2">
+					{#each labelData.group3 as { label, title }, index}
+						<LabelAndTitle
+							{label}
+							{title}
+							underline={smallScreen ? true : shouldUnderline(index, labelData.group1.length)}
 
-			<!-- Group 3 -->
-			<div class="py-3 flex flex-col gap-2">
-				{#each labelData.group3 as { label, title }, index}
-					<LabelAndTitle
-						{label}
-						{title}
-						underline={shouldUnderline(index, labelData.group3.length)}
-					/>
-				{/each}
-			</div>
+						/>
+					{/each}
+				</div>
 
-			<!-- Group 4 -->
-			<div class="py-3 flex flex-col gap-2">
-				{#each labelData.group4 as { label, title }, index}
-					<LabelAndTitle
-						{label}
-						{title}
-						underline={shouldUnderline(index, labelData.group4.length)}
-					/>
-				{/each}
-			</div>
+				<!-- Group 4 -->
+				<div class="lg:py-3 flex flex-col gap-2">
+					{#each labelData.group4 as { label, title }, index}
+						<LabelAndTitle
+							{label}
+							{title}
+							underline={smallScreen ? true : shouldUnderline(index, labelData.group1.length)}
 
-			<!-- Group 5 -->
-			<div class="py-3 flex flex-col gap-2">
-				{#each labelData.group5 as { label, title }, index}
-					<LabelAndTitle
-						{label}
-						{title}
-						underline={shouldUnderline(index, labelData.group5.length)}
-					/>
-				{/each}
+						/>
+					{/each}
+				</div>
+
+				<!-- Group 5 -->
+				<div class="lg:py-3 flex flex-col gap-2">
+					{#each labelData.group5 as { label, title }, index}
+						<LabelAndTitle
+							{label}
+							{title}
+							underline={shouldUnderline(index, labelData.group5.length)}
+						/>
+					{/each}
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<!-- Thumbnail Cover Image -->
-	<div class="label-grid-image">
+	<div class="hidden lg:block label-grid-image">
 		{#if book.thumbnailCoverImage}
 			<figure class="h-[160px] relative group">
 				{#if images.length > 1}
@@ -255,3 +265,21 @@
 		currentIndex={selectedImageIndex}
 	/>
 {/if}
+
+<style lang="postcss">
+	/* .label-grid {
+  display: grid;
+  grid-template-areas:
+    "col1 col2"
+    "imagerow imagerow";
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: theme('screens.lg')) {
+  .label-grid {
+    grid-template-areas:
+      "col1 col2 col3 col4 col5 image";
+    grid-template-columns: repeat(6, 1fr);
+  }
+} */
+</style>

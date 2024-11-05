@@ -1,30 +1,30 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-	content: ['./src/**/*.{html,js,svelte,ts}'],
-	safelist: [
-		'!mb-0',
-		'md:grid-cols-2',
-		'md:grid-cols-3',
-		'bg-black',
-		'bg-white-pure',
-		'object-cover',
-		'object-fit',
-		'object-fill',
-		'object-none',
-		'text-xl',
-		'object-contain',
-		'stroke-green',
-		'stroke-black',
-		...Array.from({ length: 8 }, (_, i) => `pt-${i + 1}`),
-		...Array.from({ length: 8 }, (_, i) => `pb-${i + 1}`)
-	],
-	theme: {
-		fontFamily: {
-			sans: ['Inter Tight'],
-			martina: ['Martina Plantijn'],
-			manchette: ['Manchette Fine'],
-			boogy: ['Boogy Brut Poster']
-		},
+
+  content: ['./src/**/*.{html,js,svelte,ts}'],
+  safelist: [
+    'md:grid-cols-2',
+    'md:grid-cols-3',
+    'bg-black',
+    'bg-white-pure',
+    'object-cover',
+    'object-fit',
+    'object-fill',
+    'object-none',
+    'text-xl',
+    'object-contain',
+    'stroke-green',
+    'stroke-black',
+    ...Array.from({ length: 8 }, (_, i) => `pt-${i + 1}`),
+    ...Array.from({ length: 8 }, (_, i) => `pb-${i + 1}`),
+  ],
+  theme: {
+    fontFamily: {
+      'sans': ['Inter Tight'],
+      'martina': ['Martina Plantijn'],
+      'manchette': ['Manchette Fine'],
+      'boogy': ['Boogy Brut Poster'],
+    },
 		colors: {
 			transparent: 'transparent',
 			current: 'currentColor',
@@ -40,12 +40,13 @@ export default {
 			sand: '#DEC68C'
 		},
 		fontSize: {
-			xs: '.875rem',
-			sm: ['1rem', '1.25'],
-			base: ['1.25rem', '1.35'],
-			lg: ['1.75rem', '1.25'],
-			xl: ['2.875rem', '1.2'],
-			'2xl': ['3.275rem', '1.2']
+			xs: '.5rem',
+			sm: '.675rem',
+			base: ['1.063rem', '1.438rem'],
+			lg: ['1.25rem', '1.35'],
+			xl: ['1.75rem', '1.25'],
+			'2xl': ['2.875rem', '1.2'],
+			'3xl': ['3.275rem', '1.2']
 		},
 		screens: {
 			sm: '640px',
@@ -57,7 +58,7 @@ export default {
 			lg: '1024px',
 			// => @media (min-width: 1024px) { ... }
 
-			xl: '1280px',
+			xl: '1204px',
 			// => @media (min-width: 1280px) { ... }
 
 			'2xl': '1536px'
