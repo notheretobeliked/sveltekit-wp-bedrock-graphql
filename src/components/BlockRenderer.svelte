@@ -26,19 +26,30 @@
 		HomePageSection as HomePageSectionType
 	} from '$lib/graphql/generated'
 
+	interface NormalizedBlock {
+		attributes: {
+			align?: string
+			verticalAlignment?: string
+			backgroundColor?: string
+			style?: StyleObject
+		}
+		name: string // Add this line
+	}
+
 	type EditorBlock =
-		| CoreParagraphType
-		| CoreHeadingType
-		| CoreGroupType
-		| CoreColumnsType
-		| CoreColumnType
-		| CoreSpacerType
-		| CoreButtonsType
-		| CoreButtonType
-		| HomePageSectionType
+		| (CoreParagraphType & NormalizedBlock)
+		| (CoreHeadingType & NormalizedBlock)
+		| (CoreGroupType & NormalizedBlock)
+		| (CoreColumnsType & NormalizedBlock)
+		| (CoreColumnType & NormalizedBlock)
+		| (CoreSpacerType & NormalizedBlock)
+		| (CoreButtonsType & NormalizedBlock)
+		| (CoreButtonType & NormalizedBlock)
+		| (HomePageSectionType & NormalizedBlock)
 
 	export let block: EditorBlock
 
+ 
 	import CoreParagraph from '$components/blocks/CoreParagraph.svelte'
 	import CoreHeading from '$components/blocks/CoreHeading.svelte'
 	import CoreGroup from '$components/blocks/CoreGroup.svelte'
@@ -51,7 +62,9 @@
 	import HomePageBlock from './blocks/HomePageBlock.svelte'
 
 	let align = block.attributes.align || 'none'
-	if (forceFull) align = 'full'
+	let verticalAlignment = block.attributes.verticalAlignment ?? null
+	console.log(verticalAlignment)
+	if (forceFull || block.name === 'core/column') align = 'full'
 	const bgColor = block.attributes.backgroundColor ?? ''
 
 	interface StyleObject {
@@ -89,25 +102,53 @@
 
 	const classNames = (align: string) => {
 		let baseClasses = ''
-		if (block.name === 'core/column') return
+
 		switch (align) {
 			case 'full':
-				baseClasses = 'w-full max-w-full'
+				baseClasses = 'w-full max-w-full '
 				break
 			case 'wide':
-				baseClasses = 'w-full max-w-[980px] mx-auto'
+				baseClasses = 'w-full max-w-[980px] mx-auto '
 				break
 			case 'none':
-				baseClasses = 'w-full max-w-[852px] mx-auto'
+				baseClasses = 'w-full max-w-[852px] mx-auto '
 				break
 			case 'center':
-				baseClasses = 'w-full max-w-[852px] mx-auto'
+				baseClasses = 'w-full max-w-[852px] mx-auto '
 				break
 			case null:
-				baseClasses = 'w-full'
+				baseClasses = 'w-full '
 				break
 		}
+
 		return `${baseClasses} ${spacingClasses}` // Combine base classes with spacing classes
+	}
+
+	const verticalAlignmentClasses = (align: string | null) => {
+		let baseClasses = ''
+		console.log('verticalAlignmentClasses input:', align)
+
+
+		switch (align) {
+			case 'stretch':
+				baseClasses = 'flex items-stretch'
+				break
+			case 'center':
+				baseClasses = 'flex items-center'
+				break
+			case 'bottom':
+				baseClasses = 'flex items-end'
+				break
+			case 'top':
+				baseClasses = 'flex items-start'
+				break
+			case null:
+				baseClasses = ''
+				break
+		}
+
+		return baseClasses
+
 	}
 
 	const getBgClass = (bgColor: string | null): string => {
@@ -130,7 +171,7 @@
 	}
 </script>
 
-<div class="{classNames(align)} {getBgClass(bgColor)} !px-0">
+<div class="{block.name} {verticalAlignmentClasses(verticalAlignment)} {classNames(align)} {getBgClass(bgColor)} !px-0">
 	{#if block.name === 'core/group'}
 		<CoreGroup {block} />
 	{/if}

@@ -21,7 +21,7 @@
 			textColor || '',
 			textAlign || 'left',
 			fontFamily || 'boogy'
-		)} {className} mb-5"
+		)} {className} mb-1 md:mb-3 lg:mb-4"
 	>
 		{@html content}
 	</h1>{/if}
@@ -32,7 +32,7 @@
 			textColor || '',
 			textAlign || 'left',
 			fontFamily || 'martina'
-		)} {className} pb-1 border-b border-black mb-3"
+		)} {className} pb-1 border-b border-black mb-2 md:mb-3"
 	>
 		{@html content}
 	</h2>
@@ -44,7 +44,7 @@
 			textColor || '',
 			textAlign || 'left',
 			fontFamily || 'martina'
-		)} {className} uppercase tracking-wider mb-3"
+		)} {className} uppercase tracking-wider mb-2 md:mb-3"
 	>
 		{@html content}
 	</h3>

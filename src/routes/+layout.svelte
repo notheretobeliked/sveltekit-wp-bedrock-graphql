@@ -45,6 +45,6 @@
   </div>
 {/if}
 
-<main>
+<main class="px-3 md:px-0">
   <slot {data}  />
 </main>

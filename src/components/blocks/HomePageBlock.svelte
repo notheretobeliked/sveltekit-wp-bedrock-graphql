@@ -29,14 +29,11 @@
 }
 
 :global(div#homepage-container>div div.grid>div:last-child) {
-	max-height: calc(100vh - var(--header-height));
-	overflow-y: auto;
-
-	@apply max-w-[600px] mx-auto px-6 pt-16;
+	@apply lg:max-h-[calc(100vh-var(--header-height))] lg:overflow-y-auto max-w-[600px] mx-auto px-6 pt-16;
 }
 
 :global(div#homepage-container>div div.grid>div:first-child>div>div) {
-	height: calc((100vh - var(--header-height))/4);
+	@apply h-full lg:h-[calc((100vh-var(--header-height))/4)];
 
 	@apply cursor-pointer;
 }

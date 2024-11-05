@@ -8,6 +8,7 @@ query PageContent($uri: ID!) {
 			...CoreParagraphFragment
 			...CoreHeadingFragment
 			...CoreColumnsFragment
+			...CoreColumnFragment
 			...CoreGroupFragment
 			...CoreButtonFragment
 			...CoreButtonsFragment
@@ -113,6 +114,15 @@ fragment CoreColumnsFragment on CoreColumns {
 		verticalAlignment
 		style
 		align
+	}
+}
+
+fragment CoreColumnFragment on CoreColumn {
+	attributes {
+		layout
+		className
+		verticalAlignment
+		style
 	}
 }
 

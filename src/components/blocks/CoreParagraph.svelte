@@ -3,7 +3,6 @@
 	import { classNames } from '$lib/utilities/utilities'
 
 	export let block: CoreParagraph
-	console.log(block)
 
 	const {
 		content = '',
