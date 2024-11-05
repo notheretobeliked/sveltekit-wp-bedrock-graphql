@@ -10,7 +10,7 @@ import { flatListToHierarchical } from '$lib/utilities/utilities'
 // ... existing imports ...
 
 export const load: PageServerLoad = async function load({ params, url }) {
-  throw redirect(307, '/en')
+  throw redirect(307, '/en/library')
 
 	const uri = `/`
 
