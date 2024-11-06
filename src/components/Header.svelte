@@ -39,7 +39,7 @@
 </script>
 
 
-<header class="fixed top-0 left-0 w-full">
+<header class="fixed top-0 left-0 w-full z-50">
 	<div class="fixed top-0 bg-white-pure w-full pt-4 pb-3 z-50" id="top-bar">
 		<div
 			class="grid md:grid-cols-3 items-center h-full px-4 w-full max-w-screen-xl mx-auto text-black"
