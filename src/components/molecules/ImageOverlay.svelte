@@ -57,7 +57,7 @@
 	$: if (viewer && image) {
 		viewer.open({
 			type: 'image',
-			url: image.sourceUrl.replace(/\.webp$/, '.jpg'),
+			url: image.sourceUrl,
 			buildPyramid: false,
 			crossOriginPolicy: 'Anonymous',
 			format: 'jpg'
