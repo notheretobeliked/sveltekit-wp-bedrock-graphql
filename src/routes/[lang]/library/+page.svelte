@@ -155,27 +155,32 @@
 			{#if artists.length > 0}
 				<div class="relative">
 					<div
-						class="border-white border rounded-md p-2 bg-black cursor-pointer text-sm"
+						class="border-white border rounded-md p-2 {$filterStore.selectedArtist
+							? 'bg-white-pure text-black'
+							: 'bg-black text-white-pure'} cursor-pointer text-sm relative flex items-center"
 						on:click={() => (artistsOpen = !artistsOpen)}
 					>
-						{$filterStore.selectedArtist
-							? artists.find((a) => a.slug === $filterStore.selectedArtist)?.name
-							: translations.artistdesigner[lang]}
+						<span class="truncate pr-6">
+							{$filterStore.selectedArtist
+								? artists.find((a) => a.slug === $filterStore.selectedArtist)?.name
+								: translations.artistdesigner[lang]}
+						</span>
+
+						{#if $filterStore.selectedArtist}
+							<button
+								class="absolute right-2 top-1/2 -translate-y-1/2"
+								on:click|stopPropagation={() => updateFilter('selectedArtist', '')}
+							>
+								×
+							</button>
+						{/if}
 					</div>
+
 					{#if artistsOpen}
 						<div
 							class="absolute w-full mt-1 max-h-[70vh] overflow-y-auto bg-black border border-white rounded-md"
 							transition:slide
 						>
-							<div
-								class="p-2 hover:bg-white-pure hover:text-black cursor-pointer text-sm"
-								on:click={() => {
-									updateFilter('selectedArtist', '')
-									artistsOpen = false
-								}}
-							>
-								{translations.artistdesigner[lang]}
-							</div>
 							{#each artists as artist}
 								<div
 									class="p-2 hover:bg-white-pure hover:text-black cursor-pointer text-sm"
@@ -195,27 +200,31 @@
 			{#if authors.length > 0}
 				<div class="relative">
 					<div
-						class="border-white border rounded-md p-2 bg-black cursor-pointer text-sm"
+						class="border-white border rounded-md p-2 {$filterStore.selectedAuthor
+							? 'bg-white-pure text-black'
+							: 'bg-black text-white-pure'} cursor-pointer text-sm relative flex items-center"
 						on:click={() => (authorsOpen = !authorsOpen)}
 					>
-						{$filterStore.selectedAuthor
-							? authors.find((a) => a.slug === $filterStore.selectedAuthor)?.name
-							: translations.author[lang]}
+						<span class="truncate pr-6">
+							{$filterStore.selectedAuthor
+								? authors.find((a) => a.slug === $filterStore.selectedAuthor)?.name
+								: translations.author[lang]}
+						</span>
+
+						{#if $filterStore.selectedAuthor}
+							<button
+								class="absolute right-2 top-1/2 -translate-y-1/2"
+								on:click|stopPropagation={() => updateFilter('selectedAuthor', '')}
+							>
+								×
+							</button>
+						{/if}
 					</div>
 					{#if authorsOpen}
 						<div
 							class="absolute w-full mt-1 max-h-[70vh] overflow-y-auto bg-black border border-white rounded-md"
 							transition:slide
 						>
-							<div
-								class="p-2 hover:bg-white-pure hover:text-black cursor-pointer text-sm"
-								on:click={() => {
-									updateFilter('selectedAuthor', '')
-									authorsOpen = false
-								}}
-							>
-								{translations.author[lang]}
-							</div>
 							{#each authors as author}
 								<div
 									class="p-2 hover:bg-white-pure hover:text-black cursor-pointer text-sm"
@@ -235,27 +244,31 @@
 			{#if publishers.length > 0}
 				<div class="relative">
 					<div
-						class="border-white border rounded-md p-2 bg-black cursor-pointer text-sm"
+						class="border-white border rounded-md p-2 {$filterStore.selectedPublisher
+							? 'bg-white-pure text-black'
+							: 'bg-black text-white-pure'} cursor-pointer text-sm relative flex items-center"
 						on:click={() => (publishersOpen = !publishersOpen)}
 					>
-						{$filterStore.selectedPublisher
-							? publishers.find((p) => p.slug === $filterStore.selectedPublisher)?.name
-							: translations.publisher[lang]}
+						<span class="truncate pr-6">
+							{$filterStore.selectedPublisher
+								? publishers.find((p) => p.slug === $filterStore.selectedPublisher)?.name
+								: translations.publisher[lang]}
+						</span>
+
+						{#if $filterStore.selectedPublisher}
+							<button
+								class="absolute right-2 top-1/2 -translate-y-1/2"
+								on:click|stopPropagation={() => updateFilter('selectedPublisher', '')}
+							>
+								×
+							</button>
+						{/if}
 					</div>
 					{#if publishersOpen}
 						<div
 							class="absolute w-full mt-1 max-h-[70vh] overflow-y-auto bg-black border border-white rounded-md"
 							transition:slide
 						>
-							<div
-								class="p-2 hover:bg-white-pure hover:text-black cursor-pointer text-sm"
-								on:click={() => {
-									updateFilter('selectedPublisher', '')
-									publishersOpen = false
-								}}
-							>
-								{translations.publisher[lang]}
-							</div>
 							{#each publishers as publisher}
 								<div
 									class="p-2 hover:bg-white-pure hover:text-black cursor-pointer text-sm"
@@ -274,14 +287,23 @@
 
 			<div class="grid grid-cols-2 gap-4">
 				<div class="relative">
-					<div
-						class="border-white border rounded-md p-2 bg-black cursor-pointer text-sm {lang === 'ar'
-							? 'text-right'
-							: ''}"
-						on:click={() => (yearFromOpen = !yearFromOpen)}
-					>
+					<div 
+					class="border-white border rounded-md p-2 cursor-pointer text-sm relative flex items-center {lang === 'ar' ? 'text-right' : ''} {$filterStore.yearFrom !== yearsAscending[0] ? 'bg-white-pure text-black' : 'bg-black'}"
+					on:click={() => (yearFromOpen = !yearFromOpen)}
+				>
+					<span class="truncate pr-6">
 						{$filterStore.yearFrom || yearsAscending[0]}
-					</div>
+					</span>
+					{#if $filterStore.yearFrom !== yearsAscending[0]}
+						<button
+							class="absolute right-2 top-1/2 -translate-y-1/2"
+							on:click|stopPropagation={() => updateFilter('yearFrom', yearsAscending[0])}
+						>
+							×
+						</button>
+					{/if}
+				</div>
+		
 					{#if yearFromOpen}
 						<div
 							class="absolute w-full mt-1 max-h-[70vh] overflow-y-auto bg-black border border-white rounded-md"
@@ -289,7 +311,8 @@
 						>
 							{#each yearsAscending as year}
 								<div
-									class="p-2 hover:bg-white-pure hover:text-black cursor-pointer text-sm {lang === 'ar'
+									class="p-2 hover:bg-white-pure hover:text-black cursor-pointer text-sm {lang ===
+									'ar'
 										? 'text-right'
 										: ''}"
 									on:click={() => {
@@ -309,13 +332,21 @@
 
 				<div class="relative">
 					<div
-						class="border-white border rounded-md p-2 bg-black cursor-pointer text-sm {lang === 'ar'
-							? 'text-right'
-							: ''}"
-						on:click={() => (yearToOpen = !yearToOpen)}
-					>
+					class="border-white border rounded-md p-2 cursor-pointer text-sm relative flex items-center {lang === 'ar' ? 'text-right' : ''} {$filterStore.yearTo !== yearsDescending[0] ? 'bg-white-pure text-black' : 'bg-black'}"
+					on:click={() => (yearToOpen = !yearToOpen)}
+				>
+					<span class="truncate pr-6">
 						{$filterStore.yearTo || yearsDescending[0]}
-					</div>
+					</span>
+					{#if $filterStore.yearTo !== yearsDescending[0]}
+						<button
+							class="absolute right-2 top-1/2 -translate-y-1/2"
+							on:click|stopPropagation={() => updateFilter('yearTo', yearsDescending[0])}
+						>
+							×
+						</button>
+					{/if}
+				</div>
 					{#if yearToOpen}
 						<div
 							class="absolute w-full mt-1 max-h-[70vh] overflow-y-auto bg-black border text-sm border-white rounded-md"
@@ -323,7 +354,8 @@
 						>
 							{#each yearsDescending as year}
 								<div
-									class="p-2 hover:bg-white-pure hover:text-black cursor-pointer text-sm {lang === 'ar'
+									class="p-2 hover:bg-white-pure hover:text-black cursor-pointer text-sm {lang ===
+									'ar'
 										? 'text-right'
 										: ''}"
 									on:click={() => {
@@ -342,15 +374,25 @@
 				</div>
 			</div>
 
-			<input
-				type="text"
-				bind:value={$filterStore.searchFilter}
-				on:input={(e) => updateFilter('searchFilter', e.currentTarget.value)}
-				placeholder={translations.search[lang]}
-				class="border-white border rounded-md p-2 bg-black col-span-2 text-sm {lang === 'ar'
-					? 'text-right'
-					: ''}"
-			/>
+			<div class="relative col-span-2">
+				<input
+					type="text"
+					bind:value={$filterStore.searchFilter}
+					on:input={(e) => updateFilter('searchFilter', e.currentTarget.value)}
+					placeholder={translations.search[lang]}
+					class="border-white border rounded-md p-2 bg-black w-full text-sm {lang === 'ar'
+						? 'text-right pr-2 pl-8'
+						: 'pl-2 pr-8'}"
+				/>
+				{#if $filterStore.searchFilter}
+					<button
+						class="absolute {lang === 'ar' ? 'left-2' : 'right-2'} top-1/2 -translate-y-1/2"
+						on:click={() => updateFilter('searchFilter', '')}
+					>
+						×
+					</button>
+				{/if}
+			</div>
 		</div>
 		{#if filteredBooks.length > 0}
 			<ul>
