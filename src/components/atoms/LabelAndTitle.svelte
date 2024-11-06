@@ -10,6 +10,6 @@
 		<p class="text-xs uppercase tracking-widest mb-1">{label}</p>
 	{/if}
 	{#if title}
-		<p class="text-base">{title}</p>
+		<p class="text-sm">{title}</p>
 	{/if}
 </div>
