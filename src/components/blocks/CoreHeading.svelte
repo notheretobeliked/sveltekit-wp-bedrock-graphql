@@ -53,7 +53,7 @@
 {#if level === 4}
 	<h4
 		class="{classNames(
-			fontSize || 'xs',
+			fontSize || 'sm',
 			textColor || '',
 			textAlign || 'left',
 			fontFamily || 'martina'
