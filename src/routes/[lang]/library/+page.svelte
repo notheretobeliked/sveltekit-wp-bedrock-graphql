@@ -41,6 +41,10 @@
 	let publishersOpen = false
 	let yearFromOpen = false
 	let yearToOpen = false
+	let filterContainer: HTMLDivElement
+	let scrollY: number
+	let filterTop: number
+	let isSticky = false
 
 	function handleClickOutside(event: MouseEvent) {
 		const target = event.target as HTMLElement
@@ -113,6 +117,8 @@
 	$: {
 		$filterStore
 		applyFilters()
+		isSticky = scrollY > filterTop - 80
+		console.log(isSticky)
 	}
 
 	// Handle route changes
@@ -134,6 +140,8 @@
 	}
 
 	onMount(() => {
+		filterTop = filterContainer?.offsetTop || 0
+
 		// Initialize filteredBooks with all books
 		filteredBooks = [...books]
 		document.addEventListener('click', handleClickOutside)
@@ -142,7 +150,7 @@
 		}
 	})
 </script>
-
+<svelte:window bind:scrollY />
 <main class="py-24 w-screen bg-black text-white-pure {lang === 'ar' ? 'main-ar' : ''}">
 	<div class="min-h-screen mx-auto font-martina max-w-screen-xl">
 		<header class="mb-8">
@@ -150,7 +158,8 @@
 			<h1 class="text-center text-2xl !font-boogy">Library</h1>
 		</header>
 		<div
-			class="mb-8 grid md:grid-cols-6 gap-4 mx-auto font-martina max-w-full lg:max-w-screen-xl sticky top-8 z-10"
+			bind:this={filterContainer}
+			class="{isSticky && 'fixed'} top-[80px] left-0 right-0 z-10 mb-8 grid md:grid-cols-6 gap-4 mx-auto font-martina max-w-full lg:max-w-screen-xl"
 		>
 			{#if artists.length > 0}
 				<div class="relative">
@@ -287,23 +296,28 @@
 
 			<div class="grid grid-cols-2 gap-4">
 				<div class="relative">
-					<div 
-					class="border-white border rounded-md p-2 cursor-pointer text-sm relative flex items-center {lang === 'ar' ? 'text-right' : ''} {$filterStore.yearFrom !== yearsAscending[0] ? 'bg-white-pure text-black' : 'bg-black'}"
-					on:click={() => (yearFromOpen = !yearFromOpen)}
-				>
-					<span class="truncate pr-6">
-						{$filterStore.yearFrom || yearsAscending[0]}
-					</span>
-					{#if $filterStore.yearFrom !== yearsAscending[0]}
-						<button
-							class="absolute right-2 top-1/2 -translate-y-1/2"
-							on:click|stopPropagation={() => updateFilter('yearFrom', yearsAscending[0])}
-						>
-							×
-						</button>
-					{/if}
-				</div>
-		
+					<div
+						class="border-white border rounded-md p-2 cursor-pointer text-sm relative flex items-center {lang ===
+						'ar'
+							? 'text-right'
+							: ''} {$filterStore.yearFrom !== yearsAscending[0]
+							? 'bg-white-pure text-black'
+							: 'bg-black'}"
+						on:click={() => (yearFromOpen = !yearFromOpen)}
+					>
+						<span class="truncate pr-6">
+							{$filterStore.yearFrom || yearsAscending[0]}
+						</span>
+						{#if $filterStore.yearFrom !== yearsAscending[0]}
+							<button
+								class="absolute right-2 top-1/2 -translate-y-1/2"
+								on:click|stopPropagation={() => updateFilter('yearFrom', yearsAscending[0])}
+							>
+								×
+							</button>
+						{/if}
+					</div>
+
 					{#if yearFromOpen}
 						<div
 							class="absolute w-full mt-1 max-h-[70vh] overflow-y-auto bg-black border border-white rounded-md"
@@ -332,21 +346,26 @@
 
 				<div class="relative">
 					<div
-					class="border-white border rounded-md p-2 cursor-pointer text-sm relative flex items-center {lang === 'ar' ? 'text-right' : ''} {$filterStore.yearTo !== yearsDescending[0] ? 'bg-white-pure text-black' : 'bg-black'}"
-					on:click={() => (yearToOpen = !yearToOpen)}
-				>
-					<span class="truncate pr-6">
-						{$filterStore.yearTo || yearsDescending[0]}
-					</span>
-					{#if $filterStore.yearTo !== yearsDescending[0]}
-						<button
-							class="absolute right-2 top-1/2 -translate-y-1/2"
-							on:click|stopPropagation={() => updateFilter('yearTo', yearsDescending[0])}
-						>
-							×
-						</button>
-					{/if}
-				</div>
+						class="border-white border rounded-md p-2 cursor-pointer text-sm relative flex items-center {lang ===
+						'ar'
+							? 'text-right'
+							: ''} {$filterStore.yearTo !== yearsDescending[0]
+							? 'bg-white-pure text-black'
+							: 'bg-black'}"
+						on:click={() => (yearToOpen = !yearToOpen)}
+					>
+						<span class="truncate pr-6">
+							{$filterStore.yearTo || yearsDescending[0]}
+						</span>
+						{#if $filterStore.yearTo !== yearsDescending[0]}
+							<button
+								class="absolute right-2 top-1/2 -translate-y-1/2"
+								on:click|stopPropagation={() => updateFilter('yearTo', yearsDescending[0])}
+							>
+								×
+							</button>
+						{/if}
+					</div>
 					{#if yearToOpen}
 						<div
 							class="absolute w-full mt-1 max-h-[70vh] overflow-y-auto bg-black border text-sm border-white rounded-md"
@@ -394,6 +413,10 @@
 				{/if}
 			</div>
 		</div>
+		{#if isSticky}
+			<div class="h-[116px]"></div>
+			<!-- Adjust height to match your filters -->
+		{/if}
 		{#if filteredBooks.length > 0}
 			<ul>
 				{#each filteredBooks as book (book.slug)}
