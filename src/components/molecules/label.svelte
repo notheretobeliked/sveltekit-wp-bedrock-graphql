@@ -29,41 +29,92 @@
 
 	const labelData: LabelData = {
 		group1: [
-			{ label: `${translations.ref[lang]}: ${book.ref}`, title: null }, // Ref label based on language
+			{
+				label: `${translations.ref[lang]}: ${book.ref}`,
+				title: null
+			}, // Ref label based on language
 			...[
-				{ label: translations.title[lang], title: book.title },
-				{ label: translations.author[lang], title: book.author },
-				{ label: translations.translator[lang], title: book.translation }
+				{
+					label: translations.title[lang],
+					title: book.title
+				},
+				{
+					label: translations.author[lang],
+					title: book.author
+				},
+				{
+					label: translations.translator[lang],
+					title: book.translation
+				}
 			].filter((item) => item.title) // Filter other items based on title
 		],
 
 		group2: [
-			{ label: translations.publisher[lang], title: book.publisher },
-			{ label: translations.place[lang], title: book.place },
-			{ label: translations.year[lang], title: book.year?.toString() || null },
-			{ label: translations.edition[lang], title: book.edition }
+			{
+				label: translations.publisher[lang],
+				title: book.publisher
+			},
+			{
+				label: translations.place[lang],
+				title: book.place
+			},
+			{
+				label: translations.year[lang],
+				title: book.year?.toString() || null
+			},
+			{
+				label: translations.edition[lang],
+				title: book.edition
+			}
 		].filter((item) => item.title),
 
 		group3: [
-			{ label: translations.coverDesign[lang], title: book.coverDesign },
-			{ label: translations.coverIllustration[lang], title: book.coverIllustration },
-			{ label: translations.coverCalligraphy[lang], title: book.coverCalligraphy }
+			{
+				label: translations.coverDesign[lang],
+				title: book.coverDesign
+			},
+			{
+				label: translations.coverIllustration[lang],
+				title: book.coverIllustration
+			},
+			{
+				label: translations.coverCalligraphy[lang],
+				title: book.coverCalligraphy
+			}
 		].filter((item) => item.title),
 
 		group4: [
-			{ label: translations.pageDesign[lang], title: book.pageDesign },
-			{ label: translations.pageIllustration[lang], title: book.pageIllustration },
-			{ label: translations.pageCalligraphy[lang], title: book.pageCalligraphy }
+			{
+				label: translations.pageDesign[lang],
+				title: book.pageDesign
+			},
+			{
+				label: translations.pageIllustration[lang],
+				title: book.pageIllustration
+			},
+			{
+				label: translations.pageCalligraphy[lang],
+				title: book.pageCalligraphy
+			}
 		].filter((item) => item.title),
 
 		group5: [
-			{ label: translations.printer[lang], title: book.printer },
-			{ label: translations.size[lang], title: book.size ? `${book.size} cm` : null },
+			{
+				label: translations.printer[lang],
+				title: book.printer
+			},
+			{
+				label: translations.size[lang],
+				title: book.size ? `${book.size} cm` : null
+			},
 			{
 				label: translations.numberOfPages[lang],
 				title: book.numperOfPages ? `${book.numperOfPages} ${translations.pages[lang]}` : null
 			},
-			{ label: translations.collection[lang], title: book.collection }
+			{
+				label: translations.collection[lang],
+				title: book.collection
+			}
 		].filter((item) => item.title)
 	}
 
@@ -120,7 +171,7 @@
 	<div class="col-span-6 lg:col-span-5 flex flex-col">
 		{#if showImages}
 			<div transition:slide={{ duration }} class="order-2 lg:order-1">
-				{#if (images.length > 1) || smallScreen }
+				{#if images.length > 1 || smallScreen}
 					<div class="overflow-x-auto w-full" bind:this={scrollContainer}>
 						<ImageGallery {images} />
 					</div>
@@ -136,7 +187,7 @@
 							{label}
 							{title}
 							underline={smallScreen ? true : shouldUnderline(index, labelData.group1.length)}
-							/>
+						/>
 					{/each}
 				</div>
 
@@ -159,7 +210,6 @@
 							{label}
 							{title}
 							underline={smallScreen ? true : shouldUnderline(index, labelData.group1.length)}
-
 						/>
 					{/each}
 				</div>
@@ -171,7 +221,6 @@
 							{label}
 							{title}
 							underline={smallScreen ? true : shouldUnderline(index, labelData.group1.length)}
-
 						/>
 					{/each}
 				</div>

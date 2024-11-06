@@ -1,5 +1,6 @@
 <script lang="ts">
-  export let block: EditorBlock
+  import type {CoreColumns} from '$lib/graphql/generated'
+  export let block: CoreColumns
   import BlockRenderer from '$components/BlockRenderer.svelte'
   const columns = block.children.length
   
