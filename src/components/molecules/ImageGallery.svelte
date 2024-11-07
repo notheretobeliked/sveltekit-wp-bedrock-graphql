@@ -34,7 +34,7 @@
 
 <div class="flex flex-row gap-4 min-w-max justify-end">
 	{#each images as image, index}
-		<figure class="h-[160px] cursor-pointer group">
+		<figure class="h-[220px] cursor-pointer group">
 			<button
 				on:click={() => openOverlay(index)}
 				on:keydown={(e) => e.key === 'Enter' && openOverlay(index)}

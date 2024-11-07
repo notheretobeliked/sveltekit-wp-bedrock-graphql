@@ -242,7 +242,7 @@
 	<!-- Thumbnail Cover Image -->
 	<div class="hidden lg:block label-grid-image">
 		{#if book.thumbnailCoverImage}
-			<figure class="h-[160px] relative group">
+			<figure class="h-[220px] relative group">
 				{#if images.length > 1}
 					<button
 						on:click={toggleImages}
@@ -280,7 +280,7 @@
 					>
 						<Image imageObject={book.thumbnailCoverImage} fit="contain" />
 						<div
-							class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+							class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
