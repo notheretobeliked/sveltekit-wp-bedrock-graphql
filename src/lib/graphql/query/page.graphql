@@ -2,19 +2,14 @@ query PageContent($uri: ID!) {
 	page(id: $uri, idType: URI) {
 		id
 		editorBlocks {
-			name
-			parentClientId
-			clientId
-			...CoreParagraphFragment
-			...CoreHeadingFragment
-			...CoreColumnsFragment
-			...CoreColumnFragment
-			...CoreGroupFragment
-			...CoreButtonFragment
-			...CoreButtonsFragment
-			...CoreSpacerFragment
+			# Move fragments inside blocks field
+			...CommonBlockFields
 			...AcfHomePageSectionFragment
 			... on AcfHomePageBlock {
+				innerBlocks {
+					...CommonBlockFields
+					...AcfHomePageSectionFragment
+				}
 				apiVersion
 				blockEditorCategoryName
 				attributes {
@@ -22,18 +17,42 @@ query PageContent($uri: ID!) {
 					alignment: align
 					style
 				}
-				innerBlocks {
+			}
+			... on AcfExhibitionRoom {
+				# Move this outside of AcfHomePageBlock
+				apiVersion
+				blockEditorCategoryName
+				attributes {
+					className
+					backgroundColor
 					name
-					parentClientId
-					clientId
-					...CoreParagraphFragment
-					...CoreHeadingFragment
-					...CoreColumnsFragment
-					...CoreGroupFragment
-					...CoreButtonFragment
-					...CoreButtonsFragment
-					...CoreSpacerFragment
-					...AcfHomePageSectionFragment
+					style
+					textColor
+				}
+				exhibitionRoom {
+					fieldGroupName
+					cabinets {
+						fieldGroupName
+						introText
+						nameAr
+						nameEn
+						groups {
+							fieldGroupName
+							items {
+								fieldGroupName
+								image {
+									node {
+										...MediaDetailsFragment
+									}
+								}
+								book {
+									nodes {
+										slug
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 		}
@@ -48,8 +67,14 @@ fragment AcfHomePageSectionFragment on AcfHomePageSection {
 		alignment: align
 		style
 	}
-
 	homePageSection {
+		link {
+			nodes {
+				slug
+				uri
+			}
+		}
+
 		images {
 			nodes {
 				mediaDetails {
@@ -163,4 +188,33 @@ fragment CoreButtonsFragment on CoreButtons {
 		align
 		layout
 	}
+}
+
+fragment MediaDetailsFragment on MediaItem {
+	mediaDetails {
+		sizes(exclude: [MEDIUM_LARGE, MEDIUM]) {
+			sourceUrl
+			height
+			width
+			mimeType
+			name
+		}
+	}
+	altText
+	sourceUrl
+	caption
+}
+
+fragment CommonBlockFields on EditorBlock {
+	name
+	parentClientId
+	clientId
+	...CoreParagraphFragment
+	...CoreHeadingFragment
+	...CoreColumnsFragment
+	...CoreColumnFragment
+	...CoreGroupFragment
+	...CoreButtonFragment
+	...CoreButtonsFragment
+	...CoreSpacerFragment
 }

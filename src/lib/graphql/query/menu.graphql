@@ -1,60 +1,59 @@
 query PageMeta($uri: ID!) {
-  menu(id: "main-menu", idType: SLUG) {
-    menuItems {
-      nodes {
-        label
-        order
-        uri
-      }
-    }
-  }
-  page(id: $uri, idType: URI) {
-    seo {
-        ...SeoFragment
-    }
-    languageCode
-    translations {
-      languageCode
-      slug
-      uri
-      id
-    }
-
-  }
+	menu(id: "main-menu", idType: SLUG) {
+		menuItems {
+			nodes {
+				label
+				order
+				uri
+			}
+		}
+	}
+	page(id: $uri, idType: URI) {
+		seo {
+			...SeoFragment
+		}
+		languageCode
+		translations {
+			languageCode
+			slug
+			uri
+			id
+		}
+	}
 }
 
 fragment SeoFragment on PostTypeSEO {
-  metaDesc
-  metaKeywords
-  opengraphSiteName
-  opengraphTitle
-  opengraphPublisher
-  opengraphUrl
-  title
-  twitterDescription
-  twitterTitle
-  twitterImage {
-    altText
-    caption
-    mediaDetails {
-      ...MediaDetailsFragment
-    }
-  }
-  opengraphImage {
-    altText
-    caption
-    mediaDetails {
-      ...MediaDetailsFragment
-    }
-  }
+	metaDesc
+	metaKeywords
+	opengraphSiteName
+	opengraphTitle
+	opengraphPublisher
+	opengraphUrl
+	title
+	twitterDescription
+	twitterTitle
+	twitterImage {
+		altText
+		caption
+		mediaDetails {
+			sizes {
+				name
+				sourceUrl
+				width
+				height
+			}
+		}
+	}
+	opengraphImage {
+		altText
+		caption
+		mediaDetails {
+			sizes {
+				name
+				sourceUrl
+				width
+				height
+			}
+		}
+	}
 }
-
-fragment MediaDetailsFragment on MediaDetails {
-  sizes {
-    name
-    sourceUrl
-    width
-    height
-  }
-}
-
