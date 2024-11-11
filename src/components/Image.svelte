@@ -40,7 +40,7 @@
     loading={lazy ? 'lazy' : 'eager'}
     class={`h-full w-full object-${fit} ${extraClasses}`}
     {src}
-    alt={imageObject.altText}
+    alt={altText}
     {width}
     {height}
     srcset={getSrcSet(imageObject.mediaDetails.sizes)}
