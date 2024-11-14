@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte'
-	import { slide, fade } from 'svelte/transition'
+	import { fade } from 'svelte/transition'
 	import type { AcfHomePageSection } from '$lib/graphql/generated'
 	export let block: AcfHomePageSection
 	const images = block.homePageSection?.images?.nodes ?? []
