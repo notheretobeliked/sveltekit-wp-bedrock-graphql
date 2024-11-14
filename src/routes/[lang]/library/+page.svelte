@@ -12,6 +12,7 @@
 	import type { Book } from '$lib/types/general'
 	import Label from '$components/molecules/label.svelte'
 	export let data: PageData
+	console.log(data)
 
 	let books: Book[] = (data.books ?? []).map((book) => ({
 		...book,

@@ -4,7 +4,7 @@ import PageContent from '$lib/graphql/query/page.graphql?raw'
 import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
 import { error } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
-import { flatListToHierarchical } from '$lib/utilities/utilities'
+import { flatListToHierarchical } from '$lib/server/utilities'
 
 // ... existing imports ...
 

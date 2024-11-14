@@ -4,11 +4,19 @@ import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
 import { error } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
 import type { EditorBlock } from '$lib/types/wp-types'
-import {flatListToHierarchical} from '$lib/utilities/utilities'
+import {flatListToHierarchical} from '$lib/server/utilities'
+import {restructureLibraryItems} from '$lib/server/utilities'
 
 
-export const load: PageServerLoad = async function load({ params, url }) {
+export const load: PageServerLoad = async function load({ params, url, locals }) {
   const uri = `/${params.all || ''}`
+
+  const books = locals.books
+    
+// Now restructure the data just as before
+const restructuredData = restructureLibraryItems({ books: { nodes: books } })
+
+
 
   try {
     const response = await graphqlQuery(PageContent, { uri: uri })
@@ -24,6 +32,7 @@ export const load: PageServerLoad = async function load({ params, url }) {
     let editorBlocks: EditorBlock[] = data.page.editorBlocks ? flatListToHierarchical(data.page.editorBlocks) : []
 
     return {
+      books: restructuredData,
       data: data,
       uri: uri,
       editorBlocks: editorBlocks,

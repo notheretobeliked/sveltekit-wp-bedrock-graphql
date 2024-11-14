@@ -18,43 +18,37 @@ query PageContent($uri: ID!) {
 					style
 				}
 			}
-			... on AcfExhibitionRoom {
-				# Move this outside of AcfHomePageBlock
-				apiVersion
-				blockEditorCategoryName
-				attributes {
-					className
-					backgroundColor
-					name
-					style
-					textColor
-				}
-				exhibitionRoom {
-					fieldGroupName
-					cabinets {
-						fieldGroupName
-						introText
-						nameAr
-						nameEn
-						groups {
-							fieldGroupName
-							items {
-								fieldGroupName
-								image {
-									node {
-										...MediaDetailsFragment
-									}
-								}
-								book {
-									nodes {
-										slug
-									}
-								}
-							}
-						}
-					}
-				}
-			}
+      ... on AcfExhibitionRoom {
+        apiVersion
+        blockEditorCategoryName
+        attributes {
+          className
+          backgroundColor
+          name
+          style
+          textColor
+		  alignment: align
+        }
+        exhibitionRoom {
+          fieldGroupName
+          cabinets {
+            fieldGroupName
+            introText
+            nameAr
+            nameEn
+            groups {
+              fieldGroupName
+              images(first:200) {
+                nodes {
+                  ...MediaDetailsFragment
+                  reference
+                }
+              }
+            }
+          }
+        }
+      }
+
 		}
 	}
 }

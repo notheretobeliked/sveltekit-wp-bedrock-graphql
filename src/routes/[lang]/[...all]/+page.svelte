@@ -3,6 +3,7 @@
 	import BlockRenderer from '$components/BlockRenderer.svelte'
 	import type { PageData } from './$types'
 	export let data: PageData
+	console.log(data)
 	let editorBlocks: EditorBlock[], uri: string
 
 	$: {
