@@ -1,8 +1,13 @@
 query PageContent($uri: ID!) {
 	page(id: $uri, idType: URI) {
 		id
+		pageDesign {
+			bgColour {
+				slug
+			}
+		}
+
 		editorBlocks {
-			# Move fragments inside blocks field
 			...CommonBlockFields
 			...AcfHomePageSectionFragment
 			... on AcfHomePageBlock {
@@ -14,41 +19,43 @@ query PageContent($uri: ID!) {
 				blockEditorCategoryName
 				attributes {
 					backgroundColor
-					alignment: align
+					align
 					style
 				}
 			}
-      ... on AcfExhibitionRoom {
-        apiVersion
-        blockEditorCategoryName
-        attributes {
-          className
-          backgroundColor
-          name
-          style
-          textColor
-		  alignment: align
-        }
-        exhibitionRoom {
-          fieldGroupName
-          cabinets {
-            fieldGroupName
-            introText
-            nameAr
-            nameEn
-            groups {
-              fieldGroupName
-              images(first:200) {
-                nodes {
-                  ...MediaDetailsFragment
-                  reference
-                }
-              }
-            }
-          }
-        }
-      }
-
+			... on AcfExhibitionRoom {
+				apiVersion
+				blockEditorCategoryName
+				attributes {
+					className
+					backgroundColor
+					name
+					style
+					textColor
+					align
+				}
+				exhibitionRoom {
+					fieldGroupName
+					introText
+					nameAr
+					nameEn
+					cabinets {
+						fieldGroupName
+						introText
+						nameAr
+						nameEn
+						groups {
+							fieldGroupName
+							images(first: 200) {
+								nodes {
+									...MediaDetailsFragment
+									reference
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 }
@@ -58,7 +65,7 @@ fragment AcfHomePageSectionFragment on AcfHomePageSection {
 	blockEditorCategoryName
 	attributes {
 		backgroundColor
-		alignment: align
+		align
 		style
 	}
 	homePageSection {
@@ -68,119 +75,96 @@ fragment AcfHomePageSectionFragment on AcfHomePageSection {
 				uri
 			}
 		}
-
 		images {
 			nodes {
-				mediaDetails {
-					sizes(exclude: [MEDIUM_LARGE, MEDIUM]) {
-						sourceUrl
-						height
-						width
-						mimeType
-						name
-					}
-				}
-				altText
-				sourceUrl
-				caption
+				...MediaDetailsFragment
 			}
 		}
 	}
 	innerBlocks {
-		name
-		parentClientId
-		clientId
-		...CoreParagraphFragment
-		...CoreHeadingFragment
-		...CoreColumnsFragment
-		...CoreGroupFragment
-		...CoreButtonFragment
-		...CoreButtonsFragment
-		...CoreSpacerFragment
+		...CommonBlockFields
 	}
 }
 
-fragment CoreGroupFragment on CoreGroup {
-	attributes {
-		backgroundColor
-		align
-		style
+fragment CommonBlockFields on EditorBlock {
+	name
+	parentClientId
+	clientId
+	... on CoreParagraph {
+		attributes {
+			content
+			fontFamily
+			fontSize
+			textColor
+			align
+			className
+		}
 	}
-}
-
-fragment CoreButtonFragment on CoreButton {
-	attributes {
-		backgroundColor
-		style
-		fontSize
-		linkTarget
-		text
-		url
+	... on CoreHeading {
+		attributes {
+			content
+			className
+			fontFamily
+			fontSize
+			textColor
+			textAlign
+			level
+			align
+		}
 	}
-	innerBlocks {
-		apiVersion
-		blockEditorCategoryName
-		clientId
-		name
-		parentClientId
-		renderedHtml
+	... on CoreColumns {
+		attributes {
+			layout
+			className
+			verticalAlignment
+			style
+			align
+		}
 	}
-}
-
-fragment CoreColumnsFragment on CoreColumns {
-	attributes {
-		layout
-		className
-		verticalAlignment
-		style
-		align
+	... on CoreColumn {
+		attributes {
+			layout
+			className
+			verticalAlignment
+			style
+		}
 	}
-}
-
-fragment CoreColumnFragment on CoreColumn {
-	attributes {
-		layout
-		className
-		verticalAlignment
-		style
+	... on CoreGroup {
+		attributes {
+			backgroundColor
+			align
+			style
+		}
 	}
-}
-
-fragment CoreParagraphFragment on CoreParagraph {
-	attributes {
-		content
-		fontFamily
-		fontSize
-		textColor
-		align
-		className
+	... on CoreButton {
+		attributes {
+			backgroundColor
+			style
+			fontSize
+			linkTarget
+			text
+			url
+		}
+		innerBlocks {
+			apiVersion
+			blockEditorCategoryName
+			clientId
+			name
+			parentClientId
+			renderedHtml
+		}
 	}
-}
-
-fragment CoreHeadingFragment on CoreHeading {
-	attributes {
-		content
-		className
-		fontFamily
-		fontSize
-		textColor
-		textAlign
-		level
-		align
+	... on CoreButtons {
+		attributes {
+			align
+			layout
+		}
 	}
-}
-
-fragment CoreSpacerFragment on CoreSpacer {
-	attributes {
-		height
-		style
-	}
-}
-
-fragment CoreButtonsFragment on CoreButtons {
-	attributes {
-		align
-		layout
+	... on CoreSpacer {
+		attributes {
+			height
+			style
+		}
 	}
 }
 
@@ -197,18 +181,4 @@ fragment MediaDetailsFragment on MediaItem {
 	altText
 	sourceUrl
 	caption
-}
-
-fragment CommonBlockFields on EditorBlock {
-	name
-	parentClientId
-	clientId
-	...CoreParagraphFragment
-	...CoreHeadingFragment
-	...CoreColumnsFragment
-	...CoreColumnFragment
-	...CoreGroupFragment
-	...CoreButtonFragment
-	...CoreButtonsFragment
-	...CoreSpacerFragment
 }

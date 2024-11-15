@@ -1,6 +1,5 @@
 import type { ImageSize } from '$lib/types/wp-types'
 
-
 export const findImageSizeData = (
 	property: keyof ImageSize,
 	sizes: ImageSize[],
@@ -47,6 +46,12 @@ export const classNames = (
 			break
 		case '2xl':
 			sizeClasses = 'text-xl md:text-2xl'
+			break
+		case '3xl':
+			sizeClasses = 'text-2xl md:text-3xl'
+			break
+		case '4xl':
+			sizeClasses = 'text-2xl md:text-4xl'
 			break
 		case '':
 		default:
