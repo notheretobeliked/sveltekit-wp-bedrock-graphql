@@ -1,4 +1,4 @@
-query PageMeta($uri: ID!) {
+query PageMeta($uri: String!) {
 	menu(id: "main-menu", idType: SLUG) {
 		menuItems {
 			nodes {
@@ -8,16 +8,30 @@ query PageMeta($uri: ID!) {
 			}
 		}
 	}
-	page(id: $uri, idType: URI) {
-		seo {
-			...SeoFragment
-		}
-		languageCode
-		translations {
+	page:nodeByUri(uri: $uri) {
+		... on Page {
+			seo {
+				...SeoFragment
+			}
 			languageCode
-			slug
-			uri
-			id
+			translations {
+				languageCode
+				slug
+				uri
+				id
+			}
+		},
+		... on Post {
+			seo {
+				...SeoFragment
+			}
+			languageCode
+			translations {
+				languageCode
+				slug
+				uri
+				id
+			}
 		}
 	}
 }

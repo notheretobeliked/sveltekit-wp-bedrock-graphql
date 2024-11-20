@@ -255,15 +255,6 @@ export function normalizeEditorBlock(block: any) {
 		block.attributes = {} // Initialize with an empty object if it doesn't exist
 	}
 
-	if (block.name.startsWith('acf/')) {
-		if ('alignment' in block.attributes) {
-			// Prefer 'alignment' over 'align', but don't overwrite if 'align' already exists
-			block.attributes.align = block.attributes.align || block.attributes.alignment
-			// Remove the 'alignment' attribute to avoid confusion
-			delete block.attributes.alignment
-		}
-	}
-
 	// Check if 'style' attribute exists and is a string
 	if (typeof block.attributes.style === 'string') {
 		try {

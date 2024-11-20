@@ -5,7 +5,7 @@
 	export let data: PageData
 	console.log(data)
 	let editorBlocks: EditorBlock[], uri: string
-	let bgColour = data.data.page.pageDesign.bgColour.slug
+	let bgColour = data.data.nodeByUri.pageDesign.bgColour.slug
 	console.log(bgColour)
 
 	function getBgColorClass(color: string | null): string {

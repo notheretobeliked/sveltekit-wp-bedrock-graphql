@@ -37,15 +37,15 @@ export const load: PageServerLoad = async function load({ params, url, request }
 
 		const { data } = responseData
 
-		// Check if data.page exists
-		if (!data || !data.page) {
+		// Check if data exists
+		if (!data || !data) {
 			console.error('Page data not found in response:', data)
 			error(404, {
 				message: 'Page not found'
 			})
 		}
 
-		let editorBlocks = data.page.editorBlocks ? flatListToHierarchical(data.page.editorBlocks) : []
+		let editorBlocks = data.editorBlocks ? flatListToHierarchical(data.editorBlocks) : []
 
 		return {
 			data: data,

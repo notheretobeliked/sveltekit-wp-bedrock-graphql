@@ -10,26 +10,29 @@ import {restructureLibraryItems} from '$lib/server/utilities'
 
 export const load: PageServerLoad = async function load({ params, url, locals }) {
   const uri = `/${params.all || ''}`
-
   const books = locals.books
     
-// Now restructure the data just as before
-const restructuredData = restructureLibraryItems({ books: { nodes: books } })
-
-
+  // Restructure the books data
+  const restructuredData = restructureLibraryItems({ books: { nodes: books } })
 
   try {
     const response = await graphqlQuery(PageContent, { uri: uri })
     checkResponse(response)
-    const { data }: { data } = await response.json()
+    const { data } = await response.json()
 
-    if (data.page === null) {
-      error(404, {
-        message: 'Not found',
+    // Add debug logging
+    console.log('GraphQL Response:', data)
+
+    // Check if data or nodeByUri is null
+    if (!data || !data.nodeByUri) {
+      throw error(404, {
+        message: 'Page not found',
       })
     }
 
-    let editorBlocks: EditorBlock[] = data.page.editorBlocks ? flatListToHierarchical(data.page.editorBlocks) : []
+    let editorBlocks: EditorBlock[] = data.nodeByUri.editorBlocks 
+      ? flatListToHierarchical(data.nodeByUri.editorBlocks) 
+      : []
 
     return {
       books: restructuredData,
@@ -38,10 +41,11 @@ const restructuredData = restructureLibraryItems({ books: { nodes: books } })
       editorBlocks: editorBlocks,
     }
   } catch (err: unknown) {
+    console.error('Server Error:', err) // Add error logging
     const httpError = err as { status: number; message: string }
     if (httpError.message) {
       throw error(httpError.status ?? 500, httpError.message)
     }
-    throw error(500, err as string)
+    throw error(500, 'Internal Server Error')
   }
 }
