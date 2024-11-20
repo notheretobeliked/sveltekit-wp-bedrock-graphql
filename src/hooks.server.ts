@@ -1,13 +1,12 @@
 import type { LibraryItemsQuery } from '$lib/graphql/generated'
+import { dev } from '$app/environment'
 
-// Type for our app's server state
 type AppState = {
   books: {
     [lang: string]: LibraryItemsQuery['books']['nodes']
   }
 }
 
-// Initialize the state
 const state: AppState = {
   books: {}
 }
@@ -15,15 +14,24 @@ const state: AppState = {
 export const handle = async ({ event, resolve }) => {
   const lang = event.params.lang || 'en'
 
-  // Fetch books if we haven't already for this language
   if (!state.books[lang]) {
-    const response = await fetch(`${event.url.origin}/api/library-items`)
-    const data = await response.json()
-    state.books = data // Store all languages at once
+    try {
+      if (dev) {
+        // In development, use the API route
+        const response = await fetch(`${event.url.origin}/api/library-items`)
+        const data = await response.json()
+        state.books = data
+      } else {
+        // In production/build, use the pre-fetched data
+        const data = await import('../.svelte-kit/library-data.json')
+        state.books = data.default
+      }
+    } catch (error) {
+      console.error('Error loading library data:', error)
+      state.books[lang] = []
+    }
   }
 
-  // Attach the books for the current language to event.locals
-  event.locals.books = state.books[lang]
-
+  event.locals.books = state.books[lang] || []
   return await resolve(event)
 }
