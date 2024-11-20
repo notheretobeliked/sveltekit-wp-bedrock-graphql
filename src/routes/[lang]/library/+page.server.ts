@@ -1,4 +1,4 @@
-export const prerender = true
+export const prerender = false
 import { error } from '@sveltejs/kit'
 import { restructureLibraryItems, extractArtists, extractPublishers, extractAuthors, getYearRange } from '$lib/server/utilities'
 import type { PageServerLoad } from './$types'
