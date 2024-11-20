@@ -1,4 +1,3 @@
-export const prerender = false
 import { redirect } from '@sveltejs/kit'
 
 import PageContent from '$lib/graphql/query/page.graphql?raw'

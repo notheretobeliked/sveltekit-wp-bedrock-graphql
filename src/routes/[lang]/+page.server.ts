@@ -1,4 +1,3 @@
-export const prerender = true
 import type { PageServerLoad } from './$types'
 import PageContent from '$lib/graphql/query/page.graphql?raw'
 import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'

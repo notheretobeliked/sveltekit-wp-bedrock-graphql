@@ -1,3 +1,5 @@
+export const prerender = true
+
 import PageMeta from '$lib/graphql/query/menu.graphql?raw'
 import type { PageMetaQuery } from '$lib/graphql/generated'
 import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
