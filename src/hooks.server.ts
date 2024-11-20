@@ -17,8 +17,9 @@ export const handle = async ({ event, resolve }) => {
   if (!state.books[lang]) {
     try {
       if (dev) {
+        console.log('dev mode active')
         // In development, use the API route
-        const response = await fetch(`${event.url.origin}/api/library-items`)
+        const response = await fetch('../api/library-items')
         const data = await response.json()
         state.books = data
       } else {
