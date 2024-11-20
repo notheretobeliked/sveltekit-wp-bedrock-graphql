@@ -1,74 +1,54 @@
 export const prerender = false
 
+import type { PageServerLoad } from './$types'
 import PageContent from '$lib/graphql/query/page.graphql?raw'
 import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
 import { error } from '@sveltejs/kit'
-import type { PageServerLoad } from './$types'
-import { flatListToHierarchical } from '$lib/utilities/utilities'
+import type { EditorBlock } from '$lib/types/wp-types'
+import { flatListToHierarchical, restructureLibraryItems } from '$lib/server/utilities'
 
-// ... existing imports ...
-
-export const load: PageServerLoad = async function load({ params, url, parent }) {
-
-	const parentData = await parent();
-
-	console.log(parentData)
-	
-	const lang = params.lang;
-	let uri: string;
+export const load = (async ({ params, url, locals, parent }) => {
+	const parentData = await parent()
+	const lang = params.lang
+	let uri: string
 
 	if (lang === 'en') {
-		uri = '/';
+		uri = '/'
 	} else if (lang === 'ar') {
-		const arTranslation = parentData.translations.find(t => t.languageCode === 'ar');
-		uri = arTranslation ? arTranslation.slug : '/';
+		const arTranslation = parentData.data.page.translations.find((t) => t.languageCode === 'ar')
+		uri = arTranslation ? `/${arTranslation.slug}` : '/'
 	} else {
-		// Default to '/' if lang is neither 'en' nor 'ar'
-		uri = '/';
+		uri = '/'
 	}
 
-	console.log('Determined URI:', uri);
+	const books = locals.books ?? []
+	const restructuredData = books.length ? restructureLibraryItems({ books: { nodes: books } }) : []
 
 	try {
-		const response = await graphqlQuery(PageContent, { uri: uri })
+		const response = await graphqlQuery(PageContent, { uri })
 		checkResponse(response)
-		
-		const responseData = await response.json()
-		
-		// Log the entire response
-		//  console.log('GraphQL response:', JSON.stringify(responseData, null, 2))
+		const { data } = await response.json()
 
-		// Check if responseData has the expected structure
-		if (!responseData || typeof responseData !== 'object' || !('data' in responseData)) {
-			console.error('Unexpected response structure:', responseData)
-			throw new Error('Invalid GraphQL response structure')
+		if (!data || !data.nodeByUri) {
+			throw error(404, { message: 'Page not found' })
 		}
 
-		const { data } = responseData
-		
+		const editorBlocks: EditorBlock[] = data.nodeByUri.editorBlocks
+			? flatListToHierarchical(data.nodeByUri.editorBlocks)
+			: []
 
-		// Check if data.page exists
-		if (!data || !data.page) {
-			console.error('Page data not found in response:', data)
-			error(404, {
-				message: 'Page not found'
-			})
-		}
-
-		let editorBlocks = data.page.editorBlocks ? flatListToHierarchical(data.page.editorBlocks) : []
-	
 		return {
-			data: data,
-			uri: uri,
-			editorBlocks: editorBlocks,
-			languageCode: params.lang
+			books: restructuredData,
+			data,
+			uri,
+			editorBlocks
 		}
 	} catch (err: unknown) {
-		console.error('Error in load function:', err)
-		if (err instanceof Error) {
-			error(500, err.message)
-		} else {
-			error(500, 'An unexpected error occurred')
+		console.error('Server Error:', err)
+		const httpError = err as { status: number; message: string }
+		if (httpError.message) {
+			throw error(httpError.status ?? 500, httpError.message)
 		}
+		throw error(500, 'Internal Server Error')
 	}
-}
+}) satisfies PageServerLoad

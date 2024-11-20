@@ -1,11 +1,10 @@
-export const prerender = false
 import { redirect } from '@sveltejs/kit'
 
 import PageContent from '$lib/graphql/query/page.graphql?raw'
 import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
 import { error } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
-import { flatListToHierarchical } from '$lib/utilities/utilities'
+import { flatListToHierarchical } from '$lib/server/utilities'
 
 // ... existing imports ...
 
@@ -37,15 +36,15 @@ export const load: PageServerLoad = async function load({ params, url, request }
 
 		const { data } = responseData
 
-		// Check if data.page exists
-		if (!data || !data.page) {
+		// Check if data exists
+		if (!data || !data) {
 			console.error('Page data not found in response:', data)
 			error(404, {
 				message: 'Page not found'
 			})
 		}
 
-		let editorBlocks = data.page.editorBlocks ? flatListToHierarchical(data.page.editorBlocks) : []
+		let editorBlocks = data.editorBlocks ? flatListToHierarchical(data.editorBlocks) : []
 
 		return {
 			data: data,

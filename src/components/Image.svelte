@@ -12,7 +12,7 @@
 	export let imageSize: keyof ImageSizeData = 'thumbnail'
 	export let fit: 'cover' | 'contain' | 'fill' | 'none' = 'none'
 	export let extraClasses: string = ''
-
+	export let shadow = false;
 	const src = findImageSizeData('sourceUrl', imageObject.mediaDetails.sizes, imageSize)
 	const width = findImageSizeData('width', imageObject.mediaDetails.sizes, imageSize)
 	const height = findImageSizeData('height', imageObject.mediaDetails.sizes, imageSize)
@@ -38,7 +38,7 @@
 <div class="relative w-full h-full">
   <img
     loading={lazy ? 'lazy' : 'eager'}
-    class={`h-full w-full object-${fit} ${extraClasses}`}
+    class={`h-full w-full object-${fit} ${shadow ? 'drop-shadow-lg' : ''} ${extraClasses}`}
     {src}
     alt={altText}
     {width}

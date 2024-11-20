@@ -1,31 +1,42 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-
-  content: ['./src/**/*.{html,js,svelte,ts}'],
-  safelist: [
-	'!mb-0',
-    'md:grid-cols-2',
-    'md:grid-cols-3',
-    'bg-black',
-    'bg-white-pure',
-    'object-cover',
-    'object-fit',
-    'object-fill',
-    'object-none',
-    'text-xl',
-    'object-contain',
-    'stroke-green',
-    'stroke-black',
-    ...Array.from({ length: 8 }, (_, i) => `pt-${i + 1}`),
-    ...Array.from({ length: 8 }, (_, i) => `pb-${i + 1}`),
-  ],
-  theme: {
-    fontFamily: {
-      'sans': ['Inter Tight'],
-      'martina': ['Martina Plantijn'],
-      'manchette': ['Manchette Fine'],
-      'boogy': ['Boogy Brut Poster'],
-    },
+	content: ['./src/**/*.{html,js,svelte,ts}'],
+	safelist: [
+		'!mb-0',
+		'md:grid-cols-2',
+		'md:grid-cols-3',
+		'bg-black',
+		'bg-white-pure',
+		'object-cover',
+		'object-fit',
+		'object-fill',
+		'object-none',
+		'text-xl',
+		'object-contain',
+		'stroke-green',
+		'stroke-black',
+		'basestyles',
+		...Array.from({ length: 8 }, (_, i) => `pt-${i + 1}`),
+		...Array.from({ length: 8 }, (_, i) => `pb-${i + 1}`),
+		...Array.from({ length: 60 }, (_, i) => `delay-[${i * 50}ms]`), // Generates delay-[0ms] through delay-[900ms]
+		'bg-transparent',
+		'bg-current',
+		'bg-black',
+		'bg-white-pure',
+		'bg-white-off',
+		'bg-green',
+		'bg-yellow', 
+		'bg-blue',
+		'bg-red',
+		'bg-sand'
+	],
+	theme: {
+		fontFamily: {
+			sans: ['Inter Tight'],
+			martina: ['Martina Plantijn'],
+			manchette: ['Manchette Fine'],
+			boogy: ['Boogy Brut Poster']
+		},
 		colors: {
 			transparent: 'transparent',
 			current: 'currentColor',
@@ -42,12 +53,13 @@ export default {
 		},
 		fontSize: {
 			xs: '.5rem',
-			sm:  ['0.875rem', '1.138rem'],
+			sm: ['0.875rem', '1.138rem'],
 			base: ['1.063rem', '1.438rem'],
 			lg: ['1.5rem', '1.05'],
 			xl: ['2.5rem', '1.05'],
 			'2xl': ['2.875rem', '1.2'],
-			'3xl': ['3.275rem', '1.2']
+			'3xl': ['3.275rem', '1.2'],
+			'4xl': ['4.313rem', '1.2']
 		},
 		screens: {
 			sm: '640px',
@@ -80,6 +92,9 @@ export default {
 				7: '3.5rem', // Represents 'spacing|60', equivalent to 24px
 				8: '5rem' // Represents 'spacing|80', equivalent to 32px
 				// Add additional values if you need more steps between or beyond these values.
+			},
+			dropShadow: {
+				lg: '3px -2px 6px rgb(0 0 0 / 0.4)'
 			}
 		}
 	},

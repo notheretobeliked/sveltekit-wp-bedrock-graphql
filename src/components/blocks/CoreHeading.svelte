@@ -62,3 +62,16 @@
 		{@html content}
 	</h4>
 {/if}
+
+{#if level === 5}
+	<h5
+		class="{classNames(
+			fontSize || 'sm',
+			textColor || '',
+			textAlign || 'left',
+			fontFamily || 'martina'
+		)} {className} uppercase tracking-widest mb-1"
+	>
+		{@html content}
+	</h5>
+{/if}

@@ -23,7 +23,9 @@
 		CoreSpacer as CoreSpacerType,
 		CoreButtons as CoreButtonsType,
 		CoreButton as CoreButtonType,
-		HomePageSection as HomePageSectionType
+		HomePageSection as HomePageSectionType,
+		AcfHomePageSection,  // Add this import
+		ExhibitionRoom as ExhibitionRoomType
 	} from '$lib/graphql/generated'
 
 	interface NormalizedBlock {
@@ -46,6 +48,8 @@
 		| (CoreButtonsType & NormalizedBlock)
 		| (CoreButtonType & NormalizedBlock)
 		| (HomePageSectionType & NormalizedBlock)
+		| (AcfHomePageSection & NormalizedBlock)  // Add this line
+		| (ExhibitionRoomType & NormalizedBlock)
 
 	export let block: EditorBlock
 
@@ -60,10 +64,10 @@
 	import CoreButton from './blocks/CoreButton.svelte'
 	import HomePageSection from './blocks/HomePageSection.svelte'
 	import HomePageBlock from './blocks/HomePageBlock.svelte'
+	import ExhibitionRoom from './blocks/ExhibitionRoom.svelte'
 
 	let align = block.attributes.align || 'none'
 	let verticalAlignment = block.attributes.verticalAlignment ?? null
-	console.log(verticalAlignment)
 	if (forceFull || block.name === 'core/column') align = 'full'
 	const bgColor = block.attributes.backgroundColor ?? ''
 
@@ -108,7 +112,7 @@
 				baseClasses = 'w-full max-w-full '
 				break
 			case 'wide':
-				baseClasses = 'w-full max-w-[980px] mx-auto '
+				baseClasses = 'w-full max-w-screen-xl mx-auto '
 				break
 			case 'none':
 				baseClasses = 'w-full max-w-[852px] mx-auto '
@@ -126,8 +130,6 @@
 
 	const verticalAlignmentClasses = (align: string | null) => {
 		let baseClasses = ''
-		console.log('verticalAlignmentClasses input:', align)
-
 
 		switch (align) {
 			case 'stretch':
@@ -182,6 +184,10 @@
 
 	{#if block.name === 'acf/home-page-block'}
 		<HomePageBlock {block} />
+	{/if}
+
+	{#if block.name === 'acf/exhibition-room'}
+		<ExhibitionRoom {block} />
 	{/if}
 
 	{#if block.name === 'core/buttons'}

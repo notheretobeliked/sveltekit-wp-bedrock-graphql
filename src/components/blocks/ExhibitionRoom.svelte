@@ -1,0 +1,592 @@
+<script lang="ts">
+	import { onDestroy, onMount } from 'svelte'
+	import type { ExhibitionRoom } from '$lib/graphql/generated'
+	import type { ObserverEventDetails, ScrollDirection, Options } from 'svelte-inview'
+
+	import { fade } from 'svelte/transition'
+	export let block: ExhibitionRoom
+	console.log(block)
+	import CoreHeading from './CoreHeading.svelte'
+	import Image from '$components/Image.svelte'
+	import { activeBook } from '$stores/activeBook'
+	import { inview } from 'svelte-inview'
+	let isInView: boolean
+	let scrollDirection: ScrollDirection
+
+	const options: Options = {
+		rootMargin: '-50px',
+		unobserveOnEnter: true
+	}
+
+	const handleChange = ({ detail }: CustomEvent<ObserverEventDetails>) => {
+		isInView = detail.inView
+		scrollDirection = detail.scrollDirection.vertical
+	}
+
+	const handleHeaderInView = ({ detail }: CustomEvent<ObserverEventDetails>) => {
+		if (detail.inView) {
+			lastVisibleSection = 'room-intro'
+			const introElement = document.getElementById('room-intro')
+			if (introElement && isInfoOpen) {
+				introElement.scrollIntoView({ behavior: 'smooth' })
+			}
+		}
+	}
+
+	const handleCabinetInView =
+		(cabinetId: string) =>
+		({ detail }: CustomEvent<ObserverEventDetails>) => {
+			if (detail.inView) {
+				lastVisibleSection = `text-${cabinetId}`
+				const textElement = document.getElementById(`text-${cabinetId}`)
+				if (textElement && isInfoOpen) {
+					textElement.scrollIntoView({ behavior: 'smooth' })
+				}
+			}
+		}
+	// Add interval for animation
+	let animationInterval: number
+
+	let currentImageIndex = 0
+	let previousImageIndex = 0
+
+	const startAnimation = (nodes: any[]) => {
+		if (animationInterval) clearInterval(animationInterval)
+		animationInterval = setInterval(() => {
+			previousImageIndex = currentImageIndex
+			currentImageIndex = (currentImageIndex + 1) % nodes.length
+		}, 2000) // Changed to 3 seconds to give time for fade
+	}
+
+	import { fly } from 'svelte/transition'
+
+	let infoDiv: HTMLElement
+	let isInfoOpen = true
+	let lastVisibleSection: string = 'room-intro' // Default to room intro
+
+	let buttonPosition: number
+
+	const updateButtonPosition = () => {
+		if (infoDiv) {
+			const rect = infoDiv.getBoundingClientRect()
+			buttonPosition = rect.left
+		}
+	}
+
+	const toggleInfo = () => {
+		isInfoOpen = !isInfoOpen
+        if (isInfoOpen) {
+        setTimeout(() => {
+            const element = document.getElementById(lastVisibleSection)
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' })
+            }
+        }, 50)  // Slightly longer than the fly transition duration (800ms)
+    }
+	}
+
+	// Clean up interval on component destroy
+
+	onDestroy(() => {
+		if (animationInterval) clearInterval(animationInterval)
+	})
+
+	onMount(() => {
+		updateButtonPosition()
+		window.addEventListener('resize', updateButtonPosition)
+		return () => window.removeEventListener('resize', updateButtonPosition)
+	})
+
+	const handleImageClick = (reference: string) => {
+		if (!reference) return
+		$activeBook = reference
+		console.log('Set active book reference:', reference)
+	}
+</script>
+
+<div class="w-full flex flex-row">
+	<div class="images">
+		<header
+			class="mb-[200px] mt-[200px]"
+			use:inview={{
+				rootMargin: '0px 0px -80% 0px', // Triggers when header is near top
+				unobserveOnEnter: false
+			}}
+			on:inview_change={handleHeaderInView}
+		>
+			{#if block.exhibitionRoom.nameAr}
+				<CoreHeading
+					block={{
+						attributes: {
+							content: block.exhibitionRoom.nameAr,
+							level: 1,
+							fontSize: '4xl',
+							textColor: null,
+							textAlign: 'center',
+							fontFamily: 'manchette',
+							className: '!mb-0'
+						}
+					}}
+				/>
+			{/if}
+			{#if block.exhibitionRoom.nameEn}
+				<CoreHeading
+					block={{
+						attributes: {
+							content: block.exhibitionRoom.nameEn,
+							level: 1,
+							fontSize: '4xl',
+							textColor: null,
+							textAlign: 'center',
+							fontFamily: null
+						}
+					}}
+				/>
+			{/if}
+		</header>
+
+		{#if block?.exhibitionRoom?.cabinets}
+			{#each block.exhibitionRoom.cabinets as cabinet, cabinetIndex}
+				{#if cabinet}
+					<div
+						class="mb-8"
+						id="images-cabinet-{cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_')}"
+						use:inview={{
+							rootMargin: '-20% 0px -60% 0px', // Adjust these values to control when the scroll triggers
+							unobserveOnEnter: false // Keep observing to handle scrolling back up
+						}}
+						on:inview_change={handleCabinetInView(
+							`cabinet-${cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_')}`
+						)}
+					>
+						<header class="mb-4 sticky top-[20vh] z-30">
+							{#if cabinet.nameEn}
+								<CoreHeading
+									block={{
+										attributes: {
+											content: cabinet.nameAr,
+											level: 1,
+											fontSize: null,
+											textColor: null,
+											textAlign: 'center',
+											fontFamily: 'manchette'
+										}
+									}}
+								/>
+							{/if}
+							{#if cabinet.nameAr}
+								<CoreHeading
+									block={{
+										attributes: {
+											content: cabinet.nameEn,
+											level: 1,
+											fontSize: null,
+											textColor: null,
+											textAlign: 'center',
+											fontFamily: 'boogy'
+										}
+									}}
+								/>
+							{/if}
+						</header>
+
+						{#if cabinet.introText}
+							<div class="basestyles hidden">
+								{@html cabinet.introText}
+							</div>
+						{/if}
+
+						{#if cabinet.groups}
+							{#each cabinet.groups as group, groupIndex}
+								{#if group}
+									{#if group.layout[0] === 'miniatures'}
+										<div
+											class="flex flex-row flex-wrap gap-2 mb-[200px] justify-center layout-miniatures"
+											use:inview={cabinetIndex === 0 && groupIndex === 0 ? undefined : options}
+											on:inview_change={cabinetIndex === 0 && groupIndex === 0 ? undefined : handleChange}
+										>
+											{#if group.images?.nodes}
+											{#each group.images.nodes as image, i}
+													<div
+														class="relative w-[180px] hover:scale-105 transition-all duration-500 delay-[{i *
+															50}ms] {cabinetIndex === 0 && groupIndex === 0 ? 'scale-100 opacity-100 translate-y-0' : 
+															isInView ? 'scale-100 opacity-100 translate-y-0'
+															: 'scale-75 opacity-0 translate-y-10'}"
+														on:click={() => handleImageClick(image.reference)}
+														role="button"
+														tabindex="0"
+														class:cursor-pointer={image.reference}
+													>
+														<Image
+															imageObject={image}
+															imageSize="thumbnail"
+															shadow={group.shadow}
+															fit="contain"
+														/>
+													</div>
+												{/each}
+											{/if}
+										</div>
+									{/if}
+
+									{#if group.layout[0] === 'centered'}
+										<div
+											class="flex flex-col gap-[200px] mb-[200px] items-center layout-centered"
+											use:inview={options}
+											on:inview_change={handleChange}
+										>
+											{#if group.images?.nodes}
+												{#each group.images.nodes as image, i}
+													<div
+														class="relative w-[710px] hover:scale-[101%] transition-all duration-200 delay-[{i *
+															50}ms] {isInView
+															? 'scale-100 opacity-100 translate-y-0'
+															: 'scale-75 opacity-0 translate-y-10'}"
+														on:click={() => handleImageClick(image.reference)}
+														role="button"
+														tabindex="0"
+														class:cursor-pointer={image.reference}
+													>
+														<Image
+															imageObject={image}
+															imageSize="large"
+															fit="contain"
+															shadow={group.shadow}
+														/>
+													</div>
+												{/each}
+											{/if}
+										</div>
+									{/if}
+
+									{#if group.layout[0] === 'animation'}
+										<div class="flex flex-col gap-[200px] mb-[200px] items-center layout-centered">
+											{#if group.images?.nodes?.length > 0}
+												<div class="relative w-[710px] h-[527px]">
+													<!-- Added fixed height based on aspect ratio -->
+													{#key previousImageIndex}
+														<div class="absolute inset-0 w-full h-full z-10">
+															<!-- Added z-index -->
+															<Image
+																imageObject={group.images.nodes[previousImageIndex]}
+																imageSize="large"
+																fit="contain"
+															/>
+														</div>
+													{/key}
+													{#key currentImageIndex}
+														<div
+															class="absolute inset-0 w-full h-full z-20"
+															transition:fade={{ duration: 200 }}
+															on:click={() =>
+																handleImageClick(group.images.nodes[currentImageIndex]?.reference)}
+															role="button"
+															tabindex="0"
+															class:cursor-pointer={group.images.nodes[currentImageIndex]
+																?.reference}
+														>
+															<Image
+																imageObject={group.images.nodes[currentImageIndex]}
+																imageSize="large"
+																fit="contain"
+															/>
+														</div>
+													{/key}
+												</div>
+												{#if !animationInterval}
+													{@const _ = startAnimation(group.images.nodes)}
+												{/if}
+											{/if}
+										</div>
+									{/if}
+
+									{#if group.layout[0] === 'organic'}
+										<div class="grid grid-cols-2 gap-4 mb-[200px] layout-organic">
+											{#if group.images?.nodes?.length > 0}
+												<!-- First image -->
+												<div class="col-span-2 flex justify-center">
+													<div
+														class="h-[430px] hover:scale-[101%] transition-all duration-200"
+														on:click={() => handleImageClick(group.images.nodes[0]?.reference)}
+														role="button"
+														tabindex="0"
+														class:cursor-pointer={group.images.nodes[0]?.reference}
+													>
+														<Image
+															imageObject={group.images.nodes[0]}
+															imageSize="large"
+															fit="contain"
+														/>
+													</div>
+												</div>
+
+												<!-- For 2 images, show the second image centered -->
+												{#if group.images.nodes.length === 2}
+													<div class="col-span-2 flex justify-center">
+														<div
+															class="mt-[50px] h-[430px] hover:scale-[101%] transition-all duration-200"
+															on:click={() => handleImageClick(group.images.nodes[1]?.reference)}
+															role="button"
+															tabindex="0"
+															class:cursor-pointer={group.images.nodes[1]?.reference}
+														>
+															<Image
+																imageObject={group.images.nodes[1]}
+																imageSize="large"
+																fit="contain"
+																shadow
+															/>
+														</div>
+													</div>
+													<!-- For 3 images, show remaining images in alternating layout -->
+												{:else if group.images.nodes.length === 3}
+													{#each group.images.nodes.slice(1) as image, i}
+														{#if i % 2 === 0}
+															<div class="col-start-1 row-span-2">
+																<div
+																	class="h-[430px] hover:scale-[101%] transition-all duration-200"
+																	on:click={() => handleImageClick(image?.reference)}
+																	role="button"
+																	tabindex="0"
+																	class:cursor-pointer={image?.reference}
+																>
+																	<Image
+																		shadow
+																		imageObject={image}
+																		imageSize="large"
+																		fit="contain"
+																	/>
+																</div>
+															</div>
+															<div class="col-start-2 row-span-1">
+																<div class="h-[200px]" />
+															</div>
+														{:else}
+															<div class="col-start-2 row-span-2">
+																<div
+																	class="h-[430px] hover:scale-[101%] transition-all duration-200"
+																	on:click={() => handleImageClick(image?.reference)}
+																	role="button"
+																	tabindex="0"
+																	class:cursor-pointer={image?.reference}
+																>
+																	<Image
+																		shadow
+																		imageObject={image}
+																		imageSize="large"
+																		fit="contain"
+																	/>
+																</div>
+															</div>
+														{/if}
+													{/each}
+													<!-- For 4+ images -->
+												{:else}
+													{#each group.images.nodes.slice(1, -1) as image, i}
+														{#if i % 2 === 0}
+															<!-- Even indexed images (2nd, 4th, etc.) -->
+															<div class="col-start-1 row-span-2">
+																<div
+																	class="h-[430px] hover:scale-[101%] transition-all duration-200"
+																	on:click={() => handleImageClick(image?.reference)}
+																	role="button"
+																	tabindex="0"
+																	class:cursor-pointer={image?.reference}
+																>
+																	<Image
+																		shadow
+																		imageObject={image}
+																		imageSize="large"
+																		fit="contain"
+																	/>
+																</div>
+															</div>
+															<!-- Spacer -->
+															<div class="col-start-2 row-span-1">
+																<div class="h-[200px]" />
+															</div>
+														{:else}
+															<!-- Odd indexed images (3rd, 5th, etc.) -->
+															<div class="col-start-2 row-span-2">
+																<div
+																	class="h-[430px] hover:scale-[101%] transition-all duration-200"
+																	on:click={() => handleImageClick(image?.reference)}
+																	role="button"
+																	tabindex="0"
+																	class:cursor-pointer={image?.reference}
+																>
+																	<Image
+																		shadow
+																		imageObject={image}
+																		imageSize="large"
+																		fit="contain"
+																	/>
+																</div>
+															</div>
+															<!-- Spacer -->
+															<div class="col-start-1 row-span-1">
+																<div class="h-[200px]" />
+															</div>
+														{/if}
+													{/each}
+
+													<!-- Final centered image (only if more than 3 images) -->
+													<div class="col-span-2 flex justify-center">
+														<div
+															class="mt-[50px] h-[430px] hover:scale-[101%] transition-all duration-200"
+															on:click={() =>
+																handleImageClick(
+																	group.images.nodes[group.images.nodes.length - 1]?.reference
+																)}
+															role="button"
+															tabindex="0"
+															class:cursor-pointer={group.images.nodes[
+																group.images.nodes.length - 1
+															]?.reference}
+														>
+															<Image
+																imageObject={group.images.nodes[group.images.nodes.length - 1]}
+																imageSize="large"
+																fit="contain"
+																shadow
+															/>
+														</div>
+													</div>
+												{/if}
+											{/if}
+										</div>
+									{/if}
+								{/if}
+							{/each}
+						{/if}
+					</div>
+				{/if}
+			{/each}
+		{/if}
+	</div>
+	{#if isInfoOpen}
+		<div transition:fly={{ x: 500, duration: 800 }} class="fixed right-0 top-0 max-w-[500px]">
+			<button
+				class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 bg-white-pure rounded-full border border-black flex items-center justify-center hover:scale-105 transition-all duration-300 z-40"
+				style="left: 0"
+				on:click={toggleInfo}
+			>
+				<svg
+					width="14"
+					height="14"
+					viewBox="0 0 14 14"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					class="transition-transform duration-300 {isInfoOpen ? '' : 'rotate-45'}"
+				>
+					<path d="M1 1L13 13M1 13L13 1" stroke="black" stroke-width="1" />
+				</svg>
+			</button>
+
+			<div class="text bg-white-off right-0 top-0 pt-[100px] px-12 overflow-y-scroll h-screen z-30">
+				<div class="pt-16" id="room-intro">
+					{#if block.exhibitionRoom.nameEn}
+						<CoreHeading
+							block={{
+								attributes: {
+									content: block.exhibitionRoom.nameEn,
+									level: 1,
+									fontSize: null,
+									textColor: null,
+									textAlign: 'center',
+									fontFamily: null
+								}
+							}}
+						/>
+					{/if}
+					{#if block.exhibitionRoom.nameAr}
+						<CoreHeading
+							block={{
+								attributes: {
+									content: block.exhibitionRoom.nameAr,
+									level: 1,
+									fontSize: null,
+									textColor: null,
+									textAlign: 'center',
+									fontFamily: 'manchette'
+								}
+							}}
+						/>
+					{/if}
+
+					{#if block.exhibitionRoom.introText}
+						<div class="basestyles">
+							{@html block.exhibitionRoom.introText}
+						</div>
+					{/if}
+				</div>
+				{#each block.exhibitionRoom.cabinets as cabinet, i}
+					<div
+						class="mt-8 pt-24 pb-24 {i === block.exhibitionRoom.cabinets.length - 1 ? 'min-h-screen' : ''}"
+						id="text-cabinet-{cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_')}"
+					>
+						{#if cabinet.nameEn}
+							<CoreHeading
+								block={{
+									attributes: {
+										content: cabinet.nameEn,
+										level: 1,
+										fontSize: 'xl',
+										textColor: null,
+										textAlign: 'center',
+										fontFamily: null
+									}
+								}}
+							/>
+						{/if}
+						{#if cabinet.nameAr}
+							<CoreHeading
+								block={{
+									attributes: {
+										content: cabinet.nameAr,
+										level: 1,
+										fontSize: 'xl',
+										textColor: null,
+										textAlign: 'center',
+										fontFamily: 'manchette'
+									}
+								}}
+							/>
+						{/if}
+
+						{#if cabinet.introText}
+							<div class="basestyles">
+								{@html cabinet.introText}
+							</div>
+						{/if}
+					</div>
+				{/each}
+			</div>
+		</div>
+	{:else}
+		<div transition:fly={{ x: 500, duration: 500 }}>
+			<button
+				class="fixed top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 bg-white-pure rounded-full border border-black flex items-center justify-center hover:scale-105 transition-all duration-300 z-40"
+				style="right: 0px"
+				on:click={toggleInfo}
+			>
+				<svg
+					width="14"
+					height="14"
+					viewBox="0 0 14 14"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					class="transition-transform duration-300 rotate-45"
+				>
+					<path d="M1 1L13 13M1 13L13 1" stroke="black" stroke-width="1" />
+				</svg>
+			</button>
+		</div>
+	{/if}
+</div>
+
+<style lang="postcss">
+	:global(.basestyles p) {
+		@apply text-sm md:text-base font-martina;
+	}
+</style>

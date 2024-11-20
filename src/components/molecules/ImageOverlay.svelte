@@ -122,7 +122,7 @@
 </script>
 
 <div
-	class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 w-full h-full"
+	class="fixed inset-0 bg-black flex items-center justify-center z-50 w-full h-full"
 	on:click|self={close}
 	on:keydown={handleKeydown}
 	role="dialog"

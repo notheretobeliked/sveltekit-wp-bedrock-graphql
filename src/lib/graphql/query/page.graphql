@@ -1,166 +1,188 @@
-query PageContent($uri: ID!) {
-	page(id: $uri, idType: URI) {
-		id
-		editorBlocks {
-			name
-			parentClientId
-			clientId
-			...CoreParagraphFragment
-			...CoreHeadingFragment
-			...CoreColumnsFragment
-			...CoreColumnFragment
-			...CoreGroupFragment
-			...CoreButtonFragment
-			...CoreButtonsFragment
-			...CoreSpacerFragment
-			...AcfHomePageSectionFragment
-			... on AcfHomePageBlock {
-				apiVersion
-				blockEditorCategoryName
-				attributes {
-					backgroundColor
-					alignment: align
-					style
-				}
-				innerBlocks {
-					name
-					parentClientId
-					clientId
-					...CoreParagraphFragment
-					...CoreHeadingFragment
-					...CoreColumnsFragment
-					...CoreGroupFragment
-					...CoreButtonFragment
-					...CoreButtonsFragment
-					...CoreSpacerFragment
-					...AcfHomePageSectionFragment
-				}
-			}
-		}
-	}
+query PageContent($uri: String = "") {
+  nodeByUri(uri: $uri) {
+    ... on Page {
+      id
+      pageDesign {
+        bgColour {
+          slug
+        }
+      }
+      editorBlocks {
+        ...CommonBlockFields
+        ...AcfHomePageSectionFragment
+        ... on AcfHomePageBlock {
+          innerBlocks {
+            ...CommonBlockFields
+            ...AcfHomePageSectionFragment
+          }
+          apiVersion
+          blockEditorCategoryName
+          attributes {
+            backgroundColor
+            align
+            style
+          }
+        }
+        ... on AcfExhibitionRoom {
+          apiVersion
+          blockEditorCategoryName
+          attributes {
+            className
+            backgroundColor
+            name
+            style
+            textColor
+            align
+          }
+          exhibitionRoom {
+            fieldGroupName
+            introText
+            nameAr
+            nameEn
+            cabinets {
+              fieldGroupName
+              introText
+              nameAr
+              nameEn
+              groups {
+                fieldGroupName
+                layout
+				shadow
+                images(first: 200) {
+                  nodes {
+                    ...MediaDetailsFragment
+                    reference
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 fragment AcfHomePageSectionFragment on AcfHomePageSection {
-	apiVersion
-	blockEditorCategoryName
-	attributes {
-		backgroundColor
-		alignment: align
-		style
-	}
-
-	homePageSection {
-		images {
-			nodes {
-				mediaDetails {
-					sizes(exclude: [MEDIUM_LARGE, MEDIUM]) {
-						sourceUrl
-						height
-						width
-						mimeType
-						name
-					}
-				}
-				altText
-				sourceUrl
-				caption
-			}
-		}
-	}
-	innerBlocks {
-		name
-		parentClientId
-		clientId
-		...CoreParagraphFragment
-		...CoreHeadingFragment
-		...CoreColumnsFragment
-		...CoreGroupFragment
-		...CoreButtonFragment
-		...CoreButtonsFragment
-		...CoreSpacerFragment
-	}
+  apiVersion
+  blockEditorCategoryName
+  attributes {
+    backgroundColor
+    align
+    style
+  }
+  homePageSection {
+    link {
+      nodes {
+        slug
+        uri
+      }
+    }
+    images {
+      nodes {
+        ...MediaDetailsFragment
+      }
+    }
+  }
+  innerBlocks {
+    ...CommonBlockFields
+  }
 }
 
-fragment CoreGroupFragment on CoreGroup {
-	attributes {
-		backgroundColor
-		align
-		style
-	}
+fragment CommonBlockFields on EditorBlock {
+  name
+  parentClientId
+  clientId
+  ... on CoreParagraph {
+    attributes {
+      content
+      fontFamily
+      fontSize
+      textColor
+      align
+      className
+    }
+  }
+  ... on CoreHeading {
+    attributes {
+      content
+      className
+      fontFamily
+      fontSize
+      textColor
+      textAlign
+      level
+      align
+    }
+  }
+  ... on CoreColumns {
+    attributes {
+      layout
+      className
+      verticalAlignment
+      style
+      align
+    }
+  }
+  ... on CoreColumn {
+    attributes {
+      layout
+      className
+      verticalAlignment
+      style
+    }
+  }
+  ... on CoreGroup {
+    attributes {
+      backgroundColor
+      align
+      style
+    }
+  }
+  ... on CoreButton {
+    attributes {
+      backgroundColor
+      style
+      fontSize
+      linkTarget
+      text
+      url
+    }
+    innerBlocks {
+      apiVersion
+      blockEditorCategoryName
+      clientId
+      name
+      parentClientId
+      renderedHtml
+    }
+  }
+  ... on CoreButtons {
+    attributes {
+      align
+      layout
+    }
+  }
+  ... on CoreSpacer {
+    attributes {
+      height
+      style
+    }
+  }
 }
 
-fragment CoreButtonFragment on CoreButton {
-	attributes {
-		backgroundColor
-		style
-		fontSize
-		linkTarget
-		text
-		url
-	}
-	innerBlocks {
-		apiVersion
-		blockEditorCategoryName
-		clientId
-		name
-		parentClientId
-		renderedHtml
-	}
-}
-
-fragment CoreColumnsFragment on CoreColumns {
-	attributes {
-		layout
-		className
-		verticalAlignment
-		style
-		align
-	}
-}
-
-fragment CoreColumnFragment on CoreColumn {
-	attributes {
-		layout
-		className
-		verticalAlignment
-		style
-	}
-}
-
-fragment CoreParagraphFragment on CoreParagraph {
-	attributes {
-		content
-		fontFamily
-		fontSize
-		textColor
-		align
-		className
-	}
-}
-
-fragment CoreHeadingFragment on CoreHeading {
-	attributes {
-		content
-		className
-		fontFamily
-		fontSize
-		textColor
-		textAlign
-		level
-		align
-	}
-}
-
-fragment CoreSpacerFragment on CoreSpacer {
-	attributes {
-		height
-		style
-	}
-}
-
-fragment CoreButtonsFragment on CoreButtons {
-	attributes {
-		align
-		layout
-	}
+fragment MediaDetailsFragment on MediaItem {
+  mediaDetails {
+    sizes(exclude: [MEDIUM_LARGE, MEDIUM]) {
+      sourceUrl
+      height
+      width
+      mimeType
+      name
+    }
+  }
+  title
+  altText
+  sourceUrl
+  caption
 }

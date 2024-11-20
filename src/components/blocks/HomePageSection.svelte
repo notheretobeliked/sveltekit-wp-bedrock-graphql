@@ -1,9 +1,11 @@
 <script lang="ts">
+	import { page } from '$app/stores'
 	import { onMount } from 'svelte'
-	import { slide, fade } from 'svelte/transition'
+	import { fade } from 'svelte/transition'
 	import type { AcfHomePageSection } from '$lib/graphql/generated'
 	export let block: AcfHomePageSection
 	const images = block.homePageSection?.images?.nodes ?? []
+	const link = `/${$page.params.lang}${block.homePageSection?.link?.nodes[0].uri ?? []}`
 	const content = block.innerBlocks ?? [] // Provide a default empty array
 	import BlockRenderer from '$components/BlockRenderer.svelte'
 	import Image from '$components/Image.svelte'
@@ -11,6 +13,7 @@
 	let previousIndex = 0
 	const totalImages = images.length
 	let showImages = false
+	console.log(block)
 
 	const toggleImages = () => {
 		showImages = !showImages
@@ -63,11 +66,13 @@
 
 {#if content}
 	<div on:mouseenter={toggleImages} on:mouseleave={toggleImages} aria-hidden="true" class="h-full">
+		<a href="{link}">
 		{#each content as block}
 			{#if block}
 				<BlockRenderer {block} />
 			{/if}
 		{/each}
+	</a>
 	</div>
 {/if}
 
