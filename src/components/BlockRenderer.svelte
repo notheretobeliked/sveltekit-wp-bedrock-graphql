@@ -112,7 +112,7 @@
 				baseClasses = 'w-full max-w-full '
 				break
 			case 'wide':
-				baseClasses = 'w-full max-w-[980px] mx-auto '
+				baseClasses = 'w-full max-w-screen-xl mx-auto '
 				break
 			case 'none':
 				baseClasses = 'w-full max-w-[852px] mx-auto '

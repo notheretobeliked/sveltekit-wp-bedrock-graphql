@@ -41,6 +41,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"openseadragon": "^5.0.0"
+		"openseadragon": "^5.0.0",
+		"svelte-inview": "^4.0.4"
 	}
 }

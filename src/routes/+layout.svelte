@@ -67,11 +67,11 @@
 	<div
 		class="fixed bottom-0 bg-black w-full z-50 flex items-center justify-center p-4"
 		transition:slide={{ duration: 300, axis: 'y' }}
-		on:click={closeModal}>
+		on:click={closeModal}
 		role="dialog"
 	>
 		<div
-			class="text-white-pure rounded-lg w-full max-h-[90vh] overflow-y-auto"
+			class="text-white-pure  mx-auto max-w-screen-xl w-full max-h-[90vh] overflow-y-auto"
 			on:click|stopPropagation
 		>
 			<div class="flex justify-end mb-4">
