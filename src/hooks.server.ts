@@ -1,5 +1,4 @@
 import type { LibraryItemsQuery } from '$lib/graphql/generated'
-import { fetchAllLibraryItems } from '$lib/server/graphql'
 
 // Type for our app's server state
 type AppState = {
@@ -14,14 +13,16 @@ const state: AppState = {
 }
 
 export const handle = async ({ event, resolve }) => {
-  const lang = event.params.lang || 'en' // Default to English if no language specified
+  const lang = event.params.lang || 'en'
 
   // Fetch books if we haven't already for this language
   if (!state.books[lang]) {
-    state.books[lang] = await fetchAllLibraryItems(lang)
+    const response = await fetch(`${event.url.origin}/api/library-items`)
+    const data = await response.json()
+    state.books = data // Store all languages at once
   }
 
-  // Attach the books to the event.locals
+  // Attach the books for the current language to event.locals
   event.locals.books = state.books[lang]
 
   return await resolve(event)
