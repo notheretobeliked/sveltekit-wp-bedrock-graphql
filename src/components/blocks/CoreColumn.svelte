@@ -3,7 +3,7 @@
 	import BlockRenderer from '$components/BlockRenderer.svelte'
 </script>
 
-<div class="w-full @container">
+<div class="w-full">
 		{#each block.children as block, index}
 			<BlockRenderer {block} />
 		{/each}

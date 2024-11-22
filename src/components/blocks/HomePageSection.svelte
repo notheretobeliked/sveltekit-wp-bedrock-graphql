@@ -78,7 +78,7 @@
 
 {#if showImages}
 	<div
-		class="w-[50vw] fixed h-screen right-0 overflow-hidden z-10"
+		class="w-[50vw] fixed h-screen left-[50vw] overflow-hidden z-10 fixed-images"
 		style="top:{headerHeight}px"
 		transition:fade={{ duration: 300 }}
 	>

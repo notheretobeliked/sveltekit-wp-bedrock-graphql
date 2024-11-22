@@ -222,8 +222,7 @@
 											{#if group.images?.nodes}
 												{#each group.images.nodes as image, i}
 													<div
-														class="relative w-[180px] hover:scale-105 transition-all duration-500 delay-[{i *
-															50}ms] {cabinetIndex === 0 && groupIndex === 0
+														class="relative w-[180px] hover:scale-105 transition-all duration-500  {cabinetIndex === 0 && groupIndex === 0
 															? 'scale-100 opacity-100 translate-y-0'
 															: isInView
 																? 'scale-100 opacity-100 translate-y-0'
@@ -254,8 +253,7 @@
 											{#if group.images?.nodes}
 												{#each group.images.nodes as image, i}
 													<div
-														class="relative w-[710px] hover:scale-[101%] transition-all duration-200 delay-[{i *
-															50}ms] {isInView
+														class="relative h-[430px] hover:scale-[101%] transition-all duration-200  {isInView
 															? 'scale-100 opacity-100 translate-y-0'
 															: 'scale-100 opacity-100 translate-y-0'}"
 														on:click={() => handleImageClick(image.reference)}
@@ -278,7 +276,7 @@
 									{#if group.layout[0] === 'animation'}
 										<div class="flex flex-col gap-[200px] mb-[200px] items-center layout-centered">
 											{#if group.images?.nodes?.length > 0}
-												<div class="relative w-[710px] h-[527px]">
+												<div class="relative h-[527px]">
 													<!-- Added fixed height based on aspect ratio -->
 													{#key previousImageIndex}
 														<div class="absolute inset-0 w-full h-full z-10">
@@ -505,6 +503,20 @@
                     <a href="#"
                     on:click|preventDefault={(e) => handleCabinetLinkClick(e, '#')}> 
 					{#if block.exhibitionRoom.nameEn}
+                    <CoreHeading
+                    block={{
+                        attributes: {
+                            content: block.exhibitionRoom.nameAr,
+                            level: 1,
+                            fontSize: null,
+                            textColor: null,
+                            textAlign: 'center',
+                            fontFamily: 'manchette'
+                        }
+                    }}
+                />
+					{/if}
+					{#if block.exhibitionRoom.nameAr}
 						<CoreHeading
 							block={{
 								attributes: {
@@ -514,20 +526,6 @@
 									textColor: null,
 									textAlign: 'center',
 									fontFamily: null
-								}
-							}}
-						/>
-					{/if}
-					{#if block.exhibitionRoom.nameAr}
-						<CoreHeading
-							block={{
-								attributes: {
-									content: block.exhibitionRoom.nameAr,
-									level: 1,
-									fontSize: null,
-									textColor: null,
-									textAlign: 'center',
-									fontFamily: 'manchette'
 								}
 							}}
 						/>
