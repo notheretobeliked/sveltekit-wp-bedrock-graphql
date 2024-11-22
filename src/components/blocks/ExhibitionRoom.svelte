@@ -227,7 +227,7 @@
 															? 'scale-100 opacity-100 translate-y-0'
 															: isInView
 																? 'scale-100 opacity-100 translate-y-0'
-																: 'scale-75 opacity-0 translate-y-10'}"
+																: 'scale-100 opacity-100 translate-y-0'}"
 														on:click={() => handleImageClick(image.reference)}
 														role="button"
 														tabindex="0"
@@ -257,7 +257,7 @@
 														class="relative w-[710px] hover:scale-[101%] transition-all duration-200 delay-[{i *
 															50}ms] {isInView
 															? 'scale-100 opacity-100 translate-y-0'
-															: 'scale-75 opacity-0 translate-y-10'}"
+															: 'scale-100 opacity-100 translate-y-0'}"
 														on:click={() => handleImageClick(image.reference)}
 														role="button"
 														tabindex="0"
