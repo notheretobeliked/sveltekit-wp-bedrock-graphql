@@ -332,6 +332,7 @@
 															imageObject={group.images.nodes[0]}
 															imageSize="large"
 															fit="contain"
+                                                            shadow={group.shadow}
 														/>
 													</div>
 												</div>
@@ -350,7 +351,7 @@
 																imageObject={group.images.nodes[1]}
 																imageSize="large"
 																fit="contain"
-																shadow
+																shadow={group.shadow}
 															/>
 														</div>
 													</div>
@@ -371,6 +372,7 @@
 																		imageObject={image}
 																		imageSize="large"
 																		fit="contain"
+                                                                        shadow={group.shadow}
 																	/>
 																</div>
 															</div>
@@ -387,7 +389,7 @@
 																	class:cursor-pointer={image?.reference}
 																>
 																	<Image
-																		shadow
+                                                                    shadow={group.shadow}
 																		imageObject={image}
 																		imageSize="large"
 																		fit="contain"
@@ -410,7 +412,7 @@
 																	class:cursor-pointer={image?.reference}
 																>
 																	<Image
-																		shadow
+                                                                    shadow={group.shadow}
 																		imageObject={image}
 																		imageSize="large"
 																		fit="contain"
@@ -432,7 +434,7 @@
 																	class:cursor-pointer={image?.reference}
 																>
 																	<Image
-																		shadow
+                                                                    shadow={group.shadow}
 																		imageObject={image}
 																		imageSize="large"
 																		fit="contain"
@@ -464,7 +466,7 @@
 																imageObject={group.images.nodes[group.images.nodes.length - 1]}
 																imageSize="large"
 																fit="contain"
-																shadow
+																shadow={group.shadow}
 															/>
 														</div>
 													</div>
