@@ -114,6 +114,10 @@
 			{
 				label: translations.collection[lang],
 				title: book.collection
+			},
+			{
+				label: 'Notes',
+				title: book.notes
 			}
 		].filter((item) => item.title)
 	}

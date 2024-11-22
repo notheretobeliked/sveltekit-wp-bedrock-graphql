@@ -18,6 +18,18 @@
 		unobserveOnEnter: true
 	}
 
+    const handleCabinetLinkClick = (e: Event, cabinetId: string) => {
+    e.preventDefault()
+    if (cabinetId === '#') {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+        const element = document.getElementById(`images-cabinet-${cabinetId}`)
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' })
+        }
+    }
+}
+
 	const handleChange = ({ detail }: CustomEvent<ObserverEventDetails>) => {
 		isInView = detail.inView
 		scrollDirection = detail.scrollDirection.vertical
@@ -61,7 +73,7 @@
 	import { fly } from 'svelte/transition'
 
 	let infoDiv: HTMLElement
-	let isInfoOpen = true
+	let isInfoOpen = false
 	let lastVisibleSection: string = 'room-intro' // Default to room intro
 
 	let buttonPosition: number
@@ -75,14 +87,14 @@
 
 	const toggleInfo = () => {
 		isInfoOpen = !isInfoOpen
-        if (isInfoOpen) {
-        setTimeout(() => {
-            const element = document.getElementById(lastVisibleSection)
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' })
-            }
-        }, 50)  // Slightly longer than the fly transition duration (800ms)
-    }
+		if (isInfoOpen) {
+			setTimeout(() => {
+				const element = document.getElementById(lastVisibleSection)
+				if (element) {
+					element.scrollIntoView({ behavior: 'smooth' })
+				}
+			}, 50) // Slightly longer than the fly transition duration (800ms)
+		}
 	}
 
 	// Clean up interval on component destroy
@@ -203,15 +215,19 @@
 										<div
 											class="flex flex-row flex-wrap gap-2 mb-[200px] justify-center layout-miniatures"
 											use:inview={cabinetIndex === 0 && groupIndex === 0 ? undefined : options}
-											on:inview_change={cabinetIndex === 0 && groupIndex === 0 ? undefined : handleChange}
+											on:inview_change={cabinetIndex === 0 && groupIndex === 0
+												? undefined
+												: handleChange}
 										>
 											{#if group.images?.nodes}
-											{#each group.images.nodes as image, i}
+												{#each group.images.nodes as image, i}
 													<div
 														class="relative w-[180px] hover:scale-105 transition-all duration-500 delay-[{i *
-															50}ms] {cabinetIndex === 0 && groupIndex === 0 ? 'scale-100 opacity-100 translate-y-0' : 
-															isInView ? 'scale-100 opacity-100 translate-y-0'
-															: 'scale-75 opacity-0 translate-y-10'}"
+															50}ms] {cabinetIndex === 0 && groupIndex === 0
+															? 'scale-100 opacity-100 translate-y-0'
+															: isInView
+																? 'scale-100 opacity-100 translate-y-0'
+																: 'scale-75 opacity-0 translate-y-10'}"
 														on:click={() => handleImageClick(image.reference)}
 														role="button"
 														tabindex="0"
@@ -465,7 +481,7 @@
 		{/if}
 	</div>
 	{#if isInfoOpen}
-		<div transition:fly={{ x: 500, duration: 800 }} class="fixed right-0 top-0 max-w-[500px]">
+		<div transition:fly={{ x: 500, duration: 800 }} class="fixed right-0 top-0 max-w-[500px] z-30">
 			<button
 				class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 bg-white-pure rounded-full border border-black flex items-center justify-center hover:scale-105 transition-all duration-300 z-40"
 				style="left: 0"
@@ -485,6 +501,8 @@
 
 			<div class="text bg-white-off right-0 top-0 pt-[100px] px-12 overflow-y-scroll h-screen z-30">
 				<div class="pt-16" id="room-intro">
+                    <a href="#"
+                    on:click|preventDefault={(e) => handleCabinetLinkClick(e, '#')}> 
 					{#if block.exhibitionRoom.nameEn}
 						<CoreHeading
 							block={{
@@ -513,7 +531,7 @@
 							}}
 						/>
 					{/if}
-
+                    </a>
 					{#if block.exhibitionRoom.introText}
 						<div class="basestyles">
 							{@html block.exhibitionRoom.introText}
@@ -522,37 +540,44 @@
 				</div>
 				{#each block.exhibitionRoom.cabinets as cabinet, i}
 					<div
-						class="mt-8 pt-24 pb-24 {i === block.exhibitionRoom.cabinets.length - 1 ? 'min-h-screen' : ''}"
+						class="mt-8 pt-24 pb-24 {i === block.exhibitionRoom.cabinets.length - 1
+							? 'min-h-screen'
+							: ''}"
 						id="text-cabinet-{cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_')}"
 					>
-						{#if cabinet.nameEn}
-							<CoreHeading
-								block={{
-									attributes: {
-										content: cabinet.nameEn,
-										level: 1,
-										fontSize: 'xl',
-										textColor: null,
-										textAlign: 'center',
-										fontFamily: null
-									}
-								}}
-							/>
-						{/if}
-						{#if cabinet.nameAr}
-							<CoreHeading
-								block={{
-									attributes: {
-										content: cabinet.nameAr,
-										level: 1,
-										fontSize: 'xl',
-										textColor: null,
-										textAlign: 'center',
-										fontFamily: 'manchette'
-									}
-								}}
-							/>
-						{/if}
+						<header>
+							<a href="#images-cabinet-{cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_')}"
+                            on:click|preventDefault={(e) => handleCabinetLinkClick(e, cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_'))}>
+								{#if cabinet.nameEn}
+									<CoreHeading
+										block={{
+											attributes: {
+												content: cabinet.nameEn,
+												level: 1,
+												fontSize: 'xl',
+												textColor: null,
+												textAlign: 'center',
+												fontFamily: null
+											}
+										}}
+									/>
+								{/if}
+								{#if cabinet.nameAr}
+									<CoreHeading
+										block={{
+											attributes: {
+												content: cabinet.nameAr,
+												level: 1,
+												fontSize: 'xl',
+												textColor: null,
+												textAlign: 'center',
+												fontFamily: 'manchette'
+											}
+										}}
+									/>
+								{/if}
+							</a>
+						</header>
 
 						{#if cabinet.introText}
 							<div class="basestyles">
