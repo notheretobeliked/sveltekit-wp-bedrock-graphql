@@ -368,7 +368,6 @@
 																	class:cursor-pointer={image?.reference}
 																>
 																	<Image
-																		shadow
 																		imageObject={image}
 																		imageSize="large"
 																		fit="contain"
