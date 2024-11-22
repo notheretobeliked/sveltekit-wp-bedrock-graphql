@@ -56,9 +56,9 @@
 
 	function generateRandomTransforms() {
 		transforms = images.map(() => {
-			const scale = 1 + Math.random() * 0.2 // Random scale between 1 and 1.2
-			const translateX = (Math.random() - 0.5) * 10 // Random translateX between -5% and 5%
-			const translateY = (Math.random() - 0.5) * 10 // Random translateY between -5% and 5%
+			const scale = 1 + Math.random() * 0.001 // Random scale between 1 and 1.2
+			const translateX = (Math.random() - 0.2) * 10 // Random translateX between -5% and 5%
+			const translateY = (Math.random() - 0.1) * 10 // Random translateY between -5% and 5%
 			return { scale, translateX, translateY }
 		})
 	}
@@ -113,14 +113,14 @@
 
 	@keyframes kenBurns {
 		0% {
-			transform: scale(var(--scale)) translate(var(--translateX), var(--translateY));
+			transform: scale(var(--scale));
 		}
 		50% {
 			transform: scale(calc(var(--scale) + 0.1))
-				translate(calc(var(--translateX) - 5%), calc(var(--translateY) - 5%));
+				;
 		}
 		100% {
-			transform: scale(var(--scale)) translate(var(--translateX), var(--translateY));
+			transform: scale(var(--scale)) ;
 		}
 	}
 </style>
