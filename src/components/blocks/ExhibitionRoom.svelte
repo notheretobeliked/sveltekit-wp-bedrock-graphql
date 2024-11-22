@@ -18,6 +18,18 @@
 		unobserveOnEnter: true
 	}
 
+    const handleCabinetLinkClick = (e: Event, cabinetId: string) => {
+    e.preventDefault()
+    if (cabinetId === '#') {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+        const element = document.getElementById(`images-cabinet-${cabinetId}`)
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' })
+        }
+    }
+}
+
 	const handleChange = ({ detail }: CustomEvent<ObserverEventDetails>) => {
 		isInView = detail.inView
 		scrollDirection = detail.scrollDirection.vertical
@@ -489,6 +501,8 @@
 
 			<div class="text bg-white-off right-0 top-0 pt-[100px] px-12 overflow-y-scroll h-screen z-30">
 				<div class="pt-16" id="room-intro">
+                    <a href="#"
+                    on:click|preventDefault={(e) => handleCabinetLinkClick(e, '#')}> 
 					{#if block.exhibitionRoom.nameEn}
 						<CoreHeading
 							block={{
@@ -517,7 +531,7 @@
 							}}
 						/>
 					{/if}
-
+                    </a>
 					{#if block.exhibitionRoom.introText}
 						<div class="basestyles">
 							{@html block.exhibitionRoom.introText}
@@ -532,7 +546,8 @@
 						id="text-cabinet-{cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_')}"
 					>
 						<header>
-							<a href="#images-cabinet-{cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_')}">
+							<a href="#images-cabinet-{cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_')}"
+                            on:click|preventDefault={(e) => handleCabinetLinkClick(e, cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_'))}>
 								{#if cabinet.nameEn}
 									<CoreHeading
 										block={{
