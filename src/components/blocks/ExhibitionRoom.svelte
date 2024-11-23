@@ -13,22 +13,43 @@
 	let isInView: boolean
 	let scrollDirection: ScrollDirection
 
+	// Process groups to update layout based on aspect ratio
+	if (block?.exhibitionRoom?.cabinets) {
+		block.exhibitionRoom.cabinets.forEach((cabinet) => {
+			if (cabinet?.groups) {
+				cabinet.groups.forEach((group) => {
+					if (group?.layout[0] === 'organic' && group.images?.nodes?.[0]) {
+						const firstImage = group.images.nodes[0]
+						const largeSize = firstImage.mediaDetails?.sizes?.find((size) => size.name === 'large')
+
+						if (largeSize?.width && largeSize?.height) {
+							const aspectRatio = parseInt(largeSize.width) / parseInt(largeSize.height)
+							if (aspectRatio > 1) {
+								group.layout[0] = 'organic-landscape'
+							}
+						}
+					}
+				})
+			}
+		})
+	}
+
 	const options: Options = {
 		rootMargin: '-50px',
 		unobserveOnEnter: true
 	}
 
-    const handleCabinetLinkClick = (e: Event, cabinetId: string) => {
-    e.preventDefault()
-    if (cabinetId === '#') {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-    } else {
-        const element = document.getElementById(`images-cabinet-${cabinetId}`)
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' })
-        }
-    }
-}
+	const handleCabinetLinkClick = (e: Event, cabinetId: string) => {
+		e.preventDefault()
+		if (cabinetId === '#') {
+			window.scrollTo({ top: 0, behavior: 'smooth' })
+		} else {
+			const element = document.getElementById(`images-cabinet-${cabinetId}`)
+			if (element) {
+				element.scrollIntoView({ behavior: 'smooth' })
+			}
+		}
+	}
 
 	const handleChange = ({ detail }: CustomEvent<ObserverEventDetails>) => {
 		isInView = detail.inView
@@ -222,7 +243,8 @@
 											{#if group.images?.nodes}
 												{#each group.images.nodes as image, i}
 													<div
-														class="relative w-[180px] hover:scale-105 transition-all duration-500  {cabinetIndex === 0 && groupIndex === 0
+														class="relative w-[180px] hover:scale-105 transition-all duration-500 {cabinetIndex ===
+															0 && groupIndex === 0
 															? 'scale-100 opacity-100 translate-y-0'
 															: isInView
 																? 'scale-100 opacity-100 translate-y-0'
@@ -253,7 +275,7 @@
 											{#if group.images?.nodes}
 												{#each group.images.nodes as image, i}
 													<div
-														class="relative h-[430px] hover:scale-[101%] transition-all duration-200  {isInView
+														class="relative h-[430px] hover:scale-[101%] transition-all duration-200 {isInView
 															? 'scale-100 opacity-100 translate-y-0'
 															: 'scale-100 opacity-100 translate-y-0'}"
 														on:click={() => handleImageClick(image.reference)}
@@ -314,13 +336,13 @@
 										</div>
 									{/if}
 
-									{#if group.layout[0] === 'organic'}
+									{#if group.layout[0] === 'organic' || group.layout[0] === 'organic-landscape'}
 										<div class="grid grid-cols-2 gap-4 mb-[200px] layout-organic">
 											{#if group.images?.nodes?.length > 0}
 												<!-- First image -->
 												<div class="col-span-2 flex justify-center">
 													<div
-														class="h-[430px] hover:scale-[101%] transition-all duration-200"
+														class="{(group.layout[0] === 'organic-landscape') ? 'h-[250px]' : 'h-[430px]' } hover:scale-[101%] transition-all duration-200"
 														on:click={() => handleImageClick(group.images.nodes[0]?.reference)}
 														role="button"
 														tabindex="0"
@@ -330,7 +352,7 @@
 															imageObject={group.images.nodes[0]}
 															imageSize="large"
 															fit="contain"
-                                                            shadow={group.shadow}
+															shadow={group.shadow}
 														/>
 													</div>
 												</div>
@@ -339,7 +361,7 @@
 												{#if group.images.nodes.length === 2}
 													<div class="col-span-2 flex justify-center">
 														<div
-															class="mt-[50px] h-[430px] hover:scale-[101%] transition-all duration-200"
+															class="mt-[50px] {(group.layout[0] === 'organic-landscape') ? 'h-[250px]' : 'h-[430px]' } hover:scale-[101%] transition-all duration-200"
 															on:click={() => handleImageClick(group.images.nodes[1]?.reference)}
 															role="button"
 															tabindex="0"
@@ -359,7 +381,7 @@
 														{#if i % 2 === 0}
 															<div class="col-start-1 row-span-2">
 																<div
-																	class="h-[430px] hover:scale-[101%] transition-all duration-200"
+																	class="{(group.layout[0] === 'organic-landscape') ? 'h-[250px]' : 'h-[430px]' } hover:scale-[101%] transition-all duration-200"
 																	on:click={() => handleImageClick(image?.reference)}
 																	role="button"
 																	tabindex="0"
@@ -369,7 +391,7 @@
 																		imageObject={image}
 																		imageSize="large"
 																		fit="contain"
-                                                                        shadow={group.shadow}
+																		shadow={group.shadow}
 																	/>
 																</div>
 															</div>
@@ -379,14 +401,14 @@
 														{:else}
 															<div class="col-start-2 row-span-2">
 																<div
-																	class="h-[430px] hover:scale-[101%] transition-all duration-200"
+																	class="{(group.layout[0] === 'organic-landscape') ? 'h-[250px]' : 'h-[430px]' } hover:scale-[101%] transition-all duration-200"
 																	on:click={() => handleImageClick(image?.reference)}
 																	role="button"
 																	tabindex="0"
 																	class:cursor-pointer={image?.reference}
 																>
 																	<Image
-                                                                    shadow={group.shadow}
+																		shadow={group.shadow}
 																		imageObject={image}
 																		imageSize="large"
 																		fit="contain"
@@ -402,14 +424,14 @@
 															<!-- Even indexed images (2nd, 4th, etc.) -->
 															<div class="col-start-1 row-span-2">
 																<div
-																	class="h-[430px] hover:scale-[101%] transition-all duration-200"
+																	class="{(group.layout[0] === 'organic-landscape') ? 'h-[250px]' : 'h-[430px]' } hover:scale-[101%] transition-all duration-200"
 																	on:click={() => handleImageClick(image?.reference)}
 																	role="button"
 																	tabindex="0"
 																	class:cursor-pointer={image?.reference}
 																>
 																	<Image
-                                                                    shadow={group.shadow}
+																		shadow={group.shadow}
 																		imageObject={image}
 																		imageSize="large"
 																		fit="contain"
@@ -424,14 +446,14 @@
 															<!-- Odd indexed images (3rd, 5th, etc.) -->
 															<div class="col-start-2 row-span-2">
 																<div
-																	class="h-[430px] hover:scale-[101%] transition-all duration-200"
+																	class="{(group.layout[0] === 'organic-landscape') ? 'h-[250px]' : 'h-[430px]' } hover:scale-[101%] transition-all duration-200"
 																	on:click={() => handleImageClick(image?.reference)}
 																	role="button"
 																	tabindex="0"
 																	class:cursor-pointer={image?.reference}
 																>
 																	<Image
-                                                                    shadow={group.shadow}
+																		shadow={group.shadow}
 																		imageObject={image}
 																		imageSize="large"
 																		fit="contain"
@@ -440,7 +462,7 @@
 															</div>
 															<!-- Spacer -->
 															<div class="col-start-1 row-span-1">
-																<div class="h-[200px]" />
+																<div class="{(group.layout[0] === 'organic-landscape') ? 'h-[100px]' : 'h-[200px]' } " />
 															</div>
 														{/if}
 													{/each}
@@ -448,7 +470,7 @@
 													<!-- Final centered image (only if more than 3 images) -->
 													<div class="col-span-2 flex justify-center">
 														<div
-															class="mt-[50px] h-[430px] hover:scale-[101%] transition-all duration-200"
+															class="mt-[50px] {(group.layout[0] === 'organic-landscape') ? 'h-[250px]' : 'h-[430px]' } hover:scale-[101%] transition-all duration-200"
 															on:click={() =>
 																handleImageClick(
 																	group.images.nodes[group.images.nodes.length - 1]?.reference
@@ -500,37 +522,36 @@
 
 			<div class="text bg-white-off right-0 top-0 pt-[100px] px-12 overflow-y-scroll h-screen z-30">
 				<div class="pt-16" id="room-intro">
-                    <a href="#"
-                    on:click|preventDefault={(e) => handleCabinetLinkClick(e, '#')}> 
-					{#if block.exhibitionRoom.nameEn}
-                    <CoreHeading
-                    block={{
-                        attributes: {
-                            content: block.exhibitionRoom.nameAr,
-                            level: 1,
-                            fontSize: null,
-                            textColor: null,
-                            textAlign: 'center',
-                            fontFamily: 'manchette'
-                        }
-                    }}
-                />
-					{/if}
-					{#if block.exhibitionRoom.nameAr}
-						<CoreHeading
-							block={{
-								attributes: {
-									content: block.exhibitionRoom.nameEn,
-									level: 1,
-									fontSize: null,
-									textColor: null,
-									textAlign: 'center',
-									fontFamily: null
-								}
-							}}
-						/>
-					{/if}
-                    </a>
+					<a href="#" on:click|preventDefault={(e) => handleCabinetLinkClick(e, '#')}>
+						{#if block.exhibitionRoom.nameEn}
+							<CoreHeading
+								block={{
+									attributes: {
+										content: block.exhibitionRoom.nameAr,
+										level: 1,
+										fontSize: null,
+										textColor: null,
+										textAlign: 'center',
+										fontFamily: 'manchette'
+									}
+								}}
+							/>
+						{/if}
+						{#if block.exhibitionRoom.nameAr}
+							<CoreHeading
+								block={{
+									attributes: {
+										content: block.exhibitionRoom.nameEn,
+										level: 1,
+										fontSize: null,
+										textColor: null,
+										textAlign: 'center',
+										fontFamily: null
+									}
+								}}
+							/>
+						{/if}
+					</a>
 					{#if block.exhibitionRoom.introText}
 						<div class="basestyles">
 							{@html block.exhibitionRoom.introText}
@@ -545,8 +566,11 @@
 						id="text-cabinet-{cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_')}"
 					>
 						<header>
-							<a href="#images-cabinet-{cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_')}"
-                            on:click|preventDefault={(e) => handleCabinetLinkClick(e, cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_'))}>
+							<a
+								href="#images-cabinet-{cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_')}"
+								on:click|preventDefault={(e) =>
+									handleCabinetLinkClick(e, cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_'))}
+							>
 								{#if cabinet.nameEn}
 									<CoreHeading
 										block={{
