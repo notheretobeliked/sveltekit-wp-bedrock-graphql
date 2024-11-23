@@ -12,20 +12,43 @@
 	import { inview } from 'svelte-inview'
 	let isInView: boolean
 	let scrollDirection: ScrollDirection
-
 	// Process groups to update layout based on aspect ratio
+	// Process groups to update layout based on aspect ratio
+	console.log('Initial block data:', JSON.stringify(block?.exhibitionRoom?.cabinets, null, 2))
+
 	if (block?.exhibitionRoom?.cabinets) {
 		block.exhibitionRoom.cabinets.forEach((cabinet) => {
 			if (cabinet?.groups) {
 				cabinet.groups.forEach((group) => {
+					console.log('Initial group layout:', group.layout[0])
+
 					if (group?.layout[0] === 'organic' && group.images?.nodes?.[0]) {
 						const firstImage = group.images.nodes[0]
 						const largeSize = firstImage.mediaDetails?.sizes?.find((size) => size.name === 'large')
 
 						if (largeSize?.width && largeSize?.height) {
-							const aspectRatio = parseInt(largeSize.width) / parseInt(largeSize.height)
-							if (aspectRatio > 1) {
-								group.layout[0] = 'organic-landscape'
+							const firstAspectRatio = parseInt(largeSize.width) / parseInt(largeSize.height)
+							console.log('First image aspect ratio:', firstAspectRatio)
+
+							// Only check for landscape if first image is landscape
+							if (firstAspectRatio > 1) {
+								// Check next two images if they exist
+								const nextImages = group.images.nodes.slice(1, 3)
+								const isLandscapeBook = nextImages.some((image) => {
+									const imgLargeSize = image?.mediaDetails?.sizes?.find(
+										(size) => size.name === 'large'
+									)
+									if (imgLargeSize?.width && imgLargeSize?.height) {
+										const aspectRatio = parseInt(imgLargeSize.width) / parseInt(imgLargeSize.height)
+										// Much higher threshold for spread images
+										return aspectRatio > 1.8 // This means it's likely a true landscape book
+									}
+									return false
+								})
+
+								if (isLandscapeBook) {
+									group.layout[0] = 'organic-landscape'
+								}
 							}
 						}
 					}
@@ -33,7 +56,6 @@
 			}
 		})
 	}
-
 	const options: Options = {
 		rootMargin: '-50px',
 		unobserveOnEnter: true
@@ -338,12 +360,14 @@
 									{/if}
 
 									{#if group.layout[0] === 'organic' || group.layout[0] === 'organic-landscape'}
-										<div class="grid grid-cols-2 gap-4 mb-[200px] layout-organic">
+										<div class="grid grid-cols-2 gap-4 mb-[200px] layout-{group.layout[0]}">
 											{#if group.images?.nodes?.length > 0}
 												<!-- First image -->
 												<div class="col-span-2 flex justify-center">
 													<div
-														class="{(group.layout[0] === 'organic-landscape') ? 'h-[250px]' : 'h-[430px]' } hover:scale-[101%] transition-all duration-200"
+														class="{group.layout[0] === 'organic-landscape'
+															? 'h-[250px]'
+															: 'h-[430px]'} hover:scale-[101%] transition-all duration-200"
 														on:click={() => handleImageClick(group.images.nodes[0]?.reference)}
 														role="button"
 														tabindex="0"
@@ -362,7 +386,9 @@
 												{#if group.images.nodes.length === 2}
 													<div class="col-span-2 flex justify-center">
 														<div
-															class="mt-[50px] {(group.layout[0] === 'organic-landscape') ? 'h-[250px]' : 'h-[430px]' } hover:scale-[101%] transition-all duration-200"
+															class="mt-[50px] {group.layout[0] === 'organic-landscape'
+																? 'h-[250px]'
+																: 'h-[430px]'} hover:scale-[101%] transition-all duration-200"
 															on:click={() => handleImageClick(group.images.nodes[1]?.reference)}
 															role="button"
 															tabindex="0"
@@ -380,9 +406,11 @@
 												{:else if group.images.nodes.length === 3}
 													{#each group.images.nodes.slice(1) as image, i}
 														{#if i % 2 === 0}
-															<div class="col-start-1 row-span-2">
+															<div class="col-start-1 row-span-2 flex justify-end">
 																<div
-																	class="{(group.layout[0] === 'organic-landscape') ? 'h-[250px]' : 'h-[430px]' } hover:scale-[101%] transition-all duration-200"
+																	class="{group.layout[0] === 'organic-landscape'
+																		? 'h-[250px]'
+																		: 'h-[430px]'} hover:scale-[101%] transition-all duration-200"
 																	on:click={() => handleImageClick(image?.reference)}
 																	role="button"
 																	tabindex="0"
@@ -400,9 +428,11 @@
 																<div class="h-[200px]" />
 															</div>
 														{:else}
-															<div class="col-start-2 row-span-2">
+															<div class="col-start-2 row-span-2 flex justify-start">
 																<div
-																	class="{(group.layout[0] === 'organic-landscape') ? 'h-[250px]' : 'h-[430px]' } hover:scale-[101%] transition-all duration-200"
+																	class="{group.layout[0] === 'organic-landscape'
+																		? 'h-[250px]'
+																		: 'h-[430px]'} hover:scale-[101%] transition-all duration-200"
 																	on:click={() => handleImageClick(image?.reference)}
 																	role="button"
 																	tabindex="0"
@@ -423,9 +453,11 @@
 													{#each group.images.nodes.slice(1, -1) as image, i}
 														{#if i % 2 === 0}
 															<!-- Even indexed images (2nd, 4th, etc.) -->
-															<div class="col-start-1 row-span-2">
+															<div class="col-start-1 row-span-2 flex justify-end">
 																<div
-																	class="{(group.layout[0] === 'organic-landscape') ? 'h-[250px]' : 'h-[430px]' } hover:scale-[101%] transition-all duration-200"
+																	class="{group.layout[0] === 'organic-landscape'
+																		? 'h-[250px]'
+																		: 'h-[430px]'} hover:scale-[101%] transition-all duration-200"
 																	on:click={() => handleImageClick(image?.reference)}
 																	role="button"
 																	tabindex="0"
@@ -445,9 +477,11 @@
 															</div>
 														{:else}
 															<!-- Odd indexed images (3rd, 5th, etc.) -->
-															<div class="col-start-2 row-span-2">
+															<div class="col-start-2 row-span-2 flex justify-start">
 																<div
-																	class="{(group.layout[0] === 'organic-landscape') ? 'h-[250px]' : 'h-[430px]' } hover:scale-[101%] transition-all duration-200"
+																	class="{group.layout[0] === 'organic-landscape'
+																		? 'h-[250px]'
+																		: 'h-[430px]'} hover:scale-[101%] transition-all duration-200"
 																	on:click={() => handleImageClick(image?.reference)}
 																	role="button"
 																	tabindex="0"
@@ -463,7 +497,11 @@
 															</div>
 															<!-- Spacer -->
 															<div class="col-start-1 row-span-1">
-																<div class="{(group.layout[0] === 'organic-landscape') ? 'h-[100px]' : 'h-[200px]' } " />
+																<div
+																	class="{group.layout[0] === 'organic-landscape'
+																		? 'h-[100px]'
+																		: 'h-[200px]'} "
+																/>
 															</div>
 														{/if}
 													{/each}
@@ -471,7 +509,9 @@
 													<!-- Final centered image (only if more than 3 images) -->
 													<div class="col-span-2 flex justify-center">
 														<div
-															class="mt-[50px] {(group.layout[0] === 'organic-landscape') ? 'h-[250px]' : 'h-[430px]' } hover:scale-[101%] transition-all duration-200"
+															class="mt-[50px] {group.layout[0] === 'organic-landscape'
+																? 'h-[250px]'
+																: 'h-[430px]'} hover:scale-[101%] transition-all duration-200"
 															on:click={() =>
 																handleImageClick(
 																	group.images.nodes[group.images.nodes.length - 1]?.reference
@@ -573,7 +613,6 @@
 								on:click|preventDefault={(e) =>
 									handleCabinetLinkClick(e, cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_'))}
 							>
-
 								{#if cabinet.nameAr}
 									<CoreHeading
 										block={{
