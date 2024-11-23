@@ -202,7 +202,8 @@
 											fontSize: null,
 											textColor: null,
 											textAlign: 'center',
-											fontFamily: 'manchette'
+											fontFamily: 'manchette',
+											className: '!mb-0'
 										}
 									}}
 								/>
@@ -523,7 +524,7 @@
 			<div class="text bg-white-off right-0 top-0 pt-[100px] px-12 overflow-y-scroll h-screen z-30">
 				<div class="pt-16" id="room-intro">
 					<a href="#" on:click|preventDefault={(e) => handleCabinetLinkClick(e, '#')}>
-						{#if block.exhibitionRoom.nameEn}
+						{#if block.exhibitionRoom.nameAr}
 							<CoreHeading
 								block={{
 									attributes: {
@@ -532,12 +533,13 @@
 										fontSize: null,
 										textColor: null,
 										textAlign: 'center',
-										fontFamily: 'manchette'
+										fontFamily: 'manchette',
+										className: '!mb-0'
 									}
 								}}
 							/>
 						{/if}
-						{#if block.exhibitionRoom.nameAr}
+						{#if block.exhibitionRoom.nameEn}
 							<CoreHeading
 								block={{
 									attributes: {
@@ -571,6 +573,22 @@
 								on:click|preventDefault={(e) =>
 									handleCabinetLinkClick(e, cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_'))}
 							>
+
+								{#if cabinet.nameAr}
+									<CoreHeading
+										block={{
+											attributes: {
+												content: cabinet.nameAr,
+												level: 1,
+												fontSize: 'xl',
+												textColor: null,
+												textAlign: 'center',
+												fontFamily: 'manchette',
+												className: '!mb-0'
+											}
+										}}
+									/>
+								{/if}
 								{#if cabinet.nameEn}
 									<CoreHeading
 										block={{
@@ -581,20 +599,6 @@
 												textColor: null,
 												textAlign: 'center',
 												fontFamily: null
-											}
-										}}
-									/>
-								{/if}
-								{#if cabinet.nameAr}
-									<CoreHeading
-										block={{
-											attributes: {
-												content: cabinet.nameAr,
-												level: 1,
-												fontSize: 'xl',
-												textColor: null,
-												textAlign: 'center',
-												fontFamily: 'manchette'
 											}
 										}}
 									/>
