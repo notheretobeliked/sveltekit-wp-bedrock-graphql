@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte'
-	import type { ExhibitionRoom } from '$lib/graphql/generated'
+	import type { AcfExhibitionRoom, MediaItem } from '$lib/graphql/generated'
 	import type { ObserverEventDetails, ScrollDirection, Options } from 'svelte-inview'
 
 	import { fade } from 'svelte/transition'
-	export let block: ExhibitionRoom
+	export let block: AcfExhibitionRoom
 	console.log(block)
 	import CoreHeading from './CoreHeading.svelte'
 	import Image from '$components/Image.svelte'
 	import { activeBook } from '$stores/activeBook'
 	import { inview } from 'svelte-inview'
 	let isInView: boolean
-	let scrollDirection: ScrollDirection
+	let scrollDirection: Direction | undefined  // Update this line
 	// Process groups to update layout based on aspect ratio
 	// Process groups to update layout based on aspect ratio
 	console.log('Initial block data:', JSON.stringify(block?.exhibitionRoom?.cabinets, null, 2))
@@ -19,12 +19,13 @@
 	if (block?.exhibitionRoom?.cabinets) {
 		block.exhibitionRoom.cabinets.forEach((cabinet) => {
 			if (cabinet?.groups) {
-				cabinet.groups.forEach((group) => {
+				cabinet.groups?.forEach((group) => {
+					if (!group || !group.layout) return;
 					console.log('Initial group layout:', group.layout[0])
 
 					if (group?.layout[0] === 'organic' && group.images?.nodes?.[0]) {
 						const firstImage = group.images.nodes[0]
-						const largeSize = firstImage.mediaDetails?.sizes?.find((size) => size.name === 'large')
+						const largeSize = firstImage.mediaDetails?.sizes?.find((size) => size && size.name === 'large')
 
 						if (largeSize?.width && largeSize?.height) {
 							const firstAspectRatio = parseInt(largeSize.width) / parseInt(largeSize.height)
@@ -33,10 +34,10 @@
 							// Only check for landscape if first image is landscape
 							if (firstAspectRatio > 1) {
 								// Check next two images if they exist
-								const nextImages = group.images.nodes.slice(1, 3)
+								const nextImages = group.images.nodes.slice(1, 3) as MediaItem[]
 								const isLandscapeBook = nextImages.some((image) => {
 									const imgLargeSize = image?.mediaDetails?.sizes?.find(
-										(size) => size.name === 'large'
+										(size) => size?.name === 'large'
 									)
 									if (imgLargeSize?.width && imgLargeSize?.height) {
 										const aspectRatio = parseInt(imgLargeSize.width) / parseInt(imgLargeSize.height)
@@ -100,7 +101,7 @@
 			}
 		}
 	// Add interval for animation
-	let animationInterval: number
+	let animationInterval: ReturnType<typeof setInterval>
 
 	let currentImageIndex = 0
 	let previousImageIndex = 0
@@ -169,7 +170,7 @@
 			}}
 			on:inview_change={handleHeaderInView}
 		>
-			{#if block.exhibitionRoom.nameAr}
+			{#if block?.exhibitionRoom?.nameAr}
 				<CoreHeading
 					block={{
 						attributes: {
@@ -184,7 +185,7 @@
 					}}
 				/>
 			{/if}
-			{#if block.exhibitionRoom.nameEn}
+			{#if block?.exhibitionRoom?.nameEn}
 				<CoreHeading
 					block={{
 						attributes: {
