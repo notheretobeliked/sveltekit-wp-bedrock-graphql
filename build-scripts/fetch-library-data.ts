@@ -63,46 +63,27 @@ const __dirname = dirname(__filename)
 const projectRoot = join(__dirname, '..')
 
 async function fetchAndSaveLibraryData() {
-	try {
-		const languages = ['en', 'ar']
-		const data: Record<string, any> = {}
+  try {
+    const languages = ['en', 'ar']
+    const data: Record<string, any> = {}
 
-		for (const lang of languages) {
-			console.log(`Fetching data for language: ${lang}...`)
-			data[lang] = await fetchAllLibraryItems(lang)
-			console.log(`✅ Successfully fetched data for ${lang}`)
-		}
-
-		// Write to API route for development
-		const apiDir = join(projectRoot, 'src/routes/api/library-items')
-		mkdirSync(apiDir, { recursive: true })
-
-		const apiContent = `
-export const prerender = true;
-
-const data = ${JSON.stringify(data)};
-
-export function GET() {
-  return new Response(JSON.stringify(data), {
-    headers: {
-      'content-type': 'application/json',
-      'cache-control': 'public, max-age=3600'
+    for (const lang of languages) {
+      console.log(`Fetching data for language: ${lang}...`)
+      data[lang] = await fetchAllLibraryItems(lang)
+      console.log(`✅ Successfully fetched data for ${lang}`)
     }
-  });
-}
-`
-		writeFileSync(join(apiDir, '+server.ts'), apiContent, 'utf-8')
-		console.log('✅ Library data API generated successfully')
 
-		// Write to JSON file for prerendering
-		const svelteKitDir = join(projectRoot, '.svelte-kit')
-		mkdirSync(svelteKitDir, { recursive: true })
-		writeFileSync(join(svelteKitDir, 'library-data.json'), JSON.stringify(data), 'utf-8')
-		console.log('✅ Library data JSON generated successfully')
-	} catch (error) {
-		console.error('Failed to generate library data:', error)
-		process.exit(1)
-	}
+    // Write to JSON file for prerendering and API use
+    const dataDir = join(projectRoot, 'src/lib/data')
+    mkdirSync(dataDir, { recursive: true })
+    writeFileSync(join(dataDir, 'library-data.json'), JSON.stringify(data), 'utf-8')
+    console.log('✅ Library data JSON generated successfully')
+
+
+  } catch (error) {
+    console.error('Failed to generate library data:', error)
+    process.exit(1)
+  }
 }
 
 fetchAndSaveLibraryData()
