@@ -14,6 +14,8 @@
 
 	export let book: Book
 	export let lang: 'en' | 'ar' // Add this line to explicitly type lang
+
+	console.log(book)
 	const translations = get(labelTranslations)
 	let selectedImageIndex: number | null = null
 
