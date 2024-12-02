@@ -96,9 +96,14 @@
 				(book.publisherFilterTerm?.split(' ') ?? []).includes($filterStore.selectedPublisher)
 
 			const yearFromMatch =
-				!$filterStore.yearFrom || (book.year && book.year >= parseInt($filterStore.yearFrom))
+				!$filterStore.yearFrom || // no minimum year selected
+				!book.year || // book has no year (should still show up)
+				book.year >= parseInt($filterStore.yearFrom)
+
 			const yearToMatch =
-				!$filterStore.yearTo || (book.year && book.year <= parseInt($filterStore.yearTo))
+				!$filterStore.yearTo || // no maximum year selected
+				!book.year || // book has no year (should still show up)
+				book.year <= parseInt($filterStore.yearTo)
 
 			const searchMatch =
 				!$filterStore.searchFilter ||
@@ -151,6 +156,7 @@
 		}
 	})
 </script>
+
 <svelte:window bind:scrollY />
 <main class="py-24 w-screen bg-black text-white-pure {lang === 'ar' ? 'main-ar' : ''}">
 	<div class="min-h-screen mx-auto font-martina max-w-screen-xl">
@@ -160,7 +166,8 @@
 		</header>
 		<div
 			bind:this={filterContainer}
-			class="{isSticky && 'fixed'} top-[80px] left-0 right-0 z-10 mb-8 grid md:grid-cols-6 gap-4 mx-auto font-martina max-w-full lg:max-w-screen-xl"
+			class="{isSticky &&
+				'fixed'} top-[80px] left-0 right-0 z-10 mb-8 grid md:grid-cols-6 gap-4 mx-auto font-martina max-w-full lg:max-w-screen-xl"
 		>
 			{#if artists.length > 0}
 				<div class="relative">

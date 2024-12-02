@@ -1,34 +1,78 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte'
-	import type { ExhibitionRoom } from '$lib/graphql/generated'
+	import type { AcfExhibitionRoom, MediaItem } from '$lib/graphql/generated'
 	import type { ObserverEventDetails, ScrollDirection, Options } from 'svelte-inview'
 
 	import { fade } from 'svelte/transition'
-	export let block: ExhibitionRoom
+	export let block: AcfExhibitionRoom
 	console.log(block)
 	import CoreHeading from './CoreHeading.svelte'
 	import Image from '$components/Image.svelte'
 	import { activeBook } from '$stores/activeBook'
 	import { inview } from 'svelte-inview'
 	let isInView: boolean
-	let scrollDirection: ScrollDirection
+	let scrollDirection: Direction | undefined  // Update this line
+	// Process groups to update layout based on aspect ratio
+	// Process groups to update layout based on aspect ratio
+	console.log('Initial block data:', JSON.stringify(block?.exhibitionRoom?.cabinets, null, 2))
 
+	if (block?.exhibitionRoom?.cabinets) {
+		block.exhibitionRoom.cabinets.forEach((cabinet) => {
+			if (cabinet?.groups) {
+				cabinet.groups?.forEach((group) => {
+					if (!group || !group.layout) return;
+					console.log('Initial group layout:', group.layout[0])
+
+					if (group?.layout[0] === 'organic' && group.images?.nodes?.[0]) {
+						const firstImage = group.images.nodes[0]
+						const largeSize = firstImage.mediaDetails?.sizes?.find((size) => size && size.name === 'large')
+
+						if (largeSize?.width && largeSize?.height) {
+							const firstAspectRatio = parseInt(largeSize.width) / parseInt(largeSize.height)
+							console.log('First image aspect ratio:', firstAspectRatio)
+
+							// Only check for landscape if first image is landscape
+							if (firstAspectRatio > 1) {
+								// Check next two images if they exist
+								const nextImages = group.images.nodes.slice(1, 3) as MediaItem[]
+								const isLandscapeBook = nextImages.some((image) => {
+									const imgLargeSize = image?.mediaDetails?.sizes?.find(
+										(size) => size?.name === 'large'
+									)
+									if (imgLargeSize?.width && imgLargeSize?.height) {
+										const aspectRatio = parseInt(imgLargeSize.width) / parseInt(imgLargeSize.height)
+										// Much higher threshold for spread images
+										return aspectRatio > 1.8 // This means it's likely a true landscape book
+									}
+									return false
+								})
+
+								if (isLandscapeBook) {
+									group.layout[0] = 'organic-landscape'
+								}
+							}
+						}
+					}
+				})
+			}
+		})
+	}
 	const options: Options = {
 		rootMargin: '-50px',
 		unobserveOnEnter: true
 	}
 
-    const handleCabinetLinkClick = (e: Event, cabinetId: string) => {
-    e.preventDefault()
-    if (cabinetId === '#') {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-    } else {
-        const element = document.getElementById(`images-cabinet-${cabinetId}`)
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' })
-        }
-    }
-}
+	const handleCabinetLinkClick = (e: Event, cabinetId: string) => {
+		e.preventDefault()
+		if (cabinetId === '#') {
+			window.scrollTo({ top: 0, behavior: 'smooth' })
+		} else {
+			const element = document.getElementById(`images-cabinet-${cabinetId}`)
+			if (element) {
+				element.scrollIntoView({ behavior: 'smooth' })
+			}
+		}
+	}
 
 	const handleChange = ({ detail }: CustomEvent<ObserverEventDetails>) => {
 		isInView = detail.inView
@@ -57,7 +101,7 @@
 			}
 		}
 	// Add interval for animation
-	let animationInterval: number
+	let animationInterval: ReturnType<typeof setInterval>
 
 	let currentImageIndex = 0
 	let previousImageIndex = 0
@@ -126,7 +170,7 @@
 			}}
 			on:inview_change={handleHeaderInView}
 		>
-			{#if block.exhibitionRoom.nameAr}
+			{#if block?.exhibitionRoom?.nameAr}
 				<CoreHeading
 					block={{
 						attributes: {
@@ -141,7 +185,7 @@
 					}}
 				/>
 			{/if}
-			{#if block.exhibitionRoom.nameEn}
+			{#if block?.exhibitionRoom?.nameEn}
 				<CoreHeading
 					block={{
 						attributes: {
@@ -171,7 +215,7 @@
 							`cabinet-${cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_')}`
 						)}
 					>
-						<header class="mb-4 sticky top-[20vh] z-30">
+						<header class="mb-12 top-[20vh] z-30">
 							{#if cabinet.nameEn}
 								<CoreHeading
 									block={{
@@ -181,7 +225,8 @@
 											fontSize: null,
 											textColor: null,
 											textAlign: 'center',
-											fontFamily: 'manchette'
+											fontFamily: 'manchette',
+											className: '!mb-0'
 										}
 									}}
 								/>
@@ -222,12 +267,12 @@
 											{#if group.images?.nodes}
 												{#each group.images.nodes as image, i}
 													<div
-														class="relative w-[180px] hover:scale-105 transition-all duration-500 delay-[{i *
-															50}ms] {cabinetIndex === 0 && groupIndex === 0
+														class="relative w-[180px] hover:scale-105 transition-all duration-500 {cabinetIndex ===
+															0 && groupIndex === 0
 															? 'scale-100 opacity-100 translate-y-0'
 															: isInView
 																? 'scale-100 opacity-100 translate-y-0'
-																: 'scale-75 opacity-0 translate-y-10'}"
+																: 'scale-100 opacity-100 translate-y-0'}"
 														on:click={() => handleImageClick(image.reference)}
 														role="button"
 														tabindex="0"
@@ -254,10 +299,9 @@
 											{#if group.images?.nodes}
 												{#each group.images.nodes as image, i}
 													<div
-														class="relative w-[710px] hover:scale-[101%] transition-all duration-200 delay-[{i *
-															50}ms] {isInView
+														class="relative h-[430px] hover:scale-[101%] transition-all duration-200 {isInView
 															? 'scale-100 opacity-100 translate-y-0'
-															: 'scale-75 opacity-0 translate-y-10'}"
+															: 'scale-100 opacity-100 translate-y-0'}"
 														on:click={() => handleImageClick(image.reference)}
 														role="button"
 														tabindex="0"
@@ -278,7 +322,7 @@
 									{#if group.layout[0] === 'animation'}
 										<div class="flex flex-col gap-[200px] mb-[200px] items-center layout-centered">
 											{#if group.images?.nodes?.length > 0}
-												<div class="relative w-[710px] h-[527px]">
+												<div class="relative h-[527px]">
 													<!-- Added fixed height based on aspect ratio -->
 													{#key previousImageIndex}
 														<div class="absolute inset-0 w-full h-full z-10">
@@ -316,13 +360,15 @@
 										</div>
 									{/if}
 
-									{#if group.layout[0] === 'organic'}
-										<div class="grid grid-cols-2 gap-4 mb-[200px] layout-organic">
+									{#if group.layout[0] === 'organic' || group.layout[0] === 'organic-landscape'}
+										<div class="grid grid-cols-2 gap-4 mb-[200px] layout-{group.layout[0]}">
 											{#if group.images?.nodes?.length > 0}
 												<!-- First image -->
 												<div class="col-span-2 flex justify-center">
 													<div
-														class="h-[430px] hover:scale-[101%] transition-all duration-200"
+														class="{group.layout[0] === 'organic-landscape'
+															? 'h-[250px]'
+															: 'h-[430px]'} hover:scale-[101%] transition-all duration-200"
 														on:click={() => handleImageClick(group.images.nodes[0]?.reference)}
 														role="button"
 														tabindex="0"
@@ -332,6 +378,7 @@
 															imageObject={group.images.nodes[0]}
 															imageSize="large"
 															fit="contain"
+															shadow={group.shadow}
 														/>
 													</div>
 												</div>
@@ -340,7 +387,9 @@
 												{#if group.images.nodes.length === 2}
 													<div class="col-span-2 flex justify-center">
 														<div
-															class="mt-[50px] h-[430px] hover:scale-[101%] transition-all duration-200"
+															class="mt-[50px] {group.layout[0] === 'organic-landscape'
+																? 'h-[250px]'
+																: 'h-[430px]'} hover:scale-[101%] transition-all duration-200"
 															on:click={() => handleImageClick(group.images.nodes[1]?.reference)}
 															role="button"
 															tabindex="0"
@@ -350,7 +399,7 @@
 																imageObject={group.images.nodes[1]}
 																imageSize="large"
 																fit="contain"
-																shadow
+																shadow={group.shadow}
 															/>
 														</div>
 													</div>
@@ -358,19 +407,21 @@
 												{:else if group.images.nodes.length === 3}
 													{#each group.images.nodes.slice(1) as image, i}
 														{#if i % 2 === 0}
-															<div class="col-start-1 row-span-2">
+															<div class="col-start-1 row-span-2 flex justify-end">
 																<div
-																	class="h-[430px] hover:scale-[101%] transition-all duration-200"
+																	class="{group.layout[0] === 'organic-landscape'
+																		? 'h-[250px]'
+																		: 'h-[430px]'} hover:scale-[101%] transition-all duration-200"
 																	on:click={() => handleImageClick(image?.reference)}
 																	role="button"
 																	tabindex="0"
 																	class:cursor-pointer={image?.reference}
 																>
 																	<Image
-																		shadow
 																		imageObject={image}
 																		imageSize="large"
 																		fit="contain"
+																		shadow={group.shadow}
 																	/>
 																</div>
 															</div>
@@ -378,16 +429,18 @@
 																<div class="h-[200px]" />
 															</div>
 														{:else}
-															<div class="col-start-2 row-span-2">
+															<div class="col-start-2 row-span-2 flex justify-start">
 																<div
-																	class="h-[430px] hover:scale-[101%] transition-all duration-200"
+																	class="{group.layout[0] === 'organic-landscape'
+																		? 'h-[250px]'
+																		: 'h-[430px]'} hover:scale-[101%] transition-all duration-200"
 																	on:click={() => handleImageClick(image?.reference)}
 																	role="button"
 																	tabindex="0"
 																	class:cursor-pointer={image?.reference}
 																>
 																	<Image
-																		shadow
+																		shadow={group.shadow}
 																		imageObject={image}
 																		imageSize="large"
 																		fit="contain"
@@ -401,16 +454,18 @@
 													{#each group.images.nodes.slice(1, -1) as image, i}
 														{#if i % 2 === 0}
 															<!-- Even indexed images (2nd, 4th, etc.) -->
-															<div class="col-start-1 row-span-2">
+															<div class="col-start-1 row-span-2 flex justify-end">
 																<div
-																	class="h-[430px] hover:scale-[101%] transition-all duration-200"
+																	class="{group.layout[0] === 'organic-landscape'
+																		? 'h-[250px]'
+																		: 'h-[430px]'} hover:scale-[101%] transition-all duration-200"
 																	on:click={() => handleImageClick(image?.reference)}
 																	role="button"
 																	tabindex="0"
 																	class:cursor-pointer={image?.reference}
 																>
 																	<Image
-																		shadow
+																		shadow={group.shadow}
 																		imageObject={image}
 																		imageSize="large"
 																		fit="contain"
@@ -423,16 +478,18 @@
 															</div>
 														{:else}
 															<!-- Odd indexed images (3rd, 5th, etc.) -->
-															<div class="col-start-2 row-span-2">
+															<div class="col-start-2 row-span-2 flex justify-start">
 																<div
-																	class="h-[430px] hover:scale-[101%] transition-all duration-200"
+																	class="{group.layout[0] === 'organic-landscape'
+																		? 'h-[250px]'
+																		: 'h-[430px]'} hover:scale-[101%] transition-all duration-200"
 																	on:click={() => handleImageClick(image?.reference)}
 																	role="button"
 																	tabindex="0"
 																	class:cursor-pointer={image?.reference}
 																>
 																	<Image
-																		shadow
+																		shadow={group.shadow}
 																		imageObject={image}
 																		imageSize="large"
 																		fit="contain"
@@ -441,7 +498,11 @@
 															</div>
 															<!-- Spacer -->
 															<div class="col-start-1 row-span-1">
-																<div class="h-[200px]" />
+																<div
+																	class="{group.layout[0] === 'organic-landscape'
+																		? 'h-[100px]'
+																		: 'h-[200px]'} "
+																/>
 															</div>
 														{/if}
 													{/each}
@@ -449,7 +510,9 @@
 													<!-- Final centered image (only if more than 3 images) -->
 													<div class="col-span-2 flex justify-center">
 														<div
-															class="mt-[50px] h-[430px] hover:scale-[101%] transition-all duration-200"
+															class="mt-[10px] {group.layout[0] === 'organic-landscape'
+																? 'h-[250px]'
+																: 'h-[430px]'} hover:scale-[101%] transition-all duration-200"
 															on:click={() =>
 																handleImageClick(
 																	group.images.nodes[group.images.nodes.length - 1]?.reference
@@ -464,7 +527,7 @@
 																imageObject={group.images.nodes[group.images.nodes.length - 1]}
 																imageSize="large"
 																fit="contain"
-																shadow
+																shadow={group.shadow}
 															/>
 														</div>
 													</div>
@@ -501,37 +564,37 @@
 
 			<div class="text bg-white-off right-0 top-0 pt-[100px] px-12 overflow-y-scroll h-screen z-30">
 				<div class="pt-16" id="room-intro">
-                    <a href="#"
-                    on:click|preventDefault={(e) => handleCabinetLinkClick(e, '#')}> 
-					{#if block.exhibitionRoom.nameEn}
-						<CoreHeading
-							block={{
-								attributes: {
-									content: block.exhibitionRoom.nameEn,
-									level: 1,
-									fontSize: null,
-									textColor: null,
-									textAlign: 'center',
-									fontFamily: null
-								}
-							}}
-						/>
-					{/if}
-					{#if block.exhibitionRoom.nameAr}
-						<CoreHeading
-							block={{
-								attributes: {
-									content: block.exhibitionRoom.nameAr,
-									level: 1,
-									fontSize: null,
-									textColor: null,
-									textAlign: 'center',
-									fontFamily: 'manchette'
-								}
-							}}
-						/>
-					{/if}
-                    </a>
+					<a href="#" on:click|preventDefault={(e) => handleCabinetLinkClick(e, '#')}>
+						{#if block.exhibitionRoom.nameAr}
+							<CoreHeading
+								block={{
+									attributes: {
+										content: block.exhibitionRoom.nameAr,
+										level: 1,
+										fontSize: null,
+										textColor: null,
+										textAlign: 'center',
+										fontFamily: 'manchette',
+										className: '!mb-0'
+									}
+								}}
+							/>
+						{/if}
+						{#if block.exhibitionRoom.nameEn}
+							<CoreHeading
+								block={{
+									attributes: {
+										content: block.exhibitionRoom.nameEn,
+										level: 1,
+										fontSize: null,
+										textColor: null,
+										textAlign: 'center',
+										fontFamily: null
+									}
+								}}
+							/>
+						{/if}
+					</a>
 					{#if block.exhibitionRoom.introText}
 						<div class="basestyles">
 							{@html block.exhibitionRoom.introText}
@@ -546,8 +609,26 @@
 						id="text-cabinet-{cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_')}"
 					>
 						<header>
-							<a href="#images-cabinet-{cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_')}"
-                            on:click|preventDefault={(e) => handleCabinetLinkClick(e, cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_'))}>
+							<a
+								href="#images-cabinet-{cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_')}"
+								on:click|preventDefault={(e) =>
+									handleCabinetLinkClick(e, cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_'))}
+							>
+								{#if cabinet.nameAr}
+									<CoreHeading
+										block={{
+											attributes: {
+												content: cabinet.nameAr,
+												level: 1,
+												fontSize: 'xl',
+												textColor: null,
+												textAlign: 'center',
+												fontFamily: 'manchette',
+												className: '!mb-0'
+											}
+										}}
+									/>
+								{/if}
 								{#if cabinet.nameEn}
 									<CoreHeading
 										block={{
@@ -558,20 +639,6 @@
 												textColor: null,
 												textAlign: 'center',
 												fontFamily: null
-											}
-										}}
-									/>
-								{/if}
-								{#if cabinet.nameAr}
-									<CoreHeading
-										block={{
-											attributes: {
-												content: cabinet.nameAr,
-												level: 1,
-												fontSize: 'xl',
-												textColor: null,
-												textAlign: 'center',
-												fontFamily: 'manchette'
 											}
 										}}
 									/>
