@@ -78,6 +78,21 @@ const restructureLibraryItems = (data: LibraryItemsQuery) => {
 				title: bookData.title ?? null,
 				year: bookData.year ?? null,
 				ref: bookData.ref ?? null,
+				artists: Array.from(artists),
+				authors: Array.from(authors),
+				publishers: Array.from(publishers),
+				artistFilterTerm: Array.from(artists)
+					.map((artist) => `${artist.name} ${artist.slug}`)
+					.join(' ')
+					.toLowerCase(),
+				authorFilterTerm: Array.from(authors)
+					.map((author) => `${author.name} ${author.slug}`)
+					.join(' ')
+					.toLowerCase(),
+				publisherFilterTerm: Array.from(publishers)
+					.map((publisher) => `${publisher.name} ${publisher.slug}`)
+					.join(' ')
+					.toLowerCase(),
 				publisher: bookData.publisher?.nodes.map((p) => p.name).join(', ') ?? null,
 				author: bookData.personAuthor?.nodes.map((a) => a.name).join(', ') ?? null,
 				coverDesign: bookData.personCoverDesign?.nodes.map((d) => d.name).join(', ') ?? null,
@@ -147,27 +162,25 @@ const __dirname = dirname(__filename)
 const projectRoot = join(__dirname, '..')
 
 async function fetchAndSaveLibraryData() {
-  try {
-    const languages = ['en', 'ar']
-    const data: Record<string, any> = {}
+	try {
+		const languages = ['en', 'ar']
+		const data: Record<string, any> = {}
 
-    for (const lang of languages) {
-      console.log(`Fetching data for language: ${lang}...`)
-      data[lang] = await fetchAllLibraryItems(lang)
-      console.log(`✅ Successfully fetched data for ${lang}`)
-    }
+		for (const lang of languages) {
+			console.log(`Fetching data for language: ${lang}...`)
+			data[lang] = await fetchAllLibraryItems(lang)
+			console.log(`✅ Successfully fetched data for ${lang}`)
+		}
 
-    // Write to JSON file for prerendering and API use
-    const dataDir = join(projectRoot, 'src/lib/data')
-    mkdirSync(dataDir, { recursive: true })
-    writeFileSync(join(dataDir, 'library-data.json'), JSON.stringify(data), 'utf-8')
-    console.log('✅ Library data JSON generated successfully')
-
-
-  } catch (error) {
-    console.error('Failed to generate library data:', error)
-    process.exit(1)
-  }
+		// Write to JSON file for prerendering and API use
+		const dataDir = join(projectRoot, 'src/lib/data')
+		mkdirSync(dataDir, { recursive: true })
+		writeFileSync(join(dataDir, 'library-data.json'), JSON.stringify(data), 'utf-8')
+		console.log('✅ Library data JSON generated successfully')
+	} catch (error) {
+		console.error('Failed to generate library data:', error)
+		process.exit(1)
+	}
 }
 
 fetchAndSaveLibraryData()

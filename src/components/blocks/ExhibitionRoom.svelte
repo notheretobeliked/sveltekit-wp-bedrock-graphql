@@ -215,7 +215,7 @@
 							`cabinet-${cabinet.nameEn?.toLowerCase().replace(/\s+/g, '_')}`
 						)}
 					>
-						<header class="mb-4 sticky top-[20vh] z-30">
+						<header class="mb-12 top-[20vh] z-30">
 							{#if cabinet.nameEn}
 								<CoreHeading
 									block={{
@@ -510,7 +510,7 @@
 													<!-- Final centered image (only if more than 3 images) -->
 													<div class="col-span-2 flex justify-center">
 														<div
-															class="mt-[50px] {group.layout[0] === 'organic-landscape'
+															class="mt-[10px] {group.layout[0] === 'organic-landscape'
 																? 'h-[250px]'
 																: 'h-[430px]'} hover:scale-[101%] transition-all duration-200"
 															on:click={() =>
