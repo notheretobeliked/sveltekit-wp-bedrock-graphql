@@ -299,7 +299,7 @@
 											{#if group.images?.nodes}
 												{#each group.images.nodes as image, i}
 													<div
-														class="relative h-[430px] hover:scale-[101%] transition-all duration-200 {isInView
+														class="relative h-[527px] hover:scale-[101%] transition-all duration-200 {isInView
 															? 'scale-100 opacity-100 translate-y-0'
 															: 'scale-100 opacity-100 translate-y-0'}"
 														on:click={() => handleImageClick(image.reference)}
@@ -322,7 +322,7 @@
 									{#if group.layout[0] === 'animation'}
 										<div class="flex flex-col gap-[200px] mb-[200px] items-center layout-centered">
 											{#if group.images?.nodes?.length > 0}
-												<div class="relative h-[527px]">
+												<div class="relative h-[527px] w-full">
 													<!-- Added fixed height based on aspect ratio -->
 													{#key previousImageIndex}
 														<div class="absolute inset-0 w-full h-full z-10">
