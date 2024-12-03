@@ -32,7 +32,9 @@ export async function fetchAllLibraryItems(language: string) {
 	return allBooks
 }
 
-export function isPersonType(author: any): author is { name: string; slug: string; translations?: any[] } {
+export function isPersonType(
+	author: any
+): author is { name: string; slug: string; translations?: any[] } {
 	return author && typeof author.name === 'string' && typeof author.slug === 'string'
 }
 
@@ -170,11 +172,11 @@ export function extractArtists(data: LibraryItemsQuery) {
 					})
 				}
 			})
-		} 
+		}
 	})
 
 	const artists = Array.from(artistsMap.values())
-  return artists.sort((a, b) => a.name.localeCompare(b.name))
+	return artists.sort((a, b) => a.name.localeCompare(b.name))
 }
 
 export function extractPublishers(data: LibraryItemsQuery) {
@@ -197,21 +199,21 @@ export function extractPublishers(data: LibraryItemsQuery) {
 }
 
 export function getYearRange(data: LibraryItemsQuery) {
-	let minYear = Infinity;
-	let maxYear = -Infinity;
+	let minYear = Infinity
+	let maxYear = -Infinity
 
 	data.books?.nodes.forEach((book) => {
-		const year = book.bookData?.year;
+		const year = book.bookData?.year
 		if (year) {
-			minYear = Math.min(minYear, year);
-			maxYear = Math.max(maxYear, year);
+			minYear = Math.min(minYear, year)
+			maxYear = Math.max(maxYear, year)
 		}
-	});
+	})
 
 	return {
 		minYear: minYear !== Infinity ? minYear : null,
 		maxYear: maxYear !== -Infinity ? maxYear : null
-	};
+	}
 }
 
 export interface HierarchicalOptions {
@@ -255,6 +257,16 @@ export function normalizeEditorBlock(block: any) {
 		block.attributes = {} // Initialize with an empty object if it doesn't exist
 	}
 
+	// Check if 'core/more' block and add necessary attributes
+	if (block.name === 'core/more') {
+		block.attributes = {
+			...block.attributes,
+			align: null,
+			verticalAlignment: null,
+			style: null
+			// Add any other required attributes with default values
+		}
+	}
 	// Check if 'style' attribute exists and is a string
 	if (typeof block.attributes.style === 'string') {
 		try {
@@ -290,9 +302,24 @@ export function normalizeEditorBlock(block: any) {
 
 	// Normalize child blocks recursively
 	if (block.children) {
-		block.children = block.children.map(normalizeEditorBlock)
+		const moreIndex = block.children.findIndex((child: any) => child.name === 'core/more')
+		if (moreIndex !== -1) {
+			// Wrap blocks after 'core/more' ilockn a new structure
+			const beforeMore = block.children.slice(0, moreIndex)
+			const afterMore = block.children.slice(moreIndex + 1)
+
+			block.children = [
+				...beforeMore,
+				{
+					name: 'custom/read-more-wrapper',
+					children: afterMore
+				}
+			]
+		} else {
+			// Recursively normalize children
+			block.children = block.children.map(normalizeEditorBlock)
+		}
 	}
 
 	return block
 }
-

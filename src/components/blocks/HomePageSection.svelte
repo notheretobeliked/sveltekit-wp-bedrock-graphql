@@ -13,7 +13,6 @@
 	let previousIndex = 0
 	const totalImages = images.length
 	let showImages = false
-	console.log(block)
 
 	const toggleImages = () => {
 		showImages = !showImages

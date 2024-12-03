@@ -24,7 +24,7 @@
 		CoreButtons as CoreButtonsType,
 		CoreButton as CoreButtonType,
 		HomePageSection as HomePageSectionType,
-		AcfHomePageSection,  // Add this import
+		AcfHomePageSection, // Add this import
 		ExhibitionRoom as ExhibitionRoomType
 	} from '$lib/graphql/generated'
 
@@ -48,12 +48,16 @@
 		| (CoreButtonsType & NormalizedBlock)
 		| (CoreButtonType & NormalizedBlock)
 		| (HomePageSectionType & NormalizedBlock)
-		| (AcfHomePageSection & NormalizedBlock)  // Add this line
+		| (AcfHomePageSection & NormalizedBlock) // Add this line
 		| (ExhibitionRoomType & NormalizedBlock)
 
 	export let block: EditorBlock
 
- 
+	import { getContext } from 'svelte'
+	const EXPANDED_KEY = Symbol('expanded')
+
+	const isExpanded = getContext(EXPANDED_KEY) || false
+
 	import CoreParagraph from '$components/blocks/CoreParagraph.svelte'
 	import CoreHeading from '$components/blocks/CoreHeading.svelte'
 	import CoreGroup from '$components/blocks/CoreGroup.svelte'
@@ -65,11 +69,24 @@
 	import HomePageSection from './blocks/HomePageSection.svelte'
 	import HomePageBlock from './blocks/HomePageBlock.svelte'
 	import ExhibitionRoom from './blocks/ExhibitionRoom.svelte'
+	import ReadMoreWrapper from './ReadMoreWrapper.svelte'
+	import { isExpandedStore } from '$stores/expandedStore'
+	let align = block.attributes?.align || 'none'
+	let verticalAlignment = block.attributes?.verticalAlignment ?? null
 
-	let align = block.attributes.align || 'none'
-	let verticalAlignment = block.attributes.verticalAlignment ?? null
+	$: {
+		console.log('BlockRenderer - isExpanded:', $isExpandedStore)
+		console.log('BlockRenderer - verticalAlignment:', verticalAlignment)
+		if ($isExpandedStore && verticalAlignment === 'center') {
+			console.log('Changing alignment to top')
+			verticalAlignment = 'top'
+		} else {
+			// Reset to original alignment when not expanded
+			verticalAlignment = block.attributes?.verticalAlignment ?? null
+		}
+	}
 	if (forceFull || block.name === 'core/column') align = 'full'
-	const bgColor = block.attributes.backgroundColor ?? ''
+	const bgColor = block.attributes?.backgroundColor ?? ''
 
 	interface StyleObject {
 		spacing?: {
@@ -100,7 +117,7 @@
 	}
 
 	// Use the style object directly if it exists
-	const spacingClasses = block.attributes.style
+	const spacingClasses = block.attributes?.style
 		? mapSpacingToTailwind(block.attributes.style as StyleObject)
 		: ''
 
@@ -150,7 +167,6 @@
 		}
 
 		return baseClasses
-
 	}
 
 	const getBgClass = (bgColor: string | null): string => {
@@ -173,7 +189,11 @@
 	}
 </script>
 
-<div class="{block.name} {verticalAlignmentClasses(verticalAlignment)} {classNames(align)} {getBgClass(bgColor)} !px-0">
+<div
+	class="{block.name} {verticalAlignmentClasses(verticalAlignment)} {classNames(align)} {getBgClass(
+		bgColor
+	)} !px-0"
+>
 	{#if block.name === 'core/group'}
 		<CoreGroup {block} />
 	{/if}
@@ -208,6 +228,10 @@
 
 	{#if block.name === 'core/paragraph'}
 		<CoreParagraph {block} />
+	{/if}
+
+	{#if block.name === 'custom/read-more-wrapper'}
+		<ReadMoreWrapper {block} />
 	{/if}
 
 	{#if block.name === 'core/heading'}
