@@ -3,26 +3,20 @@ import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
 import { error } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
 import type { EditorBlock } from '$lib/types/wp-types'
-import {flatListToHierarchical} from '$lib/server/utilities'
-import {restructureLibraryItems} from '$lib/server/utilities'
+import { flatListToHierarchical } from '$lib/server/utilities'
 
-
-export const load: PageServerLoad = async function load({ params, url, locals }) {
+export const load: PageServerLoad = async function load({ params, url, fetch }) {
   const uri = `/${params.all || ''}`
-  const books = locals.books
-    
-  // Restructure the books data
-  const restructuredData = restructureLibraryItems({ books: { nodes: books } })
+  
+  // Fetch books from API route
+  const booksResponse = await fetch(`/api/library-items?lang=${params.lang}`)
+  const books = await booksResponse.json()
 
   try {
     const response = await graphqlQuery(PageContent, { uri: uri })
     checkResponse(response)
     const { data } = await response.json()
 
-    // Add debug logging
-    console.log('GraphQL Response:', data)
-
-    // Check if data or nodeByUri is null
     if (!data || !data.nodeByUri) {
       throw error(404, {
         message: 'Page not found',
@@ -34,13 +28,13 @@ export const load: PageServerLoad = async function load({ params, url, locals })
       : []
 
     return {
-      books: restructuredData,
+      books,
       data: data,
       uri: uri,
       editorBlocks: editorBlocks,
     }
   } catch (err: unknown) {
-    console.error('Server Error:', err) // Add error logging
+    console.error('Server Error:', err)
     const httpError = err as { status: number; message: string }
     if (httpError.message) {
       throw error(httpError.status ?? 500, httpError.message)

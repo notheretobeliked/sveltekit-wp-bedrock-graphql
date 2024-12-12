@@ -5,9 +5,9 @@ import PageContent from '$lib/graphql/query/page.graphql?raw'
 import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
 import { error } from '@sveltejs/kit'
 import type { EditorBlock } from '$lib/types/wp-types'
-import { flatListToHierarchical, restructureLibraryItems } from '$lib/server/utilities'
+import { flatListToHierarchical } from '$lib/server/utilities'
 
-export const load = (async ({ params, url, locals, parent }) => {
+export const load = (async ({ params, url, fetch, parent }) => {
 	const parentData = await parent()
 	const lang = params.lang
 	let uri: string
@@ -21,9 +21,10 @@ export const load = (async ({ params, url, locals, parent }) => {
 		uri = '/'
 	}
 
-	const books = locals.books ?? []
-	const restructuredData = books.length ? restructureLibraryItems({ books: { nodes: books } }) : []
-
+	// Fetch books from API route
+	const booksResponse = await fetch(`/api/library-items?lang=${lang}`)
+	const books = await booksResponse.json()
+	
 	try {
 		const response = await graphqlQuery(PageContent, { uri })
 		checkResponse(response)
@@ -38,7 +39,7 @@ export const load = (async ({ params, url, locals, parent }) => {
 			: []
 
 		return {
-			books: restructuredData,
+			books,
 			data,
 			uri,
 			editorBlocks
