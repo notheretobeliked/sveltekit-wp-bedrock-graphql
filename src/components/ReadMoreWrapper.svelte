@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { slide } from 'svelte/transition'
 	import { isExpandedStore } from '$stores/expandedStore'
 	import Button from './Button.svelte'
 	import BlockRenderer from './BlockRenderer.svelte'
@@ -26,12 +25,13 @@
 			/>
 		</div>
 	</div>
-
-	{#if showFullContent}
-		<div transition:slide class="pb-12">
-			{#each block.children as childBlock}
-				<BlockRenderer block={childBlock} />
-			{/each}
-		</div>
-	{/if}
+	<div class="content-wrapper">
+		{#if showFullContent}
+		<div class="pb-12">
+            {#each block.children as childBlock}
+					<BlockRenderer block={childBlock} />
+				{/each}
+			</div>
+		{/if}
+	</div>
 </div>
