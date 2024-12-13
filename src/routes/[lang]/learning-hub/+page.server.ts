@@ -1,9 +1,12 @@
-
 export const prerender = true
 import Posts from '$lib/graphql/query/posts.graphql?raw'
 import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
 import { error } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
+
+export const entries = () => {
+	return [{ lang: 'en' }, { lang: 'ar' }]
+}
 
 export const load: PageServerLoad = async function load({ params, url }) {
 	const uri = `/${params.all || ''}`
