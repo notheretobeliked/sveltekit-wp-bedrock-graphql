@@ -1,3 +1,5 @@
+
+export const prerender = true
 import Posts from '$lib/graphql/query/posts.graphql?raw'
 import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
 import { error } from '@sveltejs/kit'
