@@ -37,7 +37,6 @@
 		fetch(`/api/library-items?ref=${$activeBook}&lang=${$page.params.lang || 'en'}`)
 			.then((res) => res.json())
 			.then((data) => {
-				console.log('API Response:', data)
 				currentBook = data || null
 				loading = false
 			})
@@ -69,7 +68,7 @@
 	</div>
 {/if}
 
-<main class="px-3 md:px-0">
+<main class="px-3 md:px-0 bg-white-off">
 	<slot {data} />
 </main>
 

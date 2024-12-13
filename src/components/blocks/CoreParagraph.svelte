@@ -26,7 +26,7 @@
 			textColor || 'black',
 			align || 'left',
 			fontFamily || 'martina'
-		)} mb-4 px-3"
+		)} mb-4"
 	>
 	{@html content}
 </p>

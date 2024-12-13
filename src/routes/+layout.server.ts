@@ -15,10 +15,14 @@ interface LoadReturn {
 	translations: NonNullable<NonNullable<PageMetaQuery['page']>['translations']>
 	seo: NonNullable<NonNullable<PageMetaQuery['page']>['seo']>
 	uri: string
+	lang: string // Add this line
 }
 
-export const load: LayoutServerLoad<LoadReturn> = async function load({ params }) {
-	const uri = `/${params.all || ''}`
+export const load: LayoutServerLoad<LoadReturn> = async function load({ params, url }) {
+	let uri = url.pathname
+	if (uri === '/en' || uri === '/ar') {
+		uri = '/'
+	}
 
 	try {
 		const response = await graphqlQuery(PageMeta, { uri: uri })
@@ -26,6 +30,11 @@ export const load: LayoutServerLoad<LoadReturn> = async function load({ params }
 
 		// Assuming CombinedQueryResponse is correctly typed to reflect your GraphQL query structure
 		const { data }: { data: PageMetaQuery } = await response.json()
+
+		// First check if we have a valid page
+		if (!data.page) {
+			error(404, 'Page not found')
+		}
 
 		// Modify menu items to add 'current' key
 		if (data.menu && data.menu.menuItems && data.menu.menuItems.nodes) {
@@ -60,28 +69,48 @@ export const load: LayoutServerLoad<LoadReturn> = async function load({ params }
 		if (!data.menu) {
 			error(500, 'Missing menu data')
 		}
-    return {
-      data,
-      labelTranslations,
-      menu: data.menu,
-      languageCode: (data.page && '__typename' in data.page &&
-          (data.page.__typename === 'Page' || data.page.__typename === 'Post'))
-          ? data.page.languageCode
-          : 'en',
-      translations: (data.page && '__typename' in data.page &&
-          (data.page.__typename === 'Page' || data.page.__typename === 'Post'))
-          ? data.page.translations || []
-          : [],
-      seo: data.page?.seo 
-          ? { ...data.page.seo, opengraphUrl: siteUrl }
-          : error(500, 'Missing SEO data'),
-      uri
-  } satisfies LoadReturn
+		return {
+			data,
+			labelTranslations,
+			lang,
+			menu: data.menu,
+			languageCode:
+				data.page &&
+				'__typename' in data.page &&
+				(data.page.__typename === 'Page' || data.page.__typename === 'Post')
+					? data.page.languageCode
+					: 'en',
+			translations:
+				data.page &&
+				'__typename' in data.page &&
+				(data.page.__typename === 'Page' || data.page.__typename === 'Post')
+					? data.page.translations || []
+					: [],
+			seo: data.page?.seo
+				? { ...data.page.seo, opengraphUrl: siteUrl }
+				: error(500, 'Missing SEO data'),
+			uri
+		} satisfies LoadReturn
 	} catch (err: unknown) {
-		const httpError = err as { status: number; message: string }
-		if (httpError.message) {
-			error(httpError.status ?? 500, httpError.message)
+		// Check if it's a response error from the GraphQL query
+		if (err instanceof Response) {
+			error(err.status, await err.text())
 		}
-		error(500, err as string)
+
+		// Check if it's a SvelteKit HttpError
+		if (err && typeof err === 'object' && 'status' in err && 'body' in err) {
+			const httpError = err as { status: number; body: { message: string } }
+			error(httpError.status, httpError.body.message)
+		}
+
+		// Check if it's our known error type
+		const httpError = err as { status?: number; message: string }
+		if (httpError.status && httpError.message) {
+			error(httpError.status, httpError.message)
+		}
+
+		// Fallback for unknown errors
+		console.error('Unhandled error:', err)
+		error(500, 'An unexpected error occurred')
 	}
 }

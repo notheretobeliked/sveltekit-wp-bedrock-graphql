@@ -29,7 +29,7 @@ export const load: PageServerLoad = async function load({ params, url }) {
 			return {
 				title: post.title,
 				byline: post.learningHubFields.byline || '',
-				slug: post.slug,
+				slug: `/${params.lang}/learning-hub/${post.slug}`, // Modified this line to include language
 				category: post.categories.nodes[0]?.name || 'Uncategorized',
 				categorySlug: post.categories.nodes[0]?.slug || 'uncategorized',
 				date: formattedDate

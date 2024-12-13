@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types'
 	import Button from '$components/Button.svelte'
+	import PostsHeader from '$components/atoms/PostsHeader.svelte'
 	export let data: PageData
 
 	let selectedCategory: string | null = null
@@ -42,15 +43,7 @@
 		</div>
 		<div class="mt-10 post-list">
 			{#each filteredPosts as post}
-				<div class="w-full flex flex-col gap-4 border-b border-black mb-12">
-					<a href={post.slug} class="contents">
-						<h1 class="font-boogy text-xl text-center">{post.title}</h1>
-						<div class="grid grid-cols-2">
-							<p class="font-martina text-base w-full text-center">{post.byline}</p>
-							<p class="font-martina text-base w-full text-center">{post.date}</p>
-						</div>
-					</a>
-				</div>
+				<PostsHeader {...post} />
 			{/each}
 		</div>
 	</div>

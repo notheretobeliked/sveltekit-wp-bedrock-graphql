@@ -5,7 +5,6 @@
 
 	import { fade } from 'svelte/transition'
 	export let block: AcfExhibitionRoom
-	console.log(block)
 	import CoreHeading from './CoreHeading.svelte'
 	import Image from '$components/Image.svelte'
 	import { activeBook } from '$stores/activeBook'
@@ -14,14 +13,13 @@
 	let scrollDirection: Direction | undefined  // Update this line
 	// Process groups to update layout based on aspect ratio
 	// Process groups to update layout based on aspect ratio
-	console.log('Initial block data:', JSON.stringify(block?.exhibitionRoom?.cabinets, null, 2))
+	
 
 	if (block?.exhibitionRoom?.cabinets) {
 		block.exhibitionRoom.cabinets.forEach((cabinet) => {
 			if (cabinet?.groups) {
 				cabinet.groups?.forEach((group) => {
 					if (!group || !group.layout) return;
-					console.log('Initial group layout:', group.layout[0])
 
 					if (group?.layout[0] === 'organic' && group.images?.nodes?.[0]) {
 						const firstImage = group.images.nodes[0]
@@ -29,7 +27,6 @@
 
 						if (largeSize?.width && largeSize?.height) {
 							const firstAspectRatio = parseInt(largeSize.width) / parseInt(largeSize.height)
-							console.log('First image aspect ratio:', firstAspectRatio)
 
 							// Only check for landscape if first image is landscape
 							if (firstAspectRatio > 1) {

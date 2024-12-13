@@ -13,7 +13,6 @@
 
 	$: {
 		;({ editorBlocks, uri } = data as unknown as { editorBlocks: EditorBlock[], uri: string })
-		console.log(editorBlocks)
 	}
 
 	// Split blocks at read-more block

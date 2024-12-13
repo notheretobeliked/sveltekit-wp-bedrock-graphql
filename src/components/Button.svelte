@@ -9,7 +9,7 @@
 	export let fullWidth: boolean = false
 	export let colourClass: string = 'bg-white' // Assuming this is a default style
 	export let textColourClass: string = 'text-black' // Assuming this is a default style
-	$: colourClass = active ? 'bg-black text-white-pure' : 'bg-white'
+	$: colourClass = active ? 'bg-black text-white-pure' : 'bg-white-off'
 	function handleClick(event: MouseEvent) {
 		if (url === '#') {
 			event.preventDefault()

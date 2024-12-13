@@ -12,7 +12,6 @@
 	import type { Book } from '$lib/types/general'
 	import Label from '$components/molecules/label.svelte'
 	export let data: PageData
-	console.log(data)
 
 	let books: Book[] = (data.books ?? []).map((book) => ({
 		...book,
@@ -124,7 +123,6 @@
 		$filterStore
 		applyFilters()
 		isSticky = scrollY > filterTop - 80
-		console.log(isSticky)
 	}
 
 	// Handle route changes
@@ -173,7 +171,7 @@
 				<div class="relative">
 					<div
 						class="border-white border rounded-md p-2 {$filterStore.selectedArtist
-							? 'bg-white-pure text-black'
+							? 'bg-white-off text-black'
 							: 'bg-black text-white-pure'} cursor-pointer text-sm relative flex items-center"
 						on:click={() => (artistsOpen = !artistsOpen)}
 					>
@@ -200,7 +198,7 @@
 						>
 							{#each artists as artist}
 								<div
-									class="p-2 hover:bg-white-pure hover:text-black cursor-pointer text-sm"
+									class="p-2 hover:bg-white-off hover:text-black cursor-pointer text-sm"
 									on:click={() => {
 										updateFilter('selectedArtist', artist.slug)
 										artistsOpen = false
@@ -218,7 +216,7 @@
 				<div class="relative">
 					<div
 						class="border-white border rounded-md p-2 {$filterStore.selectedAuthor
-							? 'bg-white-pure text-black'
+							? 'bg-white-off text-black'
 							: 'bg-black text-white-pure'} cursor-pointer text-sm relative flex items-center"
 						on:click={() => (authorsOpen = !authorsOpen)}
 					>
@@ -244,7 +242,7 @@
 						>
 							{#each authors as author}
 								<div
-									class="p-2 hover:bg-white-pure hover:text-black cursor-pointer text-sm"
+									class="p-2 hover:bg-white-off hover:text-black cursor-pointer text-sm"
 									on:click={() => {
 										updateFilter('selectedAuthor', author.slug)
 										authorsOpen = false
@@ -262,7 +260,7 @@
 				<div class="relative">
 					<div
 						class="border-white border rounded-md p-2 {$filterStore.selectedPublisher
-							? 'bg-white-pure text-black'
+							? 'bg-white-off text-black'
 							: 'bg-black text-white-pure'} cursor-pointer text-sm relative flex items-center"
 						on:click={() => (publishersOpen = !publishersOpen)}
 					>
@@ -288,7 +286,7 @@
 						>
 							{#each publishers as publisher}
 								<div
-									class="p-2 hover:bg-white-pure hover:text-black cursor-pointer text-sm"
+									class="p-2 hover:bg-white-off hover:text-black cursor-pointer text-sm"
 									on:click={() => {
 										updateFilter('selectedPublisher', publisher.slug)
 										publishersOpen = false
@@ -309,7 +307,7 @@
 						'ar'
 							? 'text-right'
 							: ''} {$filterStore.yearFrom !== yearsAscending[0]
-							? 'bg-white-pure text-black'
+							? 'bg-white-off text-black'
 							: 'bg-black'}"
 						on:click={() => (yearFromOpen = !yearFromOpen)}
 					>
@@ -333,7 +331,7 @@
 						>
 							{#each yearsAscending as year}
 								<div
-									class="p-2 hover:bg-white-pure hover:text-black cursor-pointer text-sm {lang ===
+									class="p-2 hover:bg-white-off hover:text-black cursor-pointer text-sm {lang ===
 									'ar'
 										? 'text-right'
 										: ''}"
@@ -358,7 +356,7 @@
 						'ar'
 							? 'text-right'
 							: ''} {$filterStore.yearTo !== yearsDescending[0]
-							? 'bg-white-pure text-black'
+							? 'bg-white-off text-black'
 							: 'bg-black'}"
 						on:click={() => (yearToOpen = !yearToOpen)}
 					>
@@ -381,7 +379,7 @@
 						>
 							{#each yearsDescending as year}
 								<div
-									class="p-2 hover:bg-white-pure hover:text-black cursor-pointer text-sm {lang ===
+									class="p-2 hover:bg-white-off hover:text-black cursor-pointer text-sm {lang ===
 									'ar'
 										? 'text-right'
 										: ''}"
@@ -444,9 +442,3 @@
 	</div>
 </main>
 
-<style lang="postcss">
-	:root {
-		--color: white;
-		--active-color: black;
-	}
-</style>

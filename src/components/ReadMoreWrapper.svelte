@@ -8,10 +8,8 @@
 	let showFullContent = false
 
 	function toggleContent() {
-		console.log('Toggle clicked, current state:', showFullContent)
 		showFullContent = !showFullContent
 		$isExpandedStore = showFullContent // Update the store
-		console.log('New state:', showFullContent)
 	}
 </script>
 

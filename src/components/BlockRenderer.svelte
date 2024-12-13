@@ -75,10 +75,7 @@
 	let verticalAlignment = block.attributes?.verticalAlignment ?? null
 
 	$: {
-		console.log('BlockRenderer - isExpanded:', $isExpandedStore)
-		console.log('BlockRenderer - verticalAlignment:', verticalAlignment)
 		if ($isExpandedStore && verticalAlignment === 'center') {
-			console.log('Changing alignment to top')
 			verticalAlignment = 'top'
 		} else {
 			// Reset to original alignment when not expanded
@@ -132,10 +129,10 @@
 				baseClasses = 'w-full max-w-screen-xl mx-auto '
 				break
 			case 'none':
-				baseClasses = 'w-full max-w-[852px] mx-auto '
+				baseClasses = 'w-full max-w-screen-md mx-auto '
 				break
 			case 'center':
-				baseClasses = 'w-full max-w-[852px] mx-auto '
+				baseClasses = 'w-full max-w-screen-md mx-auto '
 				break
 			case null:
 				baseClasses = 'w-full '
