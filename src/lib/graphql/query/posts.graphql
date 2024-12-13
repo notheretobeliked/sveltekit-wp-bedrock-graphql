@@ -1,0 +1,18 @@
+query Posts($lang: String = "") {
+  posts(where: {language:$lang}) {
+    nodes {
+      title
+      learningHubFields {
+        byline
+      }
+      slug
+      categories {
+        nodes {
+          slug
+          name
+        }
+      }
+      date
+    }
+  }
+}
