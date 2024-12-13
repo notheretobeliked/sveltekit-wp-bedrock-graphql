@@ -38,32 +38,55 @@
 	})
 </script>
 
-
 <header class="fixed top-0 left-0 w-full z-40">
-	<div class="fixed top-0 bg-white-pure w-full pt-4 pb-3 z-40 flex flex-row px-1 md:px-3" id="top-bar">
+	<div
+		class="fixed top-0 bg-white-pure w-full pt-4 pb-3 z-40 flex flex-row px-1 md:px-3"
+		id="top-bar"
+	>
 		<div class="hidden lg:block">
-			<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<svg
+				width="30"
+				height="30"
+				viewBox="0 0 30 30"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
 				<rect width="30" height="30" fill="white" />
 				<path d="M23.5 6.5L6.5 14.5L23.5 22.5" stroke="black" stroke-width="2" />
 				<circle cx="6.5" cy="14.5" r="3.5" fill="white" stroke="black" stroke-width="2" />
 				<circle cx="23.5" cy="6.5" r="3.5" fill="white" stroke="black" stroke-width="2" />
 				<circle cx="23.5" cy="22.5" r="3.5" fill="white" stroke="black" stroke-width="2" />
-			</svg>			
+			</svg>
 		</div>
 		<div
 			class="flex flew-row gap-4 lg:gap-0 lg:grid lg:grid-cols-3 items-center h-full px-4 w-full max-w-screen-xl mx-auto text-black"
 		>
-			<h1 class="font-boogy text-lg whitespace-nowrap text-black {currentLanguage === 'ar' ? 'hidden lg:inline' : ''}"><a href="/en" class="">Decolonizing the page</a></h1>
+			<h1
+				class="font-boogy text-lg whitespace-nowrap text-black {currentLanguage === 'ar'
+					? 'hidden lg:inline'
+					: ''}"
+			>
+				<a href="/en" class="">Decolonizing the page</a>
+			</h1>
 			<div class="language-switcher text-right lg:text-center font-martina justify-end w-full">
-				<a class="{currentLanguage === 'en' ? 'hidden lg:inline' : ''}" href={englishLanguagePath} on:click={(e) => switchLanguage(e, englishLanguagePath)}
-					>English</a
+				<a
+					class={currentLanguage === 'en' ? 'hidden lg:inline' : ''}
+					href={englishLanguagePath}
+					on:click={(e) => switchLanguage(e, englishLanguagePath)}>English</a
 				>
 				<span class="hidden lg:inline">|</span>
-				<a class="{currentLanguage === 'ar' ? 'hidden lg:inline' : ''}" href={arabicLanguagePath} on:click={(e) => switchLanguage(e, arabicLanguagePath)}
-					>العربية</a
+				<a
+					class={currentLanguage === 'ar' ? 'hidden lg:inline' : ''}
+					href={arabicLanguagePath}
+					on:click={(e) => switchLanguage(e, arabicLanguagePath)}>العربية</a
 				>
 			</div>
-			<h1 class="text-right whitespace-nowrap z-30 !font-manchette font-extrabold text-lg text-black {currentLanguage === 'en' ? 'hidden lg:inline' : ''}">
+			<h1
+				class="text-right whitespace-nowrap z-30 !font-manchette font-extrabold text-lg text-black {currentLanguage ===
+				'en'
+					? 'hidden lg:inline'
+					: ''}"
+			>
 				<a href="/ar">إنهاء الاستعمار في الصفحة</a>
 			</h1>
 		</div>
@@ -87,6 +110,12 @@
 				<a href="/{currentLanguage}/library" class="text-center">
 					<span class="block !font-manchette text-2xl">مكتبة </span>
 					<span class="block font-boogy text-2xl">Library</span>
+				</a>
+			</li>
+			<li>
+				<a href="/{currentLanguage}/learning-hub" class="text-center">
+					<span class="block !font-manchette text-2xl">مركز التعلم </span>
+					<span class="block font-boogy text-2xl">Learning hub</span>
 				</a>
 			</li>
 			<li>
