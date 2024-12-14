@@ -6,7 +6,7 @@
 	export let data: PageData
 	let editorBlocks: EditorBlock[], uri: string
 	let bgColour = data.data.nodeByUri?.pageDesign?.bgColour?.slug || 'white-off'
-
+	console.log(data)
 	$: bgColourClass = getBgColorClass(bgColour)
 
 	function getBgColorClass(color: string | null): string {

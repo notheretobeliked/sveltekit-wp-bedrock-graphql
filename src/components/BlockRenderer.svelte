@@ -23,8 +23,9 @@
 		CoreSpacer as CoreSpacerType,
 		CoreButtons as CoreButtonsType,
 		CoreButton as CoreButtonType,
+		CoreFootnotes as CoreFootnotesType,
 		HomePageSection as HomePageSectionType,
-		AcfHomePageSection, // Add this import
+		AcfHomePageSection, 
 		ExhibitionRoom as ExhibitionRoomType
 	} from '$lib/graphql/generated'
 
@@ -50,6 +51,7 @@
 		| (HomePageSectionType & NormalizedBlock)
 		| (AcfHomePageSection & NormalizedBlock) // Add this line
 		| (ExhibitionRoomType & NormalizedBlock)
+		| (CoreFootnotesType & NormalizedBlock)
 
 	export let block: EditorBlock
 
@@ -59,6 +61,7 @@
 	const isExpanded = getContext(EXPANDED_KEY) || false
 
 	import CoreParagraph from '$components/blocks/CoreParagraph.svelte'
+	import CoreFootnotes from '$components/blocks/CoreFootnotes.svelte'
 	import CoreHeading from '$components/blocks/CoreHeading.svelte'
 	import CoreGroup from '$components/blocks/CoreGroup.svelte'
 	import CoreColumns from '$components/blocks/CoreColumns.svelte'
@@ -237,5 +240,9 @@
 
 	{#if block.name === 'core/spacer'}
 		<CoreSpacer {block} />
+	{/if}
+
+	{#if block.name === 'core/footnotes'}
+		<CoreFootnotes {block} />
 	{/if}
 </div>
