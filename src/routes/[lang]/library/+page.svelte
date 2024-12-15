@@ -12,7 +12,17 @@
 	import type { Book } from '$lib/types/general'
 	import Label from '$components/molecules/label.svelte'
 	export let data: PageData
-
+	import { beforeNavigate } from '$app/navigation'
+	beforeNavigate(() => {
+		filterStore.set({
+			selectedArtist: '',
+			selectedAuthor: '',
+			selectedPublisher: '',
+			yearFrom: yearsAscending[0] || '',
+			yearTo: yearsDescending[0] || '',
+			searchFilter: ''
+		})
+	})
 	let books: Book[] = (data.books ?? []).map((book) => ({
 		...book,
 		slug: book.slug ?? '',
@@ -22,7 +32,16 @@
 	let authors: { name: string; slug: string }[] = data.authors ?? []
 	let publishers: { name: string; slug: string }[] = data.publishers ?? []
 	let lang = data.language as 'ar' | 'en'
-
+	onMount(() => {
+		if (data.targetRef) {
+			setTimeout(() => {
+				const targetElement = document.querySelector(`[data-ref="${data.targetRef}"]`)
+				if (targetElement) {
+					targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
+				}
+			}, 100)
+		}
+	})
 	// Use the yearRange from the server data
 	let yearRange = data.yearRange
 	let yearsAscending =
@@ -427,6 +446,7 @@
 			<ul>
 				{#each filteredBooks as book (book.slug)}
 					<li
+						data-ref={book.ref?.toLowerCase()}
 						class="font-martina bg-black text-white-pure py-4 border-b border-white {lang === 'ar'
 							? 'text-right'
 							: ''}"
@@ -441,4 +461,3 @@
 		{/if}
 	</div>
 </main>
-

@@ -22,6 +22,7 @@
 		label: string
 		title: string | null
 		alwaysShow?: boolean
+		ref?: string | null
 	}
 
 	interface LabelData {
@@ -32,7 +33,8 @@
 		group1: [
 			{
 				label: `${translations.ref[lang]}: ${book.ref}`,
-				title: null
+				title: null,
+				ref: book.ref
 			}, // Ref label based on language
 			...[
 				{
@@ -187,10 +189,11 @@
 			<!-- Group 1 -->
 			<div class="lg:contents pl-4 lg:pl-0">
 				<div class="lg:py-3 flex flex-col gap-2">
-					{#each labelData.group1 as { label, title }, index}
+					{#each labelData.group1 as { label, title, ref }, index}
 						<LabelAndTitle
 							{label}
 							{title}
+							{ref}
 							underline={smallScreen ? true : shouldUnderline(index, labelData.group1.length)}
 						/>
 					{/each}
