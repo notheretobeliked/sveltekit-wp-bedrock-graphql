@@ -1,4 +1,3 @@
-export const prerender = true
 import PageContent from '$lib/graphql/query/page.graphql?raw'
 import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
 import { error } from '@sveltejs/kit'
@@ -8,7 +7,7 @@ import { flatListToHierarchical } from '$lib/server/utilities'
 
 export const load: PageServerLoad = async function load({ params, url, fetch }) {
   const uri = url.pathname
-  console.log(uri)
+
   
   try {
     const response = await graphqlQuery(PageContent, { uri: uri })
@@ -17,7 +16,7 @@ export const load: PageServerLoad = async function load({ params, url, fetch }) 
 
     if (!data || !data.nodeByUri) {
       throw error(404, {
-        message: 'Page not found',
+        message: 'Page not found in learning hub code',
       })
     }
 

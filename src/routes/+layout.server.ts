@@ -19,10 +19,15 @@ interface LoadReturn {
 }
 
 export const load: LayoutServerLoad<LoadReturn> = async function load({ params, url }) {
+
 	let uri = url.pathname
-	if (uri === '/en' || uri === '/ar') {
+	// Remove language prefix from URI before making the GraphQL query
+	uri = uri.replace(/^\/(en|ar)/, '')
+	
+	if (uri === '') {
 		uri = '/'
 	}
+	
 	const specialRoutes = [
 		'/library',
 		'/library/',
@@ -49,7 +54,7 @@ export const load: LayoutServerLoad<LoadReturn> = async function load({ params, 
 
 		// Only check for page data if it's not a special route
 		if (!data.page && !isSpecialRoute) {
-			error(404, 'Page not found')
+			error(404, 'Page not found in pagemetaquery')
 		}
 
 		// Modify menu items to add 'current' key
@@ -97,12 +102,7 @@ export const load: LayoutServerLoad<LoadReturn> = async function load({ params, 
 				(data.page.__typename === 'Page' || data.page.__typename === 'Post')
 					? data.page.languageCode
 					: 'en',
-			translations:
-				data.page &&
-				'__typename' in data.page &&
-				(data.page.__typename === 'Page' || data.page.__typename === 'Post')
-					? data.page.translations || []
-					: [],
+			translations: data.page?.translations || [],
 			seo: seoData,
 			uri
 		} satisfies LoadReturn

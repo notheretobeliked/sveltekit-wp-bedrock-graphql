@@ -7,20 +7,24 @@
 	import { Hamburger } from 'svelte-hamburgers'
 
 	export let menuItems: MenuItem[]
-
 	$: currentPagePath = $page.url.pathname
 	$: currentLanguage = currentPagePath.startsWith('/ar') ? 'ar' : 'en'
-	$: englishLanguagePath =
-		currentLanguage === 'ar' ? currentPagePath.replace(/^\/ar/, '/en') : currentPagePath
-	$: arabicLanguagePath =
-		currentLanguage === 'en' ? currentPagePath.replace(/^\/en/, '/ar') : currentPagePath
 
-	$: menuItems = menuItems.map((item) => ({
-		...item,
-		current: currentPagePath === item.uri
-	}))
+	// Update the language path calculations
+	$: englishLanguagePath =
+		currentLanguage === 'ar' && $page.data.translations?.find((t) => t.languageCode === 'en')
+			? '/en' + $page.data.translations.find((t) => t.languageCode === 'en').uri
+			: '/en'
+
+	$: arabicLanguagePath =
+		currentLanguage === 'en' && $page.data.translations?.find((t) => t.languageCode === 'ar')
+			? '/ar' + $page.data.translations.find((t) => t.languageCode === 'ar').uri
+			: '/ar'
+
+	// Add debug logging
 
 	let open: boolean = false
+
 
 	function switchLanguage(event: Event, targetPath: string) {
 		if (targetPath !== currentPagePath) {

@@ -14,7 +14,7 @@ export const load: PageServerLoad = async function load({ params, url }) {
 	// Restructure the books data
 
 	try {
-		const response = await graphqlQuery(Posts, { lang: 'en' })
+		const response = await graphqlQuery(Posts, { lang: params.lang })
 		checkResponse(response)
 		const { data } = await response.json()
 

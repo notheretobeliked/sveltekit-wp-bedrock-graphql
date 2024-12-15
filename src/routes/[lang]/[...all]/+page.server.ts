@@ -7,7 +7,8 @@ import { flatListToHierarchical } from '$lib/server/utilities'
 
 export const load: PageServerLoad = async function load({ params, url, fetch }) {
   const uri = `/${params.all || ''}`
-  
+
+    console.log(uri)
   // Fetch books from API route
   const booksResponse = await fetch(`/api/library-items?lang=${params.lang}`)
   const books = await booksResponse.json()
@@ -19,7 +20,7 @@ export const load: PageServerLoad = async function load({ params, url, fetch }) 
 
     if (!data || !data.nodeByUri) {
       throw error(404, {
-        message: 'Page not found',
+        message: 'Page not found in +page.server.ts',
       })
     }
 
