@@ -102,26 +102,26 @@
 		>
 			<li>
 				<a href="/{currentLanguage}" class="text-center">
-					<span class="block !font-manchette text-2xl"> معرض </span>
-					<span class="block font-boogy text-2xl">Exhibition</span>
+					<span class="block !font-manchette text-xl lg:text-2xl"> معرض </span>
+					<span class="block font-boogy text-xl lg:text-2xl">Exhibition</span>
 				</a>
 			</li>
 			<li>
 				<a href="/{currentLanguage}/library" class="text-center">
-					<span class="block !font-manchette text-2xl">مكتبة </span>
-					<span class="block font-boogy text-2xl">Library</span>
+					<span class="block !font-manchette text-xl lg:text-2xl">مكتبة </span>
+					<span class="block font-boogy text-xl lg:text-2xl">Library</span>
 				</a>
 			</li>
 			<li>
 				<a href="/{currentLanguage}/learning-hub" class="text-center">
-					<span class="block !font-manchette text-2xl">مركز التعلم </span>
-					<span class="block font-boogy text-2xl">Learning hub</span>
+					<span class="block !font-manchette text-xl lg:text-2xl">مركز التعلم </span>
+					<span class="block font-boogy text-xl lg:text-2xl">Learning hub</span>
 				</a>
 			</li>
 			<li>
 				<a href="/{currentLanguage}/about" class="text-center">
-					<span class="block !font-manchette text-2xl">عن </span>
-					<span class="block font-boogy text-2xl">About</span>
+					<span class="block !font-manchette text-xl lg:text-2xl">عن </span>
+					<span class="block font-boogy text-xl lg:text-2xl">About</span>
 				</a>
 			</li>
 		</ul>

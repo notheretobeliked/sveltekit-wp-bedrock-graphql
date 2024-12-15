@@ -23,30 +23,41 @@ export const load: LayoutServerLoad<LoadReturn> = async function load({ params, 
 	if (uri === '/en' || uri === '/ar') {
 		uri = '/'
 	}
+	const specialRoutes = [
+		'/library',
+		'/library/',
+		'/learning-hub',
+		'/learning-hub/',
+		'/ar/library',
+		'/ar/library/',
+		'/ar/learning-hub',
+		'/ar/learning-hub/',
+		'/en/library',
+		'/en/library/',
+		'/en/learning-hub',
+		'/en/learning-hub/'
+	]
+
+	// Check if current URI matches any of the special routes or their sub-routes
+	const isSpecialRoute = specialRoutes.some((route) => uri === route || uri.startsWith(`${route}/`))
 
 	try {
 		const response = await graphqlQuery(PageMeta, { uri: uri })
 		checkResponse(response)
 
-		// Assuming CombinedQueryResponse is correctly typed to reflect your GraphQL query structure
 		const { data }: { data: PageMetaQuery } = await response.json()
 
-		// First check if we have a valid page
-		if (!data.page) {
+		// Only check for page data if it's not a special route
+		if (!data.page && !isSpecialRoute) {
 			error(404, 'Page not found')
 		}
 
 		// Modify menu items to add 'current' key
-		if (data.menu && data.menu.menuItems && data.menu.menuItems.nodes) {
+		if (data.menu?.menuItems?.nodes) {
 			data.menu.menuItems.nodes = data.menu.menuItems.nodes.map((node) => ({
 				...node,
 				current: node.uri === uri
 			}))
-		}
-
-		if (!data.page?.seo?.opengraphUrl) {
-			console.error('SEO data check failed:', data.page?.seo)
-			error(500, 'Missing required SEO data')
 		}
 
 		if (!data.menu) {
@@ -54,21 +65,27 @@ export const load: LayoutServerLoad<LoadReturn> = async function load({ params, 
 			error(500, 'Missing menu data')
 		}
 
-		const siteUrl = data.page.seo.opengraphUrl.replace(
-			new URL(data.page.seo.opengraphUrl).origin,
-			PUBLIC_SITE_URL
-		)
+		const lang = params.lang || 'en'
 
-		// Add a log before the return to ensure we're getting here
-		console.log('About to return data with siteUrl:', siteUrl)
-
-		const lang = params.lang || 'en' // Get the lang from the URL params, default to 'en'
-
-		// Assuming your GraphQL query correctly fetches the SEO data as per your LayoutAPIResponse type
-		// Now `data` is already of type LayoutAPIResponse, including menu and SEO content
-		if (!data.menu) {
-			error(500, 'Missing menu data')
+		// Handle SEO data more gracefully
+		let seoData = data.page?.seo
+		if (seoData?.opengraphUrl) {
+			const siteUrl = seoData.opengraphUrl.replace(
+				new URL(seoData.opengraphUrl).origin,
+				PUBLIC_SITE_URL
+			)
+			seoData = { ...seoData, opengraphUrl: siteUrl }
+		} else {
+			// Provide fallback SEO data
+			seoData = {
+				title: 'Default Title',
+				metaDesc: 'Default Description',
+				opengraphUrl: `${PUBLIC_SITE_URL}${uri}`,
+				opengraphImage: null
+				// Add other required SEO fields with default values
+			}
 		}
+
 		return {
 			data,
 			labelTranslations,
@@ -86,9 +103,7 @@ export const load: LayoutServerLoad<LoadReturn> = async function load({ params, 
 				(data.page.__typename === 'Page' || data.page.__typename === 'Post')
 					? data.page.translations || []
 					: [],
-			seo: data.page?.seo
-				? { ...data.page.seo, opengraphUrl: siteUrl }
-				: error(500, 'Missing SEO data'),
+			seo: seoData,
 			uri
 		} satisfies LoadReturn
 	} catch (err: unknown) {

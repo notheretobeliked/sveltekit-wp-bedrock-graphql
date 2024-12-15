@@ -358,10 +358,10 @@
 									{/if}
 
 									{#if group.layout[0] === 'organic' || group.layout[0] === 'organic-landscape'}
-										<div class="grid grid-cols-2 gap-4 mb-[200px] layout-{group.layout[0]}">
+										<div class="lg:grid lg:grid-cols-2 gap-4 mb-[200px] layout-{group.layout[0]}">
 											{#if group.images?.nodes?.length > 0}
 												<!-- First image -->
-												<div class="col-span-2 flex justify-center">
+												<div class="lg:col-span-2 flex justify-center">
 													<div
 														class="{group.layout[0] === 'organic-landscape'
 															? 'h-[250px]'
@@ -382,7 +382,7 @@
 
 												<!-- For 2 images, show the second image centered -->
 												{#if group.images.nodes.length === 2}
-													<div class="col-span-2 flex justify-center">
+													<div class="lg:col-span-2 flex justify-center">
 														<div
 															class="mt-[50px] {group.layout[0] === 'organic-landscape'
 																? 'h-[250px]'
@@ -404,7 +404,7 @@
 												{:else if group.images.nodes.length === 3}
 													{#each group.images.nodes.slice(1) as image, i}
 														{#if i % 2 === 0}
-															<div class="col-start-1 row-span-2 flex justify-end">
+															<div class="lg:col-start-1 lg:row-span-2 flex justify-end">
 																<div
 																	class="{group.layout[0] === 'organic-landscape'
 																		? 'h-[250px]'
@@ -426,7 +426,7 @@
 																<div class="h-[200px]" />
 															</div>
 														{:else}
-															<div class="col-start-2 row-span-2 flex justify-start">
+															<div class="col-start-2 lg:row-span-2 flex justify-start">
 																<div
 																	class="{group.layout[0] === 'organic-landscape'
 																		? 'h-[250px]'
@@ -451,7 +451,7 @@
 													{#each group.images.nodes.slice(1, -1) as image, i}
 														{#if i % 2 === 0}
 															<!-- Even indexed images (2nd, 4th, etc.) -->
-															<div class="col-start-1 row-span-2 flex justify-end">
+															<div class="lg:col-start-1 lg:row-span-2 flex justify-center lg:justify-end">
 																<div
 																	class="{group.layout[0] === 'organic-landscape'
 																		? 'h-[250px]'
@@ -475,7 +475,7 @@
 															</div>
 														{:else}
 															<!-- Odd indexed images (3rd, 5th, etc.) -->
-															<div class="col-start-2 row-span-2 flex justify-start">
+															<div class="col-start-2 lg:row-span-2 flex justify-start">
 																<div
 																	class="{group.layout[0] === 'organic-landscape'
 																		? 'h-[250px]'
@@ -494,7 +494,7 @@
 																</div>
 															</div>
 															<!-- Spacer -->
-															<div class="col-start-1 row-span-1">
+															<div class="lg:col-start-1 row-span-1">
 																<div
 																	class="{group.layout[0] === 'organic-landscape'
 																		? 'h-[100px]'
@@ -505,7 +505,7 @@
 													{/each}
 
 													<!-- Final centered image (only if more than 3 images) -->
-													<div class="col-span-2 flex justify-center">
+													<div class="lg:col-span-2 flex justify-center">
 														<div
 															class="mt-[10px] {group.layout[0] === 'organic-landscape'
 																? 'h-[250px]'
