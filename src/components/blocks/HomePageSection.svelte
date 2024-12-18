@@ -1,5 +1,5 @@
 <script lang="ts">
-	let isTouchDevice = false
+	let isUsingTouch = false
 
 	import { page } from '$app/stores'
 	import { onMount } from 'svelte'
@@ -72,7 +72,7 @@
 	}
 
 	const toggleImages = () => {
-		if (isTouchDevice) return // Don't toggle images on touch devices
+		if (isUsingTouch) return;
 		showImages = !showImages
 		if (!showImages) {
 			isInitialized = false
@@ -85,14 +85,21 @@
 		if (header) {
 			headerHeight = header.clientHeight
 		}
-		isTouchDevice =
-			'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0
+		
+		// Add touch start listener to detect actual touch usage
+		document.addEventListener('touchstart', () => {
+			isUsingTouch = true
+		}, { once: true })
+
+		// Re-enable hover if mouse is used after touch
+		document.addEventListener('mousemove', () => {
+			isUsingTouch = false
+		}, { once: true })
 	})
 </script>
 
 {#if content}
 	<div
-		class:hover-enabled={!isTouchDevice}
 		on:mouseenter={toggleImages}
 		on:mouseleave={toggleImages}
 		aria-hidden="true"
