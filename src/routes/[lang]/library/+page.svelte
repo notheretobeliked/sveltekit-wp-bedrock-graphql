@@ -184,7 +184,7 @@
 		<div
 			bind:this={filterContainer}
 			class="{isSticky &&
-				'fixed'} top-[80px] left-0 right-0 z-10 mb-8 grid md:grid-cols-6 gap-4 mx-auto font-martina max-w-full lg:max-w-screen-xl"
+				'fixed'} bg-black py-3 top-[--header-height] left-0 right-0 z-10 mb-8 grid md:grid-cols-6 gap-4 mx-auto font-martina max-w-full lg:max-w-screen-xl"
 		>
 			{#if artists.length > 0}
 				<div class="relative">

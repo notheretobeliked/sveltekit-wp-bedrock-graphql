@@ -1,4 +1,6 @@
 <script lang="ts">
+	let isTouchDevice = false
+
 	import { page } from '$app/stores'
 	import { onMount } from 'svelte'
 	import { fade } from 'svelte/transition'
@@ -13,10 +15,10 @@
 	let previousIndex = 0
 	const totalImages = images.length
 	let showImages = false
+	let containerRef: HTMLDivElement // Add this for direct reference
+	let isInitialized = false // Add this flag
 
-	const toggleImages = () => {
-		showImages = !showImages
-	}
+	const duplicatedImages = [...images, ...images]
 
 	const transformImageObject = (image: (typeof images)[number]) => {
 		return {
@@ -34,37 +36,68 @@
 
 	let headerHeight: number
 
+	function updateIndex() {
+		// Only proceed if images are showing
+		if (!showImages) return
+
+		console.log('Updating index:', currentIndex)
+		currentIndex = (currentIndex + 1) % totalImages
+
+		const nextImage = document.getElementById(`image-${currentIndex}`)
+		console.log('Next image element:', nextImage)
+
+		if (nextImage && containerRef) {
+			console.log('Scrolling to position:', nextImage.offsetTop)
+			containerRef.scrollTo({
+				top: nextImage.offsetTop,
+				behavior: 'smooth'
+			})
+		}
+
+		if (currentIndex === 0 && containerRef) {
+			console.log('Resetting scroll position')
+			containerRef.scrollTop = 0
+		}
+
+		setTimeout(updateIndex, 5000)
+	}
+
+	// Watch for showImages changes
+	$: if (showImages && !isInitialized) {
+		isInitialized = true
+		// Start the animation after a small delay to ensure DOM is ready
+		setTimeout(() => {
+			setTimeout(updateIndex, 3000)
+		}, 100)
+	}
+
+	const toggleImages = () => {
+		if (isTouchDevice) return // Don't toggle images on touch devices
+		showImages = !showImages
+		if (!showImages) {
+			isInitialized = false
+			currentIndex = 0
+		}
+	}
+
 	onMount(() => {
 		const header = document.getElementById('top-bar')
 		if (header) {
 			headerHeight = header.clientHeight
 		}
+		isTouchDevice =
+			'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0
 	})
-
-	// Function to update the current index in a loop
-	function updateIndex() {
-		previousIndex = currentIndex
-		currentIndex = (currentIndex + 1) % totalImages
-		setTimeout(updateIndex, 2000) // Change image every 3 seconds
-	}
-
-	$: updateIndex()
-	$: generateRandomTransforms()
-
-	let transforms: Transform[] = []
-
-	function generateRandomTransforms() {
-		transforms = images.map(() => {
-			const scale = 1 + Math.random() * 0.001 // Random scale between 1 and 1.2
-			const translateX = (Math.random() - 0.2) * 10 // Random translateX between -5% and 5%
-			const translateY = (Math.random() - 0.1) * 10 // Random translateY between -5% and 5%
-			return { scale, translateX, translateY }
-		})
-	}
 </script>
 
 {#if content}
-	<div on:mouseenter={toggleImages} on:mouseleave={toggleImages} aria-hidden="true" class="h-full">
+	<div
+		class:hover-enabled={!isTouchDevice}
+		on:mouseenter={toggleImages}
+		on:mouseleave={toggleImages}
+		aria-hidden="true"
+		class="h-full"
+	>
 		<a href={link}>
 			{#each content as block}
 				{#if block}
@@ -77,48 +110,27 @@
 
 {#if showImages}
 	<div
-		class="w-[50vw] fixed h-screen left-[50vw] overflow-hidden z-10 fixed-images"
+		class="w-[50vw] bg-white-off fixed h-screen left-[50vw] overflow-hidden z-10"
 		style="top:{headerHeight}px"
 		transition:fade={{ duration: 300 }}
 	>
-		{#each images as image, index}
-			{#if index === currentIndex || index === previousIndex}
-				<div class="w-full h-full absolute" transition:fade={{ duration: 1000 }}>
-					<div
-						class="ken-burns"
-						style="--scale: {transforms[index].scale}; --translateX: {transforms[index]
-							.translateX}%; --translateY: {transforms[index].translateY}%;"
-					>
-						<Image
-							imageObject={transformImageObject(image)}
-							lazy={false}
-							imageSize="medium"
-							fit="cover"
-						/>
-					</div>
+		<div bind:this={containerRef} class="images-container absolute w-full overflow-y-auto h-full">
+			{#each duplicatedImages as image, i}
+				<div id="image-{i % totalImages}" class="w-full mb-20">
+					<Image
+						imageObject={transformImageObject(image)}
+						lazy={false}
+						imageSize="medium"
+						fit="contain"
+					/>
 				</div>
-			{/if}
-		{/each}
+			{/each}
+		</div>
 	</div>
 {/if}
 
 <style>
-	.ken-burns {
-		width: 100%;
-		height: 100%;
-		overflow: hidden;
-		animation: kenBurns 10s ease-in-out infinite;
-	}
-
-	@keyframes kenBurns {
-		0% {
-			transform: scale(var(--scale));
-		}
-		50% {
-			transform: scale(calc(var(--scale) + 0.1));
-		}
-		100% {
-			transform: scale(var(--scale));
-		}
+	.images-container {
+		scroll-behavior: smooth;
 	}
 </style>

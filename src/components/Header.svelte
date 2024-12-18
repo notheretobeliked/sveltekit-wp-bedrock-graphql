@@ -77,13 +77,13 @@
 			</h1>
 			<div class="language-switcher text-right lg:text-center font-martina justify-end w-full">
 				<a
-					class="lg:inline"
+					class="{currentLanguage === 'en' ? 'hidden' : ''} lg:inline"
 					href={currentLanguage === 'en' ? currentPagePath : englishLanguagePath}
 					on:click={(e) => switchLanguage(e, currentLanguage === 'en' ? currentPagePath : englishLanguagePath)}>English</a
 				>
 				<span class="hidden lg:inline">|</span>
 				<a
-					class="lg:inline"
+					class="{currentLanguage === 'ar' ? 'hidden' : ''} lg:inline"
 					href={currentLanguage === 'ar' ? currentPagePath : arabicLanguagePath}
 					on:click={(e) => switchLanguage(e, currentLanguage === 'ar' ? currentPagePath : arabicLanguagePath)}>العربية</a
 				>

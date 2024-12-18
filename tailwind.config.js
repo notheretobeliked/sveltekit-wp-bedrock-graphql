@@ -40,10 +40,10 @@ export default {
 		colors: {
 			transparent: 'transparent',
 			current: 'currentColor',
-			black: '#323D39',
+			black: '#262625',
 			white: {
 				pure: '#FFFFFF',
-				off: '#F8F3E6'
+				off: '#fbf9f2'
 			},
 			green: '#3BCE6C',
 			yellow: '#F0BF08',
@@ -55,7 +55,7 @@ export default {
 			xs: '.5rem',
 			sm: ['0.875rem', '1.138rem'],
 			base: ['1.063rem', '1.438rem'],
-			lg: ['1.5rem', '1.05'],
+			lg: ['1.8rem', '1.05'],
 			xl: ['2.5rem', '1.05'],
 			'2xl': ['2.875rem', '1.2'],
 			'3xl': ['3.275rem', '1.2'],
