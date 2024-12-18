@@ -26,7 +26,9 @@
 		CoreFootnotes as CoreFootnotesType,
 		HomePageSection as HomePageSectionType,
 		AcfHomePageSection, 
-		ExhibitionRoom as ExhibitionRoomType
+		ExhibitionRoom as ExhibitionRoomType,
+		CoreEmbed as CoreEmbedType,
+		CoreImage as CoreImageType
 	} from '$lib/graphql/generated'
 
 	interface NormalizedBlock {
@@ -52,6 +54,8 @@
 		| (AcfHomePageSection & NormalizedBlock) // Add this line
 		| (ExhibitionRoomType & NormalizedBlock)
 		| (CoreFootnotesType & NormalizedBlock)
+		| (CoreEmbedType & NormalizedBlock)
+		| (CoreImageType & NormalizedBlock)
 
 	export let block: EditorBlock
 
@@ -68,6 +72,8 @@
 	import CoreColumn from '$components/blocks/CoreColumn.svelte'
 	import CoreSpacer from './blocks/CoreSpacer.svelte'
 	import CoreButtons from './blocks/CoreButtons.svelte'
+	import CoreEmbed from './blocks/CoreEmbed.svelte'
+	import CoreImage from './blocks/CoreImage.svelte'
 	import CoreButton from './blocks/CoreButton.svelte'
 	import HomePageSection from './blocks/HomePageSection.svelte'
 	import HomePageBlock from './blocks/HomePageBlock.svelte'
@@ -245,4 +251,12 @@
 	{#if block.name === 'core/footnotes'}
 		<CoreFootnotes {block} />
 	{/if}
+
+	{#if block.name === 'core/embed'}
+		<CoreEmbed {block} />
+	{/if}
+
+	{#if block.name === 'core/image'}
+	<CoreImage {block} />
+{/if}
 </div>

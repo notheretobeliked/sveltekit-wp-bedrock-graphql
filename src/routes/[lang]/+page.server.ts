@@ -12,35 +12,16 @@ export const load = (async ({ params, url, fetch, parent }) => {
 	const parentData = await parent()
 	console.log('Parent data:', parentData) // Check parent data structure
 
-	const lang = params.lang
-	let uri: string
+	const uri = url.pathname
+	console.log(uri)
 
-	if (lang === 'en') {
-		uri = '/'
-	} else if (lang === 'ar') {
-		const arTranslation = parentData.data.page.translations.find((t) => t.languageCode === 'ar')
-		console.log('AR translation:', arTranslation) // Check Arabic translation data
-		uri = arTranslation ? `/${arTranslation.slug}` : '/'
-	} else {
-		uri = '/'
-	}
-
-	console.log('Final URI:', uri) // Check what URI is being used
-
-	// Fetch books from API route
-	const booksResponse = await fetch(`/api/library-items?lang=${lang}`)
-	const books = await booksResponse.json()
-	console.log('Books response:', books) // Check books data
 
 	try {
 		const response = await graphqlQuery(PageContent, { uri })
-		console.log('GraphQL response:', response) // Check raw GraphQL response
 		checkResponse(response)
 		const { data } = await response.json()
-		console.log('Parsed data:', data) // Check parsed data
 
 		if (!data || !data.nodeByUri) {
-			console.log('No data or nodeByUri found') // Debug 404 condition
 			throw error(404, { message: 'Page not found' })
 		}
 		const editorBlocks: EditorBlock[] = data.nodeByUri.editorBlocks
@@ -48,7 +29,6 @@ export const load = (async ({ params, url, fetch, parent }) => {
 			: []
 
 		return {
-			books,
 			data,
 			uri,
 			editorBlocks

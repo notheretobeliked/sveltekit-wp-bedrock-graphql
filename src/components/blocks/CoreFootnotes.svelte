@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { CoreFootnotes } from '$lib/graphql/generated'
 	export let block: CoreFootnotes
+	console.log(block)
 </script>
 
 {#if block.renderedHtml}<div class="footnotes">{@html block.renderedHtml}</div>{/if}

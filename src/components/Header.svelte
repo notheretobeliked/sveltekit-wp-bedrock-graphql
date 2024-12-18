@@ -11,20 +11,23 @@
 	$: currentLanguage = currentPagePath.startsWith('/ar') ? 'ar' : 'en'
 
 	// Update the language path calculations
-	$: englishLanguagePath =
-		currentLanguage === 'ar' && $page.data.translations?.find((t) => t.languageCode === 'en')
-			? '/en' + $page.data.translations.find((t) => t.languageCode === 'en').uri
-			: '/en'
+	$: englishLanguagePath = 
+		currentPagePath === '/ar/library' 
+			? '/en/library'
+			: currentLanguage === 'ar' && $page.data.translations?.find((t) => t.languageCode === 'en')
+				? '/en' + $page.data.translations.find((t) => t.languageCode === 'en').uri
+				: '/en'
 
-	$: arabicLanguagePath =
-		currentLanguage === 'en' && $page.data.translations?.find((t) => t.languageCode === 'ar')
-			? '/ar' + $page.data.translations.find((t) => t.languageCode === 'ar').uri
-			: '/ar'
+	$: arabicLanguagePath = 
+		currentPagePath === '/en/library'
+			? '/ar/library'
+			: currentLanguage === 'en' && $page.data.translations?.find((t) => t.languageCode === 'ar')
+				? '/ar' + $page.data.translations.find((t) => t.languageCode === 'ar').uri
+				: '/ar'
 
 	// Add debug logging
 
 	let open: boolean = false
-
 
 	function switchLanguage(event: Event, targetPath: string) {
 		if (targetPath !== currentPagePath) {
@@ -74,15 +77,15 @@
 			</h1>
 			<div class="language-switcher text-right lg:text-center font-martina justify-end w-full">
 				<a
-					class={currentLanguage === 'en' ? 'hidden lg:inline' : ''}
-					href={englishLanguagePath}
-					on:click={(e) => switchLanguage(e, englishLanguagePath)}>English</a
+					class="lg:inline"
+					href={currentLanguage === 'en' ? currentPagePath : englishLanguagePath}
+					on:click={(e) => switchLanguage(e, currentLanguage === 'en' ? currentPagePath : englishLanguagePath)}>English</a
 				>
 				<span class="hidden lg:inline">|</span>
 				<a
-					class={currentLanguage === 'ar' ? 'hidden lg:inline' : ''}
-					href={arabicLanguagePath}
-					on:click={(e) => switchLanguage(e, arabicLanguagePath)}>العربية</a
+					class="lg:inline"
+					href={currentLanguage === 'ar' ? currentPagePath : arabicLanguagePath}
+					on:click={(e) => switchLanguage(e, currentLanguage === 'ar' ? currentPagePath : arabicLanguagePath)}>العربية</a
 				>
 			</div>
 			<h1
@@ -117,14 +120,17 @@
 				</a>
 			</li>
 			<li>
-				<a href="/{currentLanguage}/learning-hub" class="text-center">
+				<a
+					href={currentLanguage === 'ar' ? '/ar/ghurfat-al-taallum' : '/en/learning-hub'}
+					class="text-center"
+				>
 					<span class="block !font-manchette text-xl lg:text-2xl">مركز التعلم </span>
 					<span class="block font-boogy text-xl lg:text-2xl">Learning hub</span>
 				</a>
 			</li>
 			<li>
-				<a href="/{currentLanguage}/about" class="text-center">
-					<span class="block !font-manchette text-xl lg:text-2xl">عن </span>
+				<a href={currentLanguage === 'ar' ? '/ar/man-nahn' : '/en/about'} class="text-center">
+					<span class="block !font-manchette text-xl lg:text-2xl">من نحن </span>
 					<span class="block font-boogy text-xl lg:text-2xl">About</span>
 				</a>
 			</li>
