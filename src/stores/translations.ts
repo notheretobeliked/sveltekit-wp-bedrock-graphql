@@ -113,6 +113,10 @@ export const labelTranslations = writable({
         en: 'Search',
         ar: 'بحث'
     },
+    filterBy: {
+        en: 'Filter by',
+        ar: 'تصفية حسب'
+    },
     nobooks: {
         en: 'No books found matching the current filters.',
         ar: 'لم يتم العثور على كتب تطابق المرشحات الحالية.'

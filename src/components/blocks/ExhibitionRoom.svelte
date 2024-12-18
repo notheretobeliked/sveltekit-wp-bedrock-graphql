@@ -2,6 +2,7 @@
 	import { onDestroy, onMount } from 'svelte'
 	import type { AcfExhibitionRoom, MediaItem } from '$lib/graphql/generated'
 	import type { ObserverEventDetails, ScrollDirection, Options } from 'svelte-inview'
+	import { language } from '$stores/language'
 
 	import { fade } from 'svelte/transition'
 	export let block: AcfExhibitionRoom
@@ -10,20 +11,24 @@
 	import { activeBook } from '$stores/activeBook'
 	import { inview } from 'svelte-inview'
 	let isInView: boolean
-	let scrollDirection: Direction | undefined  // Update this line
+	let scrollDirection: Direction | undefined // Update this line
 	// Process groups to update layout based on aspect ratio
 	// Process groups to update layout based on aspect ratio
-	
 
 	if (block?.exhibitionRoom?.cabinets) {
 		block.exhibitionRoom.cabinets.forEach((cabinet) => {
 			if (cabinet?.groups) {
 				cabinet.groups?.forEach((group) => {
-					if (!group || !group.layout) return;
+					if (!group || !group.layout) return
 
 					if (group?.layout[0] === 'organic' && group.images?.nodes?.[0]) {
+						// Skip landscape check if there are only 2 images
+						if (group.images.nodes.length <= 2) return
+
 						const firstImage = group.images.nodes[0]
-						const largeSize = firstImage.mediaDetails?.sizes?.find((size) => size && size.name === 'large')
+						const largeSize = firstImage.mediaDetails?.sizes?.find(
+							(size) => size && size.name === 'large'
+						)
 
 						if (largeSize?.width && largeSize?.height) {
 							const firstAspectRatio = parseInt(largeSize.width) / parseInt(largeSize.height)
@@ -245,7 +250,7 @@
 						</header>
 
 						{#if cabinet.introText}
-							<div class="basestyles hidden">
+							<div class="basestyles {$language === 'ar' ? 'ar' : ''} hidden">>
 								{@html cabinet.introText}
 							</div>
 						{/if}
@@ -289,14 +294,14 @@
 
 									{#if group.layout[0] === 'centered'}
 										<div
-											class="flex flex-col gap-[200px] mb-[200px] items-center layout-centered"
+											class="flex flex-col gap-[200px] mb-100 lg:mb-[200px] items-center layout-centered"
 											use:inview={options}
 											on:inview_change={handleChange}
 										>
 											{#if group.images?.nodes}
 												{#each group.images.nodes as image, i}
 													<div
-														class="relative h-[527px] hover:scale-[101%] transition-all duration-200 {isInView
+														class="relative h-[300px] lg:h-[527px] hover:scale-[101%] transition-all duration-200 {isInView
 															? 'scale-100 opacity-100 translate-y-0'
 															: 'scale-100 opacity-100 translate-y-0'}"
 														on:click={() => handleImageClick(image.reference)}
@@ -319,7 +324,7 @@
 									{#if group.layout[0] === 'animation'}
 										<div class="flex flex-col gap-[200px] mb-[200px] items-center layout-centered">
 											{#if group.images?.nodes?.length > 0}
-												<div class="relative h-[527px] w-full">
+												<div class="relative h-[300px] lg:h-[527px] w-full">
 													<!-- Added fixed height based on aspect ratio -->
 													{#key previousImageIndex}
 														<div class="absolute inset-0 w-full h-full z-10">
@@ -365,7 +370,7 @@
 													<div
 														class="{group.layout[0] === 'organic-landscape'
 															? 'h-[250px]'
-															: 'h-[430px]'} hover:scale-[101%] transition-all duration-200"
+															: 'h-[300px] lg:h-[430px]'} hover:scale-[101%] transition-all duration-200"
 														on:click={() => handleImageClick(group.images.nodes[0]?.reference)}
 														role="button"
 														tabindex="0"
@@ -384,9 +389,9 @@
 												{#if group.images.nodes.length === 2}
 													<div class="lg:col-span-2 flex justify-center">
 														<div
-															class="mt-[50px] {group.layout[0] === 'organic-landscape'
+															class="lg:mt-[50px] {group.layout[0] === 'organic-landscape'
 																? 'h-[250px]'
-																: 'h-[430px]'} hover:scale-[101%] transition-all duration-200"
+																: 'h-[300px] lg:h-[430px]'} hover:scale-[101%] transition-all duration-200"
 															on:click={() => handleImageClick(group.images.nodes[1]?.reference)}
 															role="button"
 															tabindex="0"
@@ -408,7 +413,7 @@
 																<div
 																	class="{group.layout[0] === 'organic-landscape'
 																		? 'h-[250px]'
-																		: 'h-[430px]'} hover:scale-[101%] transition-all duration-200"
+																		: 'h-[300px] lg:h-[430px]'} hover:scale-[101%] transition-all duration-200"
 																	on:click={() => handleImageClick(image?.reference)}
 																	role="button"
 																	tabindex="0"
@@ -422,15 +427,15 @@
 																	/>
 																</div>
 															</div>
-															<div class="col-start-2 row-span-1">
+															<div class="hidden lg:block col-start-2 row-span-1">
 																<div class="h-[200px]" />
 															</div>
 														{:else}
-															<div class="col-start-2 lg:row-span-2 flex justify-start">
+															<div class="col-start-2 lg:row-span-2 flex justify-center lg:justify-start">
 																<div
 																	class="{group.layout[0] === 'organic-landscape'
 																		? 'h-[250px]'
-																		: 'h-[430px]'} hover:scale-[101%] transition-all duration-200"
+																		: 'h-[300px] lg:h-[430px]'} hover:scale-[101%] transition-all duration-200"
 																	on:click={() => handleImageClick(image?.reference)}
 																	role="button"
 																	tabindex="0"
@@ -451,11 +456,13 @@
 													{#each group.images.nodes.slice(1, -1) as image, i}
 														{#if i % 2 === 0}
 															<!-- Even indexed images (2nd, 4th, etc.) -->
-															<div class="lg:col-start-1 lg:row-span-2 flex justify-center lg:justify-end">
+															<div
+																class="lg:col-start-1 lg:row-span-2 flex justify-center lg:justify-end"
+															>
 																<div
 																	class="{group.layout[0] === 'organic-landscape'
 																		? 'h-[250px]'
-																		: 'h-[430px]'} hover:scale-[101%] transition-all duration-200"
+																		: 'h-[300px] lg:h-[430px]'} hover:scale-[101%] transition-all duration-200"
 																	on:click={() => handleImageClick(image?.reference)}
 																	role="button"
 																	tabindex="0"
@@ -471,15 +478,15 @@
 															</div>
 															<!-- Spacer -->
 															<div class="col-start-2 row-span-1">
-																<div class="h-[200px]" />
+																<div class="lg:h-[140px]" />
 															</div>
 														{:else}
 															<!-- Odd indexed images (3rd, 5th, etc.) -->
-															<div class="col-start-2 lg:row-span-2 flex justify-start">
+															<div class="col-start-2 lg:row-span-2 flex justify-center lg:justify-start">
 																<div
 																	class="{group.layout[0] === 'organic-landscape'
 																		? 'h-[250px]'
-																		: 'h-[430px]'} hover:scale-[101%] transition-all duration-200"
+																		: 'h-[300px] lg:h-[430px]'} hover:scale-[101%] transition-all duration-200"
 																	on:click={() => handleImageClick(image?.reference)}
 																	role="button"
 																	tabindex="0"
@@ -497,8 +504,8 @@
 															<div class="lg:col-start-1 row-span-1">
 																<div
 																	class="{group.layout[0] === 'organic-landscape'
-																		? 'h-[100px]'
-																		: 'h-[200px]'} "
+																		? 'lg:h-[100px]'
+																		: 'lg:h-[140px]'} "
 																/>
 															</div>
 														{/if}
@@ -507,9 +514,9 @@
 													<!-- Final centered image (only if more than 3 images) -->
 													<div class="lg:col-span-2 flex justify-center">
 														<div
-															class="mt-[10px] {group.layout[0] === 'organic-landscape'
+															class="{group.layout[0] === 'organic-landscape'
 																? 'h-[250px]'
-																: 'h-[430px]'} hover:scale-[101%] transition-all duration-200"
+																: 'h-[300px] lg:h-[430px]'} hover:scale-[101%] transition-all duration-200"
 															on:click={() =>
 																handleImageClick(
 																	group.images.nodes[group.images.nodes.length - 1]?.reference
@@ -593,7 +600,7 @@
 						{/if}
 					</a>
 					{#if block.exhibitionRoom.introText}
-						<div class="basestyles">
+						<div class="basestyles introtext {$language === 'ar' ? 'ar' : ''}">
 							{@html block.exhibitionRoom.introText}
 						</div>
 					{/if}
@@ -644,7 +651,7 @@
 						</header>
 
 						{#if cabinet.introText}
-							<div class="basestyles">
+							<div class="basestyles {$language === 'ar' ? 'ar' : ''}">
 								{@html cabinet.introText}
 							</div>
 						{/if}
@@ -677,5 +684,13 @@
 <style lang="postcss">
 	:global(.basestyles p) {
 		@apply text-sm md:text-base font-martina;
+	}
+
+	:global(.basestyles.introtext p) {
+		@apply md:text-[1.2rem];
+	}
+
+	:global(.basestyles.ar p) {
+		@apply text-sm md:text-base font-martina text-right;
 	}
 </style>

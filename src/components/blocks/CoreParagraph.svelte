@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { CoreParagraph } from '$lib/graphql/generated'
 	import { classNames } from '$lib/utilities/utilities'
+	import { language } from '$stores/language' 
 
 	export let block: CoreParagraph
 
@@ -14,6 +15,7 @@
 	} = block.attributes ?? {}
 
 	
+    $: finalAlign = $language === 'ar' ? 'right' : align
 
 
 </script>
@@ -24,7 +26,7 @@
 		class="{classNames(
 			fontSize || 'base',
 			textColor || 'black',
-			align || 'left',
+			finalAlign || 'left',
 			fontFamily || 'martina'
 		)} mb-4"
 	>

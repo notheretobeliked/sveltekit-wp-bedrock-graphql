@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { CoreHeading } from '$lib/graphql/generated'
 	import { classNames } from '$lib/utilities/utilities'
+	import { language } from '$stores/language'
 
 	export let block: CoreHeading
 	const {
@@ -12,6 +13,7 @@
 		fontFamily = 'martina',
 		className = ''
 	} = block.attributes ?? {}
+	$: finalAlign = textAlign === 'center' ? 'center' : $language === 'ar' ? 'right' : textAlign
 </script>
 
 {#if level === 1}
@@ -19,7 +21,7 @@
 		class="{classNames(
 			fontSize || '2xl',
 			textColor || '',
-			textAlign || 'left',
+			finalAlign || 'left', // Replace textAlign with finalAlign in all h1-h5 elements
 			fontFamily || 'boogy'
 		)} {className} mb-1 md:mb-3 lg:mb-4"
 	>
@@ -30,9 +32,9 @@
 		class="{classNames(
 			fontSize || 'base',
 			textColor || '',
-			textAlign || 'left',
+			finalAlign || 'left', // Replace textAlign with finalAlign in all h1-h5 elements
 			fontFamily || 'martina'
-		)} {className} pb-1 border-b border-black mb-2 md:mb-3"
+		)} {className} pb-1 border-b border-black mt-2 md:mt-5 mb-2 md:mb-3"
 	>
 		{@html content}
 	</h2>
@@ -42,9 +44,9 @@
 		class="{classNames(
 			fontSize || 'base',
 			textColor || '',
-			textAlign || 'left',
+			finalAlign || 'left', // Replace textAlign with finalAlign in all h1-h5 elements
 			fontFamily || 'martina'
-		)} {className} uppercase tracking-wider mb-2 md:mb-3"
+		)} {className} uppercase tracking-wider mt-2 md:mt-5 mb-2 md:mb-3"
 	>
 		{@html content}
 	</h3>
@@ -53,9 +55,9 @@
 {#if level === 4}
 	<h4
 		class="{classNames(
-			fontSize || 'sm',
+			fontSize || 'xs',
 			textColor || '',
-			textAlign || 'left',
+			finalAlign || 'left', // Replace textAlign with finalAlign in all h1-h5 elements
 			fontFamily || 'martina'
 		)} {className} uppercase tracking-widest mb-1"
 	>
@@ -66,9 +68,9 @@
 {#if level === 5}
 	<h5
 		class="{classNames(
-			fontSize || 'sm',
+			fontSize || 'xs',
 			textColor || '',
-			textAlign || 'left',
+			finalAlign || 'left', // Replace textAlign with finalAlign in all h1-h5 elements
 			fontFamily || 'martina'
 		)} {className} uppercase tracking-widest mb-1"
 	>

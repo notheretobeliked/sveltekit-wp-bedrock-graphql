@@ -8,7 +8,9 @@
 	import LoadingSpinner from '$components/atoms/LoadingSpinner.svelte'
 	import Label from '$components/molecules/label.svelte'
 	import { slide } from 'svelte/transition'
-	import { activeBook } from '$stores/activeBook' // Add this import
+	import { activeBook } from '$stores/activeBook' 
+	import { language } from '$stores/language' 
+
 
 	export let data: PageData
 	let { seo, menu, uri } = data
@@ -34,9 +36,10 @@
 	$: if ($activeBook) {
 		showModal = true
 		loading = true
-		fetch(`/api/library-items?ref=${$activeBook}&lang=${$page.params.lang || 'en'}`)
+		fetch(`/api/library-items?ref=${$activeBook}&lang=${$language}`)
 			.then((res) => res.json())
 			.then((data) => {
+				console.log('API Response:', data)
 				currentBook = data || null
 				loading = false
 			})
@@ -51,6 +54,9 @@
 		showModal = false
 		$activeBook = null
 	}
+
+	$: $language = $page.params.lang || 'en'
+
 </script>
 
 {#key $page.url.pathname}
@@ -68,7 +74,7 @@
 	</div>
 {/if}
 
-<main class="px-3 md:px-0 bg-white-off">
+<main class="md:px-0">
 	<slot {data} />
 </main>
 
@@ -82,10 +88,10 @@
 			role="dialog"
 		>
 			<div
-				class="text-white-pure mx-auto max-w-screen-xl w-full max-h-[90vh] overflow-y-auto"
+				class="text-white-pure mx-auto max-w-screen-xl w-full max-h-[90vh] overflow-y-auto relative lg:overflow-y-visible"
 				on:click|stopPropagation
 			>
-				<div class="flex justify-end mb-4">
+				<div class="flex justify-end mb-4 w-full lg:absolute lg:translate-x-6">
 					<button class="text-gray-500 hover:text-gray-700" on:click={closeModal}>
 						<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path
@@ -100,7 +106,7 @@
 				{#if loading}
 					<LoadingSpinner />
 				{:else if currentBook}
-					<Label book={currentBook} lang={$page.params.lang || 'en'} />
+					<Label book={currentBook} lang={$language} />
 				{/if}
 			</div>
 		</div>

@@ -4,6 +4,8 @@
 	export let align: 'center' | 'left' | 'right' = 'left'
 	export let label: string
 	export let title: string | number | null = null
+    $: cleanTitle = title ? String(title).replace(/<[^>]*>/g, '') : null
+
 	export let ref: string | null = null
 </script>
 
@@ -22,6 +24,6 @@
 		{/if}
 	{/if}
 	{#if title}
-		<p class="text-sm font-martina">{title}</p>
+		<p class="text-sm font-martina">{cleanTitle}</p>
 	{/if}
 </div>
