@@ -4,11 +4,9 @@
 	import { fade } from 'svelte/transition'
 
 	import type { ImageObject } from '$lib/types/wp-types.ts'
-	import type { Viewer } from 'openseadragon'
 
 	export let image: ImageObject
 	export let images: ImageObject[]
-	export let currentIndex: number
 
 	function encodeSvg(svg: string) {
 		return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg.trim())}`
@@ -37,7 +35,7 @@
 	`)
 
 	const dispatch = createEventDispatcher()
-	let viewer: Viewer
+	let viewer
 	let viewerElement: HTMLElement
 
 	function close() {

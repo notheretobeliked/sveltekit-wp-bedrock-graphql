@@ -6,7 +6,12 @@ const config = {
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
 	// for more information about preprocessors
 	preprocess: vitePreprocess(),
-
+	onwarn: (warning, handler) => {
+		// suppress warnings on `vite dev` and `vite build`; but even without this, things still work
+		if (warning.code === 'a11y-click-events-have-key-events') return
+		if (warning.code === 'a11y-no-static-element-interactions') return
+		handler(warning)
+	},
 	kit: {
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
 		// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
@@ -28,11 +33,11 @@ const config = {
 			], // Prerender all routes
 			handleHttpError: ({ path, referrer, message }) => {
 				// Create an array of paths to ignore
-				const ignorePaths = ['/', '/api/library-items'];
+				const ignorePaths = ['/', '/api/library-items']
 				if (ignorePaths.includes(path)) {
-					return;
+					return
 				}
-				throw new Error(message);
+				throw new Error(message)
 			}
 		}
 	}

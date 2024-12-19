@@ -342,6 +342,7 @@ fragment CommonBlockFields on EditorBlock {
 			verticalAlignment
 			style
 			align
+			isStackedOnMobile
 		}
 	}
 	... on CoreColumn {

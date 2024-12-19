@@ -23,7 +23,7 @@
 			textColor || '',
 			finalAlign || 'left', // Replace textAlign with finalAlign in all h1-h5 elements
 			fontFamily || 'boogy'
-		)} {className} mb-1 md:mb-3 lg:mb-4"
+		)} {className} mb-1 md:mb-3 lg:mb-4 mx-2 lg:mx-0"
 	>
 		{@html content}
 	</h1>{/if}
@@ -34,7 +34,7 @@
 			textColor || '',
 			finalAlign || 'left', // Replace textAlign with finalAlign in all h1-h5 elements
 			fontFamily || 'martina'
-		)} {className} pb-1 border-b border-black mt-2 md:mt-5 mb-2 md:mb-3"
+		)} {className} pb-1 border-b border-black mt-2 md:mt-5 mb-2 md:mb-3 mx-2 lg:mx-0"
 	>
 		{@html content}
 	</h2>
@@ -46,7 +46,7 @@
 			textColor || '',
 			finalAlign || 'left', // Replace textAlign with finalAlign in all h1-h5 elements
 			fontFamily || 'martina'
-		)} {className} uppercase tracking-wider mt-2 md:mt-5 mb-2 md:mb-3"
+		)} {className} uppercase tracking-wider mt-2 md:mt-5 mb-2 md:mb-3 mx-2 lg:mx-0"
 	>
 		{@html content}
 	</h3>
@@ -59,7 +59,7 @@
 			textColor || '',
 			finalAlign || 'left', // Replace textAlign with finalAlign in all h1-h5 elements
 			fontFamily || 'martina'
-		)} {className} uppercase tracking-widest mb-1"
+		)} {className} uppercase tracking-widest mb-1 mx-2 lg:mx-0"
 	>
 		{@html content}
 	</h4>
@@ -72,7 +72,7 @@
 			textColor || '',
 			finalAlign || 'left', // Replace textAlign with finalAlign in all h1-h5 elements
 			fontFamily || 'martina'
-		)} {className} uppercase tracking-widest mb-1"
+		)} {className} uppercase tracking-widest mb-3 mx-2 lg:mx-0"
 	>
 		{@html content}
 	</h5>

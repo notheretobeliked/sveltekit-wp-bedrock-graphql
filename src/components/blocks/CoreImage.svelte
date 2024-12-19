@@ -3,7 +3,6 @@
 	import Image from '$components/Image.svelte'
 	export let block: CoreImage
 
-	console.log(block)
 	const imageObject = {
 		altText: block.attributes?.alt ? block.attributes.alt : '',
 		mediaDetails: {
@@ -12,9 +11,9 @@
 	}
 </script>
 
-<figure class="mb-4">
+<figure class="mb-4 w-full lg:w-3/4 mx-auto">
 	<Image {imageObject} imageSize="large" fit="contain" />
     {#if block.attributes?.caption}
-        <figcaption class="font-martina text-sm mt-2">{block.attributes.caption}</figcaption>
+        <figcaption class="font-martina text-sm mt-2 text-center">{block.attributes.caption}</figcaption>
     {/if}
 </figure>

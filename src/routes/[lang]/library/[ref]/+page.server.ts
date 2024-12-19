@@ -1,4 +1,4 @@
-// [lang]/library/[ref]/+page.server.ts
+export const prerender = false
 import { load as parentLoad } from '../+page.server.ts';
 import type { PageServerLoad } from './$types';
 

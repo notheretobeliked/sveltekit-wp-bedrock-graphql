@@ -1,5 +1,3 @@
-export const prerender = false
-
 import PageMeta from '$lib/graphql/query/menu.graphql?raw'
 import type { PageMetaQuery } from '$lib/graphql/generated'
 import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
@@ -54,7 +52,7 @@ export const load: LayoutServerLoad<LoadReturn> = async function load({ params, 
 
 		// Only check for page data if it's not a special route
 		if (!data.page && !isSpecialRoute) {
-			error(404, 'Page not found in pagemetaquery')
+			error(404, 'Sorry, this page does not exist')
 		}
 
 		// Modify menu items to add 'current' key

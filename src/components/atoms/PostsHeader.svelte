@@ -5,20 +5,22 @@
 	export let title: string
 </script>
 
-<div class="w-full flex flex-col gap-4 border-b border-black mb-12">
-	{#if slug}
-		<a href={slug} class="contents">
+<div class="mx-2 lg:mx-0">
+	<div class="w-full flex flex-col gap-4 border-b border-black mb-12">
+		{#if slug}
+			<a href={slug} class="contents">
+				<h1 class="font-boogy text-xl text-center">{title}</h1>
+				<div class="grid grid-cols-2">
+					<p class="font-martina text-base w-full text-center">{byline}</p>
+					<p class="font-martina text-base w-full text-center">{date}</p>
+				</div>
+			</a>
+		{:else}
 			<h1 class="font-boogy text-xl text-center">{title}</h1>
 			<div class="grid grid-cols-2">
 				<p class="font-martina text-base w-full text-center">{byline}</p>
 				<p class="font-martina text-base w-full text-center">{date}</p>
 			</div>
-		</a>
-	{:else}
-		<h1 class="font-boogy text-xl text-center">{title}</h1>
-		<div class="grid grid-cols-2">
-			<p class="font-martina text-base w-full text-center">{byline}</p>
-			<p class="font-martina text-base w-full text-center">{date}</p>
-		</div>
-	{/if}
+		{/if}
+	</div>
 </div>

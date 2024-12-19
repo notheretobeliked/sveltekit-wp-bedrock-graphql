@@ -39,7 +39,6 @@
 		fetch(`/api/library-items?ref=${$activeBook}&lang=${$language}`)
 			.then((res) => res.json())
 			.then((data) => {
-				console.log('API Response:', data)
 				currentBook = data || null
 				loading = false
 			})
@@ -56,6 +55,7 @@
 	}
 
 	$: $language = $page.params.lang || 'en'
+
 
 </script>
 

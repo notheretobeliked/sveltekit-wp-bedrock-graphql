@@ -120,5 +120,13 @@ export const labelTranslations = writable({
     nobooks: {
         en: 'No books found matching the current filters.',
         ar: 'لم يتم العثور على كتب تطابق المرشحات الحالية.'
-    }
+    },
+	showless: {
+		en: 'Show less',
+		ar: 'عرض أقل'
+	},
+	readmore: {
+		en: 'Read more',
+		ar: 'اقرأ المزيد'
+	}
 })

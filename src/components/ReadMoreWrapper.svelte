@@ -3,6 +3,8 @@
 	import Button from './Button.svelte'
 	import BlockRenderer from './BlockRenderer.svelte'
 	import type { EditorBlock } from '$lib/graphql/generated'
+	import { labelTranslations } from '$stores/translations'
+	import { language } from '$stores/language'
 
 	export let block: EditorBlock
 	let showFullContent = false
@@ -17,10 +19,12 @@
 	<div class="flex justify-center mt-8 mb-8">
 		<div on:click={toggleContent}>
 			<Button
-				label={showFullContent ? 'Show Less' : 'Read More'}
-				url="#"
-				active={showFullContent}
-			/>
+			label={showFullContent
+				? $labelTranslations.showless[$language]
+				: $labelTranslations.readmore[$language]}
+			active={showFullContent}
+			url="#"
+		/>
 		</div>
 	</div>
 	<div class="content-wrapper">

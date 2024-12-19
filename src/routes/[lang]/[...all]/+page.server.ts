@@ -23,6 +23,13 @@ import { flatListToHierarchical } from '$lib/server/utilities'
 
 export const load: PageServerLoad = async function load({ params, url, fetch }) {
 	const uri = `/${params.all || ''}`
+
+	// Add check for file extensions that shouldn't be handled by the page route
+	if (uri.match(/\.(woff2|jpg|png|gif|svg|css|js)$/i)) {
+		throw error(404, {
+			message: 'Not a page route'
+		})
+	}
 	const isLearningHub = uri.endsWith('/learning-hub') || uri.endsWith('/ghurfat-al-taallum')
 	const isLearningHubSingle = /^\/(learning-hub|ghurfat-al-taallum)\/[^\/]+$/.test(uri)
 
@@ -69,7 +76,6 @@ export const load: PageServerLoad = async function load({ params, url, fetch }) 
 		).map(JSON.parse)
 	}
 
-	console.log(uri)
 	// Fetch books from API route
 	const booksResponse = await fetch(`/api/library-items?lang=${params.lang}`)
 	const books = await booksResponse.json()
@@ -79,9 +85,10 @@ export const load: PageServerLoad = async function load({ params, url, fetch }) 
 		checkResponse(response)
 		const { data } = await response.json()
 
-		if (!data || !data.nodeByUri) {
+		// Only throw 404 if we truly have no data to work with
+		if (!data) {
 			throw error(404, {
-				message: 'Page not found in +page.server.ts'
+				message: 'No data returned from GraphQL query'
 			})
 		}
 

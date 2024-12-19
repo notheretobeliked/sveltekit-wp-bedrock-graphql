@@ -28,7 +28,7 @@
 			textColor || 'black',
 			finalAlign || 'left',
 			fontFamily || 'martina'
-		)} mb-4"
+		)} mb-4 mx-2 lg:mx-0"
 	>
 	{@html content}
 </p>

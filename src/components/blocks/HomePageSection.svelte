@@ -40,14 +40,11 @@
 		// Only proceed if images are showing
 		if (!showImages) return
 
-		console.log('Updating index:', currentIndex)
 		currentIndex = (currentIndex + 1) % totalImages
 
 		const nextImage = document.getElementById(`image-${currentIndex}`)
-		console.log('Next image element:', nextImage)
 
 		if (nextImage && containerRef) {
-			console.log('Scrolling to position:', nextImage.offsetTop)
 			containerRef.scrollTo({
 				top: nextImage.offsetTop,
 				behavior: 'smooth'
@@ -55,7 +52,6 @@
 		}
 
 		if (currentIndex === 0 && containerRef) {
-			console.log('Resetting scroll position')
 			containerRef.scrollTop = 0
 		}
 
@@ -72,7 +68,8 @@
 	}
 
 	const toggleImages = () => {
-		if (isUsingTouch) return;
+		if (isUsingTouch) return
+		if (images.length === 0) return
 		showImages = !showImages
 		if (!showImages) {
 			isInitialized = false
@@ -85,27 +82,30 @@
 		if (header) {
 			headerHeight = header.clientHeight
 		}
-		
+
 		// Add touch start listener to detect actual touch usage
-		document.addEventListener('touchstart', () => {
-			isUsingTouch = true
-		}, { once: true })
+		document.addEventListener(
+			'touchstart',
+			() => {
+				isUsingTouch = true
+			},
+			{ once: true }
+		)
 
 		// Re-enable hover if mouse is used after touch
-		document.addEventListener('mousemove', () => {
-			isUsingTouch = false
-		}, { once: true })
+		document.addEventListener(
+			'mousemove',
+			() => {
+				isUsingTouch = false
+			},
+			{ once: true }
+		)
 	})
 </script>
 
 {#if content}
-	<div
-		on:mouseenter={toggleImages}
-		on:mouseleave={toggleImages}
-		aria-hidden="true"
-		class="h-full"
-	>
-		<a href={link}>
+	<div on:mouseenter={toggleImages} on:mouseleave={toggleImages} aria-hidden="true" class="group h-full {(images.length === 0) ? 'py-6 md:py-12' : ''}">
+		<a href={link} class="block hover:scale-105 transition-all duration-300">
 			{#each content as block}
 				{#if block}
 					<BlockRenderer {block} />
@@ -123,7 +123,7 @@
 	>
 		<div bind:this={containerRef} class="images-container absolute w-full overflow-y-auto h-full">
 			{#each duplicatedImages as image, i}
-				<div id="image-{i % totalImages}" class="w-full mb-20">
+				<div id="image-{i % totalImages}" class="w-full">
 					<Image
 						imageObject={transformImageObject(image)}
 						lazy={false}
