@@ -24,7 +24,7 @@
 
 	const duplicatedImages = [...images, ...images]
 
-	const transformImageObject = (image: (typeof images)[number]) => {
+	const transformImageObject = (image: any) => {
 		return {
 			altText: image.altText,
 			mediaDetails: {
@@ -39,21 +39,25 @@
 	}
 
 	let headerHeight: number
+	let scrollInterval: ReturnType<typeof setInterval> | undefined
+	let preloadedImages: HTMLImageElement[] = []
 
 	function updateIndex() {
 		// Only proceed if images are showing
 		if (!showImages) return
 
 		if (isContinuous && containerRef) {
-			// For continuous scroll, increment by 1 pixel every frame
-			containerRef.scrollLeft += 3
-
-			// Reset scroll position when reaching the end
-			if (containerRef.scrollLeft >= containerRef.scrollWidth / 2) {
-				containerRef.scrollLeft = 0
-			}
-
-			requestAnimationFrame(() => updateIndex())
+			// Clear any existing interval when starting a new one
+			if (scrollInterval) clearInterval(scrollInterval)
+			
+			scrollInterval = setInterval(() => {
+				containerRef.scrollLeft += 50
+				
+				// Reset scroll position when reaching the end
+				if (containerRef.scrollLeft >= containerRef.scrollWidth / 2) {
+					containerRef.scrollLeft = 0
+				}
+			}, 16) // approximately 60fps
 		} else {
 			// Original snapping behavior
 			currentIndex = (currentIndex + 1) % totalImages
@@ -95,6 +99,11 @@
 		if (!showImages) {
 			isInitialized = false
 			currentIndex = 0
+			// Clear interval when hiding images
+			if (scrollInterval) {
+				clearInterval(scrollInterval)
+				scrollInterval = undefined
+			}
 		}
 	}
 
@@ -103,6 +112,20 @@
 		if (header) {
 			headerHeight = header.clientHeight
 		}
+
+		console.log(duplicatedImages)
+		// Preload images
+		duplicatedImages.forEach(image => {
+			const largeSize = image.mediaDetails?.sizes?.find((size) => size?.name === 'large')
+			if (largeSize?.sourceUrl) {
+				const imgElement = new window.Image()
+				imgElement.src = largeSize.sourceUrl
+				preloadedImages.push(imgElement)
+				console.log('Preloading:', largeSize.sourceUrl)
+			}
+		})
+
+		
 
 		// Add touch start listener to detect actual touch usage
 		document.addEventListener(
