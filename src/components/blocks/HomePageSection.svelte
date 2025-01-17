@@ -51,13 +51,13 @@
 			if (scrollInterval) clearInterval(scrollInterval)
 			
 			scrollInterval = setInterval(() => {
-				containerRef.scrollLeft += 50
+				containerRef.scrollLeft += 10
 				
 				// Reset scroll position when reaching the end
 				if (containerRef.scrollLeft >= containerRef.scrollWidth / 2) {
 					containerRef.scrollLeft = 0
 				}
-			}, 16) // approximately 60fps
+			}, 30) // approximately 60fps
 		} else {
 			// Original snapping behavior
 			currentIndex = (currentIndex + 1) % totalImages
@@ -191,8 +191,3 @@
 	</div>
 {/if}
 
-<style>
-	.images-container {
-		scroll-behavior: smooth;
-	}
-</style>
