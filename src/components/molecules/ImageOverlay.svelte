@@ -7,6 +7,7 @@
 
 	export let image: ImageObject
 	export let images: ImageObject[]
+	export let currentIndex: number
 
 	function encodeSvg(svg: string) {
 		return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg.trim())}`
@@ -146,7 +147,7 @@
 					<path
 						d="M17 1L1 17.5L17 34"
 						stroke="white"
-						stroke-width="2"
+						stroke-width="1"
 						stroke-linecap="round"
 						stroke-linejoin="round"
 					/>
@@ -167,7 +168,7 @@
 					<path
 						d="M1 1L17 17.5L1 34"
 						stroke="white"
-						stroke-width="2"
+						stroke-width="1"
 						stroke-linecap="round"
 						stroke-linejoin="round"
 					/>

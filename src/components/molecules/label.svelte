@@ -323,20 +323,3 @@
 	/>
 {/if}
 
-<style lang="postcss">
-	/* .label-grid {
-  display: grid;
-  grid-template-areas:
-    "col1 col2"
-    "imagerow imagerow";
-  grid-template-columns: repeat(2, 1fr);
-}
-
-@media (min-width: theme('screens.lg')) {
-  .label-grid {
-    grid-template-areas:
-      "col1 col2 col3 col4 col5 image";
-    grid-template-columns: repeat(6, 1fr);
-  }
-} */
-</style>
