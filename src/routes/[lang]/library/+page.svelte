@@ -191,7 +191,7 @@
 			<h1 class="text-center text-2xl !font-manchette">مكتبة</h1>
 			<h1 class="text-center text-2xl !font-boogy">Library</h1>
 		</header>
-		<div class="{isSticky ? 'fixed' : ''} bg-black py-3 px-4 top-[--header-height] left-0 right-0 z-10 mb-8" bind:this={filterContainer}>
+		<div class="{isSticky ? 'fixed' : ''} bg-black py-3 px-4 top-[--header-height] left-0 right-0 z-[99] mb-8" bind:this={filterContainer}>
 			<!-- Mobile Filter Toggle -->
 			<button
 				class="md:hidden w-full flex items-center justify-between px-2 py-1 bg-black text-white-pure border border-white rounded-md mb-2"
