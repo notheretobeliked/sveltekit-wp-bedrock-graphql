@@ -8,9 +8,9 @@
 	import LoadingSpinner from '$components/atoms/LoadingSpinner.svelte'
 	import Label from '$components/molecules/label.svelte'
 	import { slide } from 'svelte/transition'
-	import { activeBook } from '$stores/activeBook' 
-	import { language } from '$stores/language' 
-
+	import { activeBook } from '$stores/activeBook'
+	import { language } from '$stores/language'
+	import { afterNavigate } from '$app/navigation'
 
 	export let data: PageData
 	let { seo, menu, uri } = data
@@ -22,6 +22,9 @@
 	const siteUrl = seo.siteUrl
 	const siteTitle = seo.opengraphSiteName // Assuming this is used for og:site_name
 	let loading = false
+	afterNavigate(() => {
+		document.documentElement.lang = $language
+	})
 
 	$: {
 		menuItems
@@ -55,8 +58,6 @@
 	}
 
 	$: $language = $page.params.lang || 'en'
-
-
 </script>
 
 {#key $page.url.pathname}
