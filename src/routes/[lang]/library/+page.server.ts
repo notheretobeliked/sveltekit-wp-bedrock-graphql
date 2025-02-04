@@ -1,42 +1,6 @@
 import { error } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
 
-function extractArtistsFromFlat(books: any[]) {
-  const artistsMap = new Map<string, { name: string; slug: string }>()
-  books.forEach(book => {
-    if (book.artists) {
-      book.artists.forEach((artist: { name: string; slug: string }) => {
-        artistsMap.set(artist.slug, artist)
-      })
-    }
-  })
-  return Array.from(artistsMap.values()).sort((a, b) => a.name.localeCompare(b.name))
-}
-
-function extractAuthorsFromFlat(books: any[]) {
-  const authorsMap = new Map<string, { name: string; slug: string }>()
-  books.forEach(book => {
-    if (book.authors) {
-      book.authors.forEach((author: { name: string; slug: string }) => {
-        authorsMap.set(author.slug, author)
-      })
-    }
-  })
-  return Array.from(authorsMap.values()).sort((a, b) => a.name.localeCompare(b.name))
-}
-
-function extractPublishersFromFlat(books: any[]) {
-  const publishersMap = new Map<string, { name: string; slug: string }>()
-  books.forEach(book => {
-    if (book.publishers) {
-      book.publishers.forEach((publisher: { name: string; slug: string }) => {
-        publishersMap.set(publisher.slug, publisher)
-      })
-    }
-  })
-  return Array.from(publishersMap.values()).sort((a, b) => a.name.localeCompare(b.name))
-}
-
 function getYearRangeFromFlat(books: any[]) {
   const years = books
     .map(book => book.year)
@@ -56,19 +20,34 @@ function getYearRangeFromFlat(books: any[]) {
 
 export const load: PageServerLoad = async function load({ params, fetch }) {
   try {
-    const response = await fetch(`/api/library-items?lang=${params.lang || 'en'}`)
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
+    const lang = params.lang || 'en'
+
+    // Fetch books and taxonomies in parallel
+    const [booksResponse, artistsResponse, authorsResponse, publishersResponse] = await Promise.all([
+      fetch(`/api/library-items?lang=${lang}`),
+      fetch(`/api/library-items?lang=${lang}&type=artists`),
+      fetch(`/api/library-items?lang=${lang}&type=authors`),
+      fetch(`/api/library-items?lang=${lang}&type=publishers`)
+    ])
+
+    if (!booksResponse.ok || !artistsResponse.ok || !authorsResponse.ok || !publishersResponse.ok) {
+      throw new Error('One or more API requests failed')
     }
-    const books = await response.json()
+
+    const [books, artists, authors, publishers] = await Promise.all([
+      booksResponse.json(),
+      artistsResponse.json(),
+      authorsResponse.json(),
+      publishersResponse.json()
+    ])
 
     return {
       books,
       uri: params.uri,
-      artists: extractArtistsFromFlat(books),
-      publishers: extractPublishersFromFlat(books),
-      authors: extractAuthorsFromFlat(books),
-      language: params.lang,
+      artists,
+      authors,
+      publishers,
+      language: lang,
       yearRange: getYearRangeFromFlat(books)
     }
   } catch (err: unknown) {

@@ -14,6 +14,8 @@
 		className = ''
 	} = block.attributes ?? {}
 	$: finalAlign = textAlign === 'center' ? 'center' : $language === 'ar' ? 'right' : textAlign
+	$: isArabic = $language === 'ar'
+
 </script>
 
 {#if level === 1}
@@ -22,7 +24,8 @@
 			fontSize || '2xl',
 			textColor || '',
 			finalAlign || 'left', // Replace textAlign with finalAlign in all h1-h5 elements
-			fontFamily || 'boogy'
+			fontFamily || 'boogy',
+			isArabic
 		)} {className} mb-1 md:mb-3 lg:mb-4 mx-2 lg:mx-0"
 	>
 		{@html content}
@@ -33,7 +36,8 @@
 			fontSize || 'base',
 			textColor || '',
 			finalAlign || 'left', // Replace textAlign with finalAlign in all h1-h5 elements
-			fontFamily || 'martina'
+			fontFamily || 'martina',
+			isArabic
 		)} {className} pb-1 border-b border-black mt-2 md:mt-5 mb-2 md:mb-3 mx-2 lg:mx-0"
 	>
 		{@html content}
@@ -45,7 +49,8 @@
 			fontSize || 'base',
 			textColor || '',
 			finalAlign || 'left', // Replace textAlign with finalAlign in all h1-h5 elements
-			fontFamily || 'martina'
+			fontFamily || 'martina',
+			isArabic
 		)} {className} uppercase tracking-wider mt-2 md:mt-5 mb-2 md:mb-3 mx-2 lg:mx-0"
 	>
 		{@html content}
@@ -58,7 +63,8 @@
 			fontSize || 'xs',
 			textColor || '',
 			finalAlign || 'left', // Replace textAlign with finalAlign in all h1-h5 elements
-			fontFamily || 'martina'
+			fontFamily || 'martina',
+			isArabic
 		)} {className} uppercase tracking-widest mb-1 mx-2 lg:mx-0"
 	>
 		{@html content}
@@ -71,7 +77,8 @@
 			fontSize || 'xs',
 			textColor || '',
 			finalAlign || 'left', // Replace textAlign with finalAlign in all h1-h5 elements
-			fontFamily || 'martina'
+			fontFamily || 'martina',
+			isArabic
 		)} {className} uppercase tracking-widest mb-3 mx-2 lg:mx-0"
 	>
 		{@html content}

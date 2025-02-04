@@ -189,9 +189,14 @@
 	<div class="min-h-screen mx-auto font-martina max-w-screen-xl">
 		<header class="mb-8">
 			<h1 class="text-center text-2xl !font-manchette">مكتبة</h1>
-			<h1 class="text-center text-2xl !font-boogy">Library</h1>
+			{#if lang === 'en'}<h1 class="text-center text-2xl !font-boogy">Library</h1>{/if}
 		</header>
-		<div class="{isSticky ? 'fixed' : ''} bg-black py-3 px-4 top-[--header-height] left-0 right-0 z-[99] mb-8" bind:this={filterContainer}>
+		<div
+			class="{isSticky
+				? 'fixed'
+				: ''} bg-black py-3 top-[--header-height] left-0 right-0 z-[99] mb-8"
+			bind:this={filterContainer}
+		>
 			<!-- Mobile Filter Toggle -->
 			<button
 				class="md:hidden w-full flex items-center justify-between px-2 py-1 bg-black text-white-pure border border-white rounded-md mb-2"
@@ -213,6 +218,7 @@
 				</svg>
 			</button>
 			<div
+				dir={lang === 'ar' ? 'rtl' : 'ltr'}
 				class="{!isFilterOpen
 					? 'hidden md:grid'
 					: 'grid'} md:grid-cols-6 gap-4 mx-auto font-martina max-w-full lg:max-w-screen-xl"
@@ -473,6 +479,87 @@
 
 		{#if isSticky}
 			<div class="mb-8" style="height: {filterHeight}px"></div>
+		{/if}
+
+		<!-- New section for active filter details -->
+		{#if $filterStore.selectedArtist || $filterStore.selectedAuthor || $filterStore.selectedPublisher}
+			<div class="max-w-screen-xl mx-auto px-4 mb-12">
+				{#if $filterStore.selectedArtist}
+					{@const artist = artists.find((a) => a.slug === $filterStore.selectedArtist)}
+					{#if artist}
+						{#if lang === 'en'}<h2 class="text-center text-2xl !font-manchette">
+								{artist.nameTranslated}
+							</h2>{/if}
+						<h2
+							class="text-center {lang === 'en'
+								? 'text-2xl font-boogy'
+								: 'text-ar-2xl font-manchette'}"
+						>
+							{artist.name}
+						</h2>
+
+						{#if artist.description}
+							<div
+								class="max-w-screen-md mx-auto mt-12 {lang === 'en'
+									? 'font-martina text-sm md:text-base'
+									: 'font-lyon text-ar-sm md:text-ar-base text-right'} "
+							>
+								{@html artist.description}
+							</div>
+						{/if}
+					{/if}
+				{/if}
+
+				{#if $filterStore.selectedAuthor}
+					{@const author = authors.find((a) => a.slug === $filterStore.selectedAuthor)}
+					{#if author}
+						{#if lang === 'en'}<h2 class="text-center text-2xl !font-manchette">
+								{author.nameTranslated}
+							</h2>{/if}
+						<h2
+							class="text-center {lang === 'en'
+								? 'text-2xl font-boogy'
+								: 'text-ar-2xl font-manchette'}"
+						>
+							{author.name}
+						</h2>
+						{#if author.description}
+							<div
+								class="max-w-screen-md mx-auto mt-12 {lang === 'en'
+									? 'font-martina text-sm md:text-base'
+									: 'font-lyon text-ar-sm md:text-ar-base text-right'} "
+							>
+								{@html author.description}
+							</div>
+						{/if}
+					{/if}
+				{/if}
+
+				{#if $filterStore.selectedPublisher}
+					{@const publisher = publishers.find((p) => p.slug === $filterStore.selectedPublisher)}
+					{#if publisher}
+						{#if lang === 'en'}<h2 class="text-center text-2xl !font-manchette">
+								{publisher.nameTranslated}
+							</h2>{/if}
+						<h2
+							class="text-center {lang === 'en'
+								? 'text-2xl font-boogy'
+								: 'text-ar-2xl font-manchette'}"
+						>
+							{publisher.name}
+						</h2>
+						{#if publisher.description}
+							<div
+								class="max-w-screen-md mx-auto mt-12 {lang === 'en'
+									? 'font-martina text-sm md:text-base'
+									: 'font-lyon text-ar-sm md:text-ar-base text-right'} "
+							>
+								{@html publisher.description}
+							</div>
+						{/if}
+					{/if}
+				{/if}
+			</div>
 		{/if}
 
 		{#if filteredBooks.length > 0}

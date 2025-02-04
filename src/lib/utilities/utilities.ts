@@ -20,42 +20,44 @@ export const classNames = (
 	fontSize: string,
 	textColor: string,
 	align: string,
-	fontFamily: string
+	fontFamily: string,
+	isArabic: boolean = false
 ) => {
 	let sizeClasses: string = ''
 	let fontClasses: string = ''
-	let alignClasses: string = 'text-left' // Initialize with default value
+	let alignClasses: string = 'text-left'
 	let colorClasses: string = ''
 
-	// Handle font size
+	// Handle font size with Arabic variants
+	const prefix = isArabic ? 'ar-' : ''
 	switch (fontSize) {
 		case 'xs':
-			sizeClasses = 'text-xs'
+			sizeClasses = `text-${prefix}xs`
 			break
 		case 'sm':
-			sizeClasses = 'text-sm'
+			sizeClasses = `text-${prefix}sm`
 			break
 		case 'base':
-			sizeClasses = 'text-base'
+			sizeClasses = `text-${prefix}base`
 			break
 		case 'lg':
-			sizeClasses = 'text-base md:text-lg'
+			sizeClasses = `text-${prefix}base md:text-${prefix}lg`
 			break
 		case 'xl':
-			sizeClasses = 'text-lg md:text-xl'
+			sizeClasses = `text-${prefix}lg md:text-${prefix}xl`
 			break
 		case '2xl':
-			sizeClasses = 'text-xl md:text-2xl'
+			sizeClasses = `text-${prefix}xl md:text-${prefix}2xl`
 			break
 		case '3xl':
-			sizeClasses = 'text-2xl md:text-3xl'
+			sizeClasses = `text-${prefix}2xl md:text-${prefix}3xl`
 			break
 		case '4xl':
-			sizeClasses = 'text-2xl md:text-4xl'
+			sizeClasses = `text-${prefix}2xl md:text-${prefix}4xl`
 			break
 		case '':
 		default:
-			sizeClasses = 'text-sm md:text-base'
+			sizeClasses = `text-${prefix}sm md:text-${prefix}base`
 			break
 	}
 
@@ -69,6 +71,12 @@ export const classNames = (
 			break
 		case 'boogy':
 			fontClasses = 'font-boogy'
+			break
+		case 'lyon':
+			fontClasses = 'font-lyon'
+			break
+		case 'lyon-slanted':
+			fontClasses = 'lyon-slanted'
 			break
 		case '':
 		default:

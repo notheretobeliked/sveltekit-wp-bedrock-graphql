@@ -1,10 +1,5 @@
 <script lang="ts">
 	let isUsingTouch = false
-	import { browser } from '$app/environment'
-	const isContinuous = browser
-		? new URLSearchParams(window.location.search).has('continuous')
-		: false
-
 	import { page } from '$app/stores'
 	import { onMount } from 'svelte'
 	import { fade } from 'svelte/transition'
@@ -15,12 +10,10 @@
 	const content = block.innerBlocks ?? [] // Provide a default empty array
 	import BlockRenderer from '$components/BlockRenderer.svelte'
 	import Image from '$components/Image.svelte'
-	let currentIndex = 0
-	let previousIndex = 0
 	const totalImages = images.length
 	let showImages = false
-	let containerRef: HTMLDivElement // Add this for direct reference
-	let isInitialized = false // Add this flag
+	let containerRef: HTMLDivElement
+	let isInitialized = false
 
 	const duplicatedImages = [...images, ...images]
 
@@ -43,10 +36,9 @@
 	let preloadedImages: HTMLImageElement[] = []
 
 	function updateIndex() {
-		// Only proceed if images are showing
 		if (!showImages) return
 
-		if (isContinuous && containerRef) {
+		if (containerRef) {
 			// Clear any existing interval when starting a new one
 			if (scrollInterval) clearInterval(scrollInterval)
 			
@@ -57,39 +49,14 @@
 				if (containerRef.scrollLeft >= containerRef.scrollWidth / 2) {
 					containerRef.scrollLeft = 0
 				}
-			}, 30) // approximately 60fps
-		} else {
-			// Original snapping behavior
-			currentIndex = (currentIndex + 1) % totalImages
-
-			const nextImage = document.getElementById(`image-${currentIndex}`)
-
-			if (nextImage && containerRef) {
-				containerRef.scrollTo({
-					left: nextImage.offsetLeft,
-					behavior: 'smooth'
-				})
-			}
-
-			if (currentIndex === 0 && containerRef) {
-				containerRef.scrollLeft = 0
-			}
-
-			setTimeout(updateIndex, 5000)
+			}, 30)
 		}
 	}
 
 	// Watch for showImages changes
 	$: if (showImages && !isInitialized) {
 		isInitialized = true
-		// Start the animation immediately for continuous mode, or after delay for normal mode
-		if (isContinuous) {
-			requestAnimationFrame(updateIndex)
-		} else {
-			setTimeout(() => {
-				setTimeout(updateIndex, 3000)
-			}, 100)
-		}
+		requestAnimationFrame(updateIndex)
 	}
 
 	const toggleImages = () => {
@@ -98,8 +65,6 @@
 		showImages = !showImages
 		if (!showImages) {
 			isInitialized = false
-			currentIndex = 0
-			// Clear interval when hiding images
 			if (scrollInterval) {
 				clearInterval(scrollInterval)
 				scrollInterval = undefined

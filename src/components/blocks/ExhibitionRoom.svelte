@@ -187,7 +187,7 @@
 					}}
 				/>
 			{/if}
-			{#if block?.exhibitionRoom?.nameEn}
+			{#if block?.exhibitionRoom?.nameEn  && $language != 'ar'}
 				<CoreHeading
 					block={{
 						attributes: {
@@ -218,7 +218,7 @@
 						)}
 					>
 						<header class="mb-12 top-[20vh] z-30">
-							{#if cabinet.nameEn}
+							{#if cabinet.nameAr }
 								<CoreHeading
 									block={{
 										attributes: {
@@ -233,7 +233,7 @@
 									}}
 								/>
 							{/if}
-							{#if cabinet.nameAr}
+							{#if cabinet.nameEn && $language != 'ar'}
 								<CoreHeading
 									block={{
 										attributes: {
@@ -250,7 +250,8 @@
 						</header>
 
 						{#if cabinet.introText}
-							<div class="basestyles {$language === 'ar' ? 'ar' : ''} hidden">>
+							<div class="basestyles {$language === 'ar' ? 'ar' : ''} hidden">
+								>
 								{@html cabinet.introText}
 							</div>
 						{/if}
@@ -431,7 +432,9 @@
 																<div class="h-[200px]" />
 															</div>
 														{:else}
-															<div class="col-start-2 lg:row-span-2 flex justify-center lg:justify-start">
+															<div
+																class="col-start-2 lg:row-span-2 flex justify-center lg:justify-start"
+															>
 																<div
 																	class="{group.layout[0] === 'organic-landscape'
 																		? 'h-[250px]'
@@ -482,7 +485,9 @@
 															</div>
 														{:else}
 															<!-- Odd indexed images (3rd, 5th, etc.) -->
-															<div class="col-start-2 lg:row-span-2 flex justify-center lg:justify-start">
+															<div
+																class="col-start-2 lg:row-span-2 flex justify-center lg:justify-start"
+															>
 																<div
 																	class="{group.layout[0] === 'organic-landscape'
 																		? 'h-[250px]'
@@ -579,12 +584,12 @@
 										textColor: null,
 										textAlign: 'center',
 										fontFamily: 'manchette',
-										className: '!mb-0'
+										className: $language === 'ar' ? 'mb-4' : '!mb-0'
 									}
 								}}
 							/>
 						{/if}
-						{#if block.exhibitionRoom.nameEn}
+						{#if block.exhibitionRoom.nameEn && $language != 'ar'}
 							<CoreHeading
 								block={{
 									attributes: {
@@ -628,12 +633,12 @@
 												textColor: null,
 												textAlign: 'center',
 												fontFamily: 'manchette',
-												className: '!mb-0'
+												className: $language === 'ar' ? 'mb-2' : '!mb-0'
 											}
 										}}
 									/>
 								{/if}
-								{#if cabinet.nameEn}
+								{#if cabinet.nameEn && $language != 'ar'}
 									<CoreHeading
 										block={{
 											attributes: {
@@ -691,6 +696,10 @@
 	}
 
 	:global(.basestyles.ar p) {
-		@apply text-sm md:text-base font-martina text-right;
+		@apply text-ar-sm md:text-ar-base font-lyon text-right;
+	}
+
+	:global(.basestyles.ar.introtext p) {
+		@apply md:text-[1.3rem];
 	}
 </style>

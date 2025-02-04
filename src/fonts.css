@@ -39,5 +39,21 @@
     font-display: swap;
   }
 
+  @font-face {
+    font-family: 'Lyon Arabic Slanted Text Web';
+    src: url('/fonts/LyonArabicSlantedText-RegularNo2-Web.woff2') format('woff2'),
+       url('/fonts/LyonArabicSlantedText-RegularNo2-Web.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    }
+  
+  @font-face {
+    font-family: 'Lyon Arabic Text Web';
+    src: url('/fonts/LyonArabicText-RegularNo2-Web.woff2') format('woff2'),
+       url('/fonts/LyonArabicText-RegularNo2-Web.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    }
+
   
   

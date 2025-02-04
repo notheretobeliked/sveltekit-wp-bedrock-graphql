@@ -1,0 +1,13 @@
+@font-face {
+	font-family: 'Lyon Arabic Text Web';
+	src: url('LyonArabicText-RegularNo2-Web.woff2') format('woff2'),
+		 url('LyonArabicText-RegularNo2-Web.woff') format('woff');
+	font-weight: 500;
+	font-style: normal;
+	}
+
+.LyonArabicText-RegularNo2-Web {
+	font-family: 'Lyon Arabic Text Web';
+	font-weight: 500;
+	font-style: normal;
+	}

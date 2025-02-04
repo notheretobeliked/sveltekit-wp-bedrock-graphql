@@ -185,7 +185,7 @@
 				{/if}
 			</div>
 		{/if}
-		<div class="grid grid-cols-2 lg:grid-cols-5 gap-4 order-1 lg:order-2">
+		<div class="grid grid-cols-2 lg:grid-cols-5 gap-4 order-1 lg:order-2" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
 			<!-- Group 1 -->
 			<div class="lg:contents pl-4 lg:pl-0">
 				<div class="lg:py-3 flex flex-col gap-2">

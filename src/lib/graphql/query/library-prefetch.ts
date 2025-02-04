@@ -23,6 +23,10 @@ query LibraryItems($language: String!, $after: String) {
 					nodes {
 						name
 						slug
+						description
+						translations {
+							name
+						}
 					}
 				}
 				personAuthor {
@@ -95,5 +99,9 @@ query LibraryItems($language: String!, $after: String) {
 fragment NameSlugFields on Person {
 	name
 	slug
+	description
+	translations {
+		name
+	}
 }
 `

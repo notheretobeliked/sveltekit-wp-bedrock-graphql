@@ -8,6 +8,19 @@ import { LibraryItems } from '../src/lib/graphql/query/library-prefetch'
 
 import { error } from '@sveltejs/kit'
 
+interface Person {
+	name: string,
+	nameTranslated: string,
+	slug: string
+	description: string
+}
+
+interface Taxonomies {
+	artists: Person[]
+	authors: Person[]
+	publishers: Person[]
+}
+
 export function checkResponse(response: Response) {
 	const { headers, ok } = response
 	if (!ok) {
@@ -37,12 +50,17 @@ const restructureLibraryItems = (data: LibraryItemsQuery) => {
 					...(bookData.personPageCalligraphy?.nodes || []),
 					...(bookData.personPageIllustration?.nodes || []),
 					...(bookData.personCoverCalligraphy?.nodes || [])
-				].map((person) => ({ name: person.name, slug: person.slug }))
+				].map((person) => ({
+					name: person.name,
+					slug: person.slug
+				}))
 			)
 
 			const authors = new Set(
-				bookData.personAuthor?.nodes.map((author) => ({ name: author.name, slug: author.slug })) ||
-					[]
+				bookData.personAuthor?.nodes.map((author) => ({
+					name: author.name,
+					slug: author.slug
+				})) || []
 			)
 			const publishers = new Set(
 				bookData.publisher?.nodes.map((publisher) => ({
@@ -154,31 +172,112 @@ async function fetchAllLibraryItems(language: string) {
 		after = data.books.pageInfo.endCursor
 	}
 
-	return restructureLibraryItems({ books: { nodes: allBooks } })
+	return {
+		books: restructureLibraryItems({ books: { nodes: allBooks } }),
+		taxonomies: extractUniqueTaxonomies(allBooks)
+	}
 }
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 const projectRoot = join(__dirname, '..')
 
+function extractUniqueTaxonomies(books: any[]): Taxonomies {
+	const artistsMap = new Map<string, Person>()
+	const authorsMap = new Map<string, Person>()
+	const publishersMap = new Map<string, Person>()
+
+	books.forEach((book) => {
+		const bookData = book.bookData
+		if (!bookData) return
+
+		// Debug log for first artist
+		if (bookData.personCoverDesign?.nodes?.[0]) {
+			console.log('Sample artist data:', {
+				name: bookData.personCoverDesign.nodes[0].name,
+				translations: bookData.personCoverDesign.nodes[0].translations,
+				raw: bookData.personCoverDesign.nodes[0]
+			})
+		}
+
+		// Collect all artist-type persons
+		;[
+			...(bookData.personCoverDesign?.nodes || []),
+			...(bookData.personCoverIllustration?.nodes || []),
+			...(bookData.personPageDesign?.nodes || []),
+			...(bookData.personPageCalligraphy?.nodes || []),
+			...(bookData.personPageIllustration?.nodes || []),
+			...(bookData.personCoverCalligraphy?.nodes || [])
+		].forEach((person) => {
+			artistsMap.set(person.slug, {
+				name: person.name,
+				nameTranslated: person.translations?.[0]?.name || null,  // Changed this line
+				slug: person.slug,
+				description: person.description || ''
+			})
+		})
+
+		// Debug log for first author
+		if (bookData.personAuthor?.nodes?.[0]) {
+			console.log('Sample author data:', {
+				name: bookData.personAuthor.nodes[0].name,
+				translations: bookData.personAuthor.nodes[0].translations?.[0]?.name || null,  // Changed this line,
+				raw: bookData.personAuthor.nodes[0]
+			})
+		}
+
+		// Collect authors
+		bookData.personAuthor?.nodes.forEach((author) => {
+			authorsMap.set(author.slug, {
+				name: author.name,
+				nameTranslated: author.translations?.[0]?.name || null,  // Changed this line || '',
+				slug: author.slug,
+				description: author.description || ''
+			})
+		})
+
+		// Collect publishers
+		bookData.publisher?.nodes.forEach((publisher) => {
+			publishersMap.set(publisher.slug, {
+				name: publisher.name,
+				nameTranslated: publisher.translations?.[0]?.name || null,  // Changed this line
+				slug: publisher.slug,
+				description: publisher.description || ''
+			})
+		})
+	})
+
+	return {
+		artists: Array.from(artistsMap.values()).sort((a, b) => a.name.localeCompare(b.name)),
+		authors: Array.from(authorsMap.values()).sort((a, b) => a.name.localeCompare(b.name)),
+		publishers: Array.from(publishersMap.values()).sort((a, b) => a.name.localeCompare(b.name))
+	}
+}
+
 async function fetchAndSaveLibraryData() {
 	try {
 		const languages = ['en', 'ar']
-		const data: Record<string, any> = {}
+		const libraryData: Record<string, any> = {}
+		const taxonomiesData: Record<string, Taxonomies> = {}
 
 		for (const lang of languages) {
 			console.log(`Fetching data for language: ${lang}...`)
-			data[lang] = await fetchAllLibraryItems(lang)
+			const { books, taxonomies } = await fetchAllLibraryItems(lang)
+			libraryData[lang] = books
+			taxonomiesData[lang] = taxonomies
 			console.log(`✅ Successfully fetched data for ${lang}`)
 		}
 
-		// Write to JSON file for prerendering and API use
+		// Write both JSON files
 		const dataDir = join(projectRoot, 'src/lib/data')
 		mkdirSync(dataDir, { recursive: true })
-		writeFileSync(join(dataDir, 'library-data.json'), JSON.stringify(data), 'utf-8')
-		console.log('✅ Library data JSON generated successfully')
+
+		writeFileSync(join(dataDir, 'library-data.json'), JSON.stringify(libraryData), 'utf-8')
+		writeFileSync(join(dataDir, 'taxonomies.json'), JSON.stringify(taxonomiesData), 'utf-8')
+
+		console.log('✅ Library data and taxonomies JSON generated successfully')
 	} catch (error) {
-		console.error('Failed to generate library data:', error)
+		console.error('Failed to generate data:', error)
 		process.exit(1)
 	}
 }

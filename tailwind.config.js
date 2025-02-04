@@ -26,17 +26,34 @@ export default {
 		'bg-white-pure',
 		'bg-white-off',
 		'bg-green',
-		'bg-yellow', 
+		'bg-yellow',
 		'bg-blue',
 		'bg-red',
-		'bg-sand'
+		'bg-sand',
+		'text-ar-xs',
+		'text-ar-sm',
+		'text-ar-base',
+		'text-ar-lg',
+		'text-ar-xl',
+		'text-ar-2xl',
+		'text-ar-3xl',
+		'text-ar-4xl',
+		'text-xs',
+		'text-sm',
+		'text-base',
+		'text-lg',
+		'text-2xl',
+		'text-3xl',
+		'text-4xl'
 	],
 	theme: {
 		fontFamily: {
 			sans: ['Inter Tight'],
 			martina: ['Martina Plantijn'],
 			manchette: ['Manchette Fine'],
-			boogy: ['Boogy Brut Poster']
+			boogy: ['Boogy Brut Poster'],
+			'lyon-slanted': ['Lyon Arabic Slanted Text Web'],
+			lyon: ['Lyon Arabic Text Web']
 		},
 		colors: {
 			transparent: 'transparent',
@@ -60,7 +77,16 @@ export default {
 			xl: ['2.5rem', '1.05'],
 			'2xl': ['2.875rem', '1.2'],
 			'3xl': ['3.275rem', '1.2'],
-			'4xl': ['4.313rem', '1.2']
+			'4xl': ['4.313rem', '1.2'],
+			// Arabic script sizes
+			'ar-xs': '.6rem',
+			'ar-sm': ['1rem', '1.3'],
+			'ar-base': ['1.156rem', '1.22'],
+			'ar-lg': ['2rem', '1.2'],
+			'ar-xl': ['2.7rem', '1.2'],
+			'ar-2xl': ['3.1rem', '1.3'],
+			'ar-3xl': ['3.5rem', '1.3'],
+			'ar-4xl': ['4.6rem', '1.3']
 		},
 		screens: {
 			sm: '640px',
@@ -99,7 +125,5 @@ export default {
 			}
 		}
 	},
-	plugins: [
-		require('@tailwindcss/container-queries'),
-	]
+	plugins: [require('@tailwindcss/container-queries')]
 }
