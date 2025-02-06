@@ -43,7 +43,7 @@
 			if (scrollInterval) clearInterval(scrollInterval)
 			
 			scrollInterval = setInterval(() => {
-				containerRef.scrollLeft += 10
+				containerRef.scrollLeft += 5
 				
 				// Reset scroll position when reaching the end
 				if (containerRef.scrollLeft >= containerRef.scrollWidth / 2) {
@@ -78,7 +78,6 @@
 			headerHeight = header.clientHeight
 		}
 
-		console.log(duplicatedImages)
 		// Preload images
 		duplicatedImages.forEach(image => {
 			const largeSize = image.mediaDetails?.sizes?.find((size) => size?.name === 'large')
@@ -86,7 +85,6 @@
 				const imgElement = new window.Image()
 				imgElement.src = largeSize.sourceUrl
 				preloadedImages.push(imgElement)
-				console.log('Preloading:', largeSize.sourceUrl)
 			}
 		})
 
