@@ -14,6 +14,7 @@
 	import Label from '$components/molecules/label.svelte'
 	export let data: PageData
 	import { beforeNavigate } from '$app/navigation'
+	import { language } from '$stores/language'
 	beforeNavigate(() => {
 		filterStore.set({
 			selectedArtist: '',
@@ -192,9 +193,7 @@
 			{#if lang === 'en'}<h1 class="text-center text-2xl !font-boogy">Library</h1>{/if}
 		</header>
 		<div
-			class="{isSticky
-				? 'fixed'
-				: ''} bg-black py-3 top-[--header-height] left-0 right-0 z-[99] mb-8"
+			class="{isSticky ? 'fixed' : ''} bg-black py-3 top-[--header-height] left-0 right-0 z-40 mb-8"
 			bind:this={filterContainer}
 		>
 			<!-- Mobile Filter Toggle -->
@@ -231,7 +230,7 @@
 								: 'bg-black text-white-pure'} cursor-pointer text-sm relative flex items-center"
 							on:click={() => (artistsOpen = !artistsOpen)}
 						>
-							<span class="truncate">
+							<span class="truncate {$language === 'ar' ? 'font-lyon' : 'font-martina'}">
 								{$filterStore.selectedArtist
 									? artists.find((a) => a.slug === $filterStore.selectedArtist)?.name
 									: translations.artistdesigner[lang]}
@@ -254,7 +253,10 @@
 							>
 								{#each artists as artist}
 									<div
-										class="p-2 hover:bg-white-off hover:text-black cursor-pointer text-sm"
+										class="p-2 hover:bg-white-off hover:text-black cursor-pointer text-sm {$language ===
+										'ar'
+											? 'text-right font-lyon'
+											: 'font-martina'}"
 										on:click={() => {
 											updateFilter('selectedArtist', artist.slug)
 											artistsOpen = false
@@ -276,7 +278,7 @@
 								: 'bg-black text-white-pure'} cursor-pointer text-sm relative flex items-center"
 							on:click={() => (authorsOpen = !authorsOpen)}
 						>
-							<span class="truncate">
+							<span class="truncate {$language === 'ar' ? 'font-lyon' : 'font-martina'}">
 								{$filterStore.selectedAuthor
 									? authors.find((a) => a.slug === $filterStore.selectedAuthor)?.name
 									: translations.author[lang]}
@@ -298,7 +300,10 @@
 							>
 								{#each authors as author}
 									<div
-										class="p-2 hover:bg-white-off hover:text-black cursor-pointer text-sm"
+										class="p-2 hover:bg-white-off hover:text-black cursor-pointer text-sm {$language ===
+										'ar'
+											? 'text-right font-lyon'
+											: 'font-martina'}"
 										on:click={() => {
 											updateFilter('selectedAuthor', author.slug)
 											authorsOpen = false
@@ -320,7 +325,7 @@
 								: 'bg-black text-white-pure'} cursor-pointer text-sm relative flex items-center"
 							on:click={() => (publishersOpen = !publishersOpen)}
 						>
-							<span class="truncate">
+							<span class="truncate {$language === 'ar' ? 'font-lyon' : 'font-martina'}">
 								{$filterStore.selectedPublisher
 									? publishers.find((p) => p.slug === $filterStore.selectedPublisher)?.name
 									: translations.publisher[lang]}
@@ -342,7 +347,10 @@
 							>
 								{#each publishers as publisher}
 									<div
-										class="p-2 hover:bg-white-off hover:text-black cursor-pointer text-sm"
+										class="p-2 hover:bg-white-off hover:text-black cursor-pointer text-sm {$language ===
+										'ar'
+											? 'text-right font-lyon'
+											: 'font-martina'}"
 										on:click={() => {
 											updateFilter('selectedPublisher', publisher.slug)
 											publishersOpen = false
@@ -367,7 +375,7 @@
 								: 'bg-black'}"
 							on:click={() => (yearFromOpen = !yearFromOpen)}
 						>
-							<span class="truncate">
+							<span class="truncate {$language === 'ar' ? 'font-lyon' : 'font-martina'}">
 								{$filterStore.yearFrom || yearsAscending[0]}
 							</span>
 							{#if $filterStore.yearFrom !== yearsAscending[0]}
@@ -387,10 +395,10 @@
 							>
 								{#each yearsAscending as year}
 									<div
-										class="p-2 hover:bg-white-off hover:text-black cursor-pointer text-sm {lang ===
+										class="p-2 hover:bg-white-off hover:text-black cursor-pointer text-sm {$language ===
 										'ar'
-											? 'text-right'
-											: ''}"
+											? 'text-right font-lyon'
+											: 'font-martina'}"
 										on:click={() => {
 											updateFilter('yearFrom', year)
 											if (parseInt(year) > parseInt($filterStore.yearTo)) {
@@ -416,7 +424,7 @@
 								: 'bg-black'}"
 							on:click={() => (yearToOpen = !yearToOpen)}
 						>
-							<span class="truncate">
+							<span class="truncate {$language === 'ar' ? 'font-lyon' : 'font-martina'}">
 								{$filterStore.yearTo || yearsDescending[0]}
 							</span>
 							{#if $filterStore.yearTo !== yearsDescending[0]}
@@ -435,10 +443,10 @@
 							>
 								{#each yearsDescending as year}
 									<div
-										class="p-2 hover:bg-white-off hover:text-black cursor-pointer text-sm {lang ===
+										class="p-2 hover:bg-white-off hover:text-black cursor-pointer text-sm {$language ===
 										'ar'
-											? 'text-right'
-											: ''}"
+											? 'text-right font-lyon'
+											: 'font-martina'}"
 										on:click={() => {
 											updateFilter('yearTo', year)
 											if (parseInt(year) < parseInt($filterStore.yearFrom)) {

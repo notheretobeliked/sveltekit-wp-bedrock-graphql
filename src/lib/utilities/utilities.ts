@@ -47,10 +47,10 @@ export const classNames = (
 			sizeClasses = `text-${prefix}lg md:text-${prefix}xl`
 			break
 		case '2xl':
-			sizeClasses = `text-${prefix}xl md:text-${prefix}2xl`
+			sizeClasses = `text-lg md:text-${prefix}xl md:text-${prefix}2xl`
 			break
 		case '3xl':
-			sizeClasses = `text-${prefix}2xl md:text-${prefix}3xl`
+			sizeClasses = `text-xl md:text-${prefix}2xl lg:text-${prefix}3xl`
 			break
 		case '4xl':
 			sizeClasses = `text-${prefix}2xl md:text-${prefix}4xl`

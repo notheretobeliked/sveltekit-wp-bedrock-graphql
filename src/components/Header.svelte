@@ -139,7 +139,7 @@
 					? 'hidden lg:inline'
 					: ''}"
 			>
-				<a href="/ar">إنهاء الاستعمار في الصفحة</a>
+				<a href="/ar">جماليّات التحرّر</a>
 			</h1>
 		</div>
 		<div class="" style="--padding:0"><Hamburger bind:open /></div>
@@ -194,5 +194,8 @@
 <style>
 	:global(.hamburger) {
 		--layer-height: 2px;
+	}
+	:global(.hamburger--spin.svelte-jas1sv .hamburger-inner.svelte-jas1sv::after) {
+		height: 1.5px;
 	}
 </style>

@@ -19,14 +19,14 @@
 				<p class="text-{isArabic ? 'ar-xs' : 'xs'} font-martina uppercase tracking-widest mb-1">{label}</p>
 				<a
 					href="/{$page.data.lang}/library/{ref.toLowerCase()}"
-					class="text-{isArabic ? 'ar-xs' : 'xs'} font-martina uppercase tracking-widest mb-1">#</a
+					class="text-{isArabic ? 'ar-xs font-lyon' : 'xs font-martina'}  uppercase tracking-widest mb-1">#</a
 				>
 			</div>
 		{:else}
-			<p class="text-{isArabic ? 'ar-xs' : 'xs'} font-martina uppercase tracking-widest mb-1">{label}</p>
+			<p class="text-{isArabic ? 'ar-xs font-lyon' : 'xs font-martina'}  uppercase tracking-widest mb-1">{label}</p>
 		{/if}
 	{/if}
 	{#if title}
-		<p class="text-{isArabic ? 'ar-sm' : 'sm'} font-martina">{cleanTitle}</p>
+		<p class="text-{isArabic ? 'ar-sm font-lyon' : 'sm font-martina'} ">{cleanTitle}</p>
 	{/if}
 </div>
