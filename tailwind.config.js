@@ -47,7 +47,7 @@ export default {
 				pure: '#FFFFFF',
 				off: '#fbf9f2'
 			},
-			green: '#3ABB6D',
+			green: '#00a15d',
 			yellow: '#F0BF08',
 			blue: '#509FB9',
 			red: '#F47932',
