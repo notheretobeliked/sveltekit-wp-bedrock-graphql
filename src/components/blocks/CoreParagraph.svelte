@@ -7,7 +7,6 @@
 
 	$: isArabic = $language === 'ar'
 
-	console.log($language)
     const {
         content = '',
         fontSize = 'base',
@@ -19,11 +18,8 @@
     // Use nullish coalescing to provide a default when null
     const defaultFontFamily = fontFamily ?? 'martina'
     
-    console.log('Initial fontFamily:', defaultFontFamily)
-    console.log('Current language:', $language)
     
     $: finalFontFamily = $language === 'ar' ? 'lyon' : defaultFontFamily
-    $: console.log('finalFontFamily:', finalFontFamily)
 	
     $: finalAlign = $language === 'ar' ? 'right' : align
 

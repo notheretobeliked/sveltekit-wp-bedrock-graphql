@@ -231,7 +231,7 @@
 								: 'bg-black text-white-pure'} cursor-pointer text-sm relative flex items-center"
 							on:click={() => (artistsOpen = !artistsOpen)}
 						>
-							<span class="truncate pr-6">
+							<span class="truncate">
 								{$filterStore.selectedArtist
 									? artists.find((a) => a.slug === $filterStore.selectedArtist)?.name
 									: translations.artistdesigner[lang]}
@@ -276,7 +276,7 @@
 								: 'bg-black text-white-pure'} cursor-pointer text-sm relative flex items-center"
 							on:click={() => (authorsOpen = !authorsOpen)}
 						>
-							<span class="truncate pr-6">
+							<span class="truncate">
 								{$filterStore.selectedAuthor
 									? authors.find((a) => a.slug === $filterStore.selectedAuthor)?.name
 									: translations.author[lang]}
@@ -320,7 +320,7 @@
 								: 'bg-black text-white-pure'} cursor-pointer text-sm relative flex items-center"
 							on:click={() => (publishersOpen = !publishersOpen)}
 						>
-							<span class="truncate pr-6">
+							<span class="truncate">
 								{$filterStore.selectedPublisher
 									? publishers.find((p) => p.slug === $filterStore.selectedPublisher)?.name
 									: translations.publisher[lang]}
@@ -367,7 +367,7 @@
 								: 'bg-black'}"
 							on:click={() => (yearFromOpen = !yearFromOpen)}
 						>
-							<span class="truncate pr-6">
+							<span class="truncate">
 								{$filterStore.yearFrom || yearsAscending[0]}
 							</span>
 							{#if $filterStore.yearFrom !== yearsAscending[0]}
@@ -416,7 +416,7 @@
 								: 'bg-black'}"
 							on:click={() => (yearToOpen = !yearToOpen)}
 						>
-							<span class="truncate pr-6">
+							<span class="truncate">
 								{$filterStore.yearTo || yearsDescending[0]}
 							</span>
 							{#if $filterStore.yearTo !== yearsDescending[0]}

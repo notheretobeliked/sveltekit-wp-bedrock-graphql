@@ -15,6 +15,13 @@
 	} = block.attributes ?? {}
 	$: finalAlign = textAlign === 'center' ? 'center' : $language === 'ar' ? 'right' : textAlign
 	$: isArabic = $language === 'ar'
+	console.log(classNames(
+			fontSize || '2xl',
+			textColor || '',
+			finalAlign || 'left', // Replace textAlign with finalAlign in all h1-h5 elements
+			fontFamily || 'boogy',
+			isArabic
+		))
 
 </script>
 

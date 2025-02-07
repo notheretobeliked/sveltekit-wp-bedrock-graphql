@@ -9,7 +9,7 @@
 	export let ref: string | null = null
     
     $: isArabic = $language === 'ar'
-    $: finalAlign = isArabic ? 'right' : align
+    $: finalAlign = align === 'center' ? 'center' : (isArabic ? 'right' : align)
 </script>
 
 <div class="pt-2 pb-3 text-{finalAlign} {underline ? 'border-white border-b' : ''}">

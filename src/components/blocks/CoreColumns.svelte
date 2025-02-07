@@ -4,9 +4,7 @@
 	import BlockRenderer from '$components/BlockRenderer.svelte'
 	const columns = block.children.length
 	import { language } from '$stores/language'
-	console.log(block)
 	const isStackedOnMobile: boolean = block.attributes?.isStackedOnMobile ?? false
-  console.log(isStackedOnMobile)
 </script>
 
 <div
