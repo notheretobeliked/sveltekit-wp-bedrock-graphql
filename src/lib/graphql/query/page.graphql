@@ -254,10 +254,7 @@ fragment AcfHomePageSectionFragment on AcfHomePageSection {
 	}
 	homePageSection {
 		link {
-			nodes {
-				slug
-				uri
-			}
+			url
 		}
 		images {
 			nodes {

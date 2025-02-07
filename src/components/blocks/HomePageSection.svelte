@@ -6,7 +6,7 @@
 	import type { AcfHomePageSection } from '$lib/graphql/generated'
 	export let block: AcfHomePageSection
 	const images = block.homePageSection?.images?.nodes ?? []
-	const link = `/${$page.params.lang}${block.homePageSection?.link?.nodes?.[0]?.uri ?? ''}`
+	const link = block.homePageSection?.link?.url ?? ''
 	const content = block.innerBlocks ?? [] // Provide a default empty array
 	import BlockRenderer from '$components/BlockRenderer.svelte'
 	import Image from '$components/Image.svelte'
