@@ -32,8 +32,6 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content={pageTitle} />
   <meta property="og:description" content={metadescription} />
-  {#if imageUrl}
-    <meta property="og:image" content={imageUrl} />
-    <meta property="og:image:alt" content={image?.altText ?? ''} />
-  {/if}
+  <meta property="og:image" content="/decolonizingthepage.jpg" />
+  <meta property="og:image:alt" content="Decolonizing the page" />
 </svelte:head>
