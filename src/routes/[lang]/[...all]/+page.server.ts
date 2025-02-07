@@ -1,4 +1,4 @@
-export const prerender = false
+export const prerender = true
 
 export const entries = () => {
 	const routes = [
@@ -77,8 +77,6 @@ export const load: PageServerLoad = async function load({ params, url, fetch }) 
 	}
 
 	// Fetch books from API route
-	const booksResponse = await fetch(`/api/library-items?lang=${params.lang}`)
-	const books = await booksResponse.json()
     const learningHubSlugs = {
         en: 'learning-hub',
         ar: 'ghurfat-al-taallum'
@@ -100,7 +98,6 @@ export const load: PageServerLoad = async function load({ params, url, fetch }) 
 			: []
 
 		return {
-			books,
 			data: data,
 			uri: uri,
 			editorBlocks: editorBlocks,

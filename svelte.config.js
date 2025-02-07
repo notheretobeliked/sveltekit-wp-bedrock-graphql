@@ -23,6 +23,7 @@ const config = {
 			$stores: 'src/stores'
 		},
 		prerender: {
+			handleMissingId: 'warn',
 			entries: [
 				'/en', // English version of the library page
 				'/ar', // Arabic version of the library page

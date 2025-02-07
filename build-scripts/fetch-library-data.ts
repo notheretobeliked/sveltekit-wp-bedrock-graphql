@@ -191,14 +191,6 @@ function extractUniqueTaxonomies(books: any[]): Taxonomies {
 		const bookData = book.bookData
 		if (!bookData) return
 
-		// Debug log for first artist
-		if (bookData.personCoverDesign?.nodes?.[0]) {
-			console.log('Sample artist data:', {
-				name: bookData.personCoverDesign.nodes[0].name,
-				translations: bookData.personCoverDesign.nodes[0].translations,
-				raw: bookData.personCoverDesign.nodes[0]
-			})
-		}
 
 		// Collect all artist-type persons
 		;[
@@ -217,14 +209,6 @@ function extractUniqueTaxonomies(books: any[]): Taxonomies {
 			})
 		})
 
-		// Debug log for first author
-		if (bookData.personAuthor?.nodes?.[0]) {
-			console.log('Sample author data:', {
-				name: bookData.personAuthor.nodes[0].name,
-				translations: bookData.personAuthor.nodes[0].translations?.[0]?.name || null,  // Changed this line,
-				raw: bookData.personAuthor.nodes[0]
-			})
-		}
 
 		// Collect authors
 		bookData.personAuthor?.nodes.forEach((author) => {

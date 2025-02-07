@@ -14,7 +14,6 @@
 
 	export let data: PageData
 	let { seo, menu, uri } = data
-	console.log(seo)
 	const menuItems = menu.menuItems.nodes
 	const image = seo.opengraphImage
 	const metadescription = seo.metaDesc

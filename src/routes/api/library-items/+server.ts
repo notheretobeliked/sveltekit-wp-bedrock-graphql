@@ -1,3 +1,6 @@
+export const prerender = false;
+
+
 import { json } from '@sveltejs/kit'
 import libraryData from '$lib/data/library-data.json'
 import taxonomiesData from '$lib/data/taxonomies.json'
