@@ -70,7 +70,7 @@
 
 <header class="fixed top-0 left-0 w-full z-40">
 	<div
-		class="fixed top-0 bg-white-pure w-full pt-4 pb-3 z-40 flex flex-row px-1 items-center md:px-3"
+		class="fixed top-0 bg-white-pure w-full pt-4 pb-3 z-40 flex flex-row px-1 items-center md:px-3 h-[56px]"
 		id="top-bar"
 	>
 		<div class="hidden lg:block relative">

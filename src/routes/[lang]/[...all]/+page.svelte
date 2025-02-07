@@ -61,12 +61,7 @@
 		;({ editorBlocks, uri, isLearningHubSingle } = data)
 		isHomePage = uri === '/' || uri === '/en' || uri === '/ar'
 	}
-	onMount(() => {
-		const header = document.getElementById('top-bar')
-		if (header) {
-			headerHeight = header.clientHeight
-		}
-	})
+
 
 	function handleReadMore() {
 		showFullContent = !showFullContent
@@ -76,11 +71,7 @@
 </script>
 
 <div
-	class="pt-24 min-h-screen {bgColourClass} {isHomePage ? 'homepage' : ''}"
-	style={isHomePage
-		? `padding-top:
-    ${headerHeight}px; padding-bottom:0`
-		: ''}
+	class="{isHomePage ? 'pt-[56px] pb-0' : 'pt-24' } min-h-screen {bgColourClass} {isHomePage ? 'homepage' : ''}"
 >
 	{#if isLearningHubSingle}
 		<div class="w-full max-w-screen-md mx-auto !px-0">

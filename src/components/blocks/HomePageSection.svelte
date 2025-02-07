@@ -114,16 +114,6 @@
 			headerHeight = header.clientHeight
 		}
 
-		// Preload images
-		duplicatedImages.forEach(image => {
-			const largeSize = image.mediaDetails?.sizes?.find((size) => size?.name === 'large')
-			if (largeSize?.sourceUrl) {
-				const imgElement = new window.Image()
-				imgElement.src = largeSize.sourceUrl
-				preloadedImages.push(imgElement)
-			}
-		})
-
 		// Add touch start listener to detect actual touch usage
 		document.addEventListener(
 			'touchstart',
@@ -149,7 +139,7 @@
 		on:mouseenter={toggleImages}
 		on:mouseleave={toggleImages}
 		aria-hidden="true"
-		class="group h-full {images.length === 0 ? 'py-6 md:py-12' : ''}"
+		class="group biglink {images.length === 0 ? 'py-6 md:py-12' : ''}"
 	>
 		<a href={link} class="block hover:scale-105 transition-all duration-300">
 			{#each content as block}
@@ -163,8 +153,7 @@
 
 {#if showImages}
 	<div
-		class="w-[50vw] bg-white-off fixed h-screen left-[50vw] overflow-x-scroll z-10"
-		style="top:{headerHeight}px"
+		class="w-[50vw] bg-white-off fixed h-screen left-[50vw] overflow-x-scroll z-10 top-[56px]"
 		transition:fade={{ duration: 300 }}
 	>
 		{#if isLoading}
@@ -193,3 +182,8 @@
 	</div>
 {/if}
 
+<style lang='postcss'>
+	.biglink {
+		height: 100%;
+	}
+</style>

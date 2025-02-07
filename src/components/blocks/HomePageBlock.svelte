@@ -6,34 +6,35 @@
 </script>
 
 {#if content}
-	<div class="flex flex-col" style="height: calc(100vh - var(--header-height));" id="homepage-container">
+	<div class="flex flex-col" style="height: calc(100vh - 56px);" id="homepage-container">
 		{#each content as block}
 			<BlockRenderer {block} />
 		{/each}
 	</div>
 {/if}
 
+
 <style lang="postcss">
 :global(div#homepage-container>div) {
-	height: calc(100vh - var(--header-height));
+	height: calc(100vh - 56px);
 }
 :global(div#homepage-container>div div.grid) {
 	gap:0;
 	margin-bottom: 0 !important;
-	height: calc(100vh - var(--header-height));
+	height: calc(100vh - 56px);
 }
 
 :global(div#homepage-container>div div.grid>div:first-child>div) {
-	height: calc(100vh - var(--header-height));
+	height: calc(100vh - 56px);
 	@apply flex flex-col gap-0;
 }
 
 :global(div#homepage-container>div div.grid>div:last-child) {
-	@apply lg:max-h-[calc(100vh-var(--header-height))] lg:overflow-y-auto max-w-[600px] mx-auto px-6 pt-16;
+	@apply lg:max-h-[calc(100vh-56px)] lg:overflow-y-auto max-w-[600px] mx-auto px-6 pt-16;
 }
 
 :global(div#homepage-container>div div.grid>div:first-child>div>div) {
-	@apply h-full lg:h-[calc((100vh-var(--header-height))/4)];
+	@apply h-full lg:h-[calc((100vh-56px)/4)];
 
 	@apply cursor-pointer;
 }
