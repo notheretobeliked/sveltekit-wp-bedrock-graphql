@@ -6,13 +6,10 @@ export default {
 		'!gap-0',
 		'md:grid-cols-2',
 		'md:grid-cols-3',
-		'bg-black',
-		'bg-white-pure',
 		'object-cover',
 		'object-fit',
 		'object-fill',
 		'object-none',
-		'text-xl',
 		'object-contain',
 		'stroke-green',
 		'stroke-black',
@@ -20,31 +17,18 @@ export default {
 		...Array.from({ length: 8 }, (_, i) => `pt-${i + 1}`),
 		...Array.from({ length: 8 }, (_, i) => `pb-${i + 1}`),
 		...Array.from({ length: 60 }, (_, i) => `delay-[${i * 50}ms]`), // Generates delay-[0ms] through delay-[900ms]
-		'bg-transparent',
-		'bg-current',
-		'bg-black',
-		'bg-white-pure',
-		'bg-white-off',
-		'bg-green',
-		'bg-yellow',
-		'bg-blue',
-		'bg-red',
-		'bg-sand',
-		'text-ar-xs',
-		'text-ar-sm',
-		'text-ar-base',
-		'text-ar-lg',
-		'text-ar-xl',
-		'text-ar-2xl',
-		'text-ar-3xl',
-		'text-ar-4xl',
-		'text-xs',
-		'text-sm',
-		'text-base',
-		'text-lg',
-		'text-2xl',
-		'text-3xl',
-		'text-4xl'
+		{
+			pattern: /^bg-(transparent|current|black|white-pure|white-off|green|yellow|blue|red|sand)$/,
+			variants: ['sm', 'md', 'lg', 'xl', '2xl']
+		},
+		{
+			pattern: /^text-ar-(xs|sm|base|lg|xl|2xl|3xl|4xl)$/, // matches all arabic text sizes
+			variants: ['sm', 'md', 'lg', 'xl', '2xl']
+		},
+		{
+			pattern: /^text-(xs|sm|base|lg|xl|2xl|3xl|4xl)$/, // matches all regular text sizes
+			variants: ['sm', 'md', 'lg', 'xl', '2xl']
+		},
 	],
 	theme: {
 		fontFamily: {
