@@ -128,5 +128,13 @@ export const labelTranslations = writable({
 	readmore: {
 		en: 'Read more',
 		ar: 'اقرأ المزيد'
+	},
+	learninghub: {
+		en: 'Learning hub',
+		ar: 'مركز التعلم'
+	},
+	backtolearninghub: {
+		en: 'Back to Learning hub',
+		ar: 'العودة إلى مركز التعلم'
 	}
 })

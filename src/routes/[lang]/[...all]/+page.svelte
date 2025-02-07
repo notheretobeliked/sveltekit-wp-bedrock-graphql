@@ -4,8 +4,10 @@
 	import BlockRenderer from '$components/BlockRenderer.svelte'
 	import PostsHeader from '$components/atoms/PostsHeader.svelte'
 	import Button from '$components/Button.svelte'
-
+	import { language } from '$stores/language'
+	import { labelTranslations } from '$stores/translations'
 	import type { PageData } from './$types'
+	import { slide } from 'svelte/transition'
 	export let data: PageData
 	let editorBlocks: EditorBlock[],
 		uri: string,
@@ -65,22 +67,53 @@
 			headerHeight = header.clientHeight
 		}
 	})
+
 	function handleReadMore() {
 		showFullContent = !showFullContent
 	}
+
+	let isHovering = false
 </script>
 
 <div
 	class="pt-24 min-h-screen {bgColourClass} {isHomePage ? 'homepage' : ''}"
-	style={isHomePage ? `padding-top: ${headerHeight}px; padding-bottom:0` : ''}
+	style={isHomePage
+		? `padding-top:
+    ${headerHeight}px; padding-bottom:0`
+		: ''}
 >
 	{#if isLearningHubSingle}
 		<div class="w-full max-w-screen-md mx-auto !px-0">
+			<div class="w-full mb-3 h-5 flex content-center">
+				<div 
+					class="w-full mb-3"
+					on:mouseenter={() => isHovering = true}
+					on:mouseleave={() => isHovering = false}
+				>
+					{#if !isHovering}
+						<a
+							transition:slide
+							class="{$language === 'en' ? 'font-martina ' : 'font-lyon'} text-base text-center w-full block mb-3"
+							href="/{data.lang}/{data.learningHubSlug}"
+						>
+							{$labelTranslations.learninghub[$language]}
+						</a>
+					{:else}
+						<a
+							transition:slide
+							class="{$language === 'en' ? 'font-martina ' : 'font-lyon'} text-base text-center w-full block mb-3"
+							href="/{data.lang}/{data.learningHubSlug}"
+						>
+							{$labelTranslations.backtolearninghub[$language]}
+						</a>
+					{/if}
+				</div>
+			</div>
 			<PostsHeader
 				byline={data.data.nodeByUri.learningHubFields.byline}
 				title={data.data.nodeByUri.title}
 				date={formatDate(data.data.nodeByUri.date)}
-				/>
+			/>
 		</div>
 	{/if}
 
@@ -126,10 +159,10 @@
 
 <style>
 	:global(.corecolumns) {
-	  direction: inherit;
+		direction: inherit;
 	}
-  
+
 	:global(:where(.homepage) .corecolumns) {
-	  direction: ltr !important;
+		direction: ltr !important;
 	}
-  </style>
+</style>

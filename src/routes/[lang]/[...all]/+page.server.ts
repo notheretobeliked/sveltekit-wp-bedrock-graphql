@@ -79,7 +79,10 @@ export const load: PageServerLoad = async function load({ params, url, fetch }) 
 	// Fetch books from API route
 	const booksResponse = await fetch(`/api/library-items?lang=${params.lang}`)
 	const books = await booksResponse.json()
-
+    const learningHubSlugs = {
+        en: 'learning-hub',
+        ar: 'ghurfat-al-taallum'
+    }
 	try {
 		const response = await graphqlQuery(PageContent, { uri: `/${params.lang}${uri}` })
 		checkResponse(response)
@@ -101,6 +104,7 @@ export const load: PageServerLoad = async function load({ params, url, fetch }) 
 			data: data,
 			uri: uri,
 			editorBlocks: editorBlocks,
+            learningHubSlug: learningHubSlugs[params.lang],
 			...(isLearningHub && {
 				learningHubPosts: flattenedData,
 				learningHubCategories
