@@ -185,7 +185,10 @@
 				{/if}
 			</div>
 		{/if}
-		<div class="grid grid-cols-2 lg:grid-cols-5 gap-4 order-1 lg:order-2" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+		<div
+			class="grid grid-cols-2 lg:grid-cols-5 gap-4 order-1 lg:order-2"
+			dir={lang === 'ar' ? 'rtl' : 'ltr'}
+		>
 			<!-- Group 1 -->
 			<div class="lg:contents pl-4 lg:pl-0">
 				<div class="lg:py-3 flex flex-col gap-2">
@@ -279,7 +282,6 @@
 							</svg>
 						</div>
 					</button>
-					<LabelAndTitle align="center" label={`${images.length} ${translations.images[lang]}`} />
 				{:else}
 					<button
 						on:click={() => openOverlay(0)}
@@ -306,9 +308,12 @@
 							</svg>
 						</div>
 					</button>
-					<LabelAndTitle align="center" label={`${images.length} ${translations.image[lang]}`} />
 				{/if}
 			</figure>
+			<LabelAndTitle
+				align="center"
+				label={`${images.length} ${images.length > 1 ? translations.images[lang] : translations.image[lang]}`}
+			/>
 		{/if}
 	</div>
 </div>
@@ -322,4 +327,3 @@
 		currentIndex={selectedImageIndex}
 	/>
 {/if}
-
