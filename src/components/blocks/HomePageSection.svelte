@@ -1,6 +1,5 @@
 <script lang="ts">
 	let isUsingTouch = false
-	import { page } from '$app/stores'
 	import { onMount } from 'svelte'
 	import { fade } from 'svelte/transition'
 	import type { AcfHomePageSection } from '$lib/graphql/generated'
@@ -14,6 +13,8 @@
 	let showImages = false
 	let containerRef: HTMLDivElement
 	let isInitialized = false
+	let isLoading = false
+	let imagesLoaded = false
 
 	const duplicatedImages = [...images, ...images]
 
@@ -59,11 +60,46 @@
 		requestAnimationFrame(updateIndex)
 	}
 
-	const toggleImages = () => {
+	async function preloadImages() {
+		isLoading = true
+		const loadPromises = duplicatedImages.map(image => {
+			return new Promise((resolve, reject) => {
+				const largeSize = image.mediaDetails?.sizes?.find((size) => size?.name === 'large')
+				if (largeSize?.sourceUrl) {
+					const imgElement = new window.Image()
+					imgElement.onload = () => resolve(imgElement)
+					imgElement.onerror = reject
+					imgElement.src = largeSize.sourceUrl
+					preloadedImages.push(imgElement)
+				} else {
+					resolve(null)
+				}
+			})
+		})
+
+		try {
+			await Promise.all(loadPromises)
+			imagesLoaded = true
+		} catch (error) {
+			console.error('Failed to load some images:', error)
+		} finally {
+			isLoading = false
+		}
+	}
+
+	const toggleImages = async () => {
 		if (isUsingTouch) return
 		if (images.length === 0) return
-		showImages = !showImages
+		
 		if (!showImages) {
+			showImages = true
+			if (!imagesLoaded) {
+				await preloadImages()
+			}
+			isInitialized = true
+			requestAnimationFrame(updateIndex)
+		} else {
+			showImages = false
 			isInitialized = false
 			if (scrollInterval) {
 				clearInterval(scrollInterval)
@@ -87,8 +123,6 @@
 				preloadedImages.push(imgElement)
 			}
 		})
-
-		
 
 		// Add touch start listener to detect actual touch usage
 		document.addEventListener(
@@ -133,24 +167,29 @@
 		style="top:{headerHeight}px"
 		transition:fade={{ duration: 300 }}
 	>
-		<div bind:this={containerRef} class="images-container absolute w-full overflow-x-auto h-full">
-			<div class="flex flex-nowrap h-full">
-				{#each duplicatedImages as image, i}
-					<div
-						id="image-{i % totalImages}"
-						class="h-full flex-shrink-0 aspect-[{image.mediaDetails?.width ?? 1}/{image.mediaDetails
-							?.height ?? 1}]"
-					>
-						<Image
-							imageObject={transformImageObject(image)}
-							lazy={false}
-							imageSize="large"
-							fit="contain"
-						/>
-					</div>
-				{/each}
+		{#if isLoading}
+			<div class="flex items-center justify-center h-full">
+				<div class="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
 			</div>
-		</div>
+		{:else}
+			<div bind:this={containerRef} class="images-container absolute w-full overflow-x-auto h-full">
+				<div class="flex flex-nowrap h-full">
+					{#each duplicatedImages as image, i}
+						<div
+							id="image-{i % totalImages}"
+							class="h-full flex-shrink-0 aspect-[{image.mediaDetails?.width ?? 1}/{image.mediaDetails?.height ?? 1}]"
+						>
+							<Image
+								imageObject={transformImageObject(image)}
+								lazy={false}
+								imageSize="large"
+								fit="contain"
+							/>
+						</div>
+					{/each}
+				</div>
+			</div>
+		{/if}
 	</div>
 {/if}
 
