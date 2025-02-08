@@ -35,10 +35,10 @@
 
 	const sizes = determineSizes(imageSize)
 </script>
-<div class="relative w-full h-full">
+<div class="relative w-full h-full max-w-none">
   <img
     loading={lazy ? 'lazy' : 'eager'}
-    class={`h-full w-full object-${fit} ${shadow ? 'drop-shadow-lg' : ''} ${extraClasses}`}
+    class={`${fit === 'contain' ? 'w-auto' : 'w-full'} h-full object-${fit} ${shadow ? 'drop-shadow-lg' : ''} ${extraClasses}`}
     {src}
     alt={altText}
     {width}

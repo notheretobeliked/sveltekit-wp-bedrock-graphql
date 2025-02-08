@@ -323,23 +323,23 @@
 									{/if}
 
 									{#if group.layout[0] === 'animation'}
-										<div class="flex flex-col gap-[200px] mb-[200px] items-center layout-centered">
+										<div class="flex flex-col mt-[200px] mb-[200px] items-center layout-centered">
 											{#if group.images?.nodes?.length > 0}
-												<div class="relative h-[300px] lg:h-[527px] w-full">
-													<!-- Added fixed height based on aspect ratio -->
+												<div class="relative h-[300px] lg:h-[527px] w-full lg:max-w-[800px]">
 													{#key previousImageIndex}
-														<div class="absolute inset-0 w-full h-full z-10">
-															<!-- Added z-index -->
-															<Image
-																imageObject={group.images.nodes[previousImageIndex]}
-																imageSize="large"
-																fit="contain"
-															/>
+														<div class="absolute inset-0 flex justify-center w-full h-full z-10">
+															<div class="relative h-full flex justify-center">
+																<Image
+																	imageObject={group.images.nodes[previousImageIndex]}
+																	imageSize="large"
+																	fit="contain"
+																/>
+															</div>
 														</div>
 													{/key}
 													{#key currentImageIndex}
 														<div
-															class="absolute inset-0 w-full h-full z-20"
+															class="absolute inset-0 flex justify-center w-full h-full z-20"
 															transition:fade={{ duration: 200 }}
 															on:click={() =>
 																handleImageClick(group.images.nodes[currentImageIndex]?.reference)}
@@ -348,11 +348,13 @@
 															class:cursor-pointer={group.images.nodes[currentImageIndex]
 																?.reference}
 														>
-															<Image
-																imageObject={group.images.nodes[currentImageIndex]}
-																imageSize="large"
-																fit="contain"
-															/>
+															<div class="relative h-full flex justify-center">
+																<Image
+																	imageObject={group.images.nodes[currentImageIndex]}
+																	imageSize="large"
+																	fit="contain"
+																/>
+															</div>
 														</div>
 													{/key}
 												</div>
