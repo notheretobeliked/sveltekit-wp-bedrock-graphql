@@ -18,9 +18,44 @@ main.main-ar p {
 }
 
 p {
-    @apply text-lg;
+	@apply text-lg;
 }
 
 p a {
 	@apply border-dotted border-b-blue border-b hover:text-blue;
+}
+
+.basestyles p,
+.basestyles li {
+	@apply text-sm md:text-base font-martina;
+}
+
+.basestyles.introtext p {
+	@apply md:text-[1.2rem];
+}
+
+.basestyles.ar p {
+	@apply text-ar-sm md:text-ar-base font-lyon text-right;
+
+	direction: rtl;
+	unicode-bidi: embed;
+}
+
+.basestyles.ar.introtext p {
+	@apply md:text-[1.3rem];
+
+	direction: rtl;
+	unicode-bidi: embed;
+}
+
+.basestyles h2 {
+	@apply font-martina text-base pb-1 border-b border-black mb-3;
+}
+
+.basestyles h3 {
+	@apply font-martina text-base uppercase tracking-wider mb-3;
+}
+
+.basestyles h4 {
+	@apply font-martina text-xs uppercase tracking-widest mb-1;
 }

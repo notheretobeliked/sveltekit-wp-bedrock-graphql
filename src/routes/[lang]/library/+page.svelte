@@ -508,7 +508,7 @@
 
 						{#if artist.description}
 							<div
-								class="max-w-screen-md mx-auto mt-12 {lang === 'en'
+								class="basestyles max-w-screen-md mx-auto mt-12 {lang === 'en'
 									? 'font-martina text-sm md:text-base'
 									: 'font-lyon text-ar-sm md:text-ar-base text-right'} "
 							>

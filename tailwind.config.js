@@ -14,6 +14,7 @@ export default {
 		'stroke-green',
 		'stroke-black',
 		'basestyles',
+		'ar',
 		...Array.from({ length: 8 }, (_, i) => `pt-${i + 1}`),
 		...Array.from({ length: 8 }, (_, i) => `pb-${i + 1}`),
 		...Array.from({ length: 60 }, (_, i) => `delay-[${i * 50}ms]`), // Generates delay-[0ms] through delay-[900ms]
