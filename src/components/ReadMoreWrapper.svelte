@@ -11,23 +11,37 @@
 
 	function toggleContent() {
 		showFullContent = !showFullContent
-		$isExpandedStore = showFullContent // Update the store
+		$isExpandedStore = showFullContent
+		
+		if (showFullContent) {
+			// Wait for content to render before scrolling
+			setTimeout(() => {
+				document.getElementById('more')?.scrollIntoView({ 
+					behavior: 'smooth',
+					block: 'start'
+				})
+			}, 100)
+		}
 	}
 </script>
 
 <div>
 	<div class="flex justify-center mt-8 mb-8">
-		<div on:click={toggleContent}>
+		<button 
+			on:click={toggleContent}
+			on:keydown={(e) => e.key === 'Enter' && toggleContent()}
+			type="button"
+		>
 			<Button
-			label={showFullContent
-				? $labelTranslations.showless[$language]
-				: $labelTranslations.readmore[$language]}
-			active={showFullContent}
-			url="#"
-		/>
-		</div>
+				label={showFullContent
+					? $labelTranslations.showless[$language]
+					: $labelTranslations.readmore[$language]}
+				active={showFullContent}
+				url="#"
+			/>
+		</button>
 	</div>
-	<div class="content-wrapper">
+	<div class="content-wrapper" id="more">
 		{#if showFullContent}
 		<div class="pb-12">
             {#each block.children as childBlock}
@@ -37,3 +51,4 @@
 		{/if}
 	</div>
 </div>
+

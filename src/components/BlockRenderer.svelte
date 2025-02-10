@@ -25,7 +25,7 @@
 		CoreButton as CoreButtonType,
 		CoreFootnotes as CoreFootnotesType,
 		HomePageSection as HomePageSectionType,
-		AcfHomePageSection, 
+		AcfHomePageSection,
 		ExhibitionRoom as ExhibitionRoomType,
 		CoreEmbed as CoreEmbedType,
 		CoreImage as CoreImageType
@@ -196,7 +196,7 @@
 </script>
 
 <div
-	class="{block.name} {verticalAlignmentClasses(verticalAlignment)} {classNames(align)} {getBgClass(
+	class="{block.name.toLowerCase().replace('/', '-')} {verticalAlignmentClasses(verticalAlignment)} {classNames(align)} {getBgClass(
 		bgColor
 	)} !px-0"
 >
@@ -257,6 +257,17 @@
 	{/if}
 
 	{#if block.name === 'core/image'}
-	<CoreImage {block} />
-{/if}
+		<CoreImage {block} />
+	{/if}
 </div>
+
+<style lang="postcss">
+	:global(.core-column) {
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+	}
+	
+	:global(.core-column)::-webkit-scrollbar {
+		display: none;
+	}
+</style>
