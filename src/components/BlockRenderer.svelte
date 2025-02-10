@@ -14,6 +14,8 @@
 		isInView = detail.inView
 	}
 
+	import { language } from '$stores/language'
+
 	import type {
 		CoreParagraph as CoreParagraphType,
 		CoreHeading as CoreHeadingType,
@@ -198,7 +200,7 @@
 <div
 	class="{block.name.toLowerCase().replace('/', '-')} {verticalAlignmentClasses(verticalAlignment)} {classNames(align)} {getBgClass(
 		bgColor
-	)} !px-0"
+	)} {$language === 'ar' ? 'dir-rtl' : ''} !px-0"
 >
 	{#if block.name === 'core/group'}
 		<CoreGroup {block} />
