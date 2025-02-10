@@ -71,7 +71,7 @@
 </script>
 
 <div
-	class="{isHomePage ? 'pt-[56px] pb-0' : 'pt-24' } min-h-screen {bgColourClass} {isHomePage ? 'homepage' : ''}"
+	class="{isHomePage ? 'pt-[56px] pb-0' : 'pt-24' } min-h-screen {bgColourClass} {isHomePage ? 'homepage' : ''} {$language === 'ar' ? 'dir-rtl' : ''}"
 >
 	{#if isLearningHubSingle}
 		<div class="w-full max-w-screen-md mx-auto !px-0">

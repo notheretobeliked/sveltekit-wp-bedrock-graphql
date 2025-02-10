@@ -470,8 +470,8 @@
 						on:input={(e) => updateFilter('searchFilter', e.currentTarget.value)}
 						placeholder={translations.search[lang]}
 						class="border-white border rounded-md p-2 bg-black w-full text-sm {lang === 'ar'
-							? 'text-right pr-2 pl-8'
-							: 'pl-2 pr-8'}"
+							? 'text-right pr-2 pl-8 font-lyon'
+							: 'pl-2 pr-8 font-martina'}"
 					/>
 					{#if $filterStore.searchFilter}
 						<button

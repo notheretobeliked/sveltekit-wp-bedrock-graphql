@@ -116,7 +116,7 @@
 			>
 				<a href="/en" class="">Decolonizing the page</a>
 			</h1>
-			<div class="language-switcher text-right lg:text-center font-martina justify-end w-full">
+			<div class="language-switcher {currentLanguage === 'en' ? 'text-right' : 'text-left' } lg:text-center font-martina justify-end w-full">
 				<a
 					class="{currentLanguage === 'en' ? 'hidden' : ''} lg:inline"
 					href={currentLanguage === 'en' ? currentPagePath : englishLanguagePath}
@@ -126,7 +126,7 @@
 				>
 				<span class="hidden lg:inline">|</span>
 				<a
-					class="{currentLanguage === 'ar' ? 'hidden' : ''} lg:inline"
+					class="{currentLanguage === 'ar' ? 'hidden' : ''} lg:inline font-lyon"
 					href={currentLanguage === 'ar' ? currentPagePath : arabicLanguagePath}
 					on:click={(e) =>
 						switchLanguage(e, currentLanguage === 'ar' ? currentPagePath : arabicLanguagePath)}
@@ -193,9 +193,7 @@
 
 <style>
 	:global(.hamburger) {
-		--layer-height: 2px;
+		--layer-height: 1.5px;
 	}
-	:global(.hamburger--spin.svelte-jas1sv .hamburger-inner.svelte-jas1sv::after) {
-		height: 1.5px;
-	}
+
 </style>
