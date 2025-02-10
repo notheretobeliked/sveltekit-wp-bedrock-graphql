@@ -35,7 +35,7 @@
 
 	const sizes = determineSizes(imageSize)
 </script>
-<div class="relative w-full h-full max-w-none">
+<div class="relative w-full h-full max-w-none flex justify-center">
   <img
     loading={lazy ? 'lazy' : 'eager'}
     class={`${fit === 'contain' ? 'w-auto' : 'w-full'} h-full object-${fit} ${shadow ? 'drop-shadow-lg' : ''} ${extraClasses}`}

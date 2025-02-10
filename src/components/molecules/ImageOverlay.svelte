@@ -96,8 +96,8 @@
 			},
 			loadTilesWithAjax: true, // Add this line
 			defaultZoomLevel: 0,
-			minZoomLevel: 0.1,
-			maxZoomLevel: 10,
+			minZoomLevel: 0.3,
+			maxZoomLevel: 5,
 			visibilityRatio: 1,
 			constrainDuringPan: true,
 			showNavigationControl: true,
@@ -115,7 +115,10 @@
 		document.addEventListener('keydown', handleKeydown)
 		return () => {
 			document.removeEventListener('keydown', handleKeydown)
-			viewer?.destroy()
+			if (viewer) {
+				viewer.destroy()
+				viewer = null
+			}
 		}
 	})
 </script>

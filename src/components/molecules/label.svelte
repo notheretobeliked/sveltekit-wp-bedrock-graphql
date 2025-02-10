@@ -286,7 +286,7 @@
 					<button
 						on:click={() => openOverlay(0)}
 						on:keydown={(e) => e.key === 'Enter' && openOverlay(0)}
-						class="cursor-pointer block relative w-full h-full"
+						class="cursor-pointer relative w-full h-full flex items-center "
 					>
 						<Image imageObject={book.thumbnailCoverImage} fit="contain" />
 						<div
@@ -298,6 +298,7 @@
 								fill="none"
 								viewBox="0 0 24 24"
 								stroke="currentColor"
+								stroke-width="1"
 							>
 								<path
 									stroke-linecap="round"

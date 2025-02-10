@@ -258,7 +258,7 @@
 
 						{#if cabinet.groups}
 							{#each cabinet.groups as group, groupIndex}
-								{#if group}
+								{#if group?.layout}
 									{#if group.layout[0] === 'miniatures'}
 										<div
 											class="flex flex-row flex-wrap gap-2 mb-[200px] justify-center layout-miniatures"
@@ -277,6 +277,7 @@
 																? 'scale-100 opacity-100 translate-y-0'
 																: 'scale-100 opacity-100 translate-y-0'}"
 														on:click={() => handleImageClick(image.reference)}
+														on:keydown={(e) => e.key === 'Enter' && handleImageClick(image.reference)}
 														role="button"
 														tabindex="0"
 														class:cursor-pointer={image.reference}
@@ -306,6 +307,7 @@
 															? 'scale-100 opacity-100 translate-y-0'
 															: 'scale-100 opacity-100 translate-y-0'}"
 														on:click={() => handleImageClick(image.reference)}
+														on:keydown={(e) => e.key === 'Enter' && handleImageClick(image.reference)}
 														role="button"
 														tabindex="0"
 														class:cursor-pointer={image.reference}
@@ -343,6 +345,7 @@
 															transition:fade={{ duration: 200 }}
 															on:click={() =>
 																handleImageClick(group.images.nodes[currentImageIndex]?.reference)}
+															on:keydown={(e) => e.key === 'Enter' && handleImageClick(group.images.nodes[currentImageIndex]?.reference)}
 															role="button"
 															tabindex="0"
 															class:cursor-pointer={group.images.nodes[currentImageIndex]
@@ -375,6 +378,7 @@
 															? 'h-[250px]'
 															: 'h-[300px] lg:h-[430px]'} hover:scale-[101%] transition-all duration-200"
 														on:click={() => handleImageClick(group.images.nodes[0]?.reference)}
+														on:keydown={(e) => e.key === 'Enter' && handleImageClick(group.images.nodes[0]?.reference)}
 														role="button"
 														tabindex="0"
 														class:cursor-pointer={group.images.nodes[0]?.reference}
@@ -396,6 +400,7 @@
 																? 'h-[250px]'
 																: 'h-[300px] lg:h-[430px]'} hover:scale-[101%] transition-all duration-200"
 															on:click={() => handleImageClick(group.images.nodes[1]?.reference)}
+															on:keydown={(e) => e.key === 'Enter' && handleImageClick(group.images.nodes[1]?.reference)}
 															role="button"
 															tabindex="0"
 															class:cursor-pointer={group.images.nodes[1]?.reference}
@@ -418,6 +423,7 @@
 																		? 'h-[250px]'
 																		: 'h-[300px] lg:h-[430px]'} hover:scale-[101%] transition-all duration-200"
 																	on:click={() => handleImageClick(image?.reference)}
+																	on:keydown={(e) => e.key === 'Enter' && handleImageClick(image?.reference)}
 																	role="button"
 																	tabindex="0"
 																	class:cursor-pointer={image?.reference}
@@ -442,6 +448,7 @@
 																		? 'h-[250px]'
 																		: 'h-[300px] lg:h-[430px]'} hover:scale-[101%] transition-all duration-200"
 																	on:click={() => handleImageClick(image?.reference)}
+																	on:keydown={(e) => e.key === 'Enter' && handleImageClick(image?.reference)}
 																	role="button"
 																	tabindex="0"
 																	class:cursor-pointer={image?.reference}
@@ -469,6 +476,7 @@
 																		? 'h-[250px]'
 																		: 'h-[300px] lg:h-[430px]'} hover:scale-[101%] transition-all duration-200"
 																	on:click={() => handleImageClick(image?.reference)}
+																	on:keydown={(e) => e.key === 'Enter' && handleImageClick(image?.reference)}
 																	role="button"
 																	tabindex="0"
 																	class:cursor-pointer={image?.reference}
@@ -495,6 +503,7 @@
 																		? 'h-[250px]'
 																		: 'h-[300px] lg:h-[430px]'} hover:scale-[101%] transition-all duration-200"
 																	on:click={() => handleImageClick(image?.reference)}
+																	on:keydown={(e) => e.key === 'Enter' && handleImageClick(image?.reference)}
 																	role="button"
 																	tabindex="0"
 																	class:cursor-pointer={image?.reference}
@@ -528,6 +537,7 @@
 																handleImageClick(
 																	group.images.nodes[group.images.nodes.length - 1]?.reference
 																)}
+															on:keydown={(e) => e.key === 'Enter' && handleImageClick(group.images.nodes[group.images.nodes.length - 1]?.reference)}
 															role="button"
 															tabindex="0"
 															class:cursor-pointer={group.images.nodes[
