@@ -52,12 +52,16 @@ p a {
 	@apply font-martina text-base pb-1 border-b border-black mb-3;
 }
 
+.basestyles a {
+	@apply border-dotted border-b-blue border-b hover:text-blue;
+}
+
 .basestyles h3 {
-	@apply font-martina text-base uppercase tracking-wider mb-3;
+	@apply font-martina text-base uppercase tracking-wider mb-3 mt-3;
 }
 
 .basestyles h4 {
-	@apply font-martina text-xs uppercase tracking-widest mb-1;
+	@apply font-martina text-xs uppercase tracking-widest mb-1  mt-3;
 }
 
 .dir-rtl {
