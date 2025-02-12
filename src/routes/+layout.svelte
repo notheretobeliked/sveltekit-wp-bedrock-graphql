@@ -65,7 +65,7 @@
 {/key}
 
 {#key $page.url.pathname}
-	<Header {menuItems} />
+	<Header />
 {/key}
 
 {#if $navigating}

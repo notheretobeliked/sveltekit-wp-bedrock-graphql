@@ -15,7 +15,7 @@
 	let isInitialized = false
 	let isLoading = false
 	let imagesLoaded = false
-
+	import { language } from '$stores/language';
 	const duplicatedImages = [...images, ...images]
 
 	const transformImageObject = (image: any) => {
@@ -35,26 +35,48 @@
 	let headerHeight: number
 	let scrollInterval: ReturnType<typeof setInterval> | undefined
 	let preloadedImages: HTMLImageElement[] = []
+	let isInitialPositionSet = false
 
 	function updateIndex() {
 		if (!showImages) return
 
 		if (containerRef) {
-			// Clear any existing interval when starting a new one
 			if (scrollInterval) clearInterval(scrollInterval)
 			
+			const isRTL = $language === 'ar'
+			const scrollStep = 5
+			
+			if (isRTL && !isInitialPositionSet) {
+				containerRef.scrollLeft = containerRef.scrollWidth / 2
+				isInitialPositionSet = true
+			}
+			
 			scrollInterval = setInterval(() => {
-				containerRef.scrollLeft += 5
-				
-				// Reset scroll position when reaching the end
-				if (containerRef.scrollLeft >= containerRef.scrollWidth / 2) {
-					containerRef.scrollLeft = 0
+				if (isRTL) {
+					containerRef.scrollLeft -= scrollStep
+
+					if (Math.abs(containerRef.scrollLeft) < 1) {
+						void containerRef.offsetHeight
+						containerRef.scrollLeft = containerRef.scrollWidth / 2
+					}
+				} else {
+					containerRef.scrollLeft += scrollStep
+					if (containerRef.scrollLeft >= containerRef.scrollWidth / 2) {
+						containerRef.scrollLeft = 0
+					}
 				}
 			}, 30)
 		}
 	}
 
-	// Watch for showImages changes
+	$: if (!showImages) {
+		isInitialPositionSet = false
+		if (scrollInterval) {
+			clearInterval(scrollInterval)
+			scrollInterval = undefined
+		}
+	}
+
 	$: if (showImages && !isInitialized) {
 		isInitialized = true
 		requestAnimationFrame(updateIndex)
