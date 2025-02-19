@@ -2,7 +2,11 @@
 	import type { CoreParagraph } from '$lib/graphql/generated'
 	import { classNames } from '$lib/utilities/utilities'
 
-	export let block: CoreParagraph
+	interface Props {
+		block: CoreParagraph;
+	}
+
+	let { block }: Props = $props();
 
     const {
         content = '',

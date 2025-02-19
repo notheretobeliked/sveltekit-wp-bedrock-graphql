@@ -1,7 +1,11 @@
 <script lang="ts">
 	import type { CoreColumns } from '$lib/graphql/generated'
-	export let block: CoreColumns
 	import BlockRenderer from '$components/BlockRenderer.svelte'
+	interface Props {
+		block: CoreColumns;
+	}
+
+	let { block }: Props = $props();
 	const columns = block.children.length
 	const isStackedOnMobile: boolean = block.attributes?.isStackedOnMobile ?? false
 </script>

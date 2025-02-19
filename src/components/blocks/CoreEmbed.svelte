@@ -1,7 +1,11 @@
 <script lang="ts">
 	import type { CoreEmbed } from '$lib/graphql/generated'
 
-	export let block: CoreEmbed
+	interface Props {
+		block: CoreEmbed;
+	}
+
+	let { block }: Props = $props();
 
 	const getEmbedUrl = (url: string) => {
 		// YouTube

@@ -1,6 +1,10 @@
 <script lang="ts">
 	import type { CoreFootnotes } from '$lib/graphql/generated'
-	export let block: CoreFootnotes
+	interface Props {
+		block: CoreFootnotes;
+	}
+
+	let { block }: Props = $props();
 </script>
 
 {#if block.renderedHtml}<div class="footnotes border-t border-black mt-9 py-3">

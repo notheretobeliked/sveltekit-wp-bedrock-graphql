@@ -1,12 +1,5 @@
 <script lang="ts">
-	/*
-    this is the main component for outputting blocks.
-    it ingests an editorBlocks object, and outputs the relevant Core block
-    depending on what data is needed.
-    
-    todo: Write and extend more core blocks (see list below for included blocks)
-  */
-	export let forceFull: boolean = false
+	
 
 	let isInView: boolean
 
@@ -47,7 +40,6 @@
 		| (CoreEmbedType & NormalizedBlock)
 		| (CoreImageType & NormalizedBlock)
 
-	export let block: EditorBlock
 
 	import CoreParagraph from '$components/blocks/CoreParagraph.svelte'
 	import CoreFootnotes from '$components/blocks/CoreFootnotes.svelte'
@@ -60,7 +52,20 @@
 	import CoreEmbed from './blocks/CoreEmbed.svelte'
 	import CoreImage from './blocks/CoreImage.svelte'
 	import CoreButton from './blocks/CoreButton.svelte'
-	let align = block.attributes?.align || 'none'
+	interface Props {
+		/*
+    this is the main component for outputting blocks.
+    it ingests an editorBlocks object, and outputs the relevant Core block
+    depending on what data is needed.
+    
+    todo: Write and extend more core blocks (see list below for included blocks)
+  */
+		forceFull?: boolean;
+		block: EditorBlock;
+	}
+
+	let { forceFull = false, block }: Props = $props();
+	let align = $state(block.attributes?.align || 'none')
 	let verticalAlignment = block.attributes?.verticalAlignment ?? null
 
 	if (forceFull || block.name === 'core/column') align = 'full'

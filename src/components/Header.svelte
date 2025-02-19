@@ -2,11 +2,11 @@
 	import { Hamburger } from 'svelte-hamburgers'
 
 
-	let showToast = false
+	let showToast = $state(false)
 
 
 
-	let open: boolean = false
+	let open: boolean = $state(false)
 
 	async function handleShare() {
 		if (navigator.share) {
@@ -39,7 +39,7 @@
 	>
 		<div class="hidden lg:block relative">
 			<svg
-				on:click={handleShare}
+				onclick={handleShare}
 				class="cursor-pointer"
 				width="30"
 				height="30"

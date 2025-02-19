@@ -3,12 +3,23 @@
 	import type { ImageSize } from '$lib/types/wp-types'
 	import { findImageSizeData, getSrcSet } from '$lib/utilities/utilities'
 	type ImageSizeName = 'thumbnail' | 'medium' | 'medium_large' | 'large'  | 'x_large'
-	export let imageObject:MediaItem
-	export let lazy: boolean = true
-	export let imageSize:ImageSizeName  = 'thumbnail'
-	export let fit: 'cover' | 'contain' | 'fill' | 'none' = 'none'
-	export let extraClasses: string = ''
-	export let shadow = false;
+	interface Props {
+		imageObject: MediaItem;
+		lazy?: boolean;
+		imageSize?: ImageSizeName;
+		fit?: 'cover' | 'contain' | 'fill' | 'none';
+		extraClasses?: string;
+		shadow?: boolean;
+	}
+
+	let {
+		imageObject,
+		lazy = true,
+		imageSize = 'thumbnail',
+		fit = 'none',
+		extraClasses = '',
+		shadow = false
+	}: Props = $props();
 	const sizes = imageObject?.mediaDetails?.sizes
 		?.filter((size): size is MediaSize => size !== null && typeof size.name === 'string')
 		.map(size => ({

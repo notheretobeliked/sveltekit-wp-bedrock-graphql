@@ -1,6 +1,10 @@
 <script lang="ts">
 	import BlockRenderer from '$components/BlockRenderer.svelte'
-	export let block: EditorBlock
+	interface Props {
+		block: EditorBlock;
+	}
+
+	let { block }: Props = $props();
 	const children = block.children
 	const bgColor = block.attributes.backgroundColor ?? 'white'
 </script>

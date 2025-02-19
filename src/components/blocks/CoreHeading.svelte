@@ -2,7 +2,11 @@
 	import type { CoreHeading } from '$lib/graphql/generated'
 	import { classNames } from '$lib/utilities/utilities'
 
-	export let block: CoreHeading
+	interface Props {
+		block: CoreHeading;
+	}
+
+	let { block }: Props = $props();
 	const {
 		content = '',
 		fontSize = 'base',

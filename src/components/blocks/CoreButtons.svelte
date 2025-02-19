@@ -1,7 +1,11 @@
 <script lang="ts">
 	import CoreButton from '$components/blocks/CoreButton.svelte'
 	import type { CoreButtonsBlock } from '$lib/types/wp-types'
-	export let block: CoreButtonsBlock
+	interface Props {
+		block: CoreButtonsBlock;
+	}
+
+	let { block }: Props = $props();
 	const children = block.children
 	const bgColor = block.attributes.backgroundColor ?? 'white'
 	const { justifyContent } = block.attributes.layout

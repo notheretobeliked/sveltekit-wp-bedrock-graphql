@@ -1,7 +1,11 @@
 <script lang="ts">
 	import type { CoreImage, MediaItem } from '$lib/graphql/generated'
 	import Image from '$components/Image.svelte'
-	export let block: CoreImage
+	interface Props {
+		block: CoreImage;
+	}
+
+	let { block }: Props = $props();
 
 	const imageObject = {
 		altText: block.attributes?.alt ? block.attributes.alt : '',

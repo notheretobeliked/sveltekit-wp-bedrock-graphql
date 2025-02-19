@@ -5,7 +5,12 @@
 	import Twitter from '$components/SEO/Twitter.svelte'
 	import OpenGraph from '$components/SEO/OpenGraph.svelte'
 
-	export let data: LayoutData
+	interface Props {
+		data: LayoutData;
+		children?: import('svelte').Snippet<[any]>;
+	}
+
+	let { data, children }: Props = $props();
 	let { seo, menu, uri } = data
 	const menuItems = menu.menuItems?.nodes
 	const image = seo.opengraphImage
@@ -13,13 +18,6 @@
 	const pageTitle = seo.title
 	const siteUrl = seo.siteUrl
 	const siteTitle = seo.opengraphSiteName // Assuming this is used for og:site_name
-
-
-	$: {
-		menuItems
-		uri
-		seo
-	}
 
 
 </script>
@@ -31,5 +29,5 @@
 
 
 <main class="md:px-0">
-	<slot {data} />
+	{@render children?.({ data, })}
 </main>
