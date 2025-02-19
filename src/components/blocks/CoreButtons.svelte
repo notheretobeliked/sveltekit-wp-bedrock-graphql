@@ -8,7 +8,7 @@
 	let { block }: Props = $props();
 	const children = block.children
 	const bgColor = block.attributes.backgroundColor ?? 'white'
-	const { justifyContent } = block.attributes.layout
+	const { justifyContent = 'left' } = block.attributes.layout ?? { justifyContent: 'left' }
 
 	// Utility to generate CSS classes based on justifyContent value
 	function justifyContentClass(
