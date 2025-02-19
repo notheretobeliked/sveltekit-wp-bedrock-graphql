@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { CoreButton } from '$lib/graphql/generated'
-	import Button from '$components/Button.svelte'
+	import Button from '$components/atoms/Button.svelte'
 
 	interface Props {
 		// Expect a core/button block

@@ -71,6 +71,23 @@ fragment CommonBlockFields on EditorBlock {
 			customText
 		}
 	}
+  ... on CoreList {
+    attributes {
+      ordered
+      reversed
+      start
+      textColor
+      type
+    }
+  }
+  ... on CoreListItem {
+    attributes {
+      content
+      fontSize
+      fontFamily
+      textColor
+    }
+  }
 	... on CoreHeading {
 		attributes {
 			content

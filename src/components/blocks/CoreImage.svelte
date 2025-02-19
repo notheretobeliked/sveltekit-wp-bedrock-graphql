@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { CoreImage, MediaItem } from '$lib/graphql/generated'
-	import Image from '$components/Image.svelte'
+	import Image from '$components/atoms/Image.svelte'
 	interface Props {
 		block: CoreImage;
 	}

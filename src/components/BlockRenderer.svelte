@@ -1,9 +1,5 @@
 <script lang="ts">
-	
-
-	let isInView: boolean
-
-	import type {
+		import type {
 		CoreParagraph as CoreParagraphType,
 		CoreHeading as CoreHeadingType,
 		CoreGroup as CoreGroupType,
@@ -14,7 +10,9 @@
 		CoreButton as CoreButtonType,
 		CoreFootnotes as CoreFootnotesType,
 		CoreEmbed as CoreEmbedType,
-		CoreImage as CoreImageType
+		CoreImage as CoreImageType,
+		CoreList as CoreListType,
+		CoreListItem as CoreListItemType
 	} from '$lib/graphql/generated'
 
 	interface NormalizedBlock {
@@ -39,6 +37,8 @@
 		| (CoreFootnotesType & NormalizedBlock)
 		| (CoreEmbedType & NormalizedBlock)
 		| (CoreImageType & NormalizedBlock)
+		| (CoreListType & NormalizedBlock)
+		| (CoreListItemType & NormalizedBlock)
 
 
 	import CoreParagraph from '$components/blocks/CoreParagraph.svelte'
@@ -52,6 +52,8 @@
 	import CoreEmbed from './blocks/CoreEmbed.svelte'
 	import CoreImage from './blocks/CoreImage.svelte'
 	import CoreButton from './blocks/CoreButton.svelte'
+	import CoreList from './blocks/CoreList.svelte'
+	import CoreListItem from './blocks/CoreListItem.svelte'
 	interface Props {
 		/*
     this is the main component for outputting blocks.
@@ -219,6 +221,13 @@
 
 	{#if block.name === 'core/image'}
 		<CoreImage {block} />
+	{/if}
+
+	{#if block.name === 'core/list'}
+		<CoreList {block} />
+	{/if}
+	{#if block.name === 'core/list-item'}
+		<CoreListItem {block} />
 	{/if}
 </div>
 
