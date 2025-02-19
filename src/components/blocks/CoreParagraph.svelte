@@ -1,54 +1,35 @@
 <script lang="ts">
-	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CoreParagraph } from '$lib/graphql/generated'
+	import { classNames } from '$lib/utilities/utilities'
 
-	export let block: EditorBlock
-
-	const { content, fontSize, textColor, align } = block.attributes
-
-	const classNames = (fontSize: string, textColor: string, align: string) => {
-		let textClasses: string,
-			alignClasses: string,
-			colorClasses: string = ''
-		switch (fontSize) {
-			case 'base':
-				textClasses = 'text-sans text-sm md:text-base'
-				break
-			case 'lg':
-				textClasses = 'font-display text-base md:text-lg'
-				break
-			case 'xl':
-				textClasses = 'font-display text-lg md:text-xl'
-				break
-			case '2xl':
-				textClasses = 'font-display text-xl md:text-2xl'
-				break
-			case null:
-				textClasses = 'text-sans text-sm md:text-base'
-				break
-		}
-		switch (align) {
-			case 'center':
-				alignClasses = 'text-center'
-				break
-			case 'left':
-				alignClasses = 'text-left'
-				break
-			case 'right':
-				alignClasses = 'text-right'
-				break
-			case null:
-				alignClasses = 'text-left'
-				break
-		}
-		colorClasses = `text-${textColor}`
-		if (textColor === 'green')
-			colorClasses = `${colorClasses} group-hover:text-black transition-color`
-
-		return `${textClasses} ${alignClasses} ${colorClasses} mb-4` // Combine base classes with spacing classes
+	interface Props {
+		block: CoreParagraph;
 	}
+
+	let { block }: Props = $props();
+
+    const {
+        content = '',
+        fontSize = 'base',
+        textColor = 'black',
+        align = 'left',
+        fontFamily = null
+    } = block.attributes ?? {}
+
+
 </script>
 
 <!-- Use the class directive in Svelte to dynamically set classes -->
-<p class={classNames(fontSize, textColor, align)}>
+{#if content}
+	<p
+		class="{classNames(
+			fontSize || 'base',
+			textColor || 'black',
+			align || 'left',
+			fontFamily || 'inter',
+		)} mb-4 mx-2 lg:mx-0"
+	>
 	{@html content}
 </p>
+
+{/if}

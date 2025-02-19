@@ -1,0 +1,15 @@
+query Posts {
+  posts {
+    nodes {
+      title
+      slug
+      categories {
+        nodes {
+          slug
+          name
+        }
+      }
+      date
+    }
+  }
+}

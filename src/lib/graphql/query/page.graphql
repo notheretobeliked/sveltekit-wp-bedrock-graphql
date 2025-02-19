@@ -1,126 +1,161 @@
-query PageContent($uri: ID!) {
-	page(id: $uri, idType: URI) {
-		id
-		editorBlocks {
+query PageContent($uri: String = "") {
+	nodeByUri(uri: $uri) {
+		... on Page {
+			id
+			title
+			date
+			editorBlocks {
+				...CommonBlockFields
+			}
+		}
+		... on Post {
+			id
+			title
+			date
+			editorBlocks {
+				...CommonBlockFields
+			}
+		}
+	}
+}
+
+fragment CommonBlockFields on EditorBlock {
+	name
+	parentClientId
+	clientId
+	... on CoreEmbed {
+		renderedHtml
+		attributes {
+			align
+			url
+		}
+	}
+	... on CoreImage {
+		mediaDetails {
+			sizes(exclude: [MEDIUM_LARGE, MEDIUM]) {
+				sourceUrl
+				height
+				width
+				mimeType
+				name
+			}
+		}
+		attributes {
+			title
+			alt
+			url
+			caption
+		}
+	}
+	... on CoreParagraph {
+		attributes {
+			content
+			fontFamily
+			fontSize
+			textColor
+			align
+			className
+		}
+	}
+	... on CoreFootnotes {
+		renderedHtml
+		innerBlocks {
+			name
+		}
+		attributes {
+			metadata
+		}
+	}
+	... on CoreMore {
+		attributes {
+			customText
+		}
+	}
+  ... on CoreList {
+    attributes {
+      ordered
+      reversed
+      start
+      textColor
+      type
+    }
+  }
+  ... on CoreListItem {
+    attributes {
+      content
+      fontSize
+      fontFamily
+      textColor
+    }
+  }
+	... on CoreHeading {
+		attributes {
+			content
+			className
+			fontFamily
+			fontSize
+			textColor
+			textAlign
+			level
+			align
+		}
+	}
+	... on CoreColumns {
+		attributes {
+			backgroundColor
+			layout
+			className
+			verticalAlignment
+			style
+			align
+			isStackedOnMobile
+		}
+	}
+	... on CoreColumn {
+		attributes {
+			backgroundColor
+			layout
+			className
+			verticalAlignment
+			style
+		}
+	}
+	... on CoreGroup {
+		attributes {
+			backgroundColor
+			align
+			style
+		}
+	}
+	... on CoreButton {
+		attributes {
+			backgroundColor
+			style
+			fontSize
+			linkTarget
+			text
+			url
+		}
+		innerBlocks {
+			apiVersion
+			blockEditorCategoryName
+			clientId
 			name
 			parentClientId
-			clientId
-			...CoreParagraphFragment
-			...CoreHeadingFragment
-			...CoreColumnsFragment
-			...CoreGroupFragment
-			...CoreButtonFragment
-			...CoreButtonsFragment
-			...CoreSpacerFragment
-		}
-		seo {
-			...SeoFragment
+			renderedHtml
 		}
 	}
-}
-
-fragment SeoFragment on PostTypeSEO {
-	metaDesc
-	metaKeywords
-	opengraphSiteName
-	opengraphTitle
-	opengraphPublisher
-	opengraphUrl
-	title
-	twitterDescription
-	twitterTitle
-	twitterImage {
-		altText
-		mediaDetails {
-			...MediaDetailsFragment
+	... on CoreButtons {
+		attributes {
+			align
+			layout
 		}
 	}
-	opengraphImage {
-		altText
-		mediaDetails {
-			...MediaDetailsFragment
+	... on CoreSpacer {
+		attributes {
+			height
+			style
 		}
 	}
 }
 
-fragment MediaDetailsFragment on MediaDetails {
-	sizes {
-		name
-		sourceUrl
-		width
-		height
-	}
-}
-
-fragment CoreGroupFragment on CoreGroup {
-	attributes {
-		backgroundColor
-		align
-		style
-	}
-}
-
-fragment CoreButtonFragment on CoreButton {
-	attributes {
-		backgroundColor
-		style
-		fontSize
-		linkTarget
-		text
-		url
-	}
-	innerBlocks {
-		apiVersion
-		blockEditorCategoryName
-		clientId
-		name
-		parentClientId
-		renderedHtml
-	}
-}
-
-fragment CoreColumnsFragment on CoreColumns {
-	attributes {
-		layout
-		className
-		verticalAlignment
-		style
-		align
-	}
-}
-
-fragment CoreParagraphFragment on CoreParagraph {
-	attributes {
-		content
-		fontFamily
-		fontSize
-		textColor
-		align
-	}
-}
-
-fragment CoreHeadingFragment on CoreHeading {
-	attributes {
-		content
-		fontFamily
-		fontSize
-		textColor
-		textAlign
-		level
-		align
-	}
-}
-
-fragment CoreSpacerFragment on CoreSpacer {
-	attributes {
-		height
-		style
-	}
-}
-
-fragment CoreButtonsFragment on CoreButtons {
-	attributes {
-		align
-		layout
-	}
-}
