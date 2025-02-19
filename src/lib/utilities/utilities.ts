@@ -20,67 +20,53 @@ export const classNames = (
 	fontSize: string,
 	textColor: string,
 	align: string,
-	fontFamily: string,
-	isArabic: boolean = false
+	fontFamily: string
 ) => {
 	let sizeClasses: string = ''
 	let fontClasses: string = ''
 	let alignClasses: string = 'text-left'
 	let colorClasses: string = ''
 
-	// Handle font size with Arabic variants
-	const prefix = isArabic ? 'ar-' : ''
+	// Handle font size
 	switch (fontSize) {
 		case 'xs':
-			sizeClasses = `text-${prefix}xs`
+			sizeClasses = 'text-xs'
 			break
 		case 'sm':
-			sizeClasses = `text-${prefix}sm`
+			sizeClasses = 'text-sm'
 			break
 		case 'base':
-			sizeClasses = `text-${prefix}base`
+			sizeClasses = 'text-base'
 			break
 		case 'lg':
-			sizeClasses = `text-${prefix}base md:text-${prefix}lg`
+			sizeClasses = 'text-base md:text-lg'
 			break
 		case 'xl':
-			sizeClasses = `text-${prefix}lg md:text-${prefix}xl`
+			sizeClasses = 'text-lg md:text-xl'
 			break
 		case '2xl':
-			sizeClasses = `text-lg md:text-${prefix}xl md:text-${prefix}2xl`
+			sizeClasses = 'text-lg md:text-xl md:text-2xl'
 			break
 		case '3xl':
-			sizeClasses = `text-xl md:text-${prefix}2xl lg:text-${prefix}3xl`
+			sizeClasses = 'text-xl md:text-2xl lg:text-3xl'
 			break
 		case '4xl':
-			sizeClasses = `text-${prefix}2xl md:text-${prefix}4xl`
+			sizeClasses = 'text-2xl md:text-4xl'
 			break
 		case '':
 		default:
-			sizeClasses = `text-${prefix}sm md:text-${prefix}base`
+			sizeClasses = 'text-sm md:text-base'
 			break
 	}
 
 	// Handle font family
 	switch (fontFamily) {
-		case 'martina':
-			fontClasses = 'font-martina'
-			break
-		case 'manchette':
-			fontClasses = 'font-manchette'
-			break
-		case 'boogy':
-			fontClasses = 'font-boogy'
-			break
-		case 'lyon':
-			fontClasses = 'font-lyon'
-			break
-		case 'lyon-slanted':
-			fontClasses = 'lyon-slanted'
+		case 'inter':
+			fontClasses = 'font-inter'
 			break
 		case '':
 		default:
-			fontClasses = 'font-martina'
+			fontClasses = 'font-inter'
 			break
 	}
 
@@ -101,9 +87,6 @@ export const classNames = (
 
 	// Handle text color
 	colorClasses = textColor ? `text-${textColor}` : ''
-	if (textColor === 'green') {
-		colorClasses += ' group-hover:text-black transition-color'
-	}
 
 	return `${sizeClasses} ${fontClasses} ${alignClasses} ${colorClasses}`.trim()
 }

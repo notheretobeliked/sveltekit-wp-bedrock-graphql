@@ -1,10 +1,7 @@
-query Posts($lang: String = "") {
-  posts(where: {language:$lang}) {
+query Posts {
+  posts {
     nodes {
       title
-      learningHubFields {
-        byline
-      }
       slug
       categories {
         nodes {

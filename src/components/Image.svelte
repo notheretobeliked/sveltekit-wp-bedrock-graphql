@@ -1,21 +1,25 @@
 <script lang="ts">
-	import type { ImageSizeData, Maybe } from '$lib/types/generated'
+	import type { MediaItem, MediaSize } from '$lib/graphql/generated'
+	import type { ImageSize } from '$lib/types/wp-types'
 	import { findImageSizeData, getSrcSet } from '$lib/utilities/utilities'
-
-	export let imageObject: {
-		altText?: Maybe<string>
-		mediaDetails: {
-			sizes: ImageSizeData[]
-		}
-	}
+	type ImageSizeName = 'thumbnail' | 'medium' | 'medium_large' | 'large'  | 'x_large'
+	export let imageObject:MediaItem
 	export let lazy: boolean = true
-	export let imageSize: keyof ImageSizeData = 'thumbnail'
+	export let imageSize:ImageSizeName  = 'thumbnail'
 	export let fit: 'cover' | 'contain' | 'fill' | 'none' = 'none'
 	export let extraClasses: string = ''
 	export let shadow = false;
-	const src = findImageSizeData('sourceUrl', imageObject.mediaDetails.sizes, imageSize)
-	const width = findImageSizeData('width', imageObject.mediaDetails.sizes, imageSize)
-	const height = findImageSizeData('height', imageObject.mediaDetails.sizes, imageSize)
+	const sizes = imageObject?.mediaDetails?.sizes
+		?.filter((size): size is MediaSize => size !== null && typeof size.name === 'string')
+		.map(size => ({
+			sourceUrl: size.sourceUrl ?? '',
+			width: parseInt(size.width ?? '0'),
+			height: parseInt(size.height ?? '0'),
+			name: size.name as ImageSize['name']
+		})) ?? []
+	const src = findImageSizeData('sourceUrl', sizes, imageSize)
+	const width = findImageSizeData('width', sizes, imageSize)
+	const height = findImageSizeData('height', sizes, imageSize)
 	const altText = imageObject.altText ?? ''
 
 	function determineSizes(sizeName: ImageSizeName): string {
@@ -33,7 +37,9 @@
 		}
 	}
 
-	const sizes = determineSizes(imageSize)
+	const srcsetLabels = determineSizes(imageSize)
+
+
 </script>
 <div class="relative w-full h-full max-w-none flex justify-center">
   <img
@@ -43,8 +49,8 @@
     alt={altText}
     {width}
     {height}
-    srcset={getSrcSet(imageObject.mediaDetails.sizes)}
-    {sizes}
+    srcset={getSrcSet(sizes)}
+    sizes={srcsetLabels}
   />
   <img 
     src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"

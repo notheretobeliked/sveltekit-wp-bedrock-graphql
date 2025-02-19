@@ -13,7 +13,7 @@
 	}
 
 	.footnotes :global(li) {
-		@apply font-martina !text-sm lg:text-base;
+		@apply font-inter !text-sm lg:text-base;
 		padding-left: -4rem;
 		text-indent: 4rem;
 	}

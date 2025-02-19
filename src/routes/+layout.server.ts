@@ -4,56 +4,26 @@ import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
 import type { LayoutServerLoad } from './$types'
 import { error } from '@sveltejs/kit'
 import { PUBLIC_SITE_URL } from '$env/static/public' // Ensure this import is correct
-import { labelTranslations } from '$lib/labeltranslations'
 interface LoadReturn {
 	data: PageMetaQuery
-	labelTranslations: typeof labelTranslations
 	menu: NonNullable<PageMetaQuery['menu']>
-	languageCode: NonNullable<PageMetaQuery['page']>['languageCode']
-	translations: NonNullable<NonNullable<PageMetaQuery['page']>['translations']>
 	seo: NonNullable<NonNullable<PageMetaQuery['page']>['seo']>
 	uri: string
-	lang: string // Add this line
 }
 
 export const load: LayoutServerLoad<LoadReturn> = async function load({ params, url }) {
 
 	let uri = url.pathname
-	// Remove language prefix from URI before making the GraphQL query
-	uri = uri.replace(/^\/(en|ar)/, '')
-	
+	// Remove language prefix from URI before making the GraphQL query	
 	if (uri === '') {
 		uri = '/'
 	}
-	
-	const specialRoutes = [
-		'/library',
-		'/library/',
-		'/learning-hub',
-		'/learning-hub/',
-		'/ar/library',
-		'/ar/library/',
-		'/ar/learning-hub',
-		'/ar/learning-hub/',
-		'/en/library',
-		'/en/library/',
-		'/en/learning-hub',
-		'/en/learning-hub/'
-	]
-
-	// Check if current URI matches any of the special routes or their sub-routes
-	const isSpecialRoute = specialRoutes.some((route) => uri === route || uri.startsWith(`${route}/`))
 
 	try {
 		const response = await graphqlQuery(PageMeta, { uri: uri })
 		checkResponse(response)
 
 		const { data }: { data: PageMetaQuery } = await response.json()
-
-		// Only check for page data if it's not a special route
-		if (!data.page && !isSpecialRoute) {
-			error(404, 'Sorry, this page does not exist')
-		}
 
 		// Modify menu items to add 'current' key
 		if (data.menu?.menuItems?.nodes) {
@@ -68,7 +38,6 @@ export const load: LayoutServerLoad<LoadReturn> = async function load({ params, 
 			error(500, 'Missing menu data')
 		}
 
-		const lang = params.lang || 'en'
 
 		// Handle SEO data more gracefully
 		let seoData = data.page?.seo
@@ -81,8 +50,8 @@ export const load: LayoutServerLoad<LoadReturn> = async function load({ params, 
 		} else {
 			// Provide fallback SEO data
 			seoData = {
-				title: 'Decolonizing the Page',
-				metaDesc: 'Decolonizing the Page',
+				title: 'Website title',
+				metaDesc: 'Meta data about the website',
 				opengraphUrl: `${PUBLIC_SITE_URL}${uri}`,
 				opengraphImage: null
 				// Add other required SEO fields with default values
@@ -91,16 +60,7 @@ export const load: LayoutServerLoad<LoadReturn> = async function load({ params, 
 
 		return {
 			data,
-			labelTranslations,
-			lang,
 			menu: data.menu,
-			languageCode:
-				data.page &&
-				'__typename' in data.page &&
-				(data.page.__typename === 'Page' || data.page.__typename === 'Post')
-					? data.page.languageCode
-					: 'en',
-			translations: data.page?.translations || [],
 			seo: seoData,
 			uri
 		} satisfies LoadReturn

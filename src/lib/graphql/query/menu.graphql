@@ -13,24 +13,10 @@ query PageMeta($uri: String!) {
 			seo {
 				...SeoFragment
 			}
-			languageCode
-			translations {
-				languageCode
-				slug
-				uri
-				id
-			}
 		},
 		... on Post {
 			seo {
 				...SeoFragment
-			}
-			languageCode
-			translations {
-				languageCode
-				slug
-				uri
-				id
 			}
 		}
 	}

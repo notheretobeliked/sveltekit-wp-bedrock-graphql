@@ -1,11 +1,8 @@
 <script lang="ts">
 	import type { CoreParagraph } from '$lib/graphql/generated'
 	import { classNames } from '$lib/utilities/utilities'
-	import { language } from '$stores/language' 
 
 	export let block: CoreParagraph
-
-	$: isArabic = $language === 'ar'
 
     const {
         content = '',
@@ -14,15 +11,6 @@
         align = 'left',
         fontFamily = null
     } = block.attributes ?? {}
-
-    // Use nullish coalescing to provide a default when null
-    const defaultFontFamily = fontFamily ?? 'martina'
-    
-    
-    $: finalFontFamily = $language === 'ar' ? 'lyon' : defaultFontFamily
-	
-    $: finalAlign = $language === 'ar' ? 'right' : align
-
 
 
 </script>
@@ -33,9 +21,8 @@
 		class="{classNames(
 			fontSize || 'base',
 			textColor || 'black',
-			finalAlign || 'left',
-			finalFontFamily || 'martina',
-			isArabic
+			align || 'left',
+			fontFamily || 'inter',
 		)} mb-4 mx-2 lg:mx-0"
 	>
 	{@html content}

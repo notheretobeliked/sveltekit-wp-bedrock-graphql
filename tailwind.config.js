@@ -14,16 +14,11 @@ export default {
 		'stroke-green',
 		'stroke-black',
 		'basestyles',
-		'ar',
 		...Array.from({ length: 8 }, (_, i) => `pt-${i + 1}`),
 		...Array.from({ length: 8 }, (_, i) => `pb-${i + 1}`),
 		...Array.from({ length: 60 }, (_, i) => `delay-[${i * 50}ms]`), // Generates delay-[0ms] through delay-[900ms]
 		{
 			pattern: /^bg-(transparent|current|black|white-pure|white-off|green|yellow|blue|red|sand)$/,
-			variants: ['sm', 'md', 'lg', 'xl', '2xl']
-		},
-		{
-			pattern: /^text-ar-(xs|sm|base|lg|xl|2xl|3xl|4xl)$/, // matches all arabic text sizes
 			variants: ['sm', 'md', 'lg', 'xl', '2xl']
 		},
 		{
@@ -33,12 +28,8 @@ export default {
 	],
 	theme: {
 		fontFamily: {
-			sans: ['Inter Tight'],
-			martina: ['Martina Plantijn'],
-			manchette: ['Manchette Fine'],
-			boogy: ['Boogy Brut Poster'],
-			'lyon-slanted': ['Lyon Arabic Slanted Text Web'],
-			lyon: ['Lyon Arabic Text Web']
+			sans: ['Inter'],
+			inter: ['Inter'],
 		},
 		colors: {
 			transparent: 'transparent',
@@ -63,15 +54,6 @@ export default {
 			'2xl': ['2.875rem', '1.2'],
 			'3xl': ['3.275rem', '1.2'],
 			'4xl': ['4.313rem', '1.2'],
-			// Arabic script sizes
-			'ar-xs': '.6rem',
-			'ar-sm': ['1rem', '1.3'],
-			'ar-base': ['1.2rem', '1.4'],
-			'ar-lg': ['2rem', '1.2'],
-			'ar-xl': ['2.7rem', '1.2'],
-			'ar-2xl': ['3.1rem', '1.3'],
-			'ar-3xl': ['3.5rem', '1.3'],
-			'ar-4xl': ['4.6rem', '1.3']
 		},
 		screens: {
 			sm: '640px',

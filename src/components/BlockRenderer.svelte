@@ -10,12 +10,6 @@
 
 	let isInView: boolean
 
-	const handleChange = ({ detail }: CustomEvent<ObserverEventDetails>) => {
-		isInView = detail.inView
-	}
-
-	import { language } from '$stores/language'
-
 	import type {
 		CoreParagraph as CoreParagraphType,
 		CoreHeading as CoreHeadingType,
@@ -26,9 +20,6 @@
 		CoreButtons as CoreButtonsType,
 		CoreButton as CoreButtonType,
 		CoreFootnotes as CoreFootnotesType,
-		HomePageSection as HomePageSectionType,
-		AcfHomePageSection,
-		ExhibitionRoom as ExhibitionRoomType,
 		CoreEmbed as CoreEmbedType,
 		CoreImage as CoreImageType
 	} from '$lib/graphql/generated'
@@ -52,19 +43,11 @@
 		| (CoreSpacerType & NormalizedBlock)
 		| (CoreButtonsType & NormalizedBlock)
 		| (CoreButtonType & NormalizedBlock)
-		| (HomePageSectionType & NormalizedBlock)
-		| (AcfHomePageSection & NormalizedBlock) // Add this line
-		| (ExhibitionRoomType & NormalizedBlock)
 		| (CoreFootnotesType & NormalizedBlock)
 		| (CoreEmbedType & NormalizedBlock)
 		| (CoreImageType & NormalizedBlock)
 
 	export let block: EditorBlock
-
-	import { getContext } from 'svelte'
-	const EXPANDED_KEY = Symbol('expanded')
-
-	const isExpanded = getContext(EXPANDED_KEY) || false
 
 	import CoreParagraph from '$components/blocks/CoreParagraph.svelte'
 	import CoreFootnotes from '$components/blocks/CoreFootnotes.svelte'
@@ -77,22 +60,9 @@
 	import CoreEmbed from './blocks/CoreEmbed.svelte'
 	import CoreImage from './blocks/CoreImage.svelte'
 	import CoreButton from './blocks/CoreButton.svelte'
-	import HomePageSection from './blocks/HomePageSection.svelte'
-	import HomePageBlock from './blocks/HomePageBlock.svelte'
-	import ExhibitionRoom from './blocks/ExhibitionRoom.svelte'
-	import ReadMoreWrapper from './ReadMoreWrapper.svelte'
-	import { isExpandedStore } from '$stores/expandedStore'
 	let align = block.attributes?.align || 'none'
 	let verticalAlignment = block.attributes?.verticalAlignment ?? null
 
-	$: {
-		if ($isExpandedStore && verticalAlignment === 'center') {
-			verticalAlignment = 'top'
-		} else {
-			// Reset to original alignment when not expanded
-			verticalAlignment = block.attributes?.verticalAlignment ?? null
-		}
-	}
 	if (forceFull || block.name === 'core/column') align = 'full'
 	const bgColor = block.attributes?.backgroundColor ?? ''
 
@@ -200,22 +170,10 @@
 <div
 	class="{block.name.toLowerCase().replace('/', '-')} {verticalAlignmentClasses(verticalAlignment)} {classNames(align)} {getBgClass(
 		bgColor
-	)} {$language === 'ar' ? 'dir-rtl' : ''} !px-0"
+	)} !px-0"
 >
 	{#if block.name === 'core/group'}
 		<CoreGroup {block} />
-	{/if}
-
-	{#if block.name === 'acf/home-page-section'}
-		<HomePageSection {block} />
-	{/if}
-
-	{#if block.name === 'acf/home-page-block'}
-		<HomePageBlock {block} />
-	{/if}
-
-	{#if block.name === 'acf/exhibition-room'}
-		<ExhibitionRoom {block} />
 	{/if}
 
 	{#if block.name === 'core/buttons'}
@@ -236,10 +194,6 @@
 
 	{#if block.name === 'core/paragraph'}
 		<CoreParagraph {block} />
-	{/if}
-
-	{#if block.name === 'custom/read-more-wrapper'}
-		<ReadMoreWrapper {block} />
 	{/if}
 
 	{#if block.name === 'core/heading'}
@@ -263,13 +217,3 @@
 	{/if}
 </div>
 
-<style lang="postcss">
-	:global(.core-column) {
-		scrollbar-width: none;
-		-ms-overflow-style: none;
-	}
-	
-	:global(.core-column)::-webkit-scrollbar {
-		display: none;
-	}
-</style>

@@ -1,6 +1,4 @@
 import { GRAPHQL_ENDPOINT } from '$env/static/private'
-import type { LibraryItemsQuery, LibraryItemsQueryVariables } from '$lib/graphql/generated'
-import LibraryItems from '$lib/graphql/query/library.graphql?raw'
 
 import { error } from '@sveltejs/kit'
 
@@ -30,26 +28,4 @@ export async function graphqlQuery<TData = any, TVariables = any>(
     }),
     cache: 'no-cache'
   })
-}
-
-export async function fetchAllLibraryItems(language: string) {
-  let hasNextPage = true
-  let after: string | null = null
-  const allBooks = []
-
-  while (hasNextPage) {
-    const response = await graphqlQuery(LibraryItems, { language, after })
-    checkResponse(response)
-    const { data } = await response.json()
-
-    if (!data?.books?.nodes) {
-      throw error(404, { message: 'Books not found' })
-    }
-
-    allBooks.push(...data.books.nodes)
-    hasNextPage = data.books.pageInfo.hasNextPage
-    after = data.books.pageInfo.endCursor
-  }
-
-  return allBooks
 }
