@@ -12,7 +12,6 @@
 	const isOrdered = block.attributes?.ordered
 
 	const children = block.children
-	const bgColor = block.attributes?.backgroundColor ?? 'white'
 </script>
 
 {#if isOrdered}
