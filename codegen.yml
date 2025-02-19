@@ -1,4 +1,4 @@
-schema: http://dtp-backend.test/wp/graphql
+schema: http://can-backend.test/wp/graphql
 documents: './src/**/*.graphql'
 generates:
   ./src/lib/graphql/generated.ts:

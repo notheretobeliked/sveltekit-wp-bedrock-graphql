@@ -18,267 +18,6 @@ export type Scalars = {
   BlockAttributesObject: { input: any; output: any; }
 };
 
-/** A block used for editing the site */
-export type AcfExhibitionRoom = EditorBlock & PageEditorBlock & PostEditorBlock & WithAcfExhibitionRoom & {
-  __typename?: 'AcfExhibitionRoom';
-  /** The API version of the Gutenberg Block */
-  apiVersion?: Maybe<Scalars['Int']['output']>;
-  /** Attributes of the AcfExhibitionRoom Block Type */
-  attributes?: Maybe<AcfExhibitionRoomAttributes>;
-  /** The name of the category the Block belongs to */
-  blockEditorCategoryName?: Maybe<Scalars['String']['output']>;
-  /** The id of the Block */
-  clientId?: Maybe<Scalars['String']['output']>;
-  /** CSS Classnames to apply to the block */
-  cssClassNames?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  /** Fields of the ExhibitionRoom ACF Field Group */
-  exhibitionRoom?: Maybe<ExhibitionRoom>;
-  /** The inner blocks of the Block */
-  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
-  /** Whether the block is Dynamic (server rendered) */
-  isDynamic: Scalars['Boolean']['output'];
-  /** The name of the block */
-  name?: Maybe<Scalars['String']['output']>;
-  /** The parent id of the Block */
-  parentClientId?: Maybe<Scalars['String']['output']>;
-  /** The rendered HTML for the block */
-  renderedHtml?: Maybe<Scalars['String']['output']>;
-  /** The (GraphQL) type of the block */
-  type?: Maybe<Scalars['String']['output']>;
-};
-
-/** Attributes of the AcfExhibitionRoom Block Type */
-export type AcfExhibitionRoomAttributes = {
-  __typename?: 'AcfExhibitionRoomAttributes';
-  /** The &quot;align&quot; field on the &quot;AcfExhibitionRoomAttributes&quot; block or block attributes */
-  align?: Maybe<Scalars['String']['output']>;
-  /** The &quot;backgroundColor&quot; field on the &quot;AcfExhibitionRoomAttributes&quot; block or block attributes */
-  backgroundColor?: Maybe<Scalars['String']['output']>;
-  /** The &quot;className&quot; field on the &quot;AcfExhibitionRoomAttributes&quot; block or block attributes */
-  className?: Maybe<Scalars['String']['output']>;
-  /** The &quot;data&quot; field on the &quot;AcfExhibitionRoomAttributes&quot; block or block attributes */
-  data: Scalars['BlockAttributesObject']['output'];
-  /** The &quot;lock&quot; field on the &quot;AcfExhibitionRoomAttributes&quot; block or block attributes */
-  lock?: Maybe<Scalars['BlockAttributesObject']['output']>;
-  /** The &quot;metadata&quot; field on the &quot;AcfExhibitionRoomAttributes&quot; block or block attributes */
-  metadata?: Maybe<Scalars['BlockAttributesObject']['output']>;
-  /** The &quot;mode&quot; field on the &quot;AcfExhibitionRoomAttributes&quot; block or block attributes */
-  mode: Scalars['String']['output'];
-  /** The &quot;name&quot; field on the &quot;AcfExhibitionRoomAttributes&quot; block or block attributes */
-  name: Scalars['String']['output'];
-  /** The &quot;style&quot; field on the &quot;AcfExhibitionRoomAttributes&quot; block or block attributes */
-  style?: Maybe<Scalars['BlockAttributesObject']['output']>;
-  /** The &quot;textColor&quot; field on the &quot;AcfExhibitionRoomAttributes&quot; block or block attributes */
-  textColor?: Maybe<Scalars['String']['output']>;
-};
-
-/** A Field Group managed by ACF */
-export type AcfFieldGroup = {
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-};
-
-/** Fields associated with an ACF Field Group */
-export type AcfFieldGroupFields = {
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-};
-
-/** A block used for editing the site */
-export type AcfHomePageBlock = EditorBlock & PageEditorBlock & PostEditorBlock & WithAcfHomePageBlock & {
-  __typename?: 'AcfHomePageBlock';
-  /** The API version of the Gutenberg Block */
-  apiVersion?: Maybe<Scalars['Int']['output']>;
-  /** Attributes of the AcfHomePageBlock Block Type */
-  attributes?: Maybe<AcfHomePageBlockAttributes>;
-  /** The name of the category the Block belongs to */
-  blockEditorCategoryName?: Maybe<Scalars['String']['output']>;
-  /** The id of the Block */
-  clientId?: Maybe<Scalars['String']['output']>;
-  /** CSS Classnames to apply to the block */
-  cssClassNames?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  /** Fields of the HomePageBlock ACF Field Group */
-  homePageBlock?: Maybe<HomePageBlock>;
-  /** The inner blocks of the Block */
-  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
-  /** Whether the block is Dynamic (server rendered) */
-  isDynamic: Scalars['Boolean']['output'];
-  /** The name of the block */
-  name?: Maybe<Scalars['String']['output']>;
-  /** The parent id of the Block */
-  parentClientId?: Maybe<Scalars['String']['output']>;
-  /** The rendered HTML for the block */
-  renderedHtml?: Maybe<Scalars['String']['output']>;
-  /** The (GraphQL) type of the block */
-  type?: Maybe<Scalars['String']['output']>;
-};
-
-/** Attributes of the AcfHomePageBlock Block Type */
-export type AcfHomePageBlockAttributes = {
-  __typename?: 'AcfHomePageBlockAttributes';
-  /** The &quot;align&quot; field on the &quot;AcfHomePageBlockAttributes&quot; block or block attributes */
-  align?: Maybe<Scalars['String']['output']>;
-  /** The &quot;backgroundColor&quot; field on the &quot;AcfHomePageBlockAttributes&quot; block or block attributes */
-  backgroundColor?: Maybe<Scalars['String']['output']>;
-  /** The &quot;className&quot; field on the &quot;AcfHomePageBlockAttributes&quot; block or block attributes */
-  className?: Maybe<Scalars['String']['output']>;
-  /** The &quot;data&quot; field on the &quot;AcfHomePageBlockAttributes&quot; block or block attributes */
-  data: Scalars['BlockAttributesObject']['output'];
-  /** The &quot;lock&quot; field on the &quot;AcfHomePageBlockAttributes&quot; block or block attributes */
-  lock?: Maybe<Scalars['BlockAttributesObject']['output']>;
-  /** The &quot;metadata&quot; field on the &quot;AcfHomePageBlockAttributes&quot; block or block attributes */
-  metadata?: Maybe<Scalars['BlockAttributesObject']['output']>;
-  /** The &quot;mode&quot; field on the &quot;AcfHomePageBlockAttributes&quot; block or block attributes */
-  mode: Scalars['String']['output'];
-  /** The &quot;name&quot; field on the &quot;AcfHomePageBlockAttributes&quot; block or block attributes */
-  name: Scalars['String']['output'];
-  /** The &quot;style&quot; field on the &quot;AcfHomePageBlockAttributes&quot; block or block attributes */
-  style?: Maybe<Scalars['BlockAttributesObject']['output']>;
-  /** The &quot;textColor&quot; field on the &quot;AcfHomePageBlockAttributes&quot; block or block attributes */
-  textColor?: Maybe<Scalars['String']['output']>;
-};
-
-/** A block used for editing the site */
-export type AcfHomePageSection = EditorBlock & PageEditorBlock & PostEditorBlock & WithAcfHomePageSection & {
-  __typename?: 'AcfHomePageSection';
-  /** The API version of the Gutenberg Block */
-  apiVersion?: Maybe<Scalars['Int']['output']>;
-  /** Attributes of the AcfHomePageSection Block Type */
-  attributes?: Maybe<AcfHomePageSectionAttributes>;
-  /** The name of the category the Block belongs to */
-  blockEditorCategoryName?: Maybe<Scalars['String']['output']>;
-  /** The id of the Block */
-  clientId?: Maybe<Scalars['String']['output']>;
-  /** CSS Classnames to apply to the block */
-  cssClassNames?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  /** Fields of the HomePageSection ACF Field Group */
-  homePageSection?: Maybe<HomePageSection>;
-  /** The inner blocks of the Block */
-  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
-  /** Whether the block is Dynamic (server rendered) */
-  isDynamic: Scalars['Boolean']['output'];
-  /** The name of the block */
-  name?: Maybe<Scalars['String']['output']>;
-  /** The parent id of the Block */
-  parentClientId?: Maybe<Scalars['String']['output']>;
-  /** The rendered HTML for the block */
-  renderedHtml?: Maybe<Scalars['String']['output']>;
-  /** The (GraphQL) type of the block */
-  type?: Maybe<Scalars['String']['output']>;
-};
-
-/** Attributes of the AcfHomePageSection Block Type */
-export type AcfHomePageSectionAttributes = {
-  __typename?: 'AcfHomePageSectionAttributes';
-  /** The &quot;align&quot; field on the &quot;AcfHomePageSectionAttributes&quot; block or block attributes */
-  align?: Maybe<Scalars['String']['output']>;
-  /** The &quot;backgroundColor&quot; field on the &quot;AcfHomePageSectionAttributes&quot; block or block attributes */
-  backgroundColor?: Maybe<Scalars['String']['output']>;
-  /** The &quot;className&quot; field on the &quot;AcfHomePageSectionAttributes&quot; block or block attributes */
-  className?: Maybe<Scalars['String']['output']>;
-  /** The &quot;data&quot; field on the &quot;AcfHomePageSectionAttributes&quot; block or block attributes */
-  data: Scalars['BlockAttributesObject']['output'];
-  /** The &quot;lock&quot; field on the &quot;AcfHomePageSectionAttributes&quot; block or block attributes */
-  lock?: Maybe<Scalars['BlockAttributesObject']['output']>;
-  /** The &quot;metadata&quot; field on the &quot;AcfHomePageSectionAttributes&quot; block or block attributes */
-  metadata?: Maybe<Scalars['BlockAttributesObject']['output']>;
-  /** The &quot;mode&quot; field on the &quot;AcfHomePageSectionAttributes&quot; block or block attributes */
-  mode: Scalars['String']['output'];
-  /** The &quot;name&quot; field on the &quot;AcfHomePageSectionAttributes&quot; block or block attributes */
-  name: Scalars['String']['output'];
-  /** The &quot;style&quot; field on the &quot;AcfHomePageSectionAttributes&quot; block or block attributes */
-  style?: Maybe<Scalars['BlockAttributesObject']['output']>;
-  /** The &quot;textColor&quot; field on the &quot;AcfHomePageSectionAttributes&quot; block or block attributes */
-  textColor?: Maybe<Scalars['String']['output']>;
-};
-
-/** ACF Link field */
-export type AcfLink = {
-  __typename?: 'AcfLink';
-  /** The target of the link (_blank, etc) */
-  target?: Maybe<Scalars['String']['output']>;
-  /** The title of the link */
-  title?: Maybe<Scalars['String']['output']>;
-  /** The url of the link */
-  url?: Maybe<Scalars['String']['output']>;
-};
-
-/** Connection between the BookData_Fields type and the MediaItem type */
-export type AcfMediaItemConnection = Connection & MediaItemConnection & {
-  __typename?: 'AcfMediaItemConnection';
-  /** Edges for the AcfMediaItemConnection connection */
-  edges: Array<AcfMediaItemConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<MediaItem>;
-  /** Information about pagination in a connection. */
-  pageInfo: AcfMediaItemConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type AcfMediaItemConnectionEdge = Edge & MediaItemConnectionEdge & {
-  __typename?: 'AcfMediaItemConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: MediaItem;
-};
-
-/** Page Info on the &quot;AcfMediaItemConnection&quot; */
-export type AcfMediaItemConnectionPageInfo = MediaItemConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'AcfMediaItemConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Connection between the BookData_Fields type and the TermNode type */
-export type AcfTermNodeConnection = Connection & TermNodeConnection & {
-  __typename?: 'AcfTermNodeConnection';
-  /** Edges for the AcfTermNodeConnection connection */
-  edges: Array<AcfTermNodeConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<TermNode>;
-  /** Information about pagination in a connection. */
-  pageInfo: AcfTermNodeConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type AcfTermNodeConnectionEdge = Edge & TermNodeConnectionEdge & {
-  __typename?: 'AcfTermNodeConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: TermNode;
-};
-
-/** Page Info on the &quot;AcfTermNodeConnection&quot; */
-export type AcfTermNodeConnectionPageInfo = PageInfo & TermNodeConnectionPageInfo & WpPageInfo & {
-  __typename?: 'AcfTermNodeConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
 /** Avatars are profile images for users. WordPress by default uses the Gravatar service to host and fetch avatars from. */
 export type Avatar = {
   __typename?: 'Avatar';
@@ -324,1039 +63,6 @@ export type BlockWithSupportsAnchor = {
   anchor?: Maybe<Scalars['String']['output']>;
 };
 
-/** The book type */
-export type Book = ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBookData & {
-  __typename?: 'Book';
-  /** Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
-  ancestors?: Maybe<HierarchicalContentNodeToContentNodeAncestorsConnection>;
-  /** Fields of the BookData ACF Field Group */
-  bookData?: Maybe<BookData>;
-  /**
-   * The id field matches the WP_Post-&gt;ID field.
-   * @deprecated Deprecated in favor of the databaseId field
-   */
-  bookId: Scalars['Int']['output'];
-  /** Connection between the HierarchicalContentNode type and the ContentNode type */
-  children?: Maybe<HierarchicalContentNodeToContentNodeChildrenConnection>;
-  /** Connection between the Book type and the collection type */
-  collections?: Maybe<BookToCollectionConnection>;
-  /** Connection between the ContentNode type and the ContentType type */
-  contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
-  /** The name of the Content Type the node belongs to */
-  contentTypeName: Scalars['String']['output'];
-  /** The unique identifier stored in the database */
-  databaseId: Scalars['Int']['output'];
-  /** Post publishing date. */
-  date?: Maybe<Scalars['String']['output']>;
-  /** The publishing date set in GMT. */
-  dateGmt?: Maybe<Scalars['String']['output']>;
-  /** The desired slug of the post */
-  desiredSlug?: Maybe<Scalars['String']['output']>;
-  /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
-  editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
-  /** The RSS enclosure for the object */
-  enclosure?: Maybe<Scalars['String']['output']>;
-  /** Connection between the ContentNode type and the EnqueuedScript type */
-  enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
-  /** Connection between the ContentNode type and the EnqueuedStylesheet type */
-  enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
-  /** Connection between the NodeWithFeaturedImage type and the MediaItem type */
-  featuredImage?: Maybe<NodeWithFeaturedImageToMediaItemConnectionEdge>;
-  /** The database identifier for the featured image node assigned to the content node */
-  featuredImageDatabaseId?: Maybe<Scalars['Int']['output']>;
-  /** Globally unique ID of the featured image assigned to the node */
-  featuredImageId?: Maybe<Scalars['ID']['output']>;
-  /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
-  guid?: Maybe<Scalars['String']['output']>;
-  /** Whether the book object is password protected. */
-  hasPassword?: Maybe<Scalars['Boolean']['output']>;
-  /** The globally unique identifier of the book object. */
-  id: Scalars['ID']['output'];
-  /** Whether the node is a Comment */
-  isComment: Scalars['Boolean']['output'];
-  /** Whether the node is a Content Node */
-  isContentNode: Scalars['Boolean']['output'];
-  /** Whether the node represents the front page. */
-  isFrontPage: Scalars['Boolean']['output'];
-  /** Whether  the node represents the blog page. */
-  isPostsPage: Scalars['Boolean']['output'];
-  /** Whether the object is a node in the preview state */
-  isPreview?: Maybe<Scalars['Boolean']['output']>;
-  /** Whether the object is restricted from the current viewer */
-  isRestricted?: Maybe<Scalars['Boolean']['output']>;
-  /** True if the node is a revision of another node */
-  isRevision?: Maybe<Scalars['Boolean']['output']>;
-  /** Whether the node is a Term */
-  isTermNode: Scalars['Boolean']['output'];
-  /** ContentNode language */
-  language?: Maybe<Language>;
-  /** ContentNode language code */
-  languageCode?: Maybe<Scalars['String']['output']>;
-  /** The user that most recently edited the node */
-  lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
-  /** The permalink of the post */
-  link?: Maybe<Scalars['String']['output']>;
-  /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
-  modified?: Maybe<Scalars['String']['output']>;
-  /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
-  modifiedGmt?: Maybe<Scalars['String']['output']>;
-  /** The parent of the node. The parent object can be of various types */
-  parent?: Maybe<HierarchicalContentNodeToParentContentNodeConnectionEdge>;
-  /** Database id of the parent node */
-  parentDatabaseId?: Maybe<Scalars['Int']['output']>;
-  /** The globally unique identifier of the parent node. */
-  parentId?: Maybe<Scalars['ID']['output']>;
-  /** The password for the book object. */
-  password?: Maybe<Scalars['String']['output']>;
-  /** Connection between the Book type and the person type */
-  people?: Maybe<BookToPersonConnection>;
-  /** Connection between the Book type and the book type */
-  preview?: Maybe<BookToPreviewConnectionEdge>;
-  /** The database id of the preview node */
-  previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
-  /** Whether the object is a node in the preview state */
-  previewRevisionId?: Maybe<Scalars['ID']['output']>;
-  /** Connection between the Book type and the publisher type */
-  publishers?: Maybe<BookToPublisherConnection>;
-  /** If the current node is a revision, this field exposes the node this is a revision of. Returns null if the node is not a revision of another node. */
-  revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
-  /** Connection between the Book type and the book type */
-  revisions?: Maybe<BookToRevisionConnection>;
-  /** The Yoast SEO data of the ContentNode */
-  seo?: Maybe<PostTypeSeo>;
-  /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
-  slug?: Maybe<Scalars['String']['output']>;
-  /** The current status of the object */
-  status?: Maybe<Scalars['String']['output']>;
-  /** The template assigned to a node of content */
-  template?: Maybe<ContentTemplate>;
-  /** Connection between the Book type and the TermNode type */
-  terms?: Maybe<BookToTermNodeConnection>;
-  /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
-  title?: Maybe<Scalars['String']['output']>;
-  /** Book translation group ID */
-  translationGroupId?: Maybe<Scalars['ID']['output']>;
-  /** Book translations */
-  translations?: Maybe<Array<Maybe<Book>>>;
-  /** The unique resource identifier path */
-  uri?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** The book type */
-export type BookAncestorsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<HierarchicalContentNodeToContentNodeAncestorsConnectionWhereArgs>;
-};
-
-
-/** The book type */
-export type BookChildrenArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<HierarchicalContentNodeToContentNodeChildrenConnectionWhereArgs>;
-};
-
-
-/** The book type */
-export type BookCollectionsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<BookToCollectionConnectionWhereArgs>;
-};
-
-
-/** The book type */
-export type BookEnqueuedScriptsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The book type */
-export type BookEnqueuedStylesheetsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The book type */
-export type BookPeopleArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<BookToPersonConnectionWhereArgs>;
-};
-
-
-/** The book type */
-export type BookPublishersArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<BookToPublisherConnectionWhereArgs>;
-};
-
-
-/** The book type */
-export type BookRevisionsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<BookToRevisionConnectionWhereArgs>;
-};
-
-
-/** The book type */
-export type BookTermsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<BookToTermNodeConnectionWhereArgs>;
-};
-
-
-/** The book type */
-export type BookTitleArgs = {
-  format?: InputMaybe<PostObjectFieldFormatEnum>;
-};
-
-/** Set relationships between the book to collections */
-export type BookCollectionsInput = {
-  /** If true, this will append the collection to existing related collections. If false, this will replace existing relationships. Default true. */
-  append?: InputMaybe<Scalars['Boolean']['input']>;
-  /** The input list of items to set. */
-  nodes?: InputMaybe<Array<InputMaybe<BookCollectionsNodeInput>>>;
-};
-
-/** List of collections to connect the book to. If an ID is set, it will be used to create the connection. If not, it will look for a slug. If neither are valid existing terms, and the site is configured to allow terms to be created during post mutations, a term will be created using the Name if it exists in the input, then fallback to the slug if it exists. */
-export type BookCollectionsNodeInput = {
-  /** The description of the collection. This field is used to set a description of the collection if a new one is created during the mutation. */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the collection. If present, this will be used to connect to the book. If no existing collection exists with this ID, no connection will be made. */
-  id?: InputMaybe<Scalars['ID']['input']>;
-  /** The name of the collection. This field is used to create a new term, if term creation is enabled in nested mutations, and if one does not already exist with the provided slug or ID or if a slug or ID is not provided. If no name is included and a term is created, the creation will fallback to the slug field. */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** The slug of the collection. If no ID is present, this field will be used to make a connection. If no existing term exists with this slug, this field will be used as a fallback to the Name field when creating a new term to connect to, if term creation is enabled as a nested mutation. */
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Connection to book Nodes */
-export type BookConnection = {
-  /** A list of edges (relational context) between RootQuery and connected book Nodes */
-  edges: Array<BookConnectionEdge>;
-  /** A list of connected book Nodes */
-  nodes: Array<Book>;
-  /** Information about pagination in a connection. */
-  pageInfo: BookConnectionPageInfo;
-};
-
-/** Edge between a Node and a connected book */
-export type BookConnectionEdge = {
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The connected book Node */
-  node: Book;
-};
-
-/** Page Info on the connected BookConnectionEdge */
-export type BookConnectionPageInfo = {
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** The &quot;BookData&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type BookData = AcfFieldGroup & AcfFieldGroupFields & BookData_Fields & {
-  __typename?: 'BookData';
-  /** Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  collection?: Maybe<AcfTermNodeConnection>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  edition?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  exhibition?: Maybe<Scalars['String']['output']>;
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;gallery&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  images?: Maybe<AcfMediaItemConnection>;
-  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  notes?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  numperOfPages?: Maybe<Scalars['Float']['output']>;
-  /** Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  personAuthor?: Maybe<AcfTermNodeConnection>;
-  /** Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  personCoverCalligraphy?: Maybe<AcfTermNodeConnection>;
-  /** Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  personCoverDesign?: Maybe<AcfTermNodeConnection>;
-  /** Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  personCoverIllustration?: Maybe<AcfTermNodeConnection>;
-  /** Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  personPageCalligraphy?: Maybe<AcfTermNodeConnection>;
-  /** Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  personPageDesign?: Maybe<AcfTermNodeConnection>;
-  /** Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  personPageIllustration?: Maybe<AcfTermNodeConnection>;
-  /** Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  personTranslation?: Maybe<AcfTermNodeConnection>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  place?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  printer?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  publisher?: Maybe<AcfTermNodeConnection>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  ref?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  series?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  size?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  title?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  year?: Maybe<Scalars['Float']['output']>;
-};
-
-
-/** The &quot;BookData&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type BookDataCollectionArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The &quot;BookData&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type BookDataImagesArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The &quot;BookData&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type BookDataPersonAuthorArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The &quot;BookData&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type BookDataPersonCoverCalligraphyArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The &quot;BookData&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type BookDataPersonCoverDesignArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The &quot;BookData&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type BookDataPersonCoverIllustrationArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The &quot;BookData&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type BookDataPersonPageCalligraphyArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The &quot;BookData&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type BookDataPersonPageDesignArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The &quot;BookData&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type BookDataPersonPageIllustrationArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The &quot;BookData&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type BookDataPersonTranslationArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The &quot;BookData&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type BookDataPublisherArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-/** Interface representing fields of the ACF &quot;BookData&quot; Field Group */
-export type BookData_Fields = {
-  /** Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  collection?: Maybe<AcfTermNodeConnection>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  edition?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  exhibition?: Maybe<Scalars['String']['output']>;
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;gallery&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  images?: Maybe<AcfMediaItemConnection>;
-  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  notes?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  numperOfPages?: Maybe<Scalars['Float']['output']>;
-  /** Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  personAuthor?: Maybe<AcfTermNodeConnection>;
-  /** Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  personCoverCalligraphy?: Maybe<AcfTermNodeConnection>;
-  /** Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  personCoverDesign?: Maybe<AcfTermNodeConnection>;
-  /** Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  personCoverIllustration?: Maybe<AcfTermNodeConnection>;
-  /** Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  personPageCalligraphy?: Maybe<AcfTermNodeConnection>;
-  /** Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  personPageDesign?: Maybe<AcfTermNodeConnection>;
-  /** Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  personPageIllustration?: Maybe<AcfTermNodeConnection>;
-  /** Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  personTranslation?: Maybe<AcfTermNodeConnection>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  place?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  printer?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  publisher?: Maybe<AcfTermNodeConnection>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  ref?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  series?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  size?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  title?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;BookData&quot; Field Group */
-  year?: Maybe<Scalars['Float']['output']>;
-};
-
-
-/** Interface representing fields of the ACF &quot;BookData&quot; Field Group */
-export type BookData_FieldsCollectionArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** Interface representing fields of the ACF &quot;BookData&quot; Field Group */
-export type BookData_FieldsImagesArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** Interface representing fields of the ACF &quot;BookData&quot; Field Group */
-export type BookData_FieldsPersonAuthorArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** Interface representing fields of the ACF &quot;BookData&quot; Field Group */
-export type BookData_FieldsPersonCoverCalligraphyArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** Interface representing fields of the ACF &quot;BookData&quot; Field Group */
-export type BookData_FieldsPersonCoverDesignArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** Interface representing fields of the ACF &quot;BookData&quot; Field Group */
-export type BookData_FieldsPersonCoverIllustrationArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** Interface representing fields of the ACF &quot;BookData&quot; Field Group */
-export type BookData_FieldsPersonPageCalligraphyArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** Interface representing fields of the ACF &quot;BookData&quot; Field Group */
-export type BookData_FieldsPersonPageDesignArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** Interface representing fields of the ACF &quot;BookData&quot; Field Group */
-export type BookData_FieldsPersonPageIllustrationArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** Interface representing fields of the ACF &quot;BookData&quot; Field Group */
-export type BookData_FieldsPersonTranslationArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** Interface representing fields of the ACF &quot;BookData&quot; Field Group */
-export type BookData_FieldsPublisherArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-/** The Type of Identifier used to fetch a single resource. Default is ID. */
-export enum BookIdType {
-  /** Identify a resource by the Database ID. */
-  DatabaseId = 'DATABASE_ID',
-  /** Identify a resource by the (hashed) Global ID. */
-  Id = 'ID',
-  /** Identify a resource by the URI. */
-  Uri = 'URI'
-}
-
-/** Set relationships between the book to people */
-export type BookPeopleInput = {
-  /** If true, this will append the person to existing related people. If false, this will replace existing relationships. Default true. */
-  append?: InputMaybe<Scalars['Boolean']['input']>;
-  /** The input list of items to set. */
-  nodes?: InputMaybe<Array<InputMaybe<BookPeopleNodeInput>>>;
-};
-
-/** List of people to connect the book to. If an ID is set, it will be used to create the connection. If not, it will look for a slug. If neither are valid existing terms, and the site is configured to allow terms to be created during post mutations, a term will be created using the Name if it exists in the input, then fallback to the slug if it exists. */
-export type BookPeopleNodeInput = {
-  /** The description of the person. This field is used to set a description of the person if a new one is created during the mutation. */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the person. If present, this will be used to connect to the book. If no existing person exists with this ID, no connection will be made. */
-  id?: InputMaybe<Scalars['ID']['input']>;
-  /** The name of the person. This field is used to create a new term, if term creation is enabled in nested mutations, and if one does not already exist with the provided slug or ID or if a slug or ID is not provided. If no name is included and a term is created, the creation will fallback to the slug field. */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** The slug of the person. If no ID is present, this field will be used to make a connection. If no existing term exists with this slug, this field will be used as a fallback to the Name field when creating a new term to connect to, if term creation is enabled as a nested mutation. */
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Set relationships between the book to publishers */
-export type BookPublishersInput = {
-  /** If true, this will append the publisher to existing related publishers. If false, this will replace existing relationships. Default true. */
-  append?: InputMaybe<Scalars['Boolean']['input']>;
-  /** The input list of items to set. */
-  nodes?: InputMaybe<Array<InputMaybe<BookPublishersNodeInput>>>;
-};
-
-/** List of publishers to connect the book to. If an ID is set, it will be used to create the connection. If not, it will look for a slug. If neither are valid existing terms, and the site is configured to allow terms to be created during post mutations, a term will be created using the Name if it exists in the input, then fallback to the slug if it exists. */
-export type BookPublishersNodeInput = {
-  /** The description of the publisher. This field is used to set a description of the publisher if a new one is created during the mutation. */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the publisher. If present, this will be used to connect to the book. If no existing publisher exists with this ID, no connection will be made. */
-  id?: InputMaybe<Scalars['ID']['input']>;
-  /** The name of the publisher. This field is used to create a new term, if term creation is enabled in nested mutations, and if one does not already exist with the provided slug or ID or if a slug or ID is not provided. If no name is included and a term is created, the creation will fallback to the slug field. */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** The slug of the publisher. If no ID is present, this field will be used to make a connection. If no existing term exists with this slug, this field will be used as a fallback to the Name field when creating a new term to connect to, if term creation is enabled as a nested mutation. */
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Connection between the Book type and the collection type */
-export type BookToCollectionConnection = CollectionConnection & Connection & {
-  __typename?: 'BookToCollectionConnection';
-  /** Edges for the BookToCollectionConnection connection */
-  edges: Array<BookToCollectionConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<Collection>;
-  /** Information about pagination in a connection. */
-  pageInfo: BookToCollectionConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type BookToCollectionConnectionEdge = CollectionConnectionEdge & Edge & {
-  __typename?: 'BookToCollectionConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The Yoast SEO Primary collection */
-  isPrimary?: Maybe<Scalars['Boolean']['output']>;
-  /** The item at the end of the edge */
-  node: Collection;
-};
-
-/** Page Info on the &quot;BookToCollectionConnection&quot; */
-export type BookToCollectionConnectionPageInfo = CollectionConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'BookToCollectionConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the BookToCollectionConnection connection */
-export type BookToCollectionConnectionWhereArgs = {
-  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
-  cacheDomain?: InputMaybe<Scalars['String']['input']>;
-  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
-  childOf?: InputMaybe<Scalars['Int']['input']>;
-  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
-  childless?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Retrieve terms where the description is LIKE the input value. Default empty. */
-  descriptionLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
-  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
-  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
-  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
-  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Array of term ids to include. Default empty array. */
-  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of names to return term(s) for. Default empty. */
-  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Retrieve terms where the name is LIKE the input value. Default empty. */
-  nameLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of object IDs. Results will be limited to terms associated with these objects. */
-  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Direction the connection should be ordered in */
-  order?: InputMaybe<OrderEnum>;
-  /** Field(s) to order terms by. Defaults to 'name'. */
-  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
-  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
-  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Parent term ID to retrieve direct-child terms of. Default empty. */
-  parent?: InputMaybe<Scalars['Int']['input']>;
-  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Array of slugs to return term(s) for. Default empty. */
-  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to prime meta caches for matched terms. Default true. */
-  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Connection between the Book type and the person type */
-export type BookToPersonConnection = Connection & PersonConnection & {
-  __typename?: 'BookToPersonConnection';
-  /** Edges for the BookToPersonConnection connection */
-  edges: Array<BookToPersonConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<Person>;
-  /** Information about pagination in a connection. */
-  pageInfo: BookToPersonConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type BookToPersonConnectionEdge = Edge & PersonConnectionEdge & {
-  __typename?: 'BookToPersonConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The Yoast SEO Primary person */
-  isPrimary?: Maybe<Scalars['Boolean']['output']>;
-  /** The item at the end of the edge */
-  node: Person;
-};
-
-/** Page Info on the &quot;BookToPersonConnection&quot; */
-export type BookToPersonConnectionPageInfo = PageInfo & PersonConnectionPageInfo & WpPageInfo & {
-  __typename?: 'BookToPersonConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the BookToPersonConnection connection */
-export type BookToPersonConnectionWhereArgs = {
-  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
-  cacheDomain?: InputMaybe<Scalars['String']['input']>;
-  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
-  childOf?: InputMaybe<Scalars['Int']['input']>;
-  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
-  childless?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Retrieve terms where the description is LIKE the input value. Default empty. */
-  descriptionLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
-  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
-  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
-  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
-  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Array of term ids to include. Default empty array. */
-  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of names to return term(s) for. Default empty. */
-  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Retrieve terms where the name is LIKE the input value. Default empty. */
-  nameLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of object IDs. Results will be limited to terms associated with these objects. */
-  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Direction the connection should be ordered in */
-  order?: InputMaybe<OrderEnum>;
-  /** Field(s) to order terms by. Defaults to 'name'. */
-  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
-  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
-  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Parent term ID to retrieve direct-child terms of. Default empty. */
-  parent?: InputMaybe<Scalars['Int']['input']>;
-  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Array of slugs to return term(s) for. Default empty. */
-  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to prime meta caches for matched terms. Default true. */
-  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Connection between the Book type and the book type */
-export type BookToPreviewConnectionEdge = BookConnectionEdge & Edge & OneToOneConnection & {
-  __typename?: 'BookToPreviewConnectionEdge';
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The node of the connection, without the edges */
-  node: Book;
-};
-
-/** Connection between the Book type and the publisher type */
-export type BookToPublisherConnection = Connection & PublisherConnection & {
-  __typename?: 'BookToPublisherConnection';
-  /** Edges for the BookToPublisherConnection connection */
-  edges: Array<BookToPublisherConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<Publisher>;
-  /** Information about pagination in a connection. */
-  pageInfo: BookToPublisherConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type BookToPublisherConnectionEdge = Edge & PublisherConnectionEdge & {
-  __typename?: 'BookToPublisherConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The Yoast SEO Primary publisher */
-  isPrimary?: Maybe<Scalars['Boolean']['output']>;
-  /** The item at the end of the edge */
-  node: Publisher;
-};
-
-/** Page Info on the &quot;BookToPublisherConnection&quot; */
-export type BookToPublisherConnectionPageInfo = PageInfo & PublisherConnectionPageInfo & WpPageInfo & {
-  __typename?: 'BookToPublisherConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the BookToPublisherConnection connection */
-export type BookToPublisherConnectionWhereArgs = {
-  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
-  cacheDomain?: InputMaybe<Scalars['String']['input']>;
-  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
-  childOf?: InputMaybe<Scalars['Int']['input']>;
-  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
-  childless?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Retrieve terms where the description is LIKE the input value. Default empty. */
-  descriptionLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
-  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
-  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
-  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
-  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Array of term ids to include. Default empty array. */
-  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of names to return term(s) for. Default empty. */
-  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Retrieve terms where the name is LIKE the input value. Default empty. */
-  nameLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of object IDs. Results will be limited to terms associated with these objects. */
-  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Direction the connection should be ordered in */
-  order?: InputMaybe<OrderEnum>;
-  /** Field(s) to order terms by. Defaults to 'name'. */
-  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
-  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
-  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Parent term ID to retrieve direct-child terms of. Default empty. */
-  parent?: InputMaybe<Scalars['Int']['input']>;
-  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Array of slugs to return term(s) for. Default empty. */
-  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to prime meta caches for matched terms. Default true. */
-  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Connection between the Book type and the book type */
-export type BookToRevisionConnection = BookConnection & Connection & {
-  __typename?: 'BookToRevisionConnection';
-  /** Edges for the BookToRevisionConnection connection */
-  edges: Array<BookToRevisionConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<Book>;
-  /** Information about pagination in a connection. */
-  pageInfo: BookToRevisionConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type BookToRevisionConnectionEdge = BookConnectionEdge & Edge & {
-  __typename?: 'BookToRevisionConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: Book;
-};
-
-/** Page Info on the &quot;BookToRevisionConnection&quot; */
-export type BookToRevisionConnectionPageInfo = BookConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'BookToRevisionConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the BookToRevisionConnection connection */
-export type BookToRevisionConnectionWhereArgs = {
-  /** Filter the connection based on dates */
-  dateQuery?: InputMaybe<DateQueryInput>;
-  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
-  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Specific database ID of the object */
-  id?: InputMaybe<Scalars['Int']['input']>;
-  /** Array of IDs for the objects to retrieve */
-  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Get objects with a specific mimeType property */
-  mimeType?: InputMaybe<MimeTypeEnum>;
-  /** Slug / post_name of the object */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** Specify objects to retrieve. Use slugs */
-  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** What parameter to use to order the objects by. */
-  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
-  /** Use ID to return only children. Use 0 to return only top-level items */
-  parent?: InputMaybe<Scalars['ID']['input']>;
-  /** Specify objects whose parent is in an array */
-  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Specify posts whose parent is not in an array */
-  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Show posts with a specific password. */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** Show Posts based on a keyword search */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Retrieve posts where post status is in an array. */
-  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
-  /** Show posts with a specific status. */
-  status?: InputMaybe<PostStatusEnum>;
-  /** Title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Connection between the Book type and the TermNode type */
-export type BookToTermNodeConnection = Connection & TermNodeConnection & {
-  __typename?: 'BookToTermNodeConnection';
-  /** Edges for the BookToTermNodeConnection connection */
-  edges: Array<BookToTermNodeConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<TermNode>;
-  /** Information about pagination in a connection. */
-  pageInfo: BookToTermNodeConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type BookToTermNodeConnectionEdge = Edge & TermNodeConnectionEdge & {
-  __typename?: 'BookToTermNodeConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: TermNode;
-};
-
-/** Page Info on the &quot;BookToTermNodeConnection&quot; */
-export type BookToTermNodeConnectionPageInfo = PageInfo & TermNodeConnectionPageInfo & WpPageInfo & {
-  __typename?: 'BookToTermNodeConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the BookToTermNodeConnection connection */
-export type BookToTermNodeConnectionWhereArgs = {
-  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
-  cacheDomain?: InputMaybe<Scalars['String']['input']>;
-  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
-  childOf?: InputMaybe<Scalars['Int']['input']>;
-  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
-  childless?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Retrieve terms where the description is LIKE the input value. Default empty. */
-  descriptionLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
-  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
-  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
-  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
-  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Array of term ids to include. Default empty array. */
-  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of names to return term(s) for. Default empty. */
-  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Retrieve terms where the name is LIKE the input value. Default empty. */
-  nameLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of object IDs. Results will be limited to terms associated with these objects. */
-  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Direction the connection should be ordered in */
-  order?: InputMaybe<OrderEnum>;
-  /** Field(s) to order terms by. Defaults to 'name'. */
-  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
-  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
-  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Parent term ID to retrieve direct-child terms of. Default empty. */
-  parent?: InputMaybe<Scalars['Int']['input']>;
-  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Array of slugs to return term(s) for. Default empty. */
-  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** The Taxonomy to filter terms by */
-  taxonomies?: InputMaybe<Array<InputMaybe<TaxonomyEnum>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to prime meta caches for matched terms. Default true. */
-  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
 /** The category type */
 export type Category = DatabaseIdentifier & HierarchicalNode & HierarchicalTermNode & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & {
   __typename?: 'Category';
@@ -1369,6 +75,8 @@ export type Category = DatabaseIdentifier & HierarchicalNode & HierarchicalTermN
   categoryId?: Maybe<Scalars['Int']['output']>;
   /** Connection between the category type and its children categories. */
   children?: Maybe<CategoryToCategoryConnection>;
+  /** @deprecated Deprecated in favor of using Next.js pages */
+  conditionalTags?: Maybe<ConditionalTags>;
   /** Connection between the Category type and the ContentNode type */
   contentNodes?: Maybe<CategoryToContentNodeConnection>;
   /** The number of objects connected to the object */
@@ -1395,10 +103,6 @@ export type Category = DatabaseIdentifier & HierarchicalNode & HierarchicalTermN
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the node is a Term */
   isTermNode: Scalars['Boolean']['output'];
-  /** TermNode language */
-  language?: Maybe<Language>;
-  /** TermNode language code */
-  languageCode?: Maybe<Scalars['String']['output']>;
   /** The link to the term */
   link?: Maybe<Scalars['String']['output']>;
   /** The human friendly name of the object. */
@@ -1419,14 +123,11 @@ export type Category = DatabaseIdentifier & HierarchicalNode & HierarchicalTermN
   taxonomy?: Maybe<CategoryToTaxonomyConnectionEdge>;
   /** The name of the taxonomy that the object is associated with */
   taxonomyName?: Maybe<Scalars['String']['output']>;
+  templates?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   /** The ID of the term group that this term object belongs to */
   termGroupId?: Maybe<Scalars['Int']['output']>;
   /** The taxonomy ID that the object is associated with */
   termTaxonomyId?: Maybe<Scalars['Int']['output']>;
-  /** TermNode translation group ID */
-  translationGroupId?: Maybe<Scalars['ID']['output']>;
-  /** TermNode translations */
-  translations?: Maybe<Array<Maybe<TermNode>>>;
   /** The unique resource identifier path */
   uri?: Maybe<Scalars['String']['output']>;
 };
@@ -1844,311 +545,6 @@ export type CategoryToTaxonomyConnectionEdge = Edge & OneToOneConnection & Taxon
   node: Taxonomy;
 };
 
-/** The collection type */
-export type Collection = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & {
-  __typename?: 'Collection';
-  /** Connection between the Collection type and the book type */
-  books?: Maybe<CollectionToBookConnection>;
-  /**
-   * The id field matches the WP_Post-&gt;ID field.
-   * @deprecated Deprecated in favor of databaseId
-   */
-  collectionId?: Maybe<Scalars['Int']['output']>;
-  /** Connection between the Collection type and the ContentNode type */
-  contentNodes?: Maybe<CollectionToContentNodeConnection>;
-  /** The number of objects connected to the object */
-  count?: Maybe<Scalars['Int']['output']>;
-  /** The unique identifier stored in the database */
-  databaseId: Scalars['Int']['output'];
-  /** The description of the object */
-  description?: Maybe<Scalars['String']['output']>;
-  /** Connection between the TermNode type and the EnqueuedScript type */
-  enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
-  /** Connection between the TermNode type and the EnqueuedStylesheet type */
-  enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
-  /** The globally unique ID for the object */
-  id: Scalars['ID']['output'];
-  /** Whether the node is a Comment */
-  isComment: Scalars['Boolean']['output'];
-  /** Whether the node is a Content Node */
-  isContentNode: Scalars['Boolean']['output'];
-  /** Whether the node represents the front page. */
-  isFrontPage: Scalars['Boolean']['output'];
-  /** Whether  the node represents the blog page. */
-  isPostsPage: Scalars['Boolean']['output'];
-  /** Whether the object is restricted from the current viewer */
-  isRestricted?: Maybe<Scalars['Boolean']['output']>;
-  /** Whether the node is a Term */
-  isTermNode: Scalars['Boolean']['output'];
-  /** TermNode language */
-  language?: Maybe<Language>;
-  /** TermNode language code */
-  languageCode?: Maybe<Scalars['String']['output']>;
-  /** The link to the term */
-  link?: Maybe<Scalars['String']['output']>;
-  /** The human friendly name of the object. */
-  name?: Maybe<Scalars['String']['output']>;
-  /** The Yoast SEO data of the Collections taxonomy. */
-  seo?: Maybe<TaxonomySeo>;
-  /** An alphanumeric identifier for the object unique to its type. */
-  slug?: Maybe<Scalars['String']['output']>;
-  /** Connection between the Collection type and the Taxonomy type */
-  taxonomy?: Maybe<CollectionToTaxonomyConnectionEdge>;
-  /** The name of the taxonomy that the object is associated with */
-  taxonomyName?: Maybe<Scalars['String']['output']>;
-  /** The ID of the term group that this term object belongs to */
-  termGroupId?: Maybe<Scalars['Int']['output']>;
-  /** The taxonomy ID that the object is associated with */
-  termTaxonomyId?: Maybe<Scalars['Int']['output']>;
-  /** TermNode translation group ID */
-  translationGroupId?: Maybe<Scalars['ID']['output']>;
-  /** TermNode translations */
-  translations?: Maybe<Array<Maybe<TermNode>>>;
-  /** The unique resource identifier path */
-  uri?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** The collection type */
-export type CollectionBooksArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<CollectionToBookConnectionWhereArgs>;
-};
-
-
-/** The collection type */
-export type CollectionContentNodesArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<CollectionToContentNodeConnectionWhereArgs>;
-};
-
-
-/** The collection type */
-export type CollectionEnqueuedScriptsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The collection type */
-export type CollectionEnqueuedStylesheetsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-/** Connection to collection Nodes */
-export type CollectionConnection = {
-  /** A list of edges (relational context) between RootQuery and connected collection Nodes */
-  edges: Array<CollectionConnectionEdge>;
-  /** A list of connected collection Nodes */
-  nodes: Array<Collection>;
-  /** Information about pagination in a connection. */
-  pageInfo: CollectionConnectionPageInfo;
-};
-
-/** Edge between a Node and a connected collection */
-export type CollectionConnectionEdge = {
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The connected collection Node */
-  node: Collection;
-};
-
-/** Page Info on the connected CollectionConnectionEdge */
-export type CollectionConnectionPageInfo = {
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** The Type of Identifier used to fetch a single resource. Default is ID. */
-export enum CollectionIdType {
-  /** The Database ID for the node */
-  DatabaseId = 'DATABASE_ID',
-  /** The hashed Global ID */
-  Id = 'ID',
-  /** The name of the node */
-  Name = 'NAME',
-  /** Url friendly name of the node */
-  Slug = 'SLUG',
-  /** The URI for the node */
-  Uri = 'URI'
-}
-
-/** Connection between the Collection type and the book type */
-export type CollectionToBookConnection = BookConnection & Connection & {
-  __typename?: 'CollectionToBookConnection';
-  /** Edges for the CollectionToBookConnection connection */
-  edges: Array<CollectionToBookConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<Book>;
-  /** Information about pagination in a connection. */
-  pageInfo: CollectionToBookConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type CollectionToBookConnectionEdge = BookConnectionEdge & Edge & {
-  __typename?: 'CollectionToBookConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: Book;
-};
-
-/** Page Info on the &quot;CollectionToBookConnection&quot; */
-export type CollectionToBookConnectionPageInfo = BookConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'CollectionToBookConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the CollectionToBookConnection connection */
-export type CollectionToBookConnectionWhereArgs = {
-  /** Filter the connection based on dates */
-  dateQuery?: InputMaybe<DateQueryInput>;
-  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
-  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Specific database ID of the object */
-  id?: InputMaybe<Scalars['Int']['input']>;
-  /** Array of IDs for the objects to retrieve */
-  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Get objects with a specific mimeType property */
-  mimeType?: InputMaybe<MimeTypeEnum>;
-  /** Slug / post_name of the object */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** Specify objects to retrieve. Use slugs */
-  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** What parameter to use to order the objects by. */
-  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
-  /** Use ID to return only children. Use 0 to return only top-level items */
-  parent?: InputMaybe<Scalars['ID']['input']>;
-  /** Specify objects whose parent is in an array */
-  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Specify posts whose parent is not in an array */
-  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Show posts with a specific password. */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** Show Posts based on a keyword search */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Retrieve posts where post status is in an array. */
-  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
-  /** Show posts with a specific status. */
-  status?: InputMaybe<PostStatusEnum>;
-  /** Title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Connection between the Collection type and the ContentNode type */
-export type CollectionToContentNodeConnection = Connection & ContentNodeConnection & {
-  __typename?: 'CollectionToContentNodeConnection';
-  /** Edges for the CollectionToContentNodeConnection connection */
-  edges: Array<CollectionToContentNodeConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<ContentNode>;
-  /** Information about pagination in a connection. */
-  pageInfo: CollectionToContentNodeConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type CollectionToContentNodeConnectionEdge = ContentNodeConnectionEdge & Edge & {
-  __typename?: 'CollectionToContentNodeConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: ContentNode;
-};
-
-/** Page Info on the &quot;CollectionToContentNodeConnection&quot; */
-export type CollectionToContentNodeConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'CollectionToContentNodeConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the CollectionToContentNodeConnection connection */
-export type CollectionToContentNodeConnectionWhereArgs = {
-  /** The Types of content to filter */
-  contentTypes?: InputMaybe<Array<InputMaybe<ContentTypesOfCollectionEnum>>>;
-  /** Filter the connection based on dates */
-  dateQuery?: InputMaybe<DateQueryInput>;
-  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
-  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Specific database ID of the object */
-  id?: InputMaybe<Scalars['Int']['input']>;
-  /** Array of IDs for the objects to retrieve */
-  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Get objects with a specific mimeType property */
-  mimeType?: InputMaybe<MimeTypeEnum>;
-  /** Slug / post_name of the object */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** Specify objects to retrieve. Use slugs */
-  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** What parameter to use to order the objects by. */
-  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
-  /** Use ID to return only children. Use 0 to return only top-level items */
-  parent?: InputMaybe<Scalars['ID']['input']>;
-  /** Specify objects whose parent is in an array */
-  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Specify posts whose parent is not in an array */
-  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Show posts with a specific password. */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** Show Posts based on a keyword search */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Retrieve posts where post status is in an array. */
-  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
-  /** Show posts with a specific status. */
-  status?: InputMaybe<PostStatusEnum>;
-  /** Title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Connection between the Collection type and the Taxonomy type */
-export type CollectionToTaxonomyConnectionEdge = Edge & OneToOneConnection & TaxonomyConnectionEdge & {
-  __typename?: 'CollectionToTaxonomyConnectionEdge';
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The node of the connection, without the edges */
-  node: Taxonomy;
-};
-
 /** A Comment object */
 export type Comment = DatabaseIdentifier & Node & UniformResourceIdentifiable & {
   __typename?: 'Comment';
@@ -2173,6 +569,8 @@ export type Comment = DatabaseIdentifier & Node & UniformResourceIdentifiable & 
   commentId?: Maybe<Scalars['Int']['output']>;
   /** Connection between the Comment type and the ContentNode type */
   commentedOn?: Maybe<CommentToContentNodeConnectionEdge>;
+  /** @deprecated Deprecated in favor of using Next.js pages */
+  conditionalTags?: Maybe<ConditionalTags>;
   /** Content of the comment. This field is equivalent to WP_Comment-&gt;comment_content and the value matching the &quot;comment_content&quot; column in SQL. */
   content?: Maybe<Scalars['String']['output']>;
   /** The unique identifier stored in the database */
@@ -2197,10 +595,6 @@ export type Comment = DatabaseIdentifier & Node & UniformResourceIdentifiable & 
   isTermNode: Scalars['Boolean']['output'];
   /** Karma value for the comment. This field is equivalent to WP_Comment-&gt;comment_karma and the value matching the &quot;comment_karma&quot; column in SQL. */
   karma?: Maybe<Scalars['Int']['output']>;
-  /** Comment language */
-  language?: Maybe<Language>;
-  /** Comment language code */
-  languageCode?: Maybe<Scalars['String']['output']>;
   /** The permalink of the comment */
   link?: Maybe<Scalars['String']['output']>;
   /** Connection between the Comment type and the Comment type */
@@ -2213,6 +607,7 @@ export type Comment = DatabaseIdentifier & Node & UniformResourceIdentifiable & 
   replies?: Maybe<CommentToCommentConnection>;
   /** The approval status of the comment. This field is equivalent to WP_Comment-&gt;comment_approved and the value matching the &quot;comment_approved&quot; column in SQL. */
   status?: Maybe<CommentStatusEnum>;
+  templates?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   /** Type of comment. This field is equivalent to WP_Comment-&gt;comment_type and the value matching the &quot;comment_type&quot; column in SQL. */
   type?: Maybe<Scalars['String']['output']>;
   /** The unique resource identifier path */
@@ -2316,7 +711,7 @@ export enum CommentStatusEnum {
   Hold = 'HOLD',
   /** Comments with the Spam status */
   Spam = 'SPAM',
-  /** Comments with the Trash status */
+  /** Comments with the Bin status */
   Trash = 'TRASH'
 }
 
@@ -2576,6 +971,121 @@ export enum CommentsConnectionOrderbyEnum {
   UserId = 'USER_ID'
 }
 
+/** GraphQL representation of WordPress Conditional Tags. */
+export type ConditionalTags = {
+  __typename?: 'ConditionalTags';
+  /**
+   * Determines whether the query is for an existing archive page.
+   * @deprecated Deprecated in favor of using Next.js pages
+   */
+  isArchive?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Determines whether the query is for an existing attachment page.
+   * @deprecated Deprecated in favor of using Next.js pages
+   */
+  isAttachment?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Determines whether the query is for an existing author archive page.
+   * @deprecated Deprecated in favor of using Next.js pages
+   */
+  isAuthor?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Determines whether the query is for an existing category archive page.
+   * @deprecated Deprecated in favor of using Next.js pages
+   */
+  isCategory?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Determines whether the query is for an existing date archive.
+   * @deprecated Deprecated in favor of using Next.js pages
+   */
+  isDate?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Determines whether the query is for an existing day archive.
+   * @deprecated Deprecated in favor of using Next.js pages
+   */
+  isDay?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Determines whether the query is for the front page of the site.
+   * @deprecated Deprecated in favor of using Next.js pages
+   */
+  isFrontPage?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Determines whether the query is for the blog homepage.
+   * @deprecated Deprecated in favor of using Next.js pages
+   */
+  isHome?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Determines whether the query is for an existing month archive.
+   * @deprecated Deprecated in favor of using Next.js pages
+   */
+  isMonth?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Determines whether this site has more than one author.
+   * @deprecated Deprecated in favor of using Next.js pages
+   */
+  isMultiAuthor?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Determines whether the query is for an existing single page.
+   * @deprecated Deprecated in favor of using Next.js pages
+   */
+  isPage?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Determines whether currently in a page template.
+   * @deprecated Deprecated in favor of using Next.js pages
+   */
+  isPageTemplate?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Determines whether the query is for an existing post type archive page.
+   * @deprecated Deprecated in favor of using Next.js pages
+   */
+  isPostTypeArchive?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Determines whether the query is for a post or page preview.
+   * @deprecated Deprecated in favor of using Next.js pages
+   */
+  isPreview?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Determines whether the query is for the Privacy Policy page.
+   * @deprecated Deprecated in favor of using Next.js pages
+   */
+  isPrivacyPolicy?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Determines whether the query is for a search.
+   * @deprecated Deprecated in favor of using Next.js pages
+   */
+  isSearch?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Determines whether the query is for an existing single post.
+   * @deprecated Deprecated in favor of using Next.js pages
+   */
+  isSingle?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Determines whether the query is for an existing single post of any post type (post, attachment, page, custom post types).
+   * @deprecated Deprecated in favor of using Next.js pages
+   */
+  isSingular?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Determines whether a post is sticky.
+   * @deprecated Deprecated in favor of using Next.js pages
+   */
+  isSticky?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Determines whether the query is for an existing tag archive page.
+   * @deprecated Deprecated in favor of using Next.js pages
+   */
+  isTag?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Determines whether the query is for an existing custom taxonomy archive page.
+   * @deprecated Deprecated in favor of using Next.js pages
+   */
+  isTax?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Determines whether the query is for an existing year archive.
+   * @deprecated Deprecated in favor of using Next.js pages
+   */
+  isYear?: Maybe<Scalars['Boolean']['output']>;
+};
+
 /** A plural connection from one Node Type in the Graph to another Node Type, with support for relational data via &quot;edges&quot;. */
 export type Connection = {
   /** A list of edges (relational context) between connected nodes */
@@ -2588,6 +1098,8 @@ export type Connection = {
 
 /** Nodes used to manage content */
 export type ContentNode = {
+  /** @deprecated Deprecated in favor of using Next.js pages */
+  conditionalTags?: Maybe<ConditionalTags>;
   /** Connection between the ContentNode type and the ContentType type */
   contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
   /** The name of the Content Type the node belongs to */
@@ -2626,10 +1138,6 @@ export type ContentNode = {
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the node is a Term */
   isTermNode: Scalars['Boolean']['output'];
-  /** ContentNode language */
-  language?: Maybe<Language>;
-  /** ContentNode language code */
-  languageCode?: Maybe<Scalars['String']['output']>;
   /** The user that most recently edited the node */
   lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
   /** The permalink of the post */
@@ -2650,6 +1158,7 @@ export type ContentNode = {
   status?: Maybe<Scalars['String']['output']>;
   /** The template assigned to a node of content */
   template?: Maybe<ContentTemplate>;
+  templates?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   /** The unique resource identifier path */
   uri?: Maybe<Scalars['String']['output']>;
 };
@@ -2824,6 +1333,8 @@ export type ContentType = Node & UniformResourceIdentifiable & {
   __typename?: 'ContentType';
   /** Whether this content type should can be exported. */
   canExport?: Maybe<Scalars['Boolean']['output']>;
+  /** @deprecated Deprecated in favor of using Next.js pages */
+  conditionalTags?: Maybe<ConditionalTags>;
   /** Connection between the ContentType type and the Taxonomy type */
   connectedTaxonomies?: Maybe<ContentTypeToTaxonomyConnection>;
   /** Connection between the ContentType type and the ContentNode type */
@@ -2886,6 +1397,7 @@ export type ContentType = Node & UniformResourceIdentifiable & {
   showInRest?: Maybe<Scalars['Boolean']['output']>;
   /** Whether to generate and allow a UI for managing this content type in the admin. */
   showUi?: Maybe<Scalars['Boolean']['output']>;
+  templates?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   /** The unique resource identifier path */
   uri?: Maybe<Scalars['String']['output']>;
 };
@@ -2945,10 +1457,6 @@ export type ContentTypeConnectionPageInfo = {
 export enum ContentTypeEnum {
   /** The Type of Content object */
   Attachment = 'ATTACHMENT',
-  /** The Type of Content object */
-  Book = 'BOOK',
-  /** The Type of Content object */
-  GraphqlDocument = 'GRAPHQL_DOCUMENT',
   /** The Type of Content object */
   Page = 'PAGE',
   /** The Type of Content object */
@@ -3010,8 +1518,6 @@ export type ContentTypeToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Filter ContentNode objects by language code */
-  language?: InputMaybe<Scalars['String']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -3081,34 +1587,10 @@ export enum ContentTypesOfCategoryEnum {
   Post = 'POST'
 }
 
-/** Allowed Content Types of the Collection taxonomy. */
-export enum ContentTypesOfCollectionEnum {
-  /** The Type of Content object */
-  Book = 'BOOK'
-}
-
-/** Allowed Content Types of the GraphqlDocumentGroup taxonomy. */
-export enum ContentTypesOfGraphqlDocumentGroupEnum {
-  /** The Type of Content object */
-  GraphqlDocument = 'GRAPHQL_DOCUMENT'
-}
-
-/** Allowed Content Types of the Person taxonomy. */
-export enum ContentTypesOfPersonEnum {
-  /** The Type of Content object */
-  Book = 'BOOK'
-}
-
 /** Allowed Content Types of the PostFormat taxonomy. */
 export enum ContentTypesOfPostFormatEnum {
   /** The Type of Content object */
   Post = 'POST'
-}
-
-/** Allowed Content Types of the Publisher taxonomy. */
-export enum ContentTypesOfPublisherEnum {
-  /** The Type of Content object */
-  Book = 'BOOK'
 }
 
 /** Allowed Content Types of the Tag taxonomy. */
@@ -4934,6 +3416,8 @@ export type CoreGroupAttributes = BlockWithSupportsAnchor & {
   borderColor?: Maybe<Scalars['String']['output']>;
   /** The &quot;className&quot; field on the &quot;CoreGroupAttributes&quot; block or block attributes */
   className?: Maybe<Scalars['String']['output']>;
+  /** The &quot;cssClassName&quot; field on the &quot;CoreGroupAttributes&quot; block or block attributes */
+  cssClassName?: Maybe<Scalars['String']['output']>;
   /** The &quot;fontFamily&quot; field on the &quot;CoreGroupAttributes&quot; block or block attributes */
   fontFamily?: Maybe<Scalars['String']['output']>;
   /** The &quot;fontSize&quot; field on the &quot;CoreGroupAttributes&quot; block or block attributes */
@@ -5603,7 +4087,7 @@ export type CoreMediaText = BlockWithSupportsAnchor & EditorBlock & PageEditorBl
 export type CoreMediaTextAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreMediaTextAttributes';
   /** The &quot;align&quot; field on the &quot;CoreMediaTextAttributes&quot; block or block attributes */
-  align?: Maybe<Scalars['String']['output']>;
+  align: Scalars['String']['output'];
   /** The &quot;allowedBlocks&quot; field on the &quot;CoreMediaTextAttributes&quot; block or block attributes */
   allowedBlocks?: Maybe<Scalars['BlockAttributesArray']['output']>;
   /** The anchor field for the block. */
@@ -6865,10 +5349,27 @@ export type CorePostTerms = EditorBlock & PageEditorBlock & PostEditorBlock & {
   name?: Maybe<Scalars['String']['output']>;
   /** The parent id of the Block */
   parentClientId?: Maybe<Scalars['String']['output']>;
+  /** Prefix to display before the post terms */
+  prefix?: Maybe<Scalars['String']['output']>;
   /** The rendered HTML for the block */
   renderedHtml?: Maybe<Scalars['String']['output']>;
+  /** Suffix to display after the post terms */
+  suffix?: Maybe<Scalars['String']['output']>;
+  /** Connection between the CorePostTerms type and the Taxonomy type */
+  taxonomy?: Maybe<CorePostTermsToTaxonomyConnectionEdge>;
+  /** Connection between the CorePostTerms type and the TermNode type */
+  terms?: Maybe<CorePostTermsToTermNodeConnection>;
   /** The (GraphQL) type of the block */
   type?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** A block used for editing the site */
+export type CorePostTermsTermsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** Attributes of the CorePostTerms Block Type */
@@ -6904,6 +5405,50 @@ export type CorePostTermsAttributes = {
   textAlign?: Maybe<Scalars['String']['output']>;
   /** The &quot;textColor&quot; field on the &quot;CorePostTermsAttributes&quot; block or block attributes */
   textColor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Connection between the CorePostTerms type and the Taxonomy type */
+export type CorePostTermsToTaxonomyConnectionEdge = Edge & OneToOneConnection & TaxonomyConnectionEdge & {
+  __typename?: 'CorePostTermsToTaxonomyConnectionEdge';
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The node of the connection, without the edges */
+  node: Taxonomy;
+};
+
+/** Connection between the CorePostTerms type and the TermNode type */
+export type CorePostTermsToTermNodeConnection = Connection & TermNodeConnection & {
+  __typename?: 'CorePostTermsToTermNodeConnection';
+  /** Edges for the CorePostTermsToTermNodeConnection connection */
+  edges: Array<CorePostTermsToTermNodeConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<TermNode>;
+  /** Information about pagination in a connection. */
+  pageInfo: CorePostTermsToTermNodeConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type CorePostTermsToTermNodeConnectionEdge = Edge & TermNodeConnectionEdge & {
+  __typename?: 'CorePostTermsToTermNodeConnectionEdge';
+  /** A cursor for use in pagination */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The item at the end of the edge */
+  node: TermNode;
+};
+
+/** Page Info on the &quot;CorePostTermsToTermNodeConnection&quot; */
+export type CorePostTermsToTermNodeConnectionPageInfo = PageInfo & TermNodeConnectionPageInfo & WpPageInfo & {
+  __typename?: 'CorePostTermsToTermNodeConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
 };
 
 /** A block used for editing the site */
@@ -8677,41 +7222,6 @@ export type CoreWidgetGroupAttributes = {
   title?: Maybe<Scalars['String']['output']>;
 };
 
-/** Input for the createBook mutation. */
-export type CreateBookInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** Set connections between the book and collections */
-  collections?: InputMaybe<BookCollectionsInput>;
-  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
-  date?: InputMaybe<Scalars['String']['input']>;
-  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
-  menuOrder?: InputMaybe<Scalars['Int']['input']>;
-  /** The ID of the parent object */
-  parentId?: InputMaybe<Scalars['ID']['input']>;
-  /** The password used to protect the content of the object */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** Set connections between the book and people */
-  people?: InputMaybe<BookPeopleInput>;
-  /** Set connections between the book and publishers */
-  publishers?: InputMaybe<BookPublishersInput>;
-  /** The slug of the object */
-  slug?: InputMaybe<Scalars['String']['input']>;
-  /** The status of the object */
-  status?: InputMaybe<PostStatusEnum>;
-  /** The title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the createBook mutation. */
-export type CreateBookPayload = {
-  __typename?: 'CreateBookPayload';
-  /** The Post object mutation type. */
-  book?: Maybe<Book>;
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-};
-
 /** Input for the createCategory mutation. */
 export type CreateCategoryInput = {
   /** The slug that the category will be an alias of */
@@ -8735,29 +7245,6 @@ export type CreateCategoryPayload = {
   category?: Maybe<Category>;
   /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: Maybe<Scalars['String']['output']>;
-};
-
-/** Input for the createCollection mutation. */
-export type CreateCollectionInput = {
-  /** The slug that the collection will be an alias of */
-  aliasOf?: InputMaybe<Scalars['String']['input']>;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The description of the collection object */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** The name of the collection object to mutate */
-  name: Scalars['String']['input'];
-  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the createCollection mutation. */
-export type CreateCollectionPayload = {
-  __typename?: 'CreateCollectionPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The created collection */
-  collection?: Maybe<Collection>;
 };
 
 /** Input for the createComment mutation. */
@@ -8795,68 +7282,6 @@ export type CreateCommentPayload = {
   comment?: Maybe<Comment>;
   /** Whether the mutation succeeded. If the comment is not approved, the server will not return the comment to a non authenticated user, but a success message can be returned if the create succeeded, and the client can optimistically add the comment to the client cache */
   success?: Maybe<Scalars['Boolean']['output']>;
-};
-
-/** Input for the createGraphqlDocumentGroup mutation. */
-export type CreateGraphqlDocumentGroupInput = {
-  /** The slug that the graphql_document_group will be an alias of */
-  aliasOf?: InputMaybe<Scalars['String']['input']>;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The description of the graphql_document_group object */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** The name of the graphql_document_group object to mutate */
-  name: Scalars['String']['input'];
-  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the createGraphqlDocumentGroup mutation. */
-export type CreateGraphqlDocumentGroupPayload = {
-  __typename?: 'CreateGraphqlDocumentGroupPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The created graphql_document_group */
-  graphqlDocumentGroup?: Maybe<GraphqlDocumentGroup>;
-};
-
-/** Input for the createGraphqlDocument mutation. */
-export type CreateGraphqlDocumentInput = {
-  /** Alias names for saved GraphQL query documents */
-  alias?: InputMaybe<Array<Scalars['String']['input']>>;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The content of the object */
-  content?: InputMaybe<Scalars['String']['input']>;
-  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
-  date?: InputMaybe<Scalars['String']['input']>;
-  /** Description for the saved GraphQL document */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** Allow, deny or default access grant for specific query */
-  grant?: InputMaybe<Scalars['String']['input']>;
-  /** Set connections between the graphqlDocument and graphqlDocumentGroups */
-  graphqlDocumentGroups?: InputMaybe<GraphqlDocumentGraphqlDocumentGroupsInput>;
-  /** HTTP Cache-Control max-age directive for a saved GraphQL document */
-  maxAgeHeader?: InputMaybe<Scalars['Int']['input']>;
-  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
-  menuOrder?: InputMaybe<Scalars['Int']['input']>;
-  /** The password used to protect the content of the object */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** The slug of the object */
-  slug?: InputMaybe<Scalars['String']['input']>;
-  /** The status of the object */
-  status?: InputMaybe<PostStatusEnum>;
-  /** The title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the createGraphqlDocument mutation. */
-export type CreateGraphqlDocumentPayload = {
-  __typename?: 'CreateGraphqlDocumentPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The Post object mutation type. */
-  graphqlDocument?: Maybe<GraphqlDocument>;
 };
 
 /** Input for the createMediaItem mutation. */
@@ -8937,29 +7362,6 @@ export type CreatePagePayload = {
   page?: Maybe<Page>;
 };
 
-/** Input for the createPerson mutation. */
-export type CreatePersonInput = {
-  /** The slug that the person will be an alias of */
-  aliasOf?: InputMaybe<Scalars['String']['input']>;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The description of the person object */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** The name of the person object to mutate */
-  name: Scalars['String']['input'];
-  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the createPerson mutation. */
-export type CreatePersonPayload = {
-  __typename?: 'CreatePersonPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The created person */
-  person?: Maybe<Person>;
-};
-
 /** Input for the createPostFormat mutation. */
 export type CreatePostFormatInput = {
   /** The slug that the post_format will be an alias of */
@@ -9028,29 +7430,6 @@ export type CreatePostPayload = {
   clientMutationId?: Maybe<Scalars['String']['output']>;
   /** The Post object mutation type. */
   post?: Maybe<Post>;
-};
-
-/** Input for the createPublisher mutation. */
-export type CreatePublisherInput = {
-  /** The slug that the publisher will be an alias of */
-  aliasOf?: InputMaybe<Scalars['String']['input']>;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The description of the publisher object */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** The name of the publisher object to mutate */
-  name: Scalars['String']['input'];
-  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the createPublisher mutation. */
-export type CreatePublisherPayload = {
-  __typename?: 'CreatePublisherPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The created publisher */
-  publisher?: Maybe<Publisher>;
 };
 
 /** Input for the createTag mutation. */
@@ -9125,6 +7504,13 @@ export type CreateUserPayload = {
   user?: Maybe<User>;
 };
 
+/** The template assigned to the node */
+export type CustomTemplate = ContentTemplate & {
+  __typename?: 'CustomTemplate';
+  /** The name of the template */
+  templateName?: Maybe<Scalars['String']['output']>;
+};
+
 /** Object that can be identified with a Database ID */
 export type DatabaseIdentifier = {
   /** The unique identifier stored in the database */
@@ -9178,29 +7564,6 @@ export type DefaultTemplate = ContentTemplate & {
   templateName?: Maybe<Scalars['String']['output']>;
 };
 
-/** Input for the deleteBook mutation. */
-export type DeleteBookInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** Whether the object should be force deleted instead of being moved to the trash */
-  forceDelete?: InputMaybe<Scalars['Boolean']['input']>;
-  /** The ID of the book to delete */
-  id: Scalars['ID']['input'];
-  /** Override the edit lock when another user is editing the post */
-  ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** The payload for the deleteBook mutation. */
-export type DeleteBookPayload = {
-  __typename?: 'DeleteBookPayload';
-  /** The object before it was deleted */
-  book?: Maybe<Book>;
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The ID of the deleted object */
-  deletedId?: Maybe<Scalars['ID']['output']>;
-};
-
 /** Input for the deleteCategory mutation. */
 export type DeleteCategoryInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -9216,25 +7579,6 @@ export type DeleteCategoryPayload = {
   category?: Maybe<Category>;
   /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The ID of the deleted object */
-  deletedId?: Maybe<Scalars['ID']['output']>;
-};
-
-/** Input for the deleteCollection mutation. */
-export type DeleteCollectionInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the collection to delete */
-  id: Scalars['ID']['input'];
-};
-
-/** The payload for the deleteCollection mutation. */
-export type DeleteCollectionPayload = {
-  __typename?: 'DeleteCollectionPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The deleted term object */
-  collection?: Maybe<Collection>;
   /** The ID of the deleted object */
   deletedId?: Maybe<Scalars['ID']['output']>;
 };
@@ -9258,48 +7602,6 @@ export type DeleteCommentPayload = {
   comment?: Maybe<Comment>;
   /** The deleted comment ID */
   deletedId?: Maybe<Scalars['ID']['output']>;
-};
-
-/** Input for the deleteGraphqlDocumentGroup mutation. */
-export type DeleteGraphqlDocumentGroupInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the graphqlDocumentGroup to delete */
-  id: Scalars['ID']['input'];
-};
-
-/** The payload for the deleteGraphqlDocumentGroup mutation. */
-export type DeleteGraphqlDocumentGroupPayload = {
-  __typename?: 'DeleteGraphqlDocumentGroupPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The ID of the deleted object */
-  deletedId?: Maybe<Scalars['ID']['output']>;
-  /** The deleted term object */
-  graphqlDocumentGroup?: Maybe<GraphqlDocumentGroup>;
-};
-
-/** Input for the deleteGraphqlDocument mutation. */
-export type DeleteGraphqlDocumentInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** Whether the object should be force deleted instead of being moved to the trash */
-  forceDelete?: InputMaybe<Scalars['Boolean']['input']>;
-  /** The ID of the graphqlDocument to delete */
-  id: Scalars['ID']['input'];
-  /** Override the edit lock when another user is editing the post */
-  ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** The payload for the deleteGraphqlDocument mutation. */
-export type DeleteGraphqlDocumentPayload = {
-  __typename?: 'DeleteGraphqlDocumentPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The ID of the deleted object */
-  deletedId?: Maybe<Scalars['ID']['output']>;
-  /** The object before it was deleted */
-  graphqlDocument?: Maybe<GraphqlDocument>;
 };
 
 /** Input for the deleteMediaItem mutation. */
@@ -9346,25 +7648,6 @@ export type DeletePagePayload = {
   page?: Maybe<Page>;
 };
 
-/** Input for the deletePerson mutation. */
-export type DeletePersonInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the person to delete */
-  id: Scalars['ID']['input'];
-};
-
-/** The payload for the deletePerson mutation. */
-export type DeletePersonPayload = {
-  __typename?: 'DeletePersonPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The ID of the deleted object */
-  deletedId?: Maybe<Scalars['ID']['output']>;
-  /** The deleted term object */
-  person?: Maybe<Person>;
-};
-
 /** Input for the deletePostFormat mutation. */
 export type DeletePostFormatInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -9405,25 +7688,6 @@ export type DeletePostPayload = {
   deletedId?: Maybe<Scalars['ID']['output']>;
   /** The object before it was deleted */
   post?: Maybe<Post>;
-};
-
-/** Input for the deletePublisher mutation. */
-export type DeletePublisherInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the publisher to delete */
-  id: Scalars['ID']['input'];
-};
-
-/** The payload for the deletePublisher mutation. */
-export type DeletePublisherPayload = {
-  __typename?: 'DeletePublisherPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The ID of the deleted object */
-  deletedId?: Maybe<Scalars['ID']['output']>;
-  /** The deleted term object */
-  publisher?: Maybe<Publisher>;
 };
 
 /** Input for the deleteTag mutation. */
@@ -9505,21 +7769,6 @@ export type EditorBlock = {
   renderedHtml?: Maybe<Scalars['String']['output']>;
   /** The (GraphQL) type of the block */
   type?: Maybe<Scalars['String']['output']>;
-};
-
-/** Editor Palette Color Object */
-export type EditorPaletteColor = {
-  __typename?: 'EditorPaletteColor';
-  /** The background color class */
-  background?: Maybe<Scalars['String']['output']>;
-  /** The color value */
-  color?: Maybe<Scalars['String']['output']>;
-  /** The color name */
-  name?: Maybe<Scalars['String']['output']>;
-  /** The color slug */
-  slug?: Maybe<Scalars['String']['output']>;
-  /** The text color class */
-  text?: Maybe<Scalars['String']['output']>;
 };
 
 /** Asset enqueued by the CMS */
@@ -9694,125 +7943,6 @@ export type EnqueuedStylesheetConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** The &quot;ExhibitionRoom&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type ExhibitionRoom = AcfFieldGroup & AcfFieldGroupFields & ExhibitionRoom_Fields & {
-  __typename?: 'ExhibitionRoom';
-  /** Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;ExhibitionRoom&quot; Field Group */
-  cabinets?: Maybe<Array<Maybe<ExhibitionRoomCabinets>>>;
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;ExhibitionRoom&quot; Field Group */
-  introText?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ExhibitionRoom&quot; Field Group */
-  nameAr?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ExhibitionRoom&quot; Field Group */
-  nameEn?: Maybe<Scalars['String']['output']>;
-};
-
-/** The &quot;ExhibitionRoomCabinets&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type ExhibitionRoomCabinets = AcfFieldGroup & AcfFieldGroupFields & ExhibitionRoomCabinets_Fields & {
-  __typename?: 'ExhibitionRoomCabinets';
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;ExhibitionRoomCabinets&quot; Field Group */
-  groups?: Maybe<Array<Maybe<ExhibitionRoomCabinetsGroups>>>;
-  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;ExhibitionRoomCabinets&quot; Field Group */
-  introText?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ExhibitionRoomCabinets&quot; Field Group */
-  nameAr?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ExhibitionRoomCabinets&quot; Field Group */
-  nameEn?: Maybe<Scalars['String']['output']>;
-};
-
-/** The &quot;ExhibitionRoomCabinetsGroups&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type ExhibitionRoomCabinetsGroups = AcfFieldGroup & AcfFieldGroupFields & ExhibitionRoomCabinetsGroups_Fields & {
-  __typename?: 'ExhibitionRoomCabinetsGroups';
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;gallery&quot; Field Type added to the schema as part of the &quot;ExhibitionRoomCabinetsGroups&quot; Field Group */
-  images?: Maybe<AcfMediaItemConnection>;
-  /** Field of the &quot;select&quot; Field Type added to the schema as part of the &quot;ExhibitionRoomCabinetsGroups&quot; Field Group */
-  layout?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  /** Field of the &quot;true_false&quot; Field Type added to the schema as part of the &quot;ExhibitionRoomCabinetsGroups&quot; Field Group */
-  shadow?: Maybe<Scalars['Boolean']['output']>;
-};
-
-
-/** The &quot;ExhibitionRoomCabinetsGroups&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type ExhibitionRoomCabinetsGroupsImagesArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-/** Interface representing fields of the ACF &quot;ExhibitionRoomCabinetsGroups&quot; Field Group */
-export type ExhibitionRoomCabinetsGroups_Fields = {
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;gallery&quot; Field Type added to the schema as part of the &quot;ExhibitionRoomCabinetsGroups&quot; Field Group */
-  images?: Maybe<AcfMediaItemConnection>;
-  /** Field of the &quot;select&quot; Field Type added to the schema as part of the &quot;ExhibitionRoomCabinetsGroups&quot; Field Group */
-  layout?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  /** Field of the &quot;true_false&quot; Field Type added to the schema as part of the &quot;ExhibitionRoomCabinetsGroups&quot; Field Group */
-  shadow?: Maybe<Scalars['Boolean']['output']>;
-};
-
-
-/** Interface representing fields of the ACF &quot;ExhibitionRoomCabinetsGroups&quot; Field Group */
-export type ExhibitionRoomCabinetsGroups_FieldsImagesArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-/** Interface representing fields of the ACF &quot;ExhibitionRoomCabinets&quot; Field Group */
-export type ExhibitionRoomCabinets_Fields = {
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;ExhibitionRoomCabinets&quot; Field Group */
-  groups?: Maybe<Array<Maybe<ExhibitionRoomCabinetsGroups>>>;
-  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;ExhibitionRoomCabinets&quot; Field Group */
-  introText?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ExhibitionRoomCabinets&quot; Field Group */
-  nameAr?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ExhibitionRoomCabinets&quot; Field Group */
-  nameEn?: Maybe<Scalars['String']['output']>;
-};
-
-/** Interface representing fields of the ACF &quot;ExhibitionRoom&quot; Field Group */
-export type ExhibitionRoom_Fields = {
-  /** Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;ExhibitionRoom&quot; Field Group */
-  cabinets?: Maybe<Array<Maybe<ExhibitionRoomCabinets>>>;
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;ExhibitionRoom&quot; Field Group */
-  introText?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ExhibitionRoom&quot; Field Group */
-  nameAr?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ExhibitionRoom&quot; Field Group */
-  nameEn?: Maybe<Scalars['String']['output']>;
-};
-
 /** The general setting type */
 export type GeneralSettings = {
   __typename?: 'GeneralSettings';
@@ -9836,773 +7966,36 @@ export type GeneralSettings = {
   url?: Maybe<Scalars['String']['output']>;
 };
 
-/** The graphqlDocument type */
-export type GraphqlDocument = ContentNode & DatabaseIdentifier & Node & NodeWithContentEditor & NodeWithTemplate & NodeWithTitle & UniformResourceIdentifiable & {
-  __typename?: 'GraphqlDocument';
-  /** Alias names for saved GraphQL query documents */
-  alias?: Maybe<Array<Scalars['String']['output']>>;
-  /**
-   * The ancestors of the content node.
-   * @deprecated This content type is not hierarchical and typically will not have ancestors
-   */
-  ancestors?: Maybe<GraphqlDocumentToGraphqlDocumentConnection>;
-  /** The content of the post. */
-  content?: Maybe<Scalars['String']['output']>;
-  /** Connection between the ContentNode type and the ContentType type */
-  contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
-  /** The name of the Content Type the node belongs to */
-  contentTypeName: Scalars['String']['output'];
-  /** The unique identifier stored in the database */
-  databaseId: Scalars['Int']['output'];
-  /** Post publishing date. */
-  date?: Maybe<Scalars['String']['output']>;
-  /** The publishing date set in GMT. */
-  dateGmt?: Maybe<Scalars['String']['output']>;
-  /** Description for the saved GraphQL document */
-  description?: Maybe<Scalars['String']['output']>;
-  /** The desired slug of the post */
-  desiredSlug?: Maybe<Scalars['String']['output']>;
-  /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
-  editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
-  /** The RSS enclosure for the object */
-  enclosure?: Maybe<Scalars['String']['output']>;
-  /** Connection between the ContentNode type and the EnqueuedScript type */
-  enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
-  /** Connection between the ContentNode type and the EnqueuedStylesheet type */
-  enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
-  /** Allow, deny or default access grant for specific query */
-  grant?: Maybe<Scalars['String']['output']>;
-  /** Connection between the GraphqlDocument type and the graphqlDocumentGroup type */
-  graphqlDocumentGroups?: Maybe<GraphqlDocumentToGraphqlDocumentGroupConnection>;
-  /**
-   * The id field matches the WP_Post-&gt;ID field.
-   * @deprecated Deprecated in favor of the databaseId field
-   */
-  graphqlDocumentId: Scalars['Int']['output'];
-  /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
-  guid?: Maybe<Scalars['String']['output']>;
-  /** Whether the graphql_document object is password protected. */
-  hasPassword?: Maybe<Scalars['Boolean']['output']>;
-  /** The globally unique identifier of the graphql_document object. */
-  id: Scalars['ID']['output'];
-  /** Whether the node is a Comment */
-  isComment: Scalars['Boolean']['output'];
-  /** Whether the node is a Content Node */
-  isContentNode: Scalars['Boolean']['output'];
-  /** Whether the node represents the front page. */
-  isFrontPage: Scalars['Boolean']['output'];
-  /** Whether  the node represents the blog page. */
-  isPostsPage: Scalars['Boolean']['output'];
-  /** Whether the object is a node in the preview state */
-  isPreview?: Maybe<Scalars['Boolean']['output']>;
-  /** Whether the object is restricted from the current viewer */
-  isRestricted?: Maybe<Scalars['Boolean']['output']>;
-  /** Whether the node is a Term */
-  isTermNode: Scalars['Boolean']['output'];
-  /** ContentNode language */
-  language?: Maybe<Language>;
-  /** ContentNode language code */
-  languageCode?: Maybe<Scalars['String']['output']>;
-  /** The user that most recently edited the node */
-  lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
-  /** The permalink of the post */
-  link?: Maybe<Scalars['String']['output']>;
-  /** HTTP Cache-Control max-age directive for a saved GraphQL document */
-  maxAgeHeader?: Maybe<Scalars['Int']['output']>;
-  /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
-  modified?: Maybe<Scalars['String']['output']>;
-  /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
-  modifiedGmt?: Maybe<Scalars['String']['output']>;
-  /**
-   * The parent of the content node.
-   * @deprecated This content type is not hierarchical and typically will not have a parent
-   */
-  parent?: Maybe<GraphqlDocumentToParentConnectionEdge>;
-  /** The password for the graphql_document object. */
-  password?: Maybe<Scalars['String']['output']>;
-  /**
-   * Connection between the GraphqlDocument type and the graphqlDocument type
-   * @deprecated The &quot;GraphqlDocument&quot; Type is not publicly queryable and does not support previews. This field will be removed in the future.
-   */
-  preview?: Maybe<GraphqlDocumentToPreviewConnectionEdge>;
-  /** The database id of the preview node */
-  previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
-  /** Whether the object is a node in the preview state */
-  previewRevisionId?: Maybe<Scalars['ID']['output']>;
-  /** The Yoast SEO data of the ContentNode */
-  seo?: Maybe<PostTypeSeo>;
-  /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
-  slug?: Maybe<Scalars['String']['output']>;
-  /** The current status of the object */
-  status?: Maybe<Scalars['String']['output']>;
-  /** The template assigned to the node */
-  template?: Maybe<ContentTemplate>;
-  /** Connection between the GraphqlDocument type and the TermNode type */
-  terms?: Maybe<GraphqlDocumentToTermNodeConnection>;
-  /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
-  title?: Maybe<Scalars['String']['output']>;
-  /** The unique resource identifier path */
-  uri?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** The graphqlDocument type */
-export type GraphqlDocumentAncestorsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The graphqlDocument type */
-export type GraphqlDocumentContentArgs = {
-  format?: InputMaybe<PostObjectFieldFormatEnum>;
-};
-
-
-/** The graphqlDocument type */
-export type GraphqlDocumentEnqueuedScriptsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The graphqlDocument type */
-export type GraphqlDocumentEnqueuedStylesheetsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The graphqlDocument type */
-export type GraphqlDocumentGraphqlDocumentGroupsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<GraphqlDocumentToGraphqlDocumentGroupConnectionWhereArgs>;
-};
-
-
-/** The graphqlDocument type */
-export type GraphqlDocumentTermsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<GraphqlDocumentToTermNodeConnectionWhereArgs>;
-};
-
-
-/** The graphqlDocument type */
-export type GraphqlDocumentTitleArgs = {
-  format?: InputMaybe<PostObjectFieldFormatEnum>;
-};
-
-/** Connection to graphqlDocument Nodes */
-export type GraphqlDocumentConnection = {
-  /** A list of edges (relational context) between RootQuery and connected graphqlDocument Nodes */
-  edges: Array<GraphqlDocumentConnectionEdge>;
-  /** A list of connected graphqlDocument Nodes */
-  nodes: Array<GraphqlDocument>;
-  /** Information about pagination in a connection. */
-  pageInfo: GraphqlDocumentConnectionPageInfo;
-};
-
-/** Edge between a Node and a connected graphqlDocument */
-export type GraphqlDocumentConnectionEdge = {
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The connected graphqlDocument Node */
-  node: GraphqlDocument;
-};
-
-/** Page Info on the connected GraphqlDocumentConnectionEdge */
-export type GraphqlDocumentConnectionPageInfo = {
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Set relationships between the graphqlDocument to graphqlDocumentGroups */
-export type GraphqlDocumentGraphqlDocumentGroupsInput = {
-  /** If true, this will append the graphqlDocumentGroup to existing related graphqlDocumentGroups. If false, this will replace existing relationships. Default true. */
-  append?: InputMaybe<Scalars['Boolean']['input']>;
-  /** The input list of items to set. */
-  nodes?: InputMaybe<Array<InputMaybe<GraphqlDocumentGraphqlDocumentGroupsNodeInput>>>;
-};
-
-/** List of graphqlDocumentGroups to connect the graphqlDocument to. If an ID is set, it will be used to create the connection. If not, it will look for a slug. If neither are valid existing terms, and the site is configured to allow terms to be created during post mutations, a term will be created using the Name if it exists in the input, then fallback to the slug if it exists. */
-export type GraphqlDocumentGraphqlDocumentGroupsNodeInput = {
-  /** The description of the graphqlDocumentGroup. This field is used to set a description of the graphqlDocumentGroup if a new one is created during the mutation. */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the graphqlDocumentGroup. If present, this will be used to connect to the graphqlDocument. If no existing graphqlDocumentGroup exists with this ID, no connection will be made. */
-  id?: InputMaybe<Scalars['ID']['input']>;
-  /** The name of the graphqlDocumentGroup. This field is used to create a new term, if term creation is enabled in nested mutations, and if one does not already exist with the provided slug or ID or if a slug or ID is not provided. If no name is included and a term is created, the creation will fallback to the slug field. */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** The slug of the graphqlDocumentGroup. If no ID is present, this field will be used to make a connection. If no existing term exists with this slug, this field will be used as a fallback to the Name field when creating a new term to connect to, if term creation is enabled as a nested mutation. */
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The graphqlDocumentGroup type */
-export type GraphqlDocumentGroup = DatabaseIdentifier & Node & TermNode & UniformResourceIdentifiable & {
-  __typename?: 'GraphqlDocumentGroup';
-  /** Connection between the GraphqlDocumentGroup type and the ContentNode type */
-  contentNodes?: Maybe<GraphqlDocumentGroupToContentNodeConnection>;
-  /** The number of objects connected to the object */
-  count?: Maybe<Scalars['Int']['output']>;
-  /** The unique identifier stored in the database */
-  databaseId: Scalars['Int']['output'];
-  /** The description of the object */
-  description?: Maybe<Scalars['String']['output']>;
-  /** Connection between the TermNode type and the EnqueuedScript type */
-  enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
-  /** Connection between the TermNode type and the EnqueuedStylesheet type */
-  enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
-  /**
-   * The id field matches the WP_Post-&gt;ID field.
-   * @deprecated Deprecated in favor of databaseId
-   */
-  graphqlDocumentGroupId?: Maybe<Scalars['Int']['output']>;
-  /** Connection between the GraphqlDocumentGroup type and the graphqlDocument type */
-  graphqlDocuments?: Maybe<GraphqlDocumentGroupToGraphqlDocumentConnection>;
-  /** The globally unique ID for the object */
-  id: Scalars['ID']['output'];
-  /** Whether the node is a Comment */
-  isComment: Scalars['Boolean']['output'];
-  /** Whether the node is a Content Node */
-  isContentNode: Scalars['Boolean']['output'];
-  /** Whether the node represents the front page. */
-  isFrontPage: Scalars['Boolean']['output'];
-  /** Whether  the node represents the blog page. */
-  isPostsPage: Scalars['Boolean']['output'];
-  /** Whether the object is restricted from the current viewer */
-  isRestricted?: Maybe<Scalars['Boolean']['output']>;
-  /** Whether the node is a Term */
-  isTermNode: Scalars['Boolean']['output'];
-  /** TermNode language */
-  language?: Maybe<Language>;
-  /** TermNode language code */
-  languageCode?: Maybe<Scalars['String']['output']>;
-  /** The link to the term */
-  link?: Maybe<Scalars['String']['output']>;
-  /** The human friendly name of the object. */
-  name?: Maybe<Scalars['String']['output']>;
-  /** The Yoast SEO data of the Groups taxonomy. */
-  seo?: Maybe<TaxonomySeo>;
-  /** An alphanumeric identifier for the object unique to its type. */
-  slug?: Maybe<Scalars['String']['output']>;
-  /** Connection between the GraphqlDocumentGroup type and the Taxonomy type */
-  taxonomy?: Maybe<GraphqlDocumentGroupToTaxonomyConnectionEdge>;
-  /** The name of the taxonomy that the object is associated with */
-  taxonomyName?: Maybe<Scalars['String']['output']>;
-  /** The ID of the term group that this term object belongs to */
-  termGroupId?: Maybe<Scalars['Int']['output']>;
-  /** The taxonomy ID that the object is associated with */
-  termTaxonomyId?: Maybe<Scalars['Int']['output']>;
-  /** TermNode translation group ID */
-  translationGroupId?: Maybe<Scalars['ID']['output']>;
-  /** TermNode translations */
-  translations?: Maybe<Array<Maybe<TermNode>>>;
-  /** The unique resource identifier path */
-  uri?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** The graphqlDocumentGroup type */
-export type GraphqlDocumentGroupContentNodesArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<GraphqlDocumentGroupToContentNodeConnectionWhereArgs>;
-};
-
-
-/** The graphqlDocumentGroup type */
-export type GraphqlDocumentGroupEnqueuedScriptsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The graphqlDocumentGroup type */
-export type GraphqlDocumentGroupEnqueuedStylesheetsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The graphqlDocumentGroup type */
-export type GraphqlDocumentGroupGraphqlDocumentsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<GraphqlDocumentGroupToGraphqlDocumentConnectionWhereArgs>;
-};
-
-/** Connection to graphqlDocumentGroup Nodes */
-export type GraphqlDocumentGroupConnection = {
-  /** A list of edges (relational context) between RootQuery and connected graphqlDocumentGroup Nodes */
-  edges: Array<GraphqlDocumentGroupConnectionEdge>;
-  /** A list of connected graphqlDocumentGroup Nodes */
-  nodes: Array<GraphqlDocumentGroup>;
-  /** Information about pagination in a connection. */
-  pageInfo: GraphqlDocumentGroupConnectionPageInfo;
-};
-
-/** Edge between a Node and a connected graphqlDocumentGroup */
-export type GraphqlDocumentGroupConnectionEdge = {
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The connected graphqlDocumentGroup Node */
-  node: GraphqlDocumentGroup;
-};
-
-/** Page Info on the connected GraphqlDocumentGroupConnectionEdge */
-export type GraphqlDocumentGroupConnectionPageInfo = {
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** The Type of Identifier used to fetch a single resource. Default is ID. */
-export enum GraphqlDocumentGroupIdType {
-  /** The Database ID for the node */
-  DatabaseId = 'DATABASE_ID',
-  /** The hashed Global ID */
-  Id = 'ID',
-  /** The name of the node */
-  Name = 'NAME',
-  /** Url friendly name of the node */
-  Slug = 'SLUG',
-  /** The URI for the node */
-  Uri = 'URI'
-}
-
-/** Connection between the GraphqlDocumentGroup type and the ContentNode type */
-export type GraphqlDocumentGroupToContentNodeConnection = Connection & ContentNodeConnection & {
-  __typename?: 'GraphqlDocumentGroupToContentNodeConnection';
-  /** Edges for the GraphqlDocumentGroupToContentNodeConnection connection */
-  edges: Array<GraphqlDocumentGroupToContentNodeConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<ContentNode>;
-  /** Information about pagination in a connection. */
-  pageInfo: GraphqlDocumentGroupToContentNodeConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type GraphqlDocumentGroupToContentNodeConnectionEdge = ContentNodeConnectionEdge & Edge & {
-  __typename?: 'GraphqlDocumentGroupToContentNodeConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: ContentNode;
-};
-
-/** Page Info on the &quot;GraphqlDocumentGroupToContentNodeConnection&quot; */
-export type GraphqlDocumentGroupToContentNodeConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'GraphqlDocumentGroupToContentNodeConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the GraphqlDocumentGroupToContentNodeConnection connection */
-export type GraphqlDocumentGroupToContentNodeConnectionWhereArgs = {
-  /** The Types of content to filter */
-  contentTypes?: InputMaybe<Array<InputMaybe<ContentTypesOfGraphqlDocumentGroupEnum>>>;
-  /** Filter the connection based on dates */
-  dateQuery?: InputMaybe<DateQueryInput>;
-  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
-  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Specific database ID of the object */
-  id?: InputMaybe<Scalars['Int']['input']>;
-  /** Array of IDs for the objects to retrieve */
-  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Get objects with a specific mimeType property */
-  mimeType?: InputMaybe<MimeTypeEnum>;
-  /** Slug / post_name of the object */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** Specify objects to retrieve. Use slugs */
-  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** What parameter to use to order the objects by. */
-  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
-  /** Use ID to return only children. Use 0 to return only top-level items */
-  parent?: InputMaybe<Scalars['ID']['input']>;
-  /** Specify objects whose parent is in an array */
-  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Specify posts whose parent is not in an array */
-  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Show posts with a specific password. */
+/** Input for the generateAuthorizationCode mutation. */
+export type GenerateAuthorizationCodeInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** Email for WordPress user */
+  email?: InputMaybe<Scalars['String']['input']>;
+  /** Password for WordPress user */
   password?: InputMaybe<Scalars['String']['input']>;
-  /** Show Posts based on a keyword search */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Retrieve posts where post status is in an array. */
-  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
-  /** Show posts with a specific status. */
-  status?: InputMaybe<PostStatusEnum>;
-  /** Title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
+  /** Username for WordPress user */
+  username?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** Connection between the GraphqlDocumentGroup type and the graphqlDocument type */
-export type GraphqlDocumentGroupToGraphqlDocumentConnection = Connection & GraphqlDocumentConnection & {
-  __typename?: 'GraphqlDocumentGroupToGraphqlDocumentConnection';
-  /** Edges for the GraphqlDocumentGroupToGraphqlDocumentConnection connection */
-  edges: Array<GraphqlDocumentGroupToGraphqlDocumentConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<GraphqlDocument>;
-  /** Information about pagination in a connection. */
-  pageInfo: GraphqlDocumentGroupToGraphqlDocumentConnectionPageInfo;
+/** The payload for the generateAuthorizationCode mutation. */
+export type GenerateAuthorizationCodePayload = {
+  __typename?: 'GenerateAuthorizationCodePayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** Authorization code used for requesting refresh/access tokens */
+  code?: Maybe<Scalars['String']['output']>;
+  /** Error encountered during user authentication, if any */
+  error?: Maybe<Scalars['String']['output']>;
 };
 
-/** An edge in a connection */
-export type GraphqlDocumentGroupToGraphqlDocumentConnectionEdge = Edge & GraphqlDocumentConnectionEdge & {
-  __typename?: 'GraphqlDocumentGroupToGraphqlDocumentConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: GraphqlDocument;
-};
-
-/** Page Info on the &quot;GraphqlDocumentGroupToGraphqlDocumentConnection&quot; */
-export type GraphqlDocumentGroupToGraphqlDocumentConnectionPageInfo = GraphqlDocumentConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'GraphqlDocumentGroupToGraphqlDocumentConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the GraphqlDocumentGroupToGraphqlDocumentConnection connection */
-export type GraphqlDocumentGroupToGraphqlDocumentConnectionWhereArgs = {
-  /** Filter the connection based on dates */
-  dateQuery?: InputMaybe<DateQueryInput>;
-  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
-  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Specific database ID of the object */
-  id?: InputMaybe<Scalars['Int']['input']>;
-  /** Array of IDs for the objects to retrieve */
-  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Get objects with a specific mimeType property */
-  mimeType?: InputMaybe<MimeTypeEnum>;
-  /** Slug / post_name of the object */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** Specify objects to retrieve. Use slugs */
-  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** What parameter to use to order the objects by. */
-  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
-  /** Use ID to return only children. Use 0 to return only top-level items */
-  parent?: InputMaybe<Scalars['ID']['input']>;
-  /** Specify objects whose parent is in an array */
-  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Specify posts whose parent is not in an array */
-  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Show posts with a specific password. */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** Show Posts based on a keyword search */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Retrieve posts where post status is in an array. */
-  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
-  /** Show posts with a specific status. */
-  status?: InputMaybe<PostStatusEnum>;
-  /** Title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Connection between the GraphqlDocumentGroup type and the Taxonomy type */
-export type GraphqlDocumentGroupToTaxonomyConnectionEdge = Edge & OneToOneConnection & TaxonomyConnectionEdge & {
-  __typename?: 'GraphqlDocumentGroupToTaxonomyConnectionEdge';
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The node of the connection, without the edges */
-  node: Taxonomy;
-};
-
-/** The Type of Identifier used to fetch a single resource. Default is ID. */
-export enum GraphqlDocumentIdType {
-  /** Identify a resource by the Database ID. */
-  DatabaseId = 'DATABASE_ID',
-  /** Identify a resource by the (hashed) Global ID. */
-  Id = 'ID',
-  /** Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier. */
-  Slug = 'SLUG',
-  /** Identify a resource by the URI. */
-  Uri = 'URI'
+/** Types of styles to load */
+export enum GlobalStylesheetTypesEnum {
+  BaseLayoutStyles = 'BASE_LAYOUT_STYLES',
+  Presets = 'PRESETS',
+  Styles = 'STYLES',
+  Variables = 'VARIABLES'
 }
-
-/** Connection between the GraphqlDocument type and the graphqlDocument type */
-export type GraphqlDocumentToGraphqlDocumentConnection = Connection & GraphqlDocumentConnection & {
-  __typename?: 'GraphqlDocumentToGraphqlDocumentConnection';
-  /** Edges for the GraphqlDocumentToGraphqlDocumentConnection connection */
-  edges: Array<GraphqlDocumentToGraphqlDocumentConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<GraphqlDocument>;
-  /** Information about pagination in a connection. */
-  pageInfo: GraphqlDocumentToGraphqlDocumentConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type GraphqlDocumentToGraphqlDocumentConnectionEdge = Edge & GraphqlDocumentConnectionEdge & {
-  __typename?: 'GraphqlDocumentToGraphqlDocumentConnectionEdge';
-  /**
-   * A cursor for use in pagination
-   * @deprecated This content type is not hierarchical and typically will not have ancestors
-   */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /**
-   * The item at the end of the edge
-   * @deprecated This content type is not hierarchical and typically will not have ancestors
-   */
-  node: GraphqlDocument;
-};
-
-/** Page Info on the &quot;GraphqlDocumentToGraphqlDocumentConnection&quot; */
-export type GraphqlDocumentToGraphqlDocumentConnectionPageInfo = GraphqlDocumentConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'GraphqlDocumentToGraphqlDocumentConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Connection between the GraphqlDocument type and the graphqlDocumentGroup type */
-export type GraphqlDocumentToGraphqlDocumentGroupConnection = Connection & GraphqlDocumentGroupConnection & {
-  __typename?: 'GraphqlDocumentToGraphqlDocumentGroupConnection';
-  /** Edges for the GraphqlDocumentToGraphqlDocumentGroupConnection connection */
-  edges: Array<GraphqlDocumentToGraphqlDocumentGroupConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<GraphqlDocumentGroup>;
-  /** Information about pagination in a connection. */
-  pageInfo: GraphqlDocumentToGraphqlDocumentGroupConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type GraphqlDocumentToGraphqlDocumentGroupConnectionEdge = Edge & GraphqlDocumentGroupConnectionEdge & {
-  __typename?: 'GraphqlDocumentToGraphqlDocumentGroupConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The Yoast SEO Primary graphql_document_group */
-  isPrimary?: Maybe<Scalars['Boolean']['output']>;
-  /** The item at the end of the edge */
-  node: GraphqlDocumentGroup;
-};
-
-/** Page Info on the &quot;GraphqlDocumentToGraphqlDocumentGroupConnection&quot; */
-export type GraphqlDocumentToGraphqlDocumentGroupConnectionPageInfo = GraphqlDocumentGroupConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'GraphqlDocumentToGraphqlDocumentGroupConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the GraphqlDocumentToGraphqlDocumentGroupConnection connection */
-export type GraphqlDocumentToGraphqlDocumentGroupConnectionWhereArgs = {
-  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
-  cacheDomain?: InputMaybe<Scalars['String']['input']>;
-  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
-  childOf?: InputMaybe<Scalars['Int']['input']>;
-  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
-  childless?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Retrieve terms where the description is LIKE the input value. Default empty. */
-  descriptionLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
-  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
-  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
-  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
-  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Array of term ids to include. Default empty array. */
-  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of names to return term(s) for. Default empty. */
-  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Retrieve terms where the name is LIKE the input value. Default empty. */
-  nameLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of object IDs. Results will be limited to terms associated with these objects. */
-  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Direction the connection should be ordered in */
-  order?: InputMaybe<OrderEnum>;
-  /** Field(s) to order terms by. Defaults to 'name'. */
-  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
-  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
-  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Parent term ID to retrieve direct-child terms of. Default empty. */
-  parent?: InputMaybe<Scalars['Int']['input']>;
-  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Array of slugs to return term(s) for. Default empty. */
-  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to prime meta caches for matched terms. Default true. */
-  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Connection between the GraphqlDocument type and the graphqlDocument type */
-export type GraphqlDocumentToParentConnectionEdge = Edge & GraphqlDocumentConnectionEdge & OneToOneConnection & {
-  __typename?: 'GraphqlDocumentToParentConnectionEdge';
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /**
-   * The node of the connection, without the edges
-   * @deprecated This content type is not hierarchical and typically will not have a parent
-   */
-  node: GraphqlDocument;
-};
-
-/** Connection between the GraphqlDocument type and the graphqlDocument type */
-export type GraphqlDocumentToPreviewConnectionEdge = Edge & GraphqlDocumentConnectionEdge & OneToOneConnection & {
-  __typename?: 'GraphqlDocumentToPreviewConnectionEdge';
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /**
-   * The node of the connection, without the edges
-   * @deprecated The &quot;GraphqlDocument&quot; Type is not publicly queryable and does not support previews. This field will be removed in the future.
-   */
-  node: GraphqlDocument;
-};
-
-/** Connection between the GraphqlDocument type and the TermNode type */
-export type GraphqlDocumentToTermNodeConnection = Connection & TermNodeConnection & {
-  __typename?: 'GraphqlDocumentToTermNodeConnection';
-  /** Edges for the GraphqlDocumentToTermNodeConnection connection */
-  edges: Array<GraphqlDocumentToTermNodeConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<TermNode>;
-  /** Information about pagination in a connection. */
-  pageInfo: GraphqlDocumentToTermNodeConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type GraphqlDocumentToTermNodeConnectionEdge = Edge & TermNodeConnectionEdge & {
-  __typename?: 'GraphqlDocumentToTermNodeConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: TermNode;
-};
-
-/** Page Info on the &quot;GraphqlDocumentToTermNodeConnection&quot; */
-export type GraphqlDocumentToTermNodeConnectionPageInfo = PageInfo & TermNodeConnectionPageInfo & WpPageInfo & {
-  __typename?: 'GraphqlDocumentToTermNodeConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the GraphqlDocumentToTermNodeConnection connection */
-export type GraphqlDocumentToTermNodeConnectionWhereArgs = {
-  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
-  cacheDomain?: InputMaybe<Scalars['String']['input']>;
-  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
-  childOf?: InputMaybe<Scalars['Int']['input']>;
-  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
-  childless?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Retrieve terms where the description is LIKE the input value. Default empty. */
-  descriptionLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
-  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
-  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
-  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
-  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Array of term ids to include. Default empty array. */
-  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of names to return term(s) for. Default empty. */
-  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Retrieve terms where the name is LIKE the input value. Default empty. */
-  nameLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of object IDs. Results will be limited to terms associated with these objects. */
-  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Direction the connection should be ordered in */
-  order?: InputMaybe<OrderEnum>;
-  /** Field(s) to order terms by. Defaults to 'name'. */
-  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
-  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
-  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Parent term ID to retrieve direct-child terms of. Default empty. */
-  parent?: InputMaybe<Scalars['Int']['input']>;
-  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Array of slugs to return term(s) for. Default empty. */
-  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** The Taxonomy to filter terms by */
-  taxonomies?: InputMaybe<Array<InputMaybe<TaxonomyEnum>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to prime meta caches for matched terms. Default true. */
-  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
-};
 
 /** Content node with hierarchical (parent/child) relationships */
 export type HierarchicalContentNode = {
@@ -10610,6 +8003,8 @@ export type HierarchicalContentNode = {
   ancestors?: Maybe<HierarchicalContentNodeToContentNodeAncestorsConnection>;
   /** Connection between the HierarchicalContentNode type and the ContentNode type */
   children?: Maybe<HierarchicalContentNodeToContentNodeChildrenConnection>;
+  /** @deprecated Deprecated in favor of using Next.js pages */
+  conditionalTags?: Maybe<ConditionalTags>;
   /** Connection between the ContentNode type and the ContentType type */
   contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
   /** The name of the Content Type the node belongs to */
@@ -10648,10 +8043,6 @@ export type HierarchicalContentNode = {
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the node is a Term */
   isTermNode: Scalars['Boolean']['output'];
-  /** ContentNode language */
-  language?: Maybe<Language>;
-  /** ContentNode language code */
-  languageCode?: Maybe<Scalars['String']['output']>;
   /** The user that most recently edited the node */
   lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
   /** The permalink of the post */
@@ -10678,6 +8069,7 @@ export type HierarchicalContentNode = {
   status?: Maybe<Scalars['String']['output']>;
   /** The template assigned to a node of content */
   template?: Maybe<ContentTemplate>;
+  templates?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   /** The unique resource identifier path */
   uri?: Maybe<Scalars['String']['output']>;
 };
@@ -10893,6 +8285,8 @@ export type HierarchicalNode = {
 
 /** Term node with hierarchical (parent/child) relationships */
 export type HierarchicalTermNode = {
+  /** @deprecated Deprecated in favor of using Next.js pages */
+  conditionalTags?: Maybe<ConditionalTags>;
   /** The number of objects connected to the object */
   count?: Maybe<Scalars['Int']['output']>;
   /** The unique identifier stored in the database */
@@ -10917,10 +8311,6 @@ export type HierarchicalTermNode = {
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the node is a Term */
   isTermNode: Scalars['Boolean']['output'];
-  /** TermNode language */
-  language?: Maybe<Language>;
-  /** TermNode language code */
-  languageCode?: Maybe<Scalars['String']['output']>;
   /** The link to the term */
   link?: Maybe<Scalars['String']['output']>;
   /** The human friendly name of the object. */
@@ -10933,14 +8323,11 @@ export type HierarchicalTermNode = {
   slug?: Maybe<Scalars['String']['output']>;
   /** The name of the taxonomy that the object is associated with */
   taxonomyName?: Maybe<Scalars['String']['output']>;
+  templates?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   /** The ID of the term group that this term object belongs to */
   termGroupId?: Maybe<Scalars['Int']['output']>;
   /** The taxonomy ID that the object is associated with */
   termTaxonomyId?: Maybe<Scalars['Int']['output']>;
-  /** TermNode translation group ID */
-  translationGroupId?: Maybe<Scalars['ID']['output']>;
-  /** TermNode translations */
-  translations?: Maybe<Array<Maybe<TermNode>>>;
   /** The unique resource identifier path */
   uri?: Maybe<Scalars['String']['output']>;
 };
@@ -10961,114 +8348,6 @@ export type HierarchicalTermNodeEnqueuedStylesheetsArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-/** The &quot;HomePageBlock&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type HomePageBlock = AcfFieldGroup & AcfFieldGroupFields & HomePageBlock_Fields & {
-  __typename?: 'HomePageBlock';
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-};
-
-/** Interface representing fields of the ACF &quot;HomePageBlock&quot; Field Group */
-export type HomePageBlock_Fields = {
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-};
-
-/** The &quot;HomePageSection&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type HomePageSection = AcfFieldGroup & AcfFieldGroupFields & HomePageSection_Fields & {
-  __typename?: 'HomePageSection';
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;gallery&quot; Field Type added to the schema as part of the &quot;HomePageSection&quot; Field Group */
-  images?: Maybe<AcfMediaItemConnection>;
-  /** Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;HomePageSection&quot; Field Group */
-  link?: Maybe<AcfLink>;
-};
-
-
-/** The &quot;HomePageSection&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type HomePageSectionImagesArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-/** Interface representing fields of the ACF &quot;HomePageSection&quot; Field Group */
-export type HomePageSection_Fields = {
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;gallery&quot; Field Type added to the schema as part of the &quot;HomePageSection&quot; Field Group */
-  images?: Maybe<AcfMediaItemConnection>;
-  /** Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;HomePageSection&quot; Field Group */
-  link?: Maybe<AcfLink>;
-};
-
-
-/** Interface representing fields of the ACF &quot;HomePageSection&quot; Field Group */
-export type HomePageSection_FieldsImagesArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-/** Language */
-export type Language = {
-  __typename?: 'Language';
-  /** Language code */
-  code: Scalars['String']['output'];
-  /** Language country flag URL */
-  country_flag_url?: Maybe<Scalars['String']['output']>;
-  /** Language default locale */
-  default_locale?: Maybe<Scalars['String']['output']>;
-  /** Language ID */
-  id: Scalars['ID']['output'];
-  /** Language code */
-  language_code: Scalars['String']['output'];
-  /** Language name in its own language */
-  native_name?: Maybe<Scalars['String']['output']>;
-  /** Language name in the default language */
-  translated_name?: Maybe<Scalars['String']['output']>;
-  /** Language front page URL */
-  url?: Maybe<Scalars['String']['output']>;
-};
-
-/** The &quot;LearningHubFields&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type LearningHubFields = AcfFieldGroup & AcfFieldGroupFields & LearningHubFields_Fields & {
-  __typename?: 'LearningHubFields';
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;LearningHubFields&quot; Field Group */
-  byline?: Maybe<Scalars['String']['output']>;
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-};
-
-/** Interface representing fields of the ACF &quot;LearningHubFields&quot; Field Group */
-export type LearningHubFields_Fields = {
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;LearningHubFields&quot; Field Group */
-  byline?: Maybe<Scalars['String']['output']>;
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
 };
 
 /** File details for a Media Item */
@@ -11116,6 +8395,8 @@ export type MediaItem = ContentNode & DatabaseIdentifier & HierarchicalContentNo
   commentStatus?: Maybe<Scalars['String']['output']>;
   /** Connection between the MediaItem type and the Comment type */
   comments?: Maybe<MediaItemToCommentConnection>;
+  /** @deprecated Deprecated in favor of using Next.js pages */
+  conditionalTags?: Maybe<ConditionalTags>;
   /** Connection between the ContentNode type and the ContentType type */
   contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
   /** The name of the Content Type the node belongs to */
@@ -11160,10 +8441,6 @@ export type MediaItem = ContentNode & DatabaseIdentifier & HierarchicalContentNo
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the node is a Term */
   isTermNode: Scalars['Boolean']['output'];
-  /** ContentNode language */
-  language?: Maybe<Language>;
-  /** ContentNode language code */
-  languageCode?: Maybe<Scalars['String']['output']>;
   /** The user that most recently edited the node */
   lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
   /** The permalink of the post */
@@ -11197,8 +8474,6 @@ export type MediaItem = ContentNode & DatabaseIdentifier & HierarchicalContentNo
   previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
   /** Whether the object is a node in the preview state */
   previewRevisionId?: Maybe<Scalars['ID']['output']>;
-  /** Book reference extracted from filename */
-  reference?: Maybe<Scalars['String']['output']>;
   /** The Yoast SEO data of the ContentNode */
   seo?: Maybe<PostTypeSeo>;
   /** The sizes attribute value for an image. */
@@ -11213,12 +8488,9 @@ export type MediaItem = ContentNode & DatabaseIdentifier & HierarchicalContentNo
   status?: Maybe<Scalars['String']['output']>;
   /** The template assigned to a node of content */
   template?: Maybe<ContentTemplate>;
+  templates?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
   title?: Maybe<Scalars['String']['output']>;
-  /** MediaItem translation group ID */
-  translationGroupId?: Maybe<Scalars['ID']['output']>;
-  /** MediaItem translations */
-  translations?: Maybe<Array<Maybe<MediaItem>>>;
   /** The unique resource identifier path */
   uri?: Maybe<Scalars['String']['output']>;
 };
@@ -11398,8 +8670,10 @@ export enum MediaItemSizeEnum {
   MediumLarge = 'MEDIUM_LARGE',
   /** MediaItem with the thumbnail size */
   Thumbnail = 'THUMBNAIL',
-  /** MediaItem with the x_large size */
-  XLarge = 'X_LARGE'
+  /** MediaItem with the 1536x1536 size */
+  '1536X1536' = '_1536X1536',
+  /** MediaItem with the 2048x2048 size */
+  '2048X2048' = '_2048X2048'
 }
 
 /** The status of the media item object. */
@@ -11541,10 +8815,6 @@ export type Menu = DatabaseIdentifier & Node & {
   id: Scalars['ID']['output'];
   /** Whether the object is restricted from the current viewer */
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
-  /** Menu language */
-  language?: Maybe<Language>;
-  /** Menu language code */
-  languageCode?: Maybe<Scalars['String']['output']>;
   /** The locations a menu is assigned to */
   locations?: Maybe<Array<Maybe<MenuLocationEnum>>>;
   /**
@@ -11626,10 +8896,6 @@ export type MenuItem = DatabaseIdentifier & Node & {
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
   /** Label or title of the menu item. */
   label?: Maybe<Scalars['String']['output']>;
-  /** MenuItem language */
-  language?: Maybe<Language>;
-  /** MenuItem language code */
-  languageCode?: Maybe<Scalars['String']['output']>;
   /** Link relationship (XFN) of the menu item. */
   linkRelationship?: Maybe<Scalars['String']['output']>;
   /** The locations the menu item&#039;s Menu is assigned to */
@@ -11703,6 +8969,8 @@ export type MenuItemConnectionPageInfo = {
 
 /** Nodes that can be linked to as Menu Items */
 export type MenuItemLinkable = {
+  /** @deprecated Deprecated in favor of using Next.js pages */
+  conditionalTags?: Maybe<ConditionalTags>;
   /** The unique identifier stored in the database */
   databaseId: Scalars['Int']['output'];
   /** The globally unique ID for the object */
@@ -11717,6 +8985,7 @@ export type MenuItemLinkable = {
   isPostsPage: Scalars['Boolean']['output'];
   /** Whether the node is a Term */
   isTermNode: Scalars['Boolean']['output'];
+  templates?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   /** The unique resource identifier path */
   uri?: Maybe<Scalars['String']['output']>;
 };
@@ -11738,7 +9007,7 @@ export enum MenuItemNodeIdTypeEnum {
 }
 
 /** Deprecated in favor of MenuItemLinkeable Interface */
-export type MenuItemObjectUnion = Book | Category | Collection | Page | Person | Post | Publisher | Tag;
+export type MenuItemObjectUnion = Category | Page | Post | Tag;
 
 /** Connection between the MenuItem type and the Menu type */
 export type MenuItemToMenuConnectionEdge = Edge & MenuConnectionEdge & OneToOneConnection & {
@@ -11807,6 +9076,10 @@ export type MenuItemToMenuItemLinkableConnectionEdge = Edge & MenuItemLinkableCo
 
 /** Registered menu locations */
 export enum MenuLocationEnum {
+  /** Put the menu in the footer location */
+  Footer = 'FOOTER',
+  /** Put the menu in the primary location */
+  Primary = 'PRIMARY',
   /** Put the menu in the primary_navigation location */
   PrimaryNavigation = 'PRIMARY_NAVIGATION'
 }
@@ -12264,7 +9537,7 @@ export enum OrderEnum {
 }
 
 /** The page type */
-export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithEditorBlocks & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithPageEditorBlocks & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfPageDesign & {
+export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithEditorBlocks & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithPageEditorBlocks & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & {
   __typename?: 'Page';
   /** Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
   ancestors?: Maybe<HierarchicalContentNodeToContentNodeAncestorsConnection>;
@@ -12282,6 +9555,8 @@ export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & 
   commentStatus?: Maybe<Scalars['String']['output']>;
   /** Connection between the Page type and the Comment type */
   comments?: Maybe<PageToCommentConnection>;
+  /** @deprecated Deprecated in favor of using Next.js pages */
+  conditionalTags?: Maybe<ConditionalTags>;
   /** The content of the post. */
   content?: Maybe<Scalars['String']['output']>;
   /** Connection between the ContentNode type and the ContentType type */
@@ -12336,10 +9611,6 @@ export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & 
   isRevision?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the node is a Term */
   isTermNode: Scalars['Boolean']['output'];
-  /** ContentNode language */
-  language?: Maybe<Language>;
-  /** ContentNode language code */
-  languageCode?: Maybe<Scalars['String']['output']>;
   /** The user that most recently edited the node */
   lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
   /** The permalink of the post */
@@ -12350,8 +9621,6 @@ export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & 
   modified?: Maybe<Scalars['String']['output']>;
   /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
   modifiedGmt?: Maybe<Scalars['String']['output']>;
-  /** Fields of the PageDesign ACF Field Group */
-  pageDesign?: Maybe<PageDesign>;
   /**
    * The id field matches the WP_Post-&gt;ID field.
    * @deprecated Deprecated in favor of the databaseId field
@@ -12383,12 +9652,9 @@ export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & 
   status?: Maybe<Scalars['String']['output']>;
   /** The template assigned to a node of content */
   template?: Maybe<ContentTemplate>;
+  templates?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
   title?: Maybe<Scalars['String']['output']>;
-  /** Page translation group ID */
-  translationGroupId?: Maybe<Scalars['ID']['output']>;
-  /** Page translations */
-  translations?: Maybe<Array<Maybe<Page>>>;
   /** The unique resource identifier path */
   uri?: Maybe<Scalars['String']['output']>;
 };
@@ -12499,29 +9765,6 @@ export type PageConnectionPageInfo = {
   seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** The &quot;PageDesign&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type PageDesign = AcfFieldGroup & AcfFieldGroupFields & PageDesign_Fields & {
-  __typename?: 'PageDesign';
-  /** Field of the &quot;editor_palette&quot; Field Type added to the schema as part of the &quot;PageDesign&quot; Field Group */
-  bgColour?: Maybe<EditorPaletteColor>;
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-};
-
-/** Interface representing fields of the ACF &quot;PageDesign&quot; Field Group */
-export type PageDesign_Fields = {
-  /** Field of the &quot;editor_palette&quot; Field Type added to the schema as part of the &quot;PageDesign&quot; Field Group */
-  bgColour?: Maybe<EditorPaletteColor>;
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
 };
 
 /** EditorBlock Interface for Page Block Type */
@@ -12757,313 +10000,6 @@ export type PageToRevisionConnectionWhereArgs = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** The person type */
-export type Person = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & WithAcfTaxonomyData & {
-  __typename?: 'Person';
-  /** Connection between the Person type and the book type */
-  books?: Maybe<PersonToBookConnection>;
-  /** Connection between the Person type and the ContentNode type */
-  contentNodes?: Maybe<PersonToContentNodeConnection>;
-  /** The number of objects connected to the object */
-  count?: Maybe<Scalars['Int']['output']>;
-  /** The unique identifier stored in the database */
-  databaseId: Scalars['Int']['output'];
-  /** The description of the object */
-  description?: Maybe<Scalars['String']['output']>;
-  /** Connection between the TermNode type and the EnqueuedScript type */
-  enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
-  /** Connection between the TermNode type and the EnqueuedStylesheet type */
-  enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
-  /** The globally unique ID for the object */
-  id: Scalars['ID']['output'];
-  /** Whether the node is a Comment */
-  isComment: Scalars['Boolean']['output'];
-  /** Whether the node is a Content Node */
-  isContentNode: Scalars['Boolean']['output'];
-  /** Whether the node represents the front page. */
-  isFrontPage: Scalars['Boolean']['output'];
-  /** Whether  the node represents the blog page. */
-  isPostsPage: Scalars['Boolean']['output'];
-  /** Whether the object is restricted from the current viewer */
-  isRestricted?: Maybe<Scalars['Boolean']['output']>;
-  /** Whether the node is a Term */
-  isTermNode: Scalars['Boolean']['output'];
-  /** TermNode language */
-  language?: Maybe<Language>;
-  /** TermNode language code */
-  languageCode?: Maybe<Scalars['String']['output']>;
-  /** The link to the term */
-  link?: Maybe<Scalars['String']['output']>;
-  /** The human friendly name of the object. */
-  name?: Maybe<Scalars['String']['output']>;
-  /**
-   * The id field matches the WP_Post-&gt;ID field.
-   * @deprecated Deprecated in favor of databaseId
-   */
-  personId?: Maybe<Scalars['Int']['output']>;
-  /** The Yoast SEO data of the People taxonomy. */
-  seo?: Maybe<TaxonomySeo>;
-  /** An alphanumeric identifier for the object unique to its type. */
-  slug?: Maybe<Scalars['String']['output']>;
-  /** Connection between the Person type and the Taxonomy type */
-  taxonomy?: Maybe<PersonToTaxonomyConnectionEdge>;
-  /** Fields of the TaxonomyData ACF Field Group */
-  taxonomyData?: Maybe<TaxonomyData>;
-  /** The name of the taxonomy that the object is associated with */
-  taxonomyName?: Maybe<Scalars['String']['output']>;
-  /** The ID of the term group that this term object belongs to */
-  termGroupId?: Maybe<Scalars['Int']['output']>;
-  /** The taxonomy ID that the object is associated with */
-  termTaxonomyId?: Maybe<Scalars['Int']['output']>;
-  /** TermNode translation group ID */
-  translationGroupId?: Maybe<Scalars['ID']['output']>;
-  /** TermNode translations */
-  translations?: Maybe<Array<Maybe<TermNode>>>;
-  /** The unique resource identifier path */
-  uri?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** The person type */
-export type PersonBooksArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<PersonToBookConnectionWhereArgs>;
-};
-
-
-/** The person type */
-export type PersonContentNodesArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<PersonToContentNodeConnectionWhereArgs>;
-};
-
-
-/** The person type */
-export type PersonEnqueuedScriptsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The person type */
-export type PersonEnqueuedStylesheetsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-/** Connection to person Nodes */
-export type PersonConnection = {
-  /** A list of edges (relational context) between RootQuery and connected person Nodes */
-  edges: Array<PersonConnectionEdge>;
-  /** A list of connected person Nodes */
-  nodes: Array<Person>;
-  /** Information about pagination in a connection. */
-  pageInfo: PersonConnectionPageInfo;
-};
-
-/** Edge between a Node and a connected person */
-export type PersonConnectionEdge = {
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The connected person Node */
-  node: Person;
-};
-
-/** Page Info on the connected PersonConnectionEdge */
-export type PersonConnectionPageInfo = {
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** The Type of Identifier used to fetch a single resource. Default is ID. */
-export enum PersonIdType {
-  /** The Database ID for the node */
-  DatabaseId = 'DATABASE_ID',
-  /** The hashed Global ID */
-  Id = 'ID',
-  /** The name of the node */
-  Name = 'NAME',
-  /** Url friendly name of the node */
-  Slug = 'SLUG',
-  /** The URI for the node */
-  Uri = 'URI'
-}
-
-/** Connection between the Person type and the book type */
-export type PersonToBookConnection = BookConnection & Connection & {
-  __typename?: 'PersonToBookConnection';
-  /** Edges for the PersonToBookConnection connection */
-  edges: Array<PersonToBookConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<Book>;
-  /** Information about pagination in a connection. */
-  pageInfo: PersonToBookConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type PersonToBookConnectionEdge = BookConnectionEdge & Edge & {
-  __typename?: 'PersonToBookConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: Book;
-};
-
-/** Page Info on the &quot;PersonToBookConnection&quot; */
-export type PersonToBookConnectionPageInfo = BookConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'PersonToBookConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the PersonToBookConnection connection */
-export type PersonToBookConnectionWhereArgs = {
-  /** Filter the connection based on dates */
-  dateQuery?: InputMaybe<DateQueryInput>;
-  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
-  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Specific database ID of the object */
-  id?: InputMaybe<Scalars['Int']['input']>;
-  /** Array of IDs for the objects to retrieve */
-  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Get objects with a specific mimeType property */
-  mimeType?: InputMaybe<MimeTypeEnum>;
-  /** Slug / post_name of the object */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** Specify objects to retrieve. Use slugs */
-  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** What parameter to use to order the objects by. */
-  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
-  /** Use ID to return only children. Use 0 to return only top-level items */
-  parent?: InputMaybe<Scalars['ID']['input']>;
-  /** Specify objects whose parent is in an array */
-  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Specify posts whose parent is not in an array */
-  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Show posts with a specific password. */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** Show Posts based on a keyword search */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Retrieve posts where post status is in an array. */
-  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
-  /** Show posts with a specific status. */
-  status?: InputMaybe<PostStatusEnum>;
-  /** Title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Connection between the Person type and the ContentNode type */
-export type PersonToContentNodeConnection = Connection & ContentNodeConnection & {
-  __typename?: 'PersonToContentNodeConnection';
-  /** Edges for the PersonToContentNodeConnection connection */
-  edges: Array<PersonToContentNodeConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<ContentNode>;
-  /** Information about pagination in a connection. */
-  pageInfo: PersonToContentNodeConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type PersonToContentNodeConnectionEdge = ContentNodeConnectionEdge & Edge & {
-  __typename?: 'PersonToContentNodeConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: ContentNode;
-};
-
-/** Page Info on the &quot;PersonToContentNodeConnection&quot; */
-export type PersonToContentNodeConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'PersonToContentNodeConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the PersonToContentNodeConnection connection */
-export type PersonToContentNodeConnectionWhereArgs = {
-  /** The Types of content to filter */
-  contentTypes?: InputMaybe<Array<InputMaybe<ContentTypesOfPersonEnum>>>;
-  /** Filter the connection based on dates */
-  dateQuery?: InputMaybe<DateQueryInput>;
-  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
-  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Specific database ID of the object */
-  id?: InputMaybe<Scalars['Int']['input']>;
-  /** Array of IDs for the objects to retrieve */
-  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Get objects with a specific mimeType property */
-  mimeType?: InputMaybe<MimeTypeEnum>;
-  /** Slug / post_name of the object */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** Specify objects to retrieve. Use slugs */
-  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** What parameter to use to order the objects by. */
-  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
-  /** Use ID to return only children. Use 0 to return only top-level items */
-  parent?: InputMaybe<Scalars['ID']['input']>;
-  /** Specify objects whose parent is in an array */
-  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Specify posts whose parent is not in an array */
-  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Show posts with a specific password. */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** Show Posts based on a keyword search */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Retrieve posts where post status is in an array. */
-  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
-  /** Show posts with a specific status. */
-  status?: InputMaybe<PostStatusEnum>;
-  /** Title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Connection between the Person type and the Taxonomy type */
-export type PersonToTaxonomyConnectionEdge = Edge & OneToOneConnection & TaxonomyConnectionEdge & {
-  __typename?: 'PersonToTaxonomyConnectionEdge';
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The node of the connection, without the edges */
-  node: Taxonomy;
-};
-
 /** An plugin object */
 export type Plugin = Node & {
   __typename?: 'Plugin';
@@ -13138,7 +10074,7 @@ export enum PluginStatusEnum {
 }
 
 /** The post type */
-export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithEditorBlocks & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithPostEditorBlocks & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & WithAcfLearningHubFields & {
+export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithEditorBlocks & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithPostEditorBlocks & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & {
   __typename?: 'Post';
   /**
    * The ancestors of the content node.
@@ -13159,6 +10095,8 @@ export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & 
   commentStatus?: Maybe<Scalars['String']['output']>;
   /** Connection between the Post type and the Comment type */
   comments?: Maybe<PostToCommentConnection>;
+  /** @deprecated Deprecated in favor of using Next.js pages */
+  conditionalTags?: Maybe<ConditionalTags>;
   /** The content of the post. */
   content?: Maybe<Scalars['String']['output']>;
   /** Connection between the ContentNode type and the ContentType type */
@@ -13215,14 +10153,8 @@ export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & 
   isSticky: Scalars['Boolean']['output'];
   /** Whether the node is a Term */
   isTermNode: Scalars['Boolean']['output'];
-  /** ContentNode language */
-  language?: Maybe<Language>;
-  /** ContentNode language code */
-  languageCode?: Maybe<Scalars['String']['output']>;
   /** The user that most recently edited the node */
   lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
-  /** Fields of the LearningHubFields ACF Field Group */
-  learningHubFields?: Maybe<LearningHubFields>;
   /** The permalink of the post */
   link?: Maybe<Scalars['String']['output']>;
   /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
@@ -13267,16 +10199,13 @@ export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & 
   tags?: Maybe<PostToTagConnection>;
   /** The template assigned to the node */
   template?: Maybe<ContentTemplate>;
+  templates?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   /** Connection between the Post type and the TermNode type */
   terms?: Maybe<PostToTermNodeConnection>;
   /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
   title?: Maybe<Scalars['String']['output']>;
   /** URLs queued to be pinged. */
   toPing?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  /** Post translation group ID */
-  translationGroupId?: Maybe<Scalars['ID']['output']>;
-  /** Post translations */
-  translations?: Maybe<Array<Maybe<Post>>>;
   /** The unique resource identifier path */
   uri?: Maybe<Scalars['String']['output']>;
 };
@@ -13471,6 +10400,8 @@ export type PostEditorBlock = {
 /** The postFormat type */
 export type PostFormat = DatabaseIdentifier & Node & TermNode & UniformResourceIdentifiable & {
   __typename?: 'PostFormat';
+  /** @deprecated Deprecated in favor of using Next.js pages */
+  conditionalTags?: Maybe<ConditionalTags>;
   /** Connection between the PostFormat type and the ContentNode type */
   contentNodes?: Maybe<PostFormatToContentNodeConnection>;
   /** The number of objects connected to the object */
@@ -13497,10 +10428,6 @@ export type PostFormat = DatabaseIdentifier & Node & TermNode & UniformResourceI
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the node is a Term */
   isTermNode: Scalars['Boolean']['output'];
-  /** TermNode language */
-  language?: Maybe<Language>;
-  /** TermNode language code */
-  languageCode?: Maybe<Scalars['String']['output']>;
   /** The link to the term */
   link?: Maybe<Scalars['String']['output']>;
   /** The human friendly name of the object. */
@@ -13520,14 +10447,11 @@ export type PostFormat = DatabaseIdentifier & Node & TermNode & UniformResourceI
   taxonomy?: Maybe<PostFormatToTaxonomyConnectionEdge>;
   /** The name of the taxonomy that the object is associated with */
   taxonomyName?: Maybe<Scalars['String']['output']>;
+  templates?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   /** The ID of the term group that this term object belongs to */
   termGroupId?: Maybe<Scalars['Int']['output']>;
   /** The taxonomy ID that the object is associated with */
   termTaxonomyId?: Maybe<Scalars['Int']['output']>;
-  /** TermNode translation group ID */
-  translationGroupId?: Maybe<Scalars['ID']['output']>;
-  /** TermNode translations */
-  translations?: Maybe<Array<Maybe<TermNode>>>;
   /** The unique resource identifier path */
   uri?: Maybe<Scalars['String']['output']>;
 };
@@ -14617,311 +11541,6 @@ export type Previewable = {
   previewRevisionId?: Maybe<Scalars['ID']['output']>;
 };
 
-/** The publisher type */
-export type Publisher = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & {
-  __typename?: 'Publisher';
-  /** Connection between the Publisher type and the book type */
-  books?: Maybe<PublisherToBookConnection>;
-  /** Connection between the Publisher type and the ContentNode type */
-  contentNodes?: Maybe<PublisherToContentNodeConnection>;
-  /** The number of objects connected to the object */
-  count?: Maybe<Scalars['Int']['output']>;
-  /** The unique identifier stored in the database */
-  databaseId: Scalars['Int']['output'];
-  /** The description of the object */
-  description?: Maybe<Scalars['String']['output']>;
-  /** Connection between the TermNode type and the EnqueuedScript type */
-  enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
-  /** Connection between the TermNode type and the EnqueuedStylesheet type */
-  enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
-  /** The globally unique ID for the object */
-  id: Scalars['ID']['output'];
-  /** Whether the node is a Comment */
-  isComment: Scalars['Boolean']['output'];
-  /** Whether the node is a Content Node */
-  isContentNode: Scalars['Boolean']['output'];
-  /** Whether the node represents the front page. */
-  isFrontPage: Scalars['Boolean']['output'];
-  /** Whether  the node represents the blog page. */
-  isPostsPage: Scalars['Boolean']['output'];
-  /** Whether the object is restricted from the current viewer */
-  isRestricted?: Maybe<Scalars['Boolean']['output']>;
-  /** Whether the node is a Term */
-  isTermNode: Scalars['Boolean']['output'];
-  /** TermNode language */
-  language?: Maybe<Language>;
-  /** TermNode language code */
-  languageCode?: Maybe<Scalars['String']['output']>;
-  /** The link to the term */
-  link?: Maybe<Scalars['String']['output']>;
-  /** The human friendly name of the object. */
-  name?: Maybe<Scalars['String']['output']>;
-  /**
-   * The id field matches the WP_Post-&gt;ID field.
-   * @deprecated Deprecated in favor of databaseId
-   */
-  publisherId?: Maybe<Scalars['Int']['output']>;
-  /** The Yoast SEO data of the Publishers taxonomy. */
-  seo?: Maybe<TaxonomySeo>;
-  /** An alphanumeric identifier for the object unique to its type. */
-  slug?: Maybe<Scalars['String']['output']>;
-  /** Connection between the Publisher type and the Taxonomy type */
-  taxonomy?: Maybe<PublisherToTaxonomyConnectionEdge>;
-  /** The name of the taxonomy that the object is associated with */
-  taxonomyName?: Maybe<Scalars['String']['output']>;
-  /** The ID of the term group that this term object belongs to */
-  termGroupId?: Maybe<Scalars['Int']['output']>;
-  /** The taxonomy ID that the object is associated with */
-  termTaxonomyId?: Maybe<Scalars['Int']['output']>;
-  /** TermNode translation group ID */
-  translationGroupId?: Maybe<Scalars['ID']['output']>;
-  /** TermNode translations */
-  translations?: Maybe<Array<Maybe<TermNode>>>;
-  /** The unique resource identifier path */
-  uri?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** The publisher type */
-export type PublisherBooksArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<PublisherToBookConnectionWhereArgs>;
-};
-
-
-/** The publisher type */
-export type PublisherContentNodesArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<PublisherToContentNodeConnectionWhereArgs>;
-};
-
-
-/** The publisher type */
-export type PublisherEnqueuedScriptsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The publisher type */
-export type PublisherEnqueuedStylesheetsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-/** Connection to publisher Nodes */
-export type PublisherConnection = {
-  /** A list of edges (relational context) between RootQuery and connected publisher Nodes */
-  edges: Array<PublisherConnectionEdge>;
-  /** A list of connected publisher Nodes */
-  nodes: Array<Publisher>;
-  /** Information about pagination in a connection. */
-  pageInfo: PublisherConnectionPageInfo;
-};
-
-/** Edge between a Node and a connected publisher */
-export type PublisherConnectionEdge = {
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The connected publisher Node */
-  node: Publisher;
-};
-
-/** Page Info on the connected PublisherConnectionEdge */
-export type PublisherConnectionPageInfo = {
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** The Type of Identifier used to fetch a single resource. Default is ID. */
-export enum PublisherIdType {
-  /** The Database ID for the node */
-  DatabaseId = 'DATABASE_ID',
-  /** The hashed Global ID */
-  Id = 'ID',
-  /** The name of the node */
-  Name = 'NAME',
-  /** Url friendly name of the node */
-  Slug = 'SLUG',
-  /** The URI for the node */
-  Uri = 'URI'
-}
-
-/** Connection between the Publisher type and the book type */
-export type PublisherToBookConnection = BookConnection & Connection & {
-  __typename?: 'PublisherToBookConnection';
-  /** Edges for the PublisherToBookConnection connection */
-  edges: Array<PublisherToBookConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<Book>;
-  /** Information about pagination in a connection. */
-  pageInfo: PublisherToBookConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type PublisherToBookConnectionEdge = BookConnectionEdge & Edge & {
-  __typename?: 'PublisherToBookConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: Book;
-};
-
-/** Page Info on the &quot;PublisherToBookConnection&quot; */
-export type PublisherToBookConnectionPageInfo = BookConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'PublisherToBookConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the PublisherToBookConnection connection */
-export type PublisherToBookConnectionWhereArgs = {
-  /** Filter the connection based on dates */
-  dateQuery?: InputMaybe<DateQueryInput>;
-  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
-  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Specific database ID of the object */
-  id?: InputMaybe<Scalars['Int']['input']>;
-  /** Array of IDs for the objects to retrieve */
-  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Get objects with a specific mimeType property */
-  mimeType?: InputMaybe<MimeTypeEnum>;
-  /** Slug / post_name of the object */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** Specify objects to retrieve. Use slugs */
-  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** What parameter to use to order the objects by. */
-  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
-  /** Use ID to return only children. Use 0 to return only top-level items */
-  parent?: InputMaybe<Scalars['ID']['input']>;
-  /** Specify objects whose parent is in an array */
-  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Specify posts whose parent is not in an array */
-  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Show posts with a specific password. */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** Show Posts based on a keyword search */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Retrieve posts where post status is in an array. */
-  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
-  /** Show posts with a specific status. */
-  status?: InputMaybe<PostStatusEnum>;
-  /** Title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Connection between the Publisher type and the ContentNode type */
-export type PublisherToContentNodeConnection = Connection & ContentNodeConnection & {
-  __typename?: 'PublisherToContentNodeConnection';
-  /** Edges for the PublisherToContentNodeConnection connection */
-  edges: Array<PublisherToContentNodeConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<ContentNode>;
-  /** Information about pagination in a connection. */
-  pageInfo: PublisherToContentNodeConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type PublisherToContentNodeConnectionEdge = ContentNodeConnectionEdge & Edge & {
-  __typename?: 'PublisherToContentNodeConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: ContentNode;
-};
-
-/** Page Info on the &quot;PublisherToContentNodeConnection&quot; */
-export type PublisherToContentNodeConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'PublisherToContentNodeConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the PublisherToContentNodeConnection connection */
-export type PublisherToContentNodeConnectionWhereArgs = {
-  /** The Types of content to filter */
-  contentTypes?: InputMaybe<Array<InputMaybe<ContentTypesOfPublisherEnum>>>;
-  /** Filter the connection based on dates */
-  dateQuery?: InputMaybe<DateQueryInput>;
-  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
-  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Specific database ID of the object */
-  id?: InputMaybe<Scalars['Int']['input']>;
-  /** Array of IDs for the objects to retrieve */
-  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Get objects with a specific mimeType property */
-  mimeType?: InputMaybe<MimeTypeEnum>;
-  /** Slug / post_name of the object */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** Specify objects to retrieve. Use slugs */
-  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** What parameter to use to order the objects by. */
-  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
-  /** Use ID to return only children. Use 0 to return only top-level items */
-  parent?: InputMaybe<Scalars['ID']['input']>;
-  /** Specify objects whose parent is in an array */
-  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Specify posts whose parent is not in an array */
-  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Show posts with a specific password. */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** Show Posts based on a keyword search */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Retrieve posts where post status is in an array. */
-  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
-  /** Show posts with a specific status. */
-  status?: InputMaybe<PostStatusEnum>;
-  /** Title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Connection between the Publisher type and the Taxonomy type */
-export type PublisherToTaxonomyConnectionEdge = Edge & OneToOneConnection & TaxonomyConnectionEdge & {
-  __typename?: 'PublisherToTaxonomyConnectionEdge';
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The node of the connection, without the edges */
-  node: Taxonomy;
-};
-
 /** The reading setting type */
 export type ReadingSettings = {
   __typename?: 'ReadingSettings';
@@ -15033,62 +11652,40 @@ export type RestoreCommentPayload = {
 /** The root mutation */
 export type RootMutation = {
   __typename?: 'RootMutation';
-  /** The createBook mutation */
-  createBook?: Maybe<CreateBookPayload>;
   /** The createCategory mutation */
   createCategory?: Maybe<CreateCategoryPayload>;
-  /** The createCollection mutation */
-  createCollection?: Maybe<CreateCollectionPayload>;
   /** The createComment mutation */
   createComment?: Maybe<CreateCommentPayload>;
-  /** The createGraphqlDocument mutation */
-  createGraphqlDocument?: Maybe<CreateGraphqlDocumentPayload>;
-  /** The createGraphqlDocumentGroup mutation */
-  createGraphqlDocumentGroup?: Maybe<CreateGraphqlDocumentGroupPayload>;
   /** The createMediaItem mutation */
   createMediaItem?: Maybe<CreateMediaItemPayload>;
   /** The createPage mutation */
   createPage?: Maybe<CreatePagePayload>;
-  /** The createPerson mutation */
-  createPerson?: Maybe<CreatePersonPayload>;
   /** The createPost mutation */
   createPost?: Maybe<CreatePostPayload>;
   /** The createPostFormat mutation */
   createPostFormat?: Maybe<CreatePostFormatPayload>;
-  /** The createPublisher mutation */
-  createPublisher?: Maybe<CreatePublisherPayload>;
   /** The createTag mutation */
   createTag?: Maybe<CreateTagPayload>;
   /** The createUser mutation */
   createUser?: Maybe<CreateUserPayload>;
-  /** The deleteBook mutation */
-  deleteBook?: Maybe<DeleteBookPayload>;
   /** The deleteCategory mutation */
   deleteCategory?: Maybe<DeleteCategoryPayload>;
-  /** The deleteCollection mutation */
-  deleteCollection?: Maybe<DeleteCollectionPayload>;
   /** The deleteComment mutation */
   deleteComment?: Maybe<DeleteCommentPayload>;
-  /** The deleteGraphqlDocument mutation */
-  deleteGraphqlDocument?: Maybe<DeleteGraphqlDocumentPayload>;
-  /** The deleteGraphqlDocumentGroup mutation */
-  deleteGraphqlDocumentGroup?: Maybe<DeleteGraphqlDocumentGroupPayload>;
   /** The deleteMediaItem mutation */
   deleteMediaItem?: Maybe<DeleteMediaItemPayload>;
   /** The deletePage mutation */
   deletePage?: Maybe<DeletePagePayload>;
-  /** The deletePerson mutation */
-  deletePerson?: Maybe<DeletePersonPayload>;
   /** The deletePost mutation */
   deletePost?: Maybe<DeletePostPayload>;
   /** The deletePostFormat mutation */
   deletePostFormat?: Maybe<DeletePostFormatPayload>;
-  /** The deletePublisher mutation */
-  deletePublisher?: Maybe<DeletePublisherPayload>;
   /** The deleteTag mutation */
   deleteTag?: Maybe<DeleteTagPayload>;
   /** The deleteUser mutation */
   deleteUser?: Maybe<DeleteUserPayload>;
+  /** The generateAuthorizationCode mutation */
+  generateAuthorizationCode?: Maybe<GenerateAuthorizationCodePayload>;
   /** Increase the count. */
   increaseCount?: Maybe<Scalars['Int']['output']>;
   /** The registerUser mutation */
@@ -15099,30 +11696,18 @@ export type RootMutation = {
   restoreComment?: Maybe<RestoreCommentPayload>;
   /** Send password reset email to user */
   sendPasswordResetEmail?: Maybe<SendPasswordResetEmailPayload>;
-  /** The updateBook mutation */
-  updateBook?: Maybe<UpdateBookPayload>;
   /** The updateCategory mutation */
   updateCategory?: Maybe<UpdateCategoryPayload>;
-  /** The updateCollection mutation */
-  updateCollection?: Maybe<UpdateCollectionPayload>;
   /** The updateComment mutation */
   updateComment?: Maybe<UpdateCommentPayload>;
-  /** The updateGraphqlDocument mutation */
-  updateGraphqlDocument?: Maybe<UpdateGraphqlDocumentPayload>;
-  /** The updateGraphqlDocumentGroup mutation */
-  updateGraphqlDocumentGroup?: Maybe<UpdateGraphqlDocumentGroupPayload>;
   /** The updateMediaItem mutation */
   updateMediaItem?: Maybe<UpdateMediaItemPayload>;
   /** The updatePage mutation */
   updatePage?: Maybe<UpdatePagePayload>;
-  /** The updatePerson mutation */
-  updatePerson?: Maybe<UpdatePersonPayload>;
   /** The updatePost mutation */
   updatePost?: Maybe<UpdatePostPayload>;
   /** The updatePostFormat mutation */
   updatePostFormat?: Maybe<UpdatePostFormatPayload>;
-  /** The updatePublisher mutation */
-  updatePublisher?: Maybe<UpdatePublisherPayload>;
   /** The updateSettings mutation */
   updateSettings?: Maybe<UpdateSettingsPayload>;
   /** The updateTag mutation */
@@ -15133,38 +11718,14 @@ export type RootMutation = {
 
 
 /** The root mutation */
-export type RootMutationCreateBookArgs = {
-  input: CreateBookInput;
-};
-
-
-/** The root mutation */
 export type RootMutationCreateCategoryArgs = {
   input: CreateCategoryInput;
 };
 
 
 /** The root mutation */
-export type RootMutationCreateCollectionArgs = {
-  input: CreateCollectionInput;
-};
-
-
-/** The root mutation */
 export type RootMutationCreateCommentArgs = {
   input: CreateCommentInput;
-};
-
-
-/** The root mutation */
-export type RootMutationCreateGraphqlDocumentArgs = {
-  input: CreateGraphqlDocumentInput;
-};
-
-
-/** The root mutation */
-export type RootMutationCreateGraphqlDocumentGroupArgs = {
-  input: CreateGraphqlDocumentGroupInput;
 };
 
 
@@ -15181,12 +11742,6 @@ export type RootMutationCreatePageArgs = {
 
 
 /** The root mutation */
-export type RootMutationCreatePersonArgs = {
-  input: CreatePersonInput;
-};
-
-
-/** The root mutation */
 export type RootMutationCreatePostArgs = {
   input: CreatePostInput;
 };
@@ -15195,12 +11750,6 @@ export type RootMutationCreatePostArgs = {
 /** The root mutation */
 export type RootMutationCreatePostFormatArgs = {
   input: CreatePostFormatInput;
-};
-
-
-/** The root mutation */
-export type RootMutationCreatePublisherArgs = {
-  input: CreatePublisherInput;
 };
 
 
@@ -15217,38 +11766,14 @@ export type RootMutationCreateUserArgs = {
 
 
 /** The root mutation */
-export type RootMutationDeleteBookArgs = {
-  input: DeleteBookInput;
-};
-
-
-/** The root mutation */
 export type RootMutationDeleteCategoryArgs = {
   input: DeleteCategoryInput;
 };
 
 
 /** The root mutation */
-export type RootMutationDeleteCollectionArgs = {
-  input: DeleteCollectionInput;
-};
-
-
-/** The root mutation */
 export type RootMutationDeleteCommentArgs = {
   input: DeleteCommentInput;
-};
-
-
-/** The root mutation */
-export type RootMutationDeleteGraphqlDocumentArgs = {
-  input: DeleteGraphqlDocumentInput;
-};
-
-
-/** The root mutation */
-export type RootMutationDeleteGraphqlDocumentGroupArgs = {
-  input: DeleteGraphqlDocumentGroupInput;
 };
 
 
@@ -15265,12 +11790,6 @@ export type RootMutationDeletePageArgs = {
 
 
 /** The root mutation */
-export type RootMutationDeletePersonArgs = {
-  input: DeletePersonInput;
-};
-
-
-/** The root mutation */
 export type RootMutationDeletePostArgs = {
   input: DeletePostInput;
 };
@@ -15283,12 +11802,6 @@ export type RootMutationDeletePostFormatArgs = {
 
 
 /** The root mutation */
-export type RootMutationDeletePublisherArgs = {
-  input: DeletePublisherInput;
-};
-
-
-/** The root mutation */
 export type RootMutationDeleteTagArgs = {
   input: DeleteTagInput;
 };
@@ -15297,6 +11810,12 @@ export type RootMutationDeleteTagArgs = {
 /** The root mutation */
 export type RootMutationDeleteUserArgs = {
   input: DeleteUserInput;
+};
+
+
+/** The root mutation */
+export type RootMutationGenerateAuthorizationCodeArgs = {
+  input: GenerateAuthorizationCodeInput;
 };
 
 
@@ -15331,38 +11850,14 @@ export type RootMutationSendPasswordResetEmailArgs = {
 
 
 /** The root mutation */
-export type RootMutationUpdateBookArgs = {
-  input: UpdateBookInput;
-};
-
-
-/** The root mutation */
 export type RootMutationUpdateCategoryArgs = {
   input: UpdateCategoryInput;
 };
 
 
 /** The root mutation */
-export type RootMutationUpdateCollectionArgs = {
-  input: UpdateCollectionInput;
-};
-
-
-/** The root mutation */
 export type RootMutationUpdateCommentArgs = {
   input: UpdateCommentInput;
-};
-
-
-/** The root mutation */
-export type RootMutationUpdateGraphqlDocumentArgs = {
-  input: UpdateGraphqlDocumentInput;
-};
-
-
-/** The root mutation */
-export type RootMutationUpdateGraphqlDocumentGroupArgs = {
-  input: UpdateGraphqlDocumentGroupInput;
 };
 
 
@@ -15379,12 +11874,6 @@ export type RootMutationUpdatePageArgs = {
 
 
 /** The root mutation */
-export type RootMutationUpdatePersonArgs = {
-  input: UpdatePersonInput;
-};
-
-
-/** The root mutation */
 export type RootMutationUpdatePostArgs = {
   input: UpdatePostInput;
 };
@@ -15393,12 +11882,6 @@ export type RootMutationUpdatePostArgs = {
 /** The root mutation */
 export type RootMutationUpdatePostFormatArgs = {
   input: UpdatePostFormatInput;
-};
-
-
-/** The root mutation */
-export type RootMutationUpdatePublisherArgs = {
-  input: UpdatePublisherInput;
 };
 
 
@@ -15424,23 +11907,10 @@ export type RootQuery = {
   __typename?: 'RootQuery';
   /** Entry point to get all settings for the site */
   allSettings?: Maybe<Settings>;
-  /** An object of the book Type.  */
-  book?: Maybe<Book>;
-  /**
-   * A book object
-   * @deprecated Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)
-   */
-  bookBy?: Maybe<Book>;
-  /** Connection between the RootQuery type and the book type */
-  books?: Maybe<RootQueryToBookConnection>;
   /** Connection between the RootQuery type and the category type */
   categories?: Maybe<RootQueryToCategoryConnection>;
   /** A 0bject */
   category?: Maybe<Category>;
-  /** A 0bject */
-  collection?: Maybe<Collection>;
-  /** Connection between the RootQuery type and the collection type */
-  collections?: Maybe<RootQueryToCollectionConnection>;
   /** Returns a Comment */
   comment?: Maybe<Comment>;
   /** Connection between the RootQuery type and the Comment type */
@@ -15453,27 +11923,12 @@ export type RootQuery = {
   contentType?: Maybe<ContentType>;
   /** Connection between the RootQuery type and the ContentType type */
   contentTypes?: Maybe<RootQueryToContentTypeConnection>;
-  /** Get default language */
-  defaultLanguage?: Maybe<Language>;
   /** Fields of the &#039;DiscussionSettings&#039; settings group */
   discussionSettings?: Maybe<DiscussionSettings>;
   /** Fields of the &#039;GeneralSettings&#039; settings group */
   generalSettings?: Maybe<GeneralSettings>;
-  /** An object of the graphqlDocument Type. Saved GraphQL Documents */
-  graphqlDocument?: Maybe<GraphqlDocument>;
-  /**
-   * A graphqlDocument object
-   * @deprecated Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)
-   */
-  graphqlDocumentBy?: Maybe<GraphqlDocument>;
-  /** A 0bject */
-  graphqlDocumentGroup?: Maybe<GraphqlDocumentGroup>;
-  /** Connection between the RootQuery type and the graphqlDocumentGroup type */
-  graphqlDocumentGroups?: Maybe<RootQueryToGraphqlDocumentGroupConnection>;
-  /** Connection between the RootQuery type and the graphqlDocument type */
-  graphqlDocuments?: Maybe<RootQueryToGraphqlDocumentConnection>;
-  /** List registered languages */
-  languages?: Maybe<Array<Maybe<Language>>>;
+  /** Returns the stylesheet resulting of merging core, theme, and user data. */
+  globalStylesheet?: Maybe<Scalars['String']['output']>;
   /** An object of the mediaItem Type.  */
   mediaItem?: Maybe<MediaItem>;
   /**
@@ -15504,10 +11959,6 @@ export type RootQuery = {
   pageBy?: Maybe<Page>;
   /** Connection between the RootQuery type and the page type */
   pages?: Maybe<RootQueryToPageConnection>;
-  /** Connection between the RootQuery type and the person type */
-  people?: Maybe<RootQueryToPersonConnection>;
-  /** A 0bject */
-  person?: Maybe<Person>;
   /** A WordPress plugin */
   plugin?: Maybe<Plugin>;
   /** Connection between the RootQuery type and the Plugin type */
@@ -15525,10 +11976,6 @@ export type RootQuery = {
   postFormats?: Maybe<RootQueryToPostFormatConnection>;
   /** Connection between the RootQuery type and the post type */
   posts?: Maybe<RootQueryToPostConnection>;
-  /** A 0bject */
-  publisher?: Maybe<Publisher>;
-  /** Connection between the RootQuery type and the publisher type */
-  publishers?: Maybe<RootQueryToPublisherConnection>;
   /** Fields of the &#039;ReadingSettings&#039; settings group */
   readingSettings?: Maybe<ReadingSettings>;
   /** Connection between the RootQuery type and the EnqueuedScript type */
@@ -15571,32 +12018,6 @@ export type RootQuery = {
 
 
 /** The root entry point into the Graph */
-export type RootQueryBookArgs = {
-  asPreview?: InputMaybe<Scalars['Boolean']['input']>;
-  id: Scalars['ID']['input'];
-  idType?: InputMaybe<BookIdType>;
-};
-
-
-/** The root entry point into the Graph */
-export type RootQueryBookByArgs = {
-  bookId?: InputMaybe<Scalars['Int']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  uri?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** The root entry point into the Graph */
-export type RootQueryBooksArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<RootQueryToBookConnectionWhereArgs>;
-};
-
-
-/** The root entry point into the Graph */
 export type RootQueryCategoriesArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -15610,23 +12031,6 @@ export type RootQueryCategoriesArgs = {
 export type RootQueryCategoryArgs = {
   id: Scalars['ID']['input'];
   idType?: InputMaybe<CategoryIdType>;
-};
-
-
-/** The root entry point into the Graph */
-export type RootQueryCollectionArgs = {
-  id: Scalars['ID']['input'];
-  idType?: InputMaybe<CollectionIdType>;
-};
-
-
-/** The root entry point into the Graph */
-export type RootQueryCollectionsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<RootQueryToCollectionConnectionWhereArgs>;
 };
 
 
@@ -15683,46 +12087,8 @@ export type RootQueryContentTypesArgs = {
 
 
 /** The root entry point into the Graph */
-export type RootQueryGraphqlDocumentArgs = {
-  asPreview?: InputMaybe<Scalars['Boolean']['input']>;
-  id: Scalars['ID']['input'];
-  idType?: InputMaybe<GraphqlDocumentIdType>;
-};
-
-
-/** The root entry point into the Graph */
-export type RootQueryGraphqlDocumentByArgs = {
-  graphqlDocumentId?: InputMaybe<Scalars['Int']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
-  uri?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** The root entry point into the Graph */
-export type RootQueryGraphqlDocumentGroupArgs = {
-  id: Scalars['ID']['input'];
-  idType?: InputMaybe<GraphqlDocumentGroupIdType>;
-};
-
-
-/** The root entry point into the Graph */
-export type RootQueryGraphqlDocumentGroupsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<RootQueryToGraphqlDocumentGroupConnectionWhereArgs>;
-};
-
-
-/** The root entry point into the Graph */
-export type RootQueryGraphqlDocumentsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<RootQueryToGraphqlDocumentConnectionWhereArgs>;
+export type RootQueryGlobalStylesheetArgs = {
+  types?: InputMaybe<Array<InputMaybe<GlobalStylesheetTypesEnum>>>;
 };
 
 
@@ -15826,23 +12192,6 @@ export type RootQueryPagesArgs = {
 
 
 /** The root entry point into the Graph */
-export type RootQueryPeopleArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<RootQueryToPersonConnectionWhereArgs>;
-};
-
-
-/** The root entry point into the Graph */
-export type RootQueryPersonArgs = {
-  id: Scalars['ID']['input'];
-  idType?: InputMaybe<PersonIdType>;
-};
-
-
-/** The root entry point into the Graph */
 export type RootQueryPluginArgs = {
   id: Scalars['ID']['input'];
 };
@@ -15899,23 +12248,6 @@ export type RootQueryPostsArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<RootQueryToPostConnectionWhereArgs>;
-};
-
-
-/** The root entry point into the Graph */
-export type RootQueryPublisherArgs = {
-  id: Scalars['ID']['input'];
-  idType?: InputMaybe<PublisherIdType>;
-};
-
-
-/** The root entry point into the Graph */
-export type RootQueryPublishersArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<RootQueryToPublisherConnectionWhereArgs>;
 };
 
 
@@ -16044,81 +12376,6 @@ export type RootQueryUsersArgs = {
   where?: InputMaybe<RootQueryToUserConnectionWhereArgs>;
 };
 
-/** Connection between the RootQuery type and the book type */
-export type RootQueryToBookConnection = BookConnection & Connection & {
-  __typename?: 'RootQueryToBookConnection';
-  /** Edges for the RootQueryToBookConnection connection */
-  edges: Array<RootQueryToBookConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<Book>;
-  /** Information about pagination in a connection. */
-  pageInfo: RootQueryToBookConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type RootQueryToBookConnectionEdge = BookConnectionEdge & Edge & {
-  __typename?: 'RootQueryToBookConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: Book;
-};
-
-/** Page Info on the &quot;RootQueryToBookConnection&quot; */
-export type RootQueryToBookConnectionPageInfo = BookConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'RootQueryToBookConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the RootQueryToBookConnection connection */
-export type RootQueryToBookConnectionWhereArgs = {
-  /** Filter the connection based on dates */
-  dateQuery?: InputMaybe<DateQueryInput>;
-  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
-  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Specific database ID of the object */
-  id?: InputMaybe<Scalars['Int']['input']>;
-  /** Array of IDs for the objects to retrieve */
-  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Filter Book objects by language code */
-  language?: InputMaybe<Scalars['String']['input']>;
-  /** Get objects with a specific mimeType property */
-  mimeType?: InputMaybe<MimeTypeEnum>;
-  /** Slug / post_name of the object */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** Specify objects to retrieve. Use slugs */
-  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** What parameter to use to order the objects by. */
-  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
-  /** Use ID to return only children. Use 0 to return only top-level items */
-  parent?: InputMaybe<Scalars['ID']['input']>;
-  /** Specify objects whose parent is in an array */
-  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Specify posts whose parent is not in an array */
-  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Show posts with a specific password. */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** Show Posts based on a keyword search */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Retrieve posts where post status is in an array. */
-  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
-  /** Show posts with a specific status. */
-  status?: InputMaybe<PostStatusEnum>;
-  /** Title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
 /** Connection between the RootQuery type and the category type */
 export type RootQueryToCategoryConnection = CategoryConnection & Connection & {
   __typename?: 'RootQueryToCategoryConnection';
@@ -16174,91 +12431,6 @@ export type RootQueryToCategoryConnectionWhereArgs = {
   hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
   /** Array of term ids to include. Default empty array. */
   include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Filter Category objects by language code */
-  language?: InputMaybe<Scalars['String']['input']>;
-  /** Array of names to return term(s) for. Default empty. */
-  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Retrieve terms where the name is LIKE the input value. Default empty. */
-  nameLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of object IDs. Results will be limited to terms associated with these objects. */
-  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Direction the connection should be ordered in */
-  order?: InputMaybe<OrderEnum>;
-  /** Field(s) to order terms by. Defaults to 'name'. */
-  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
-  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
-  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Parent term ID to retrieve direct-child terms of. Default empty. */
-  parent?: InputMaybe<Scalars['Int']['input']>;
-  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Array of slugs to return term(s) for. Default empty. */
-  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to prime meta caches for matched terms. Default true. */
-  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Connection between the RootQuery type and the collection type */
-export type RootQueryToCollectionConnection = CollectionConnection & Connection & {
-  __typename?: 'RootQueryToCollectionConnection';
-  /** Edges for the RootQueryToCollectionConnection connection */
-  edges: Array<RootQueryToCollectionConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<Collection>;
-  /** Information about pagination in a connection. */
-  pageInfo: RootQueryToCollectionConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type RootQueryToCollectionConnectionEdge = CollectionConnectionEdge & Edge & {
-  __typename?: 'RootQueryToCollectionConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: Collection;
-};
-
-/** Page Info on the &quot;RootQueryToCollectionConnection&quot; */
-export type RootQueryToCollectionConnectionPageInfo = CollectionConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'RootQueryToCollectionConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the RootQueryToCollectionConnection connection */
-export type RootQueryToCollectionConnectionWhereArgs = {
-  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
-  cacheDomain?: InputMaybe<Scalars['String']['input']>;
-  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
-  childOf?: InputMaybe<Scalars['Int']['input']>;
-  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
-  childless?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Retrieve terms where the description is LIKE the input value. Default empty. */
-  descriptionLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
-  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
-  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
-  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
-  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Array of term ids to include. Default empty array. */
-  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Filter Collection objects by language code */
-  language?: InputMaybe<Scalars['String']['input']>;
   /** Array of names to return term(s) for. Default empty. */
   name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Retrieve terms where the name is LIKE the input value. Default empty. */
@@ -16364,8 +12536,6 @@ export type RootQueryToCommentConnectionWhereArgs = {
   includeUnapproved?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Karma score to retrieve matching comments for. */
   karma?: InputMaybe<Scalars['Int']['input']>;
-  /** Filter Comment objects by language code */
-  language?: InputMaybe<Scalars['String']['input']>;
   /** The cardinality of the order of the connection */
   order?: InputMaybe<OrderEnum>;
   /** Field to order the comments by. */
@@ -16431,8 +12601,6 @@ export type RootQueryToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Filter ContentNode objects by language code */
-  language?: InputMaybe<Scalars['String']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -16566,160 +12734,6 @@ export type RootQueryToEnqueuedStylesheetConnectionPageInfo = EnqueuedStylesheet
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** Connection between the RootQuery type and the graphqlDocument type */
-export type RootQueryToGraphqlDocumentConnection = Connection & GraphqlDocumentConnection & {
-  __typename?: 'RootQueryToGraphqlDocumentConnection';
-  /** Edges for the RootQueryToGraphqlDocumentConnection connection */
-  edges: Array<RootQueryToGraphqlDocumentConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<GraphqlDocument>;
-  /** Information about pagination in a connection. */
-  pageInfo: RootQueryToGraphqlDocumentConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type RootQueryToGraphqlDocumentConnectionEdge = Edge & GraphqlDocumentConnectionEdge & {
-  __typename?: 'RootQueryToGraphqlDocumentConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: GraphqlDocument;
-};
-
-/** Page Info on the &quot;RootQueryToGraphqlDocumentConnection&quot; */
-export type RootQueryToGraphqlDocumentConnectionPageInfo = GraphqlDocumentConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'RootQueryToGraphqlDocumentConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the RootQueryToGraphqlDocumentConnection connection */
-export type RootQueryToGraphqlDocumentConnectionWhereArgs = {
-  /** Filter the connection based on dates */
-  dateQuery?: InputMaybe<DateQueryInput>;
-  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
-  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Specific database ID of the object */
-  id?: InputMaybe<Scalars['Int']['input']>;
-  /** Array of IDs for the objects to retrieve */
-  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Get objects with a specific mimeType property */
-  mimeType?: InputMaybe<MimeTypeEnum>;
-  /** Slug / post_name of the object */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** Specify objects to retrieve. Use slugs */
-  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** What parameter to use to order the objects by. */
-  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
-  /** Use ID to return only children. Use 0 to return only top-level items */
-  parent?: InputMaybe<Scalars['ID']['input']>;
-  /** Specify objects whose parent is in an array */
-  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Specify posts whose parent is not in an array */
-  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Show posts with a specific password. */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** Show Posts based on a keyword search */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Retrieve posts where post status is in an array. */
-  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
-  /** Show posts with a specific status. */
-  status?: InputMaybe<PostStatusEnum>;
-  /** Title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Connection between the RootQuery type and the graphqlDocumentGroup type */
-export type RootQueryToGraphqlDocumentGroupConnection = Connection & GraphqlDocumentGroupConnection & {
-  __typename?: 'RootQueryToGraphqlDocumentGroupConnection';
-  /** Edges for the RootQueryToGraphqlDocumentGroupConnection connection */
-  edges: Array<RootQueryToGraphqlDocumentGroupConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<GraphqlDocumentGroup>;
-  /** Information about pagination in a connection. */
-  pageInfo: RootQueryToGraphqlDocumentGroupConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type RootQueryToGraphqlDocumentGroupConnectionEdge = Edge & GraphqlDocumentGroupConnectionEdge & {
-  __typename?: 'RootQueryToGraphqlDocumentGroupConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: GraphqlDocumentGroup;
-};
-
-/** Page Info on the &quot;RootQueryToGraphqlDocumentGroupConnection&quot; */
-export type RootQueryToGraphqlDocumentGroupConnectionPageInfo = GraphqlDocumentGroupConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'RootQueryToGraphqlDocumentGroupConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the RootQueryToGraphqlDocumentGroupConnection connection */
-export type RootQueryToGraphqlDocumentGroupConnectionWhereArgs = {
-  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
-  cacheDomain?: InputMaybe<Scalars['String']['input']>;
-  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
-  childOf?: InputMaybe<Scalars['Int']['input']>;
-  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
-  childless?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Retrieve terms where the description is LIKE the input value. Default empty. */
-  descriptionLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
-  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
-  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
-  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
-  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Array of term ids to include. Default empty array. */
-  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of names to return term(s) for. Default empty. */
-  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Retrieve terms where the name is LIKE the input value. Default empty. */
-  nameLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of object IDs. Results will be limited to terms associated with these objects. */
-  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Direction the connection should be ordered in */
-  order?: InputMaybe<OrderEnum>;
-  /** Field(s) to order terms by. Defaults to 'name'. */
-  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
-  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
-  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Parent term ID to retrieve direct-child terms of. Default empty. */
-  parent?: InputMaybe<Scalars['Int']['input']>;
-  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Array of slugs to return term(s) for. Default empty. */
-  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to prime meta caches for matched terms. Default true. */
-  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
 /** Connection between the RootQuery type and the mediaItem type */
 export type RootQueryToMediaItemConnection = Connection & MediaItemConnection & {
   __typename?: 'RootQueryToMediaItemConnection';
@@ -16773,8 +12787,6 @@ export type RootQueryToMediaItemConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Filter MediaItem objects by language code */
-  language?: InputMaybe<Scalars['String']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -16842,8 +12854,6 @@ export type RootQueryToMenuConnectionPageInfo = MenuConnectionPageInfo & PageInf
 export type RootQueryToMenuConnectionWhereArgs = {
   /** The database ID of the object */
   id?: InputMaybe<Scalars['Int']['input']>;
-  /** Filter Menu objects by language code */
-  language?: InputMaybe<Scalars['String']['input']>;
   /** The menu location for the menu being queried */
   location?: InputMaybe<MenuLocationEnum>;
   /** The slug of the menu to query items for */
@@ -16889,8 +12899,6 @@ export type RootQueryToMenuItemConnectionPageInfo = MenuItemConnectionPageInfo &
 export type RootQueryToMenuItemConnectionWhereArgs = {
   /** The database ID of the object */
   id?: InputMaybe<Scalars['Int']['input']>;
-  /** Filter MenuItem objects by language code */
-  language?: InputMaybe<Scalars['String']['input']>;
   /** The menu location for the menu being queried */
   location?: InputMaybe<MenuLocationEnum>;
   /** The database ID of the parent menu object */
@@ -16952,8 +12960,6 @@ export type RootQueryToPageConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Filter Page objects by language code */
-  language?: InputMaybe<Scalars['String']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -16980,89 +12986,6 @@ export type RootQueryToPageConnectionWhereArgs = {
   status?: InputMaybe<PostStatusEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Connection between the RootQuery type and the person type */
-export type RootQueryToPersonConnection = Connection & PersonConnection & {
-  __typename?: 'RootQueryToPersonConnection';
-  /** Edges for the RootQueryToPersonConnection connection */
-  edges: Array<RootQueryToPersonConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<Person>;
-  /** Information about pagination in a connection. */
-  pageInfo: RootQueryToPersonConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type RootQueryToPersonConnectionEdge = Edge & PersonConnectionEdge & {
-  __typename?: 'RootQueryToPersonConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: Person;
-};
-
-/** Page Info on the &quot;RootQueryToPersonConnection&quot; */
-export type RootQueryToPersonConnectionPageInfo = PageInfo & PersonConnectionPageInfo & WpPageInfo & {
-  __typename?: 'RootQueryToPersonConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the RootQueryToPersonConnection connection */
-export type RootQueryToPersonConnectionWhereArgs = {
-  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
-  cacheDomain?: InputMaybe<Scalars['String']['input']>;
-  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
-  childOf?: InputMaybe<Scalars['Int']['input']>;
-  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
-  childless?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Retrieve terms where the description is LIKE the input value. Default empty. */
-  descriptionLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
-  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
-  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
-  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
-  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Array of term ids to include. Default empty array. */
-  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Filter Person objects by language code */
-  language?: InputMaybe<Scalars['String']['input']>;
-  /** Array of names to return term(s) for. Default empty. */
-  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Retrieve terms where the name is LIKE the input value. Default empty. */
-  nameLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of object IDs. Results will be limited to terms associated with these objects. */
-  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Direction the connection should be ordered in */
-  order?: InputMaybe<OrderEnum>;
-  /** Field(s) to order terms by. Defaults to 'name'. */
-  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
-  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
-  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Parent term ID to retrieve direct-child terms of. Default empty. */
-  parent?: InputMaybe<Scalars['Int']['input']>;
-  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Array of slugs to return term(s) for. Default empty. */
-  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to prime meta caches for matched terms. Default true. */
-  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Connection between the RootQuery type and the Plugin type */
@@ -17171,8 +13094,6 @@ export type RootQueryToPostConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Filter Post objects by language code */
-  language?: InputMaybe<Scalars['String']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -17268,89 +13189,6 @@ export type RootQueryToPostFormatConnectionWhereArgs = {
   hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
   /** Array of term ids to include. Default empty array. */
   include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of names to return term(s) for. Default empty. */
-  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Retrieve terms where the name is LIKE the input value. Default empty. */
-  nameLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of object IDs. Results will be limited to terms associated with these objects. */
-  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Direction the connection should be ordered in */
-  order?: InputMaybe<OrderEnum>;
-  /** Field(s) to order terms by. Defaults to 'name'. */
-  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
-  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
-  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Parent term ID to retrieve direct-child terms of. Default empty. */
-  parent?: InputMaybe<Scalars['Int']['input']>;
-  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Array of slugs to return term(s) for. Default empty. */
-  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to prime meta caches for matched terms. Default true. */
-  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Connection between the RootQuery type and the publisher type */
-export type RootQueryToPublisherConnection = Connection & PublisherConnection & {
-  __typename?: 'RootQueryToPublisherConnection';
-  /** Edges for the RootQueryToPublisherConnection connection */
-  edges: Array<RootQueryToPublisherConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<Publisher>;
-  /** Information about pagination in a connection. */
-  pageInfo: RootQueryToPublisherConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type RootQueryToPublisherConnectionEdge = Edge & PublisherConnectionEdge & {
-  __typename?: 'RootQueryToPublisherConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: Publisher;
-};
-
-/** Page Info on the &quot;RootQueryToPublisherConnection&quot; */
-export type RootQueryToPublisherConnectionPageInfo = PageInfo & PublisherConnectionPageInfo & WpPageInfo & {
-  __typename?: 'RootQueryToPublisherConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** Raw schema for page */
-  seo?: Maybe<SeoPostTypePageInfo>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the RootQueryToPublisherConnection connection */
-export type RootQueryToPublisherConnectionWhereArgs = {
-  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
-  cacheDomain?: InputMaybe<Scalars['String']['input']>;
-  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
-  childOf?: InputMaybe<Scalars['Int']['input']>;
-  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
-  childless?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Retrieve terms where the description is LIKE the input value. Default empty. */
-  descriptionLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
-  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
-  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
-  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
-  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Array of term ids to include. Default empty array. */
-  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Filter Publisher objects by language code */
-  language?: InputMaybe<Scalars['String']['input']>;
   /** Array of names to return term(s) for. Default empty. */
   name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Retrieve terms where the name is LIKE the input value. Default empty. */
@@ -17507,8 +13345,6 @@ export type RootQueryToTagConnectionWhereArgs = {
   hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
   /** Array of term ids to include. Default empty array. */
   include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Filter Tag objects by language code */
-  language?: InputMaybe<Scalars['String']['input']>;
   /** Array of names to return term(s) for. Default empty. */
   name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Retrieve terms where the name is LIKE the input value. Default empty. */
@@ -17625,8 +13461,6 @@ export type RootQueryToTermNodeConnectionWhereArgs = {
   hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
   /** Array of term ids to include. Default empty array. */
   include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Filter TermNode objects by language code */
-  language?: InputMaybe<Scalars['String']['input']>;
   /** Array of names to return term(s) for. Default empty. */
   name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Retrieve terms where the name is LIKE the input value. Default empty. */
@@ -17857,8 +13691,6 @@ export type SeoContentTypeArchive = {
 /** The Yoast SEO search appearance content types */
 export type SeoContentTypes = {
   __typename?: 'SEOContentTypes';
-  book?: Maybe<SeoContentType>;
-  graphqlDocument?: Maybe<SeoContentType>;
   mediaItem?: Maybe<SeoContentType>;
   page?: Maybe<SeoContentType>;
   post?: Maybe<SeoContentType>;
@@ -18055,11 +13887,7 @@ export type SeoTaxonomyTypeArchive = {
 export type SeoTaxonomyTypes = {
   __typename?: 'SEOTaxonomyTypes';
   category?: Maybe<SeoTaxonomyType>;
-  collection?: Maybe<SeoTaxonomyType>;
-  graphqlDocumentGroup?: Maybe<SeoTaxonomyType>;
-  person?: Maybe<SeoTaxonomyType>;
   postFormat?: Maybe<SeoTaxonomyType>;
-  publisher?: Maybe<SeoTaxonomyType>;
   tag?: Maybe<SeoTaxonomyType>;
 };
 
@@ -18188,6 +14016,8 @@ export type Settings = {
 /** The tag type */
 export type Tag = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & {
   __typename?: 'Tag';
+  /** @deprecated Deprecated in favor of using Next.js pages */
+  conditionalTags?: Maybe<ConditionalTags>;
   /** Connection between the Tag type and the ContentNode type */
   contentNodes?: Maybe<TagToContentNodeConnection>;
   /** The number of objects connected to the object */
@@ -18214,10 +14044,6 @@ export type Tag = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & Unif
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the node is a Term */
   isTermNode: Scalars['Boolean']['output'];
-  /** TermNode language */
-  language?: Maybe<Language>;
-  /** TermNode language code */
-  languageCode?: Maybe<Scalars['String']['output']>;
   /** The link to the term */
   link?: Maybe<Scalars['String']['output']>;
   /** The human friendly name of the object. */
@@ -18237,14 +14063,11 @@ export type Tag = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & Unif
   taxonomy?: Maybe<TagToTaxonomyConnectionEdge>;
   /** The name of the taxonomy that the object is associated with */
   taxonomyName?: Maybe<Scalars['String']['output']>;
+  templates?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   /** The ID of the term group that this term object belongs to */
   termGroupId?: Maybe<Scalars['Int']['output']>;
   /** The taxonomy ID that the object is associated with */
   termTaxonomyId?: Maybe<Scalars['Int']['output']>;
-  /** TermNode translation group ID */
-  translationGroupId?: Maybe<Scalars['ID']['output']>;
-  /** TermNode translations */
-  translations?: Maybe<Array<Maybe<TermNode>>>;
   /** The unique resource identifier path */
   uri?: Maybe<Scalars['String']['output']>;
 };
@@ -18615,43 +14438,12 @@ export type TaxonomyConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** The &quot;TaxonomyData&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type TaxonomyData = AcfFieldGroup & AcfFieldGroupFields & TaxonomyData_Fields & {
-  __typename?: 'TaxonomyData';
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TaxonomyData&quot; Field Group */
-  translation?: Maybe<Scalars['String']['output']>;
-};
-
-/** Interface representing fields of the ACF &quot;TaxonomyData&quot; Field Group */
-export type TaxonomyData_Fields = {
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TaxonomyData&quot; Field Group */
-  translation?: Maybe<Scalars['String']['output']>;
-};
-
 /** Allowed taxonomies */
 export enum TaxonomyEnum {
   /** Taxonomy enum category */
   Category = 'CATEGORY',
-  /** Taxonomy enum collection */
-  Collection = 'COLLECTION',
-  /** Taxonomy enum graphql_document_group */
-  Graphqldocumentgroup = 'GRAPHQLDOCUMENTGROUP',
-  /** Taxonomy enum person */
-  Person = 'PERSON',
   /** Taxonomy enum post_format */
   Postformat = 'POSTFORMAT',
-  /** Taxonomy enum publisher */
-  Publisher = 'PUBLISHER',
   /** Taxonomy enum post_tag */
   Tag = 'TAG'
 }
@@ -18762,15 +14554,10 @@ export type TaxonomyToTermNodeConnectionPageInfo = PageInfo & TermNodeConnection
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** The template assigned to the node */
-export type Template_CsvUpload = ContentTemplate & {
-  __typename?: 'Template_CSVUpload';
-  /** The name of the template */
-  templateName?: Maybe<Scalars['String']['output']>;
-};
-
 /** Terms are nodes within a Taxonomy, used to group and relate other nodes. */
 export type TermNode = {
+  /** @deprecated Deprecated in favor of using Next.js pages */
+  conditionalTags?: Maybe<ConditionalTags>;
   /** The number of objects connected to the object */
   count?: Maybe<Scalars['Int']['output']>;
   /** Identifies the primary key from the database. */
@@ -18795,10 +14582,6 @@ export type TermNode = {
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the node is a Term */
   isTermNode: Scalars['Boolean']['output'];
-  /** TermNode language */
-  language?: Maybe<Language>;
-  /** TermNode language code */
-  languageCode?: Maybe<Scalars['String']['output']>;
   /** The link to the term */
   link?: Maybe<Scalars['String']['output']>;
   /** The human friendly name of the object. */
@@ -18807,14 +14590,11 @@ export type TermNode = {
   slug?: Maybe<Scalars['String']['output']>;
   /** The name of the taxonomy that the object is associated with */
   taxonomyName?: Maybe<Scalars['String']['output']>;
+  templates?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   /** The ID of the term group that this term object belongs to */
   termGroupId?: Maybe<Scalars['Int']['output']>;
   /** The taxonomy ID that the object is associated with */
   termTaxonomyId?: Maybe<Scalars['Int']['output']>;
-  /** TermNode translation group ID */
-  translationGroupId?: Maybe<Scalars['ID']['output']>;
-  /** TermNode translations */
-  translations?: Maybe<Array<Maybe<TermNode>>>;
   /** The unique resource identifier path */
   uri?: Maybe<Scalars['String']['output']>;
 };
@@ -19032,6 +14812,8 @@ export type ThemeConnectionPageInfo = {
 
 /** Any node that has a URI */
 export type UniformResourceIdentifiable = {
+  /** @deprecated Deprecated in favor of using Next.js pages */
+  conditionalTags?: Maybe<ConditionalTags>;
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
   /** Whether the node is a Comment */
@@ -19044,47 +14826,9 @@ export type UniformResourceIdentifiable = {
   isPostsPage: Scalars['Boolean']['output'];
   /** Whether the node is a Term */
   isTermNode: Scalars['Boolean']['output'];
+  templates?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   /** The unique resource identifier path */
   uri?: Maybe<Scalars['String']['output']>;
-};
-
-/** Input for the updateBook mutation. */
-export type UpdateBookInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** Set connections between the book and collections */
-  collections?: InputMaybe<BookCollectionsInput>;
-  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
-  date?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the book object */
-  id: Scalars['ID']['input'];
-  /** Override the edit lock when another user is editing the post */
-  ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
-  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
-  menuOrder?: InputMaybe<Scalars['Int']['input']>;
-  /** The ID of the parent object */
-  parentId?: InputMaybe<Scalars['ID']['input']>;
-  /** The password used to protect the content of the object */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** Set connections between the book and people */
-  people?: InputMaybe<BookPeopleInput>;
-  /** Set connections between the book and publishers */
-  publishers?: InputMaybe<BookPublishersInput>;
-  /** The slug of the object */
-  slug?: InputMaybe<Scalars['String']['input']>;
-  /** The status of the object */
-  status?: InputMaybe<PostStatusEnum>;
-  /** The title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the updateBook mutation. */
-export type UpdateBookPayload = {
-  __typename?: 'UpdateBookPayload';
-  /** The Post object mutation type. */
-  book?: Maybe<Book>;
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
 };
 
 /** Input for the updateCategory mutation. */
@@ -19112,31 +14856,6 @@ export type UpdateCategoryPayload = {
   category?: Maybe<Category>;
   /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: Maybe<Scalars['String']['output']>;
-};
-
-/** Input for the updateCollection mutation. */
-export type UpdateCollectionInput = {
-  /** The slug that the collection will be an alias of */
-  aliasOf?: InputMaybe<Scalars['String']['input']>;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The description of the collection object */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the collection object to update */
-  id: Scalars['ID']['input'];
-  /** The name of the collection object to mutate */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the updateCollection mutation. */
-export type UpdateCollectionPayload = {
-  __typename?: 'UpdateCollectionPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The created collection */
-  collection?: Maybe<Collection>;
 };
 
 /** Input for the updateComment mutation. */
@@ -19176,74 +14895,6 @@ export type UpdateCommentPayload = {
   comment?: Maybe<Comment>;
   /** Whether the mutation succeeded. If the comment is not approved, the server will not return the comment to a non authenticated user, but a success message can be returned if the create succeeded, and the client can optimistically add the comment to the client cache */
   success?: Maybe<Scalars['Boolean']['output']>;
-};
-
-/** Input for the updateGraphqlDocumentGroup mutation. */
-export type UpdateGraphqlDocumentGroupInput = {
-  /** The slug that the graphql_document_group will be an alias of */
-  aliasOf?: InputMaybe<Scalars['String']['input']>;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The description of the graphql_document_group object */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the graphqlDocumentGroup object to update */
-  id: Scalars['ID']['input'];
-  /** The name of the graphql_document_group object to mutate */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the updateGraphqlDocumentGroup mutation. */
-export type UpdateGraphqlDocumentGroupPayload = {
-  __typename?: 'UpdateGraphqlDocumentGroupPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The created graphql_document_group */
-  graphqlDocumentGroup?: Maybe<GraphqlDocumentGroup>;
-};
-
-/** Input for the updateGraphqlDocument mutation. */
-export type UpdateGraphqlDocumentInput = {
-  /** Alias names for saved GraphQL query documents */
-  alias?: InputMaybe<Array<Scalars['String']['input']>>;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The content of the object */
-  content?: InputMaybe<Scalars['String']['input']>;
-  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
-  date?: InputMaybe<Scalars['String']['input']>;
-  /** Description for the saved GraphQL document */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** Allow, deny or default access grant for specific query */
-  grant?: InputMaybe<Scalars['String']['input']>;
-  /** Set connections between the graphqlDocument and graphqlDocumentGroups */
-  graphqlDocumentGroups?: InputMaybe<GraphqlDocumentGraphqlDocumentGroupsInput>;
-  /** The ID of the graphqlDocument object */
-  id: Scalars['ID']['input'];
-  /** Override the edit lock when another user is editing the post */
-  ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
-  /** HTTP Cache-Control max-age directive for a saved GraphQL document */
-  maxAgeHeader?: InputMaybe<Scalars['Int']['input']>;
-  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
-  menuOrder?: InputMaybe<Scalars['Int']['input']>;
-  /** The password used to protect the content of the object */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** The slug of the object */
-  slug?: InputMaybe<Scalars['String']['input']>;
-  /** The status of the object */
-  status?: InputMaybe<PostStatusEnum>;
-  /** The title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the updateGraphqlDocument mutation. */
-export type UpdateGraphqlDocumentPayload = {
-  __typename?: 'UpdateGraphqlDocumentPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The Post object mutation type. */
-  graphqlDocument?: Maybe<GraphqlDocument>;
 };
 
 /** Input for the updateMediaItem mutation. */
@@ -19330,31 +14981,6 @@ export type UpdatePagePayload = {
   page?: Maybe<Page>;
 };
 
-/** Input for the updatePerson mutation. */
-export type UpdatePersonInput = {
-  /** The slug that the person will be an alias of */
-  aliasOf?: InputMaybe<Scalars['String']['input']>;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The description of the person object */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the person object to update */
-  id: Scalars['ID']['input'];
-  /** The name of the person object to mutate */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the updatePerson mutation. */
-export type UpdatePersonPayload = {
-  __typename?: 'UpdatePersonPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The created person */
-  person?: Maybe<Person>;
-};
-
 /** Input for the updatePostFormat mutation. */
 export type UpdatePostFormatInput = {
   /** The slug that the post_format will be an alias of */
@@ -19429,31 +15055,6 @@ export type UpdatePostPayload = {
   clientMutationId?: Maybe<Scalars['String']['output']>;
   /** The Post object mutation type. */
   post?: Maybe<Post>;
-};
-
-/** Input for the updatePublisher mutation. */
-export type UpdatePublisherInput = {
-  /** The slug that the publisher will be an alias of */
-  aliasOf?: InputMaybe<Scalars['String']['input']>;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The description of the publisher object */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the publisher object to update */
-  id: Scalars['ID']['input'];
-  /** The name of the publisher object to mutate */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the updatePublisher mutation. */
-export type UpdatePublisherPayload = {
-  __typename?: 'UpdatePublisherPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The created publisher */
-  publisher?: Maybe<Publisher>;
 };
 
 /** Input for the updateSettings mutation. */
@@ -19600,6 +15201,8 @@ export type User = Commenter & DatabaseIdentifier & Node & UniformResourceIdenti
   capabilities?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   /** Connection between the User type and the Comment type */
   comments?: Maybe<UserToCommentConnection>;
+  /** @deprecated Deprecated in favor of using Next.js pages */
+  conditionalTags?: Maybe<ConditionalTags>;
   /** Identifies the primary key from the database. */
   databaseId: Scalars['Int']['output'];
   /** Description of the user. */
@@ -19654,8 +15257,10 @@ export type User = Commenter & DatabaseIdentifier & Node & UniformResourceIdenti
   seo?: Maybe<SeoUser>;
   /** Whether the Toolbar should be displayed when the user is viewing the site. */
   shouldShowAdminToolbar?: Maybe<Scalars['Boolean']['output']>;
+  shouldShowFaustToolbar?: Maybe<Scalars['Boolean']['output']>;
   /** The slug for the user. This field is equivalent to WP_User-&gt;user_nicename */
   slug?: Maybe<Scalars['String']['output']>;
+  templates?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   /** The unique resource identifier path */
   uri?: Maybe<Scalars['String']['output']>;
   /** A website url that is associated with the user. */
@@ -19946,8 +15551,6 @@ export type UserToCommentConnectionWhereArgs = {
   includeUnapproved?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Karma score to retrieve matching comments for. */
   karma?: InputMaybe<Scalars['Int']['input']>;
-  /** Filter Comment objects by language code */
-  language?: InputMaybe<Scalars['String']['input']>;
   /** The cardinality of the order of the connection */
   order?: InputMaybe<OrderEnum>;
   /** Field to order the comments by. */
@@ -20089,8 +15692,6 @@ export type UserToMediaItemConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Filter MediaItem objects by language code */
-  language?: InputMaybe<Scalars['String']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -20172,8 +15773,6 @@ export type UserToPageConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Filter Page objects by language code */
-  language?: InputMaybe<Scalars['String']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -20263,8 +15862,6 @@ export type UserToPostConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Filter Post objects by language code */
-  language?: InputMaybe<Scalars['String']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -20471,130 +16068,6 @@ export type WpPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** Provides access to fields of the &quot;BookData&quot; ACF Field Group via the &quot;bookData&quot; field */
-export type WithAcfBookData = {
-  /** Fields of the BookData ACF Field Group */
-  bookData?: Maybe<BookData>;
-};
-
-/** Provides access to fields of the &quot;ExhibitionRoom&quot; ACF Field Group via the &quot;exhibitionRoom&quot; field */
-export type WithAcfExhibitionRoom = {
-  /** Fields of the ExhibitionRoom ACF Field Group */
-  exhibitionRoom?: Maybe<ExhibitionRoom>;
-};
-
-/** Provides access to fields of the &quot;HomePageBlock&quot; ACF Field Group via the &quot;homePageBlock&quot; field */
-export type WithAcfHomePageBlock = {
-  /** Fields of the HomePageBlock ACF Field Group */
-  homePageBlock?: Maybe<HomePageBlock>;
-};
-
-/** Provides access to fields of the &quot;HomePageSection&quot; ACF Field Group via the &quot;homePageSection&quot; field */
-export type WithAcfHomePageSection = {
-  /** Fields of the HomePageSection ACF Field Group */
-  homePageSection?: Maybe<HomePageSection>;
-};
-
-/** Provides access to fields of the &quot;LearningHubFields&quot; ACF Field Group via the &quot;learningHubFields&quot; field */
-export type WithAcfLearningHubFields = {
-  /** Fields of the LearningHubFields ACF Field Group */
-  learningHubFields?: Maybe<LearningHubFields>;
-};
-
-/** Provides access to fields of the &quot;PageDesign&quot; ACF Field Group via the &quot;pageDesign&quot; field */
-export type WithAcfPageDesign = {
-  /** Fields of the PageDesign ACF Field Group */
-  pageDesign?: Maybe<PageDesign>;
-};
-
-/** Provides access to fields of the &quot;TaxonomyData&quot; ACF Field Group via the &quot;taxonomyData&quot; field */
-export type WithAcfTaxonomyData = {
-  /** Fields of the TaxonomyData ACF Field Group */
-  taxonomyData?: Maybe<TaxonomyData>;
-};
-
-/** A block used for editing the site */
-export type WpmlLanguageSwitcher = EditorBlock & PageEditorBlock & PostEditorBlock & {
-  __typename?: 'WpmlLanguageSwitcher';
-  /** The API version of the Gutenberg Block */
-  apiVersion?: Maybe<Scalars['Int']['output']>;
-  /** Attributes of the WpmlLanguageSwitcher Block Type */
-  attributes?: Maybe<WpmlLanguageSwitcherAttributes>;
-  /** The name of the category the Block belongs to */
-  blockEditorCategoryName?: Maybe<Scalars['String']['output']>;
-  /** The id of the Block */
-  clientId?: Maybe<Scalars['String']['output']>;
-  /** CSS Classnames to apply to the block */
-  cssClassNames?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  /** The inner blocks of the Block */
-  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
-  /** Whether the block is Dynamic (server rendered) */
-  isDynamic: Scalars['Boolean']['output'];
-  /** The name of the block */
-  name?: Maybe<Scalars['String']['output']>;
-  /** The parent id of the Block */
-  parentClientId?: Maybe<Scalars['String']['output']>;
-  /** The rendered HTML for the block */
-  renderedHtml?: Maybe<Scalars['String']['output']>;
-  /** The (GraphQL) type of the block */
-  type?: Maybe<Scalars['String']['output']>;
-};
-
-/** Attributes of the WpmlLanguageSwitcher Block Type */
-export type WpmlLanguageSwitcherAttributes = {
-  __typename?: 'WpmlLanguageSwitcherAttributes';
-  /** The &quot;className&quot; field on the &quot;WpmlLanguageSwitcherAttributes&quot; block or block attributes */
-  className?: Maybe<Scalars['String']['output']>;
-  /** The &quot;lock&quot; field on the &quot;WpmlLanguageSwitcherAttributes&quot; block or block attributes */
-  lock?: Maybe<Scalars['BlockAttributesObject']['output']>;
-  /** The &quot;metadata&quot; field on the &quot;WpmlLanguageSwitcherAttributes&quot; block or block attributes */
-  metadata?: Maybe<Scalars['BlockAttributesObject']['output']>;
-};
-
-/** A block used for editing the site */
-export type WpmlNavigationLanguageSwitcher = EditorBlock & PageEditorBlock & PostEditorBlock & {
-  __typename?: 'WpmlNavigationLanguageSwitcher';
-  /** The API version of the Gutenberg Block */
-  apiVersion?: Maybe<Scalars['Int']['output']>;
-  /** Attributes of the WpmlNavigationLanguageSwitcher Block Type */
-  attributes?: Maybe<WpmlNavigationLanguageSwitcherAttributes>;
-  /** The name of the category the Block belongs to */
-  blockEditorCategoryName?: Maybe<Scalars['String']['output']>;
-  /** The id of the Block */
-  clientId?: Maybe<Scalars['String']['output']>;
-  /** CSS Classnames to apply to the block */
-  cssClassNames?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  /** The inner blocks of the Block */
-  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
-  /** Whether the block is Dynamic (server rendered) */
-  isDynamic: Scalars['Boolean']['output'];
-  /** The name of the block */
-  name?: Maybe<Scalars['String']['output']>;
-  /** The parent id of the Block */
-  parentClientId?: Maybe<Scalars['String']['output']>;
-  /** The rendered HTML for the block */
-  renderedHtml?: Maybe<Scalars['String']['output']>;
-  /** The (GraphQL) type of the block */
-  type?: Maybe<Scalars['String']['output']>;
-};
-
-/** Attributes of the WpmlNavigationLanguageSwitcher Block Type */
-export type WpmlNavigationLanguageSwitcherAttributes = {
-  __typename?: 'WpmlNavigationLanguageSwitcherAttributes';
-  /** The &quot;className&quot; field on the &quot;WpmlNavigationLanguageSwitcherAttributes&quot; block or block attributes */
-  className?: Maybe<Scalars['String']['output']>;
-  /** The &quot;layoutOpenOnClick&quot; field on the &quot;WpmlNavigationLanguageSwitcherAttributes&quot; block or block attributes */
-  layoutOpenOnClick: Scalars['Boolean']['output'];
-  /** The &quot;layoutShowArrow&quot; field on the &quot;WpmlNavigationLanguageSwitcherAttributes&quot; block or block attributes */
-  layoutShowArrow: Scalars['Boolean']['output'];
-  /** The &quot;lock&quot; field on the &quot;WpmlNavigationLanguageSwitcherAttributes&quot; block or block attributes */
-  lock?: Maybe<Scalars['BlockAttributesObject']['output']>;
-  /** The &quot;metadata&quot; field on the &quot;WpmlNavigationLanguageSwitcherAttributes&quot; block or block attributes */
-  metadata?: Maybe<Scalars['BlockAttributesObject']['output']>;
-  /** The &quot;navigationLsHasSubMenuInSameBlock&quot; field on the &quot;WpmlNavigationLanguageSwitcherAttributes&quot; block or block attributes */
-  navigationLsHasSubMenuInSameBlock: Scalars['Boolean']['output'];
-};
-
 /** The writing setting type */
 export type WritingSettings = {
   __typename?: 'WritingSettings';
@@ -20751,7 +16224,7 @@ export type PageMetaQueryVariables = Exact<{
 }>;
 
 
-export type PageMetaQuery = { __typename?: 'RootQuery', menu?: { __typename?: 'Menu', menuItems?: { __typename?: 'MenuToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', label?: string | null, order?: number | null, uri?: string | null }> } | null } | null, page?: { __typename?: 'Book' } | { __typename?: 'Category' } | { __typename?: 'Collection' } | { __typename?: 'Comment' } | { __typename?: 'ContentType' } | { __typename?: 'GraphqlDocument' } | { __typename?: 'GraphqlDocumentGroup' } | { __typename?: 'MediaItem' } | { __typename?: 'Page', seo?: { __typename?: 'PostTypeSEO', metaDesc?: string | null, metaKeywords?: string | null, opengraphSiteName?: string | null, opengraphTitle?: string | null, opengraphPublisher?: string | null, opengraphUrl?: string | null, title?: string | null, twitterDescription?: string | null, twitterTitle?: string | null, twitterImage?: { __typename?: 'MediaItem', altText?: string | null, caption?: string | null, mediaDetails?: { __typename?: 'MediaDetails', sizes?: Array<{ __typename?: 'MediaSize', name?: string | null, sourceUrl?: string | null, width?: string | null, height?: string | null } | null> | null } | null } | null, opengraphImage?: { __typename?: 'MediaItem', altText?: string | null, caption?: string | null, mediaDetails?: { __typename?: 'MediaDetails', sizes?: Array<{ __typename?: 'MediaSize', name?: string | null, sourceUrl?: string | null, width?: string | null, height?: string | null } | null> | null } | null } | null } | null } | { __typename?: 'Person' } | { __typename?: 'Post', seo?: { __typename?: 'PostTypeSEO', metaDesc?: string | null, metaKeywords?: string | null, opengraphSiteName?: string | null, opengraphTitle?: string | null, opengraphPublisher?: string | null, opengraphUrl?: string | null, title?: string | null, twitterDescription?: string | null, twitterTitle?: string | null, twitterImage?: { __typename?: 'MediaItem', altText?: string | null, caption?: string | null, mediaDetails?: { __typename?: 'MediaDetails', sizes?: Array<{ __typename?: 'MediaSize', name?: string | null, sourceUrl?: string | null, width?: string | null, height?: string | null } | null> | null } | null } | null, opengraphImage?: { __typename?: 'MediaItem', altText?: string | null, caption?: string | null, mediaDetails?: { __typename?: 'MediaDetails', sizes?: Array<{ __typename?: 'MediaSize', name?: string | null, sourceUrl?: string | null, width?: string | null, height?: string | null } | null> | null } | null } | null } | null } | { __typename?: 'PostFormat' } | { __typename?: 'Publisher' } | { __typename?: 'Tag' } | { __typename?: 'User' } | null };
+export type PageMetaQuery = { __typename?: 'RootQuery', menu?: { __typename?: 'Menu', menuItems?: { __typename?: 'MenuToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', label?: string | null, order?: number | null, uri?: string | null }> } | null } | null, page?: { __typename?: 'Category' } | { __typename?: 'Comment' } | { __typename?: 'ContentType' } | { __typename?: 'MediaItem' } | { __typename?: 'Page', seo?: { __typename?: 'PostTypeSEO', metaDesc?: string | null, metaKeywords?: string | null, opengraphSiteName?: string | null, opengraphTitle?: string | null, opengraphPublisher?: string | null, opengraphUrl?: string | null, title?: string | null, twitterDescription?: string | null, twitterTitle?: string | null, twitterImage?: { __typename?: 'MediaItem', altText?: string | null, caption?: string | null, mediaDetails?: { __typename?: 'MediaDetails', sizes?: Array<{ __typename?: 'MediaSize', name?: string | null, sourceUrl?: string | null, width?: string | null, height?: string | null } | null> | null } | null } | null, opengraphImage?: { __typename?: 'MediaItem', altText?: string | null, caption?: string | null, mediaDetails?: { __typename?: 'MediaDetails', sizes?: Array<{ __typename?: 'MediaSize', name?: string | null, sourceUrl?: string | null, width?: string | null, height?: string | null } | null> | null } | null } | null } | null } | { __typename?: 'Post', seo?: { __typename?: 'PostTypeSEO', metaDesc?: string | null, metaKeywords?: string | null, opengraphSiteName?: string | null, opengraphTitle?: string | null, opengraphPublisher?: string | null, opengraphUrl?: string | null, title?: string | null, twitterDescription?: string | null, twitterTitle?: string | null, twitterImage?: { __typename?: 'MediaItem', altText?: string | null, caption?: string | null, mediaDetails?: { __typename?: 'MediaDetails', sizes?: Array<{ __typename?: 'MediaSize', name?: string | null, sourceUrl?: string | null, width?: string | null, height?: string | null } | null> | null } | null } | null, opengraphImage?: { __typename?: 'MediaItem', altText?: string | null, caption?: string | null, mediaDetails?: { __typename?: 'MediaDetails', sizes?: Array<{ __typename?: 'MediaSize', name?: string | null, sourceUrl?: string | null, width?: string | null, height?: string | null } | null> | null } | null } | null } | null } | { __typename?: 'PostFormat' } | { __typename?: 'Tag' } | { __typename?: 'User' } | null };
 
 export type SeoFragmentFragment = { __typename?: 'PostTypeSEO', metaDesc?: string | null, metaKeywords?: string | null, opengraphSiteName?: string | null, opengraphTitle?: string | null, opengraphPublisher?: string | null, opengraphUrl?: string | null, title?: string | null, twitterDescription?: string | null, twitterTitle?: string | null, twitterImage?: { __typename?: 'MediaItem', altText?: string | null, caption?: string | null, mediaDetails?: { __typename?: 'MediaDetails', sizes?: Array<{ __typename?: 'MediaSize', name?: string | null, sourceUrl?: string | null, width?: string | null, height?: string | null } | null> | null } | null } | null, opengraphImage?: { __typename?: 'MediaItem', altText?: string | null, caption?: string | null, mediaDetails?: { __typename?: 'MediaDetails', sizes?: Array<{ __typename?: 'MediaSize', name?: string | null, sourceUrl?: string | null, width?: string | null, height?: string | null } | null> | null } | null } | null };
 
@@ -20760,13 +16233,7 @@ export type PageContentQueryVariables = Exact<{
 }>;
 
 
-export type PageContentQuery = { __typename?: 'RootQuery', nodeByUri?: { __typename?: 'Book' } | { __typename?: 'Category' } | { __typename?: 'Collection' } | { __typename?: 'Comment' } | { __typename?: 'ContentType' } | { __typename?: 'GraphqlDocument' } | { __typename?: 'GraphqlDocumentGroup' } | { __typename?: 'MediaItem' } | { __typename?: 'Page', id: string, title?: string | null, date?: string | null, editorBlocks?: Array<{ __typename?: 'AcfExhibitionRoom', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'AcfHomePageBlock', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'AcfHomePageSection', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreArchives', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreAudio', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreAvatar', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreBlock', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreButton', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreButtonAttributes', backgroundColor?: string | null, style?: any | null, fontSize?: string | null, linkTarget?: string | null, text?: string | null, url?: string | null } | null, innerBlocks?: Array<{ __typename?: 'AcfExhibitionRoom', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'AcfHomePageBlock', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'AcfHomePageSection', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreArchives', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreAudio', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreAvatar', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreBlock', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreButton', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreButtons', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCalendar', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCategories', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCode', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreColumn', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreColumns', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreComments', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCover', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreDetails', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreEmbed', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreFile', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreFootnotes', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreFreeform', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreGallery', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreGroup', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreHeading', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreHtml', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreImage', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreList', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreListItem', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLoginout', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreMediaText', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreMissing', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreMore', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNavigation', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNextpage', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePageList', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePageListItem', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreParagraph', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePattern', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostComments', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostContent', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostDate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostTerms', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePreformatted', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePullquote', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQuery', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQuote', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreReadMore', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreRss', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSearch', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSeparator', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreShortcode', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSpacer', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTable', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreVerse', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreVideo', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'WpmlLanguageSwitcher', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'WpmlNavigationLanguageSwitcher', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'YoastFaqBlock', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'YoastHowToBlock', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | null> | null } | { __typename?: 'CoreButtons', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreButtonsAttributes', align?: string | null, layout?: any | null } | null } | { __typename?: 'CoreCalendar', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCategories', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCode', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreColumn', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreColumnAttributes', backgroundColor?: string | null, layout?: any | null, className?: string | null, verticalAlignment?: string | null, style?: any | null } | null } | { __typename?: 'CoreColumns', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreColumnsAttributes', backgroundColor?: string | null, layout?: any | null, className?: string | null, verticalAlignment?: string | null, style?: any | null, align?: string | null, isStackedOnMobile: boolean } | null } | { __typename?: 'CoreCommentAuthorName', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentContent', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentDate', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentEditLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentReplyLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentTemplate', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreComments', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentsPagination', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentsPaginationNext', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentsTitle', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCover', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreDetails', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreEmbed', renderedHtml?: string | null, name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreEmbedAttributes', align?: string | null, url?: string | null } | null } | { __typename?: 'CoreFile', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreFootnotes', renderedHtml?: string | null, name?: string | null, parentClientId?: string | null, clientId?: string | null, innerBlocks?: Array<{ __typename?: 'AcfExhibitionRoom', name?: string | null } | { __typename?: 'AcfHomePageBlock', name?: string | null } | { __typename?: 'AcfHomePageSection', name?: string | null } | { __typename?: 'CoreArchives', name?: string | null } | { __typename?: 'CoreAudio', name?: string | null } | { __typename?: 'CoreAvatar', name?: string | null } | { __typename?: 'CoreBlock', name?: string | null } | { __typename?: 'CoreButton', name?: string | null } | { __typename?: 'CoreButtons', name?: string | null } | { __typename?: 'CoreCalendar', name?: string | null } | { __typename?: 'CoreCategories', name?: string | null } | { __typename?: 'CoreCode', name?: string | null } | { __typename?: 'CoreColumn', name?: string | null } | { __typename?: 'CoreColumns', name?: string | null } | { __typename?: 'CoreCommentAuthorName', name?: string | null } | { __typename?: 'CoreCommentContent', name?: string | null } | { __typename?: 'CoreCommentDate', name?: string | null } | { __typename?: 'CoreCommentEditLink', name?: string | null } | { __typename?: 'CoreCommentReplyLink', name?: string | null } | { __typename?: 'CoreCommentTemplate', name?: string | null } | { __typename?: 'CoreComments', name?: string | null } | { __typename?: 'CoreCommentsPagination', name?: string | null } | { __typename?: 'CoreCommentsPaginationNext', name?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', name?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', name?: string | null } | { __typename?: 'CoreCommentsTitle', name?: string | null } | { __typename?: 'CoreCover', name?: string | null } | { __typename?: 'CoreDetails', name?: string | null } | { __typename?: 'CoreEmbed', name?: string | null } | { __typename?: 'CoreFile', name?: string | null } | { __typename?: 'CoreFootnotes', name?: string | null } | { __typename?: 'CoreFreeform', name?: string | null } | { __typename?: 'CoreGallery', name?: string | null } | { __typename?: 'CoreGroup', name?: string | null } | { __typename?: 'CoreHeading', name?: string | null } | { __typename?: 'CoreHomeLink', name?: string | null } | { __typename?: 'CoreHtml', name?: string | null } | { __typename?: 'CoreImage', name?: string | null } | { __typename?: 'CoreLatestComments', name?: string | null } | { __typename?: 'CoreLatestPosts', name?: string | null } | { __typename?: 'CoreLegacyWidget', name?: string | null } | { __typename?: 'CoreList', name?: string | null } | { __typename?: 'CoreListItem', name?: string | null } | { __typename?: 'CoreLoginout', name?: string | null } | { __typename?: 'CoreMediaText', name?: string | null } | { __typename?: 'CoreMissing', name?: string | null } | { __typename?: 'CoreMore', name?: string | null } | { __typename?: 'CoreNavigation', name?: string | null } | { __typename?: 'CoreNavigationLink', name?: string | null } | { __typename?: 'CoreNavigationSubmenu', name?: string | null } | { __typename?: 'CoreNextpage', name?: string | null } | { __typename?: 'CorePageList', name?: string | null } | { __typename?: 'CorePageListItem', name?: string | null } | { __typename?: 'CoreParagraph', name?: string | null } | { __typename?: 'CorePattern', name?: string | null } | { __typename?: 'CorePostAuthor', name?: string | null } | { __typename?: 'CorePostAuthorBiography', name?: string | null } | { __typename?: 'CorePostAuthorName', name?: string | null } | { __typename?: 'CorePostComments', name?: string | null } | { __typename?: 'CorePostCommentsForm', name?: string | null } | { __typename?: 'CorePostContent', name?: string | null } | { __typename?: 'CorePostDate', name?: string | null } | { __typename?: 'CorePostExcerpt', name?: string | null } | { __typename?: 'CorePostFeaturedImage', name?: string | null } | { __typename?: 'CorePostNavigationLink', name?: string | null } | { __typename?: 'CorePostTemplate', name?: string | null } | { __typename?: 'CorePostTerms', name?: string | null } | { __typename?: 'CorePostTitle', name?: string | null } | { __typename?: 'CorePreformatted', name?: string | null } | { __typename?: 'CorePullquote', name?: string | null } | { __typename?: 'CoreQuery', name?: string | null } | { __typename?: 'CoreQueryNoResults', name?: string | null } | { __typename?: 'CoreQueryPagination', name?: string | null } | { __typename?: 'CoreQueryPaginationNext', name?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', name?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', name?: string | null } | { __typename?: 'CoreQueryTitle', name?: string | null } | { __typename?: 'CoreQuote', name?: string | null } | { __typename?: 'CoreReadMore', name?: string | null } | { __typename?: 'CoreRss', name?: string | null } | { __typename?: 'CoreSearch', name?: string | null } | { __typename?: 'CoreSeparator', name?: string | null } | { __typename?: 'CoreShortcode', name?: string | null } | { __typename?: 'CoreSiteLogo', name?: string | null } | { __typename?: 'CoreSiteTagline', name?: string | null } | { __typename?: 'CoreSiteTitle', name?: string | null } | { __typename?: 'CoreSocialLink', name?: string | null } | { __typename?: 'CoreSocialLinks', name?: string | null } | { __typename?: 'CoreSpacer', name?: string | null } | { __typename?: 'CoreTable', name?: string | null } | { __typename?: 'CoreTagCloud', name?: string | null } | { __typename?: 'CoreTemplatePart', name?: string | null } | { __typename?: 'CoreTermDescription', name?: string | null } | { __typename?: 'CoreTextColumns', name?: string | null } | { __typename?: 'CoreVerse', name?: string | null } | { __typename?: 'CoreVideo', name?: string | null } | { __typename?: 'CoreWidgetGroup', name?: string | null } | { __typename?: 'WpmlLanguageSwitcher', name?: string | null } | { __typename?: 'WpmlNavigationLanguageSwitcher', name?: string | null } | { __typename?: 'YoastFaqBlock', name?: string | null } | { __typename?: 'YoastHowToBlock', name?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', name?: string | null } | null> | null, attributes?: { __typename?: 'CoreFootnotesAttributes', metadata?: any | null } | null } | { __typename?: 'CoreFreeform', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreGallery', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreGroup', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreGroupAttributes', backgroundColor?: string | null, align?: string | null, style?: any | null } | null } | { __typename?: 'CoreHeading', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreHeadingAttributes', content?: string | null, className?: string | null, fontFamily?: string | null, fontSize?: string | null, textColor?: string | null, textAlign?: string | null, level: number, align?: string | null } | null } | { __typename?: 'CoreHomeLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreHtml', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreImage', name?: string | null, parentClientId?: string | null, clientId?: string | null, mediaDetails?: { __typename?: 'MediaDetails', sizes?: Array<{ __typename?: 'MediaSize', sourceUrl?: string | null, height?: string | null, width?: string | null, mimeType?: string | null, name?: string | null } | null> | null } | null, attributes?: { __typename?: 'CoreImageAttributes', title?: string | null, alt: string, url?: string | null, caption?: string | null } | null } | { __typename?: 'CoreLatestComments', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreLatestPosts', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreLegacyWidget', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreList', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreListItem', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreLoginout', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreMediaText', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreMissing', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreMore', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreMoreAttributes', customText: string } | null } | { __typename?: 'CoreNavigation', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreNavigationLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreNavigationSubmenu', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreNextpage', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePageList', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePageListItem', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreParagraph', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreParagraphAttributes', content?: string | null, fontFamily?: string | null, fontSize?: string | null, textColor?: string | null, align?: string | null, className?: string | null } | null } | { __typename?: 'CorePattern', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostAuthor', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostAuthorBiography', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostAuthorName', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostComments', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostCommentsForm', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostContent', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostDate', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostExcerpt', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostFeaturedImage', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostNavigationLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostTemplate', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostTerms', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostTitle', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePreformatted', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePullquote', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQuery', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryNoResults', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryPagination', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryPaginationNext', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryTitle', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQuote', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreReadMore', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreRss', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSearch', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSeparator', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreShortcode', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSiteLogo', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSiteTagline', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSiteTitle', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSocialLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSocialLinks', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSpacer', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreSpacerAttributes', height: string, style?: any | null } | null } | { __typename?: 'CoreTable', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreTagCloud', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreTemplatePart', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreTermDescription', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreTextColumns', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreVerse', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreVideo', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreWidgetGroup', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'WpmlLanguageSwitcher', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'WpmlNavigationLanguageSwitcher', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'YoastFaqBlock', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'YoastHowToBlock', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', name?: string | null, parentClientId?: string | null, clientId?: string | null } | null> | null } | { __typename?: 'Person' } | { __typename?: 'Post', id: string, title?: string | null, date?: string | null, editorBlocks?: Array<{ __typename?: 'AcfExhibitionRoom', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'AcfHomePageBlock', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'AcfHomePageSection', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreArchives', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreAudio', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreAvatar', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreBlock', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreButton', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreButtonAttributes', backgroundColor?: string | null, style?: any | null, fontSize?: string | null, linkTarget?: string | null, text?: string | null, url?: string | null } | null, innerBlocks?: Array<{ __typename?: 'AcfExhibitionRoom', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'AcfHomePageBlock', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'AcfHomePageSection', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreArchives', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreAudio', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreAvatar', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreBlock', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreButton', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreButtons', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCalendar', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCategories', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCode', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreColumn', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreColumns', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreComments', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCover', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreDetails', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreEmbed', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreFile', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreFootnotes', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreFreeform', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreGallery', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreGroup', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreHeading', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreHtml', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreImage', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreList', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreListItem', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLoginout', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreMediaText', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreMissing', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreMore', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNavigation', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNextpage', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePageList', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePageListItem', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreParagraph', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePattern', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostComments', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostContent', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostDate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostTerms', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePreformatted', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePullquote', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQuery', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQuote', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreReadMore', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreRss', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSearch', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSeparator', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreShortcode', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSpacer', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTable', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreVerse', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreVideo', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'WpmlLanguageSwitcher', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'WpmlNavigationLanguageSwitcher', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'YoastFaqBlock', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'YoastHowToBlock', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | null> | null } | { __typename?: 'CoreButtons', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreButtonsAttributes', align?: string | null, layout?: any | null } | null } | { __typename?: 'CoreCalendar', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCategories', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCode', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreColumn', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreColumnAttributes', backgroundColor?: string | null, layout?: any | null, className?: string | null, verticalAlignment?: string | null, style?: any | null } | null } | { __typename?: 'CoreColumns', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreColumnsAttributes', backgroundColor?: string | null, layout?: any | null, className?: string | null, verticalAlignment?: string | null, style?: any | null, align?: string | null, isStackedOnMobile: boolean } | null } | { __typename?: 'CoreCommentAuthorName', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentContent', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentDate', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentEditLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentReplyLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentTemplate', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreComments', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentsPagination', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentsPaginationNext', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentsTitle', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCover', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreDetails', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreEmbed', renderedHtml?: string | null, name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreEmbedAttributes', align?: string | null, url?: string | null } | null } | { __typename?: 'CoreFile', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreFootnotes', renderedHtml?: string | null, name?: string | null, parentClientId?: string | null, clientId?: string | null, innerBlocks?: Array<{ __typename?: 'AcfExhibitionRoom', name?: string | null } | { __typename?: 'AcfHomePageBlock', name?: string | null } | { __typename?: 'AcfHomePageSection', name?: string | null } | { __typename?: 'CoreArchives', name?: string | null } | { __typename?: 'CoreAudio', name?: string | null } | { __typename?: 'CoreAvatar', name?: string | null } | { __typename?: 'CoreBlock', name?: string | null } | { __typename?: 'CoreButton', name?: string | null } | { __typename?: 'CoreButtons', name?: string | null } | { __typename?: 'CoreCalendar', name?: string | null } | { __typename?: 'CoreCategories', name?: string | null } | { __typename?: 'CoreCode', name?: string | null } | { __typename?: 'CoreColumn', name?: string | null } | { __typename?: 'CoreColumns', name?: string | null } | { __typename?: 'CoreCommentAuthorName', name?: string | null } | { __typename?: 'CoreCommentContent', name?: string | null } | { __typename?: 'CoreCommentDate', name?: string | null } | { __typename?: 'CoreCommentEditLink', name?: string | null } | { __typename?: 'CoreCommentReplyLink', name?: string | null } | { __typename?: 'CoreCommentTemplate', name?: string | null } | { __typename?: 'CoreComments', name?: string | null } | { __typename?: 'CoreCommentsPagination', name?: string | null } | { __typename?: 'CoreCommentsPaginationNext', name?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', name?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', name?: string | null } | { __typename?: 'CoreCommentsTitle', name?: string | null } | { __typename?: 'CoreCover', name?: string | null } | { __typename?: 'CoreDetails', name?: string | null } | { __typename?: 'CoreEmbed', name?: string | null } | { __typename?: 'CoreFile', name?: string | null } | { __typename?: 'CoreFootnotes', name?: string | null } | { __typename?: 'CoreFreeform', name?: string | null } | { __typename?: 'CoreGallery', name?: string | null } | { __typename?: 'CoreGroup', name?: string | null } | { __typename?: 'CoreHeading', name?: string | null } | { __typename?: 'CoreHomeLink', name?: string | null } | { __typename?: 'CoreHtml', name?: string | null } | { __typename?: 'CoreImage', name?: string | null } | { __typename?: 'CoreLatestComments', name?: string | null } | { __typename?: 'CoreLatestPosts', name?: string | null } | { __typename?: 'CoreLegacyWidget', name?: string | null } | { __typename?: 'CoreList', name?: string | null } | { __typename?: 'CoreListItem', name?: string | null } | { __typename?: 'CoreLoginout', name?: string | null } | { __typename?: 'CoreMediaText', name?: string | null } | { __typename?: 'CoreMissing', name?: string | null } | { __typename?: 'CoreMore', name?: string | null } | { __typename?: 'CoreNavigation', name?: string | null } | { __typename?: 'CoreNavigationLink', name?: string | null } | { __typename?: 'CoreNavigationSubmenu', name?: string | null } | { __typename?: 'CoreNextpage', name?: string | null } | { __typename?: 'CorePageList', name?: string | null } | { __typename?: 'CorePageListItem', name?: string | null } | { __typename?: 'CoreParagraph', name?: string | null } | { __typename?: 'CorePattern', name?: string | null } | { __typename?: 'CorePostAuthor', name?: string | null } | { __typename?: 'CorePostAuthorBiography', name?: string | null } | { __typename?: 'CorePostAuthorName', name?: string | null } | { __typename?: 'CorePostComments', name?: string | null } | { __typename?: 'CorePostCommentsForm', name?: string | null } | { __typename?: 'CorePostContent', name?: string | null } | { __typename?: 'CorePostDate', name?: string | null } | { __typename?: 'CorePostExcerpt', name?: string | null } | { __typename?: 'CorePostFeaturedImage', name?: string | null } | { __typename?: 'CorePostNavigationLink', name?: string | null } | { __typename?: 'CorePostTemplate', name?: string | null } | { __typename?: 'CorePostTerms', name?: string | null } | { __typename?: 'CorePostTitle', name?: string | null } | { __typename?: 'CorePreformatted', name?: string | null } | { __typename?: 'CorePullquote', name?: string | null } | { __typename?: 'CoreQuery', name?: string | null } | { __typename?: 'CoreQueryNoResults', name?: string | null } | { __typename?: 'CoreQueryPagination', name?: string | null } | { __typename?: 'CoreQueryPaginationNext', name?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', name?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', name?: string | null } | { __typename?: 'CoreQueryTitle', name?: string | null } | { __typename?: 'CoreQuote', name?: string | null } | { __typename?: 'CoreReadMore', name?: string | null } | { __typename?: 'CoreRss', name?: string | null } | { __typename?: 'CoreSearch', name?: string | null } | { __typename?: 'CoreSeparator', name?: string | null } | { __typename?: 'CoreShortcode', name?: string | null } | { __typename?: 'CoreSiteLogo', name?: string | null } | { __typename?: 'CoreSiteTagline', name?: string | null } | { __typename?: 'CoreSiteTitle', name?: string | null } | { __typename?: 'CoreSocialLink', name?: string | null } | { __typename?: 'CoreSocialLinks', name?: string | null } | { __typename?: 'CoreSpacer', name?: string | null } | { __typename?: 'CoreTable', name?: string | null } | { __typename?: 'CoreTagCloud', name?: string | null } | { __typename?: 'CoreTemplatePart', name?: string | null } | { __typename?: 'CoreTermDescription', name?: string | null } | { __typename?: 'CoreTextColumns', name?: string | null } | { __typename?: 'CoreVerse', name?: string | null } | { __typename?: 'CoreVideo', name?: string | null } | { __typename?: 'CoreWidgetGroup', name?: string | null } | { __typename?: 'WpmlLanguageSwitcher', name?: string | null } | { __typename?: 'WpmlNavigationLanguageSwitcher', name?: string | null } | { __typename?: 'YoastFaqBlock', name?: string | null } | { __typename?: 'YoastHowToBlock', name?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', name?: string | null } | null> | null, attributes?: { __typename?: 'CoreFootnotesAttributes', metadata?: any | null } | null } | { __typename?: 'CoreFreeform', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreGallery', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreGroup', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreGroupAttributes', backgroundColor?: string | null, align?: string | null, style?: any | null } | null } | { __typename?: 'CoreHeading', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreHeadingAttributes', content?: string | null, className?: string | null, fontFamily?: string | null, fontSize?: string | null, textColor?: string | null, textAlign?: string | null, level: number, align?: string | null } | null } | { __typename?: 'CoreHomeLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreHtml', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreImage', name?: string | null, parentClientId?: string | null, clientId?: string | null, mediaDetails?: { __typename?: 'MediaDetails', sizes?: Array<{ __typename?: 'MediaSize', sourceUrl?: string | null, height?: string | null, width?: string | null, mimeType?: string | null, name?: string | null } | null> | null } | null, attributes?: { __typename?: 'CoreImageAttributes', title?: string | null, alt: string, url?: string | null, caption?: string | null } | null } | { __typename?: 'CoreLatestComments', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreLatestPosts', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreLegacyWidget', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreList', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreListItem', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreLoginout', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreMediaText', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreMissing', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreMore', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreMoreAttributes', customText: string } | null } | { __typename?: 'CoreNavigation', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreNavigationLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreNavigationSubmenu', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreNextpage', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePageList', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePageListItem', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreParagraph', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreParagraphAttributes', content?: string | null, fontFamily?: string | null, fontSize?: string | null, textColor?: string | null, align?: string | null, className?: string | null } | null } | { __typename?: 'CorePattern', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostAuthor', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostAuthorBiography', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostAuthorName', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostComments', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostCommentsForm', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostContent', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostDate', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostExcerpt', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostFeaturedImage', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostNavigationLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostTemplate', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostTerms', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostTitle', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePreformatted', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePullquote', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQuery', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryNoResults', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryPagination', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryPaginationNext', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryTitle', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQuote', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreReadMore', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreRss', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSearch', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSeparator', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreShortcode', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSiteLogo', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSiteTagline', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSiteTitle', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSocialLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSocialLinks', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSpacer', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreSpacerAttributes', height: string, style?: any | null } | null } | { __typename?: 'CoreTable', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreTagCloud', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreTemplatePart', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreTermDescription', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreTextColumns', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreVerse', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreVideo', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreWidgetGroup', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'WpmlLanguageSwitcher', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'WpmlNavigationLanguageSwitcher', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'YoastFaqBlock', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'YoastHowToBlock', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', name?: string | null, parentClientId?: string | null, clientId?: string | null } | null> | null } | { __typename?: 'PostFormat' } | { __typename?: 'Publisher' } | { __typename?: 'Tag' } | { __typename?: 'User' } | null };
-
-type CommonBlockFields_AcfExhibitionRoom_Fragment = { __typename?: 'AcfExhibitionRoom', name?: string | null, parentClientId?: string | null, clientId?: string | null };
-
-type CommonBlockFields_AcfHomePageBlock_Fragment = { __typename?: 'AcfHomePageBlock', name?: string | null, parentClientId?: string | null, clientId?: string | null };
-
-type CommonBlockFields_AcfHomePageSection_Fragment = { __typename?: 'AcfHomePageSection', name?: string | null, parentClientId?: string | null, clientId?: string | null };
+export type PageContentQuery = { __typename?: 'RootQuery', nodeByUri?: { __typename?: 'Category' } | { __typename?: 'Comment' } | { __typename?: 'ContentType' } | { __typename?: 'MediaItem' } | { __typename?: 'Page', id: string, title?: string | null, date?: string | null, editorBlocks?: Array<{ __typename?: 'CoreArchives', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreAudio', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreAvatar', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreBlock', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreButton', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreButtonAttributes', backgroundColor?: string | null, style?: any | null, fontSize?: string | null, linkTarget?: string | null, text?: string | null, url?: string | null } | null, innerBlocks?: Array<{ __typename?: 'CoreArchives', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreAudio', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreAvatar', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreBlock', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreButton', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreButtons', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCalendar', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCategories', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCode', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreColumn', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreColumns', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreComments', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCover', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreDetails', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreEmbed', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreFile', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreFootnotes', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreFreeform', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreGallery', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreGroup', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreHeading', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreHtml', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreImage', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreList', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreListItem', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLoginout', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreMediaText', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreMissing', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreMore', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNavigation', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNextpage', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePageList', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePageListItem', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreParagraph', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePattern', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostComments', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostContent', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostDate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostTerms', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePreformatted', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePullquote', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQuery', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQuote', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreReadMore', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreRss', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSearch', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSeparator', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreShortcode', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSpacer', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTable', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreVerse', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreVideo', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'YoastFaqBlock', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'YoastHowToBlock', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | null> | null } | { __typename?: 'CoreButtons', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreButtonsAttributes', align?: string | null, layout?: any | null } | null } | { __typename?: 'CoreCalendar', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCategories', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCode', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreColumn', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreColumnAttributes', backgroundColor?: string | null, layout?: any | null, className?: string | null, verticalAlignment?: string | null, style?: any | null } | null } | { __typename?: 'CoreColumns', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreColumnsAttributes', backgroundColor?: string | null, layout?: any | null, className?: string | null, verticalAlignment?: string | null, style?: any | null, align?: string | null, isStackedOnMobile: boolean } | null } | { __typename?: 'CoreCommentAuthorName', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentContent', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentDate', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentEditLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentReplyLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentTemplate', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreComments', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentsPagination', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentsPaginationNext', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentsTitle', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCover', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreDetails', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreEmbed', renderedHtml?: string | null, name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreEmbedAttributes', align?: string | null, url?: string | null } | null } | { __typename?: 'CoreFile', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreFootnotes', renderedHtml?: string | null, name?: string | null, parentClientId?: string | null, clientId?: string | null, innerBlocks?: Array<{ __typename?: 'CoreArchives', name?: string | null } | { __typename?: 'CoreAudio', name?: string | null } | { __typename?: 'CoreAvatar', name?: string | null } | { __typename?: 'CoreBlock', name?: string | null } | { __typename?: 'CoreButton', name?: string | null } | { __typename?: 'CoreButtons', name?: string | null } | { __typename?: 'CoreCalendar', name?: string | null } | { __typename?: 'CoreCategories', name?: string | null } | { __typename?: 'CoreCode', name?: string | null } | { __typename?: 'CoreColumn', name?: string | null } | { __typename?: 'CoreColumns', name?: string | null } | { __typename?: 'CoreCommentAuthorName', name?: string | null } | { __typename?: 'CoreCommentContent', name?: string | null } | { __typename?: 'CoreCommentDate', name?: string | null } | { __typename?: 'CoreCommentEditLink', name?: string | null } | { __typename?: 'CoreCommentReplyLink', name?: string | null } | { __typename?: 'CoreCommentTemplate', name?: string | null } | { __typename?: 'CoreComments', name?: string | null } | { __typename?: 'CoreCommentsPagination', name?: string | null } | { __typename?: 'CoreCommentsPaginationNext', name?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', name?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', name?: string | null } | { __typename?: 'CoreCommentsTitle', name?: string | null } | { __typename?: 'CoreCover', name?: string | null } | { __typename?: 'CoreDetails', name?: string | null } | { __typename?: 'CoreEmbed', name?: string | null } | { __typename?: 'CoreFile', name?: string | null } | { __typename?: 'CoreFootnotes', name?: string | null } | { __typename?: 'CoreFreeform', name?: string | null } | { __typename?: 'CoreGallery', name?: string | null } | { __typename?: 'CoreGroup', name?: string | null } | { __typename?: 'CoreHeading', name?: string | null } | { __typename?: 'CoreHomeLink', name?: string | null } | { __typename?: 'CoreHtml', name?: string | null } | { __typename?: 'CoreImage', name?: string | null } | { __typename?: 'CoreLatestComments', name?: string | null } | { __typename?: 'CoreLatestPosts', name?: string | null } | { __typename?: 'CoreLegacyWidget', name?: string | null } | { __typename?: 'CoreList', name?: string | null } | { __typename?: 'CoreListItem', name?: string | null } | { __typename?: 'CoreLoginout', name?: string | null } | { __typename?: 'CoreMediaText', name?: string | null } | { __typename?: 'CoreMissing', name?: string | null } | { __typename?: 'CoreMore', name?: string | null } | { __typename?: 'CoreNavigation', name?: string | null } | { __typename?: 'CoreNavigationLink', name?: string | null } | { __typename?: 'CoreNavigationSubmenu', name?: string | null } | { __typename?: 'CoreNextpage', name?: string | null } | { __typename?: 'CorePageList', name?: string | null } | { __typename?: 'CorePageListItem', name?: string | null } | { __typename?: 'CoreParagraph', name?: string | null } | { __typename?: 'CorePattern', name?: string | null } | { __typename?: 'CorePostAuthor', name?: string | null } | { __typename?: 'CorePostAuthorBiography', name?: string | null } | { __typename?: 'CorePostAuthorName', name?: string | null } | { __typename?: 'CorePostComments', name?: string | null } | { __typename?: 'CorePostCommentsForm', name?: string | null } | { __typename?: 'CorePostContent', name?: string | null } | { __typename?: 'CorePostDate', name?: string | null } | { __typename?: 'CorePostExcerpt', name?: string | null } | { __typename?: 'CorePostFeaturedImage', name?: string | null } | { __typename?: 'CorePostNavigationLink', name?: string | null } | { __typename?: 'CorePostTemplate', name?: string | null } | { __typename?: 'CorePostTerms', name?: string | null } | { __typename?: 'CorePostTitle', name?: string | null } | { __typename?: 'CorePreformatted', name?: string | null } | { __typename?: 'CorePullquote', name?: string | null } | { __typename?: 'CoreQuery', name?: string | null } | { __typename?: 'CoreQueryNoResults', name?: string | null } | { __typename?: 'CoreQueryPagination', name?: string | null } | { __typename?: 'CoreQueryPaginationNext', name?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', name?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', name?: string | null } | { __typename?: 'CoreQueryTitle', name?: string | null } | { __typename?: 'CoreQuote', name?: string | null } | { __typename?: 'CoreReadMore', name?: string | null } | { __typename?: 'CoreRss', name?: string | null } | { __typename?: 'CoreSearch', name?: string | null } | { __typename?: 'CoreSeparator', name?: string | null } | { __typename?: 'CoreShortcode', name?: string | null } | { __typename?: 'CoreSiteLogo', name?: string | null } | { __typename?: 'CoreSiteTagline', name?: string | null } | { __typename?: 'CoreSiteTitle', name?: string | null } | { __typename?: 'CoreSocialLink', name?: string | null } | { __typename?: 'CoreSocialLinks', name?: string | null } | { __typename?: 'CoreSpacer', name?: string | null } | { __typename?: 'CoreTable', name?: string | null } | { __typename?: 'CoreTagCloud', name?: string | null } | { __typename?: 'CoreTemplatePart', name?: string | null } | { __typename?: 'CoreTermDescription', name?: string | null } | { __typename?: 'CoreTextColumns', name?: string | null } | { __typename?: 'CoreVerse', name?: string | null } | { __typename?: 'CoreVideo', name?: string | null } | { __typename?: 'CoreWidgetGroup', name?: string | null } | { __typename?: 'YoastFaqBlock', name?: string | null } | { __typename?: 'YoastHowToBlock', name?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', name?: string | null } | null> | null, attributes?: { __typename?: 'CoreFootnotesAttributes', metadata?: any | null } | null } | { __typename?: 'CoreFreeform', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreGallery', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreGroup', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreGroupAttributes', backgroundColor?: string | null, align?: string | null, style?: any | null } | null } | { __typename?: 'CoreHeading', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreHeadingAttributes', content?: string | null, className?: string | null, fontFamily?: string | null, fontSize?: string | null, textColor?: string | null, textAlign?: string | null, level: number, align?: string | null } | null } | { __typename?: 'CoreHomeLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreHtml', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreImage', name?: string | null, parentClientId?: string | null, clientId?: string | null, mediaDetails?: { __typename?: 'MediaDetails', sizes?: Array<{ __typename?: 'MediaSize', sourceUrl?: string | null, height?: string | null, width?: string | null, mimeType?: string | null, name?: string | null } | null> | null } | null, attributes?: { __typename?: 'CoreImageAttributes', title?: string | null, alt: string, url?: string | null, caption?: string | null } | null } | { __typename?: 'CoreLatestComments', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreLatestPosts', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreLegacyWidget', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreList', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreListAttributes', ordered: boolean, reversed?: boolean | null, start?: number | null, textColor?: string | null, type?: string | null } | null } | { __typename?: 'CoreListItem', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreListItemAttributes', content?: string | null, fontSize?: string | null, fontFamily?: string | null, textColor?: string | null } | null } | { __typename?: 'CoreLoginout', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreMediaText', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreMissing', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreMore', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreMoreAttributes', customText: string } | null } | { __typename?: 'CoreNavigation', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreNavigationLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreNavigationSubmenu', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreNextpage', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePageList', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePageListItem', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreParagraph', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreParagraphAttributes', content?: string | null, fontFamily?: string | null, fontSize?: string | null, textColor?: string | null, align?: string | null, className?: string | null } | null } | { __typename?: 'CorePattern', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostAuthor', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostAuthorBiography', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostAuthorName', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostComments', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostCommentsForm', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostContent', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostDate', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostExcerpt', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostFeaturedImage', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostNavigationLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostTemplate', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostTerms', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostTitle', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePreformatted', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePullquote', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQuery', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryNoResults', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryPagination', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryPaginationNext', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryTitle', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQuote', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreReadMore', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreRss', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSearch', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSeparator', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreShortcode', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSiteLogo', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSiteTagline', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSiteTitle', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSocialLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSocialLinks', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSpacer', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreSpacerAttributes', height: string, style?: any | null } | null } | { __typename?: 'CoreTable', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreTagCloud', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreTemplatePart', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreTermDescription', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreTextColumns', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreVerse', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreVideo', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreWidgetGroup', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'YoastFaqBlock', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'YoastHowToBlock', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', name?: string | null, parentClientId?: string | null, clientId?: string | null } | null> | null } | { __typename?: 'Post', id: string, title?: string | null, date?: string | null, editorBlocks?: Array<{ __typename?: 'CoreArchives', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreAudio', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreAvatar', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreBlock', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreButton', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreButtonAttributes', backgroundColor?: string | null, style?: any | null, fontSize?: string | null, linkTarget?: string | null, text?: string | null, url?: string | null } | null, innerBlocks?: Array<{ __typename?: 'CoreArchives', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreAudio', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreAvatar', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreBlock', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreButton', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreButtons', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCalendar', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCategories', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCode', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreColumn', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreColumns', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreComments', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCover', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreDetails', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreEmbed', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreFile', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreFootnotes', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreFreeform', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreGallery', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreGroup', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreHeading', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreHtml', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreImage', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreList', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreListItem', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLoginout', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreMediaText', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreMissing', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreMore', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNavigation', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNextpage', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePageList', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePageListItem', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreParagraph', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePattern', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostComments', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostContent', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostDate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostTerms', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePreformatted', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePullquote', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQuery', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQuote', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreReadMore', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreRss', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSearch', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSeparator', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreShortcode', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSpacer', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTable', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreVerse', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreVideo', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'YoastFaqBlock', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'YoastHowToBlock', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | null> | null } | { __typename?: 'CoreButtons', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreButtonsAttributes', align?: string | null, layout?: any | null } | null } | { __typename?: 'CoreCalendar', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCategories', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCode', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreColumn', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreColumnAttributes', backgroundColor?: string | null, layout?: any | null, className?: string | null, verticalAlignment?: string | null, style?: any | null } | null } | { __typename?: 'CoreColumns', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreColumnsAttributes', backgroundColor?: string | null, layout?: any | null, className?: string | null, verticalAlignment?: string | null, style?: any | null, align?: string | null, isStackedOnMobile: boolean } | null } | { __typename?: 'CoreCommentAuthorName', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentContent', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentDate', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentEditLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentReplyLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentTemplate', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreComments', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentsPagination', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentsPaginationNext', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCommentsTitle', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreCover', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreDetails', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreEmbed', renderedHtml?: string | null, name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreEmbedAttributes', align?: string | null, url?: string | null } | null } | { __typename?: 'CoreFile', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreFootnotes', renderedHtml?: string | null, name?: string | null, parentClientId?: string | null, clientId?: string | null, innerBlocks?: Array<{ __typename?: 'CoreArchives', name?: string | null } | { __typename?: 'CoreAudio', name?: string | null } | { __typename?: 'CoreAvatar', name?: string | null } | { __typename?: 'CoreBlock', name?: string | null } | { __typename?: 'CoreButton', name?: string | null } | { __typename?: 'CoreButtons', name?: string | null } | { __typename?: 'CoreCalendar', name?: string | null } | { __typename?: 'CoreCategories', name?: string | null } | { __typename?: 'CoreCode', name?: string | null } | { __typename?: 'CoreColumn', name?: string | null } | { __typename?: 'CoreColumns', name?: string | null } | { __typename?: 'CoreCommentAuthorName', name?: string | null } | { __typename?: 'CoreCommentContent', name?: string | null } | { __typename?: 'CoreCommentDate', name?: string | null } | { __typename?: 'CoreCommentEditLink', name?: string | null } | { __typename?: 'CoreCommentReplyLink', name?: string | null } | { __typename?: 'CoreCommentTemplate', name?: string | null } | { __typename?: 'CoreComments', name?: string | null } | { __typename?: 'CoreCommentsPagination', name?: string | null } | { __typename?: 'CoreCommentsPaginationNext', name?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', name?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', name?: string | null } | { __typename?: 'CoreCommentsTitle', name?: string | null } | { __typename?: 'CoreCover', name?: string | null } | { __typename?: 'CoreDetails', name?: string | null } | { __typename?: 'CoreEmbed', name?: string | null } | { __typename?: 'CoreFile', name?: string | null } | { __typename?: 'CoreFootnotes', name?: string | null } | { __typename?: 'CoreFreeform', name?: string | null } | { __typename?: 'CoreGallery', name?: string | null } | { __typename?: 'CoreGroup', name?: string | null } | { __typename?: 'CoreHeading', name?: string | null } | { __typename?: 'CoreHomeLink', name?: string | null } | { __typename?: 'CoreHtml', name?: string | null } | { __typename?: 'CoreImage', name?: string | null } | { __typename?: 'CoreLatestComments', name?: string | null } | { __typename?: 'CoreLatestPosts', name?: string | null } | { __typename?: 'CoreLegacyWidget', name?: string | null } | { __typename?: 'CoreList', name?: string | null } | { __typename?: 'CoreListItem', name?: string | null } | { __typename?: 'CoreLoginout', name?: string | null } | { __typename?: 'CoreMediaText', name?: string | null } | { __typename?: 'CoreMissing', name?: string | null } | { __typename?: 'CoreMore', name?: string | null } | { __typename?: 'CoreNavigation', name?: string | null } | { __typename?: 'CoreNavigationLink', name?: string | null } | { __typename?: 'CoreNavigationSubmenu', name?: string | null } | { __typename?: 'CoreNextpage', name?: string | null } | { __typename?: 'CorePageList', name?: string | null } | { __typename?: 'CorePageListItem', name?: string | null } | { __typename?: 'CoreParagraph', name?: string | null } | { __typename?: 'CorePattern', name?: string | null } | { __typename?: 'CorePostAuthor', name?: string | null } | { __typename?: 'CorePostAuthorBiography', name?: string | null } | { __typename?: 'CorePostAuthorName', name?: string | null } | { __typename?: 'CorePostComments', name?: string | null } | { __typename?: 'CorePostCommentsForm', name?: string | null } | { __typename?: 'CorePostContent', name?: string | null } | { __typename?: 'CorePostDate', name?: string | null } | { __typename?: 'CorePostExcerpt', name?: string | null } | { __typename?: 'CorePostFeaturedImage', name?: string | null } | { __typename?: 'CorePostNavigationLink', name?: string | null } | { __typename?: 'CorePostTemplate', name?: string | null } | { __typename?: 'CorePostTerms', name?: string | null } | { __typename?: 'CorePostTitle', name?: string | null } | { __typename?: 'CorePreformatted', name?: string | null } | { __typename?: 'CorePullquote', name?: string | null } | { __typename?: 'CoreQuery', name?: string | null } | { __typename?: 'CoreQueryNoResults', name?: string | null } | { __typename?: 'CoreQueryPagination', name?: string | null } | { __typename?: 'CoreQueryPaginationNext', name?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', name?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', name?: string | null } | { __typename?: 'CoreQueryTitle', name?: string | null } | { __typename?: 'CoreQuote', name?: string | null } | { __typename?: 'CoreReadMore', name?: string | null } | { __typename?: 'CoreRss', name?: string | null } | { __typename?: 'CoreSearch', name?: string | null } | { __typename?: 'CoreSeparator', name?: string | null } | { __typename?: 'CoreShortcode', name?: string | null } | { __typename?: 'CoreSiteLogo', name?: string | null } | { __typename?: 'CoreSiteTagline', name?: string | null } | { __typename?: 'CoreSiteTitle', name?: string | null } | { __typename?: 'CoreSocialLink', name?: string | null } | { __typename?: 'CoreSocialLinks', name?: string | null } | { __typename?: 'CoreSpacer', name?: string | null } | { __typename?: 'CoreTable', name?: string | null } | { __typename?: 'CoreTagCloud', name?: string | null } | { __typename?: 'CoreTemplatePart', name?: string | null } | { __typename?: 'CoreTermDescription', name?: string | null } | { __typename?: 'CoreTextColumns', name?: string | null } | { __typename?: 'CoreVerse', name?: string | null } | { __typename?: 'CoreVideo', name?: string | null } | { __typename?: 'CoreWidgetGroup', name?: string | null } | { __typename?: 'YoastFaqBlock', name?: string | null } | { __typename?: 'YoastHowToBlock', name?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', name?: string | null } | null> | null, attributes?: { __typename?: 'CoreFootnotesAttributes', metadata?: any | null } | null } | { __typename?: 'CoreFreeform', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreGallery', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreGroup', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreGroupAttributes', backgroundColor?: string | null, align?: string | null, style?: any | null } | null } | { __typename?: 'CoreHeading', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreHeadingAttributes', content?: string | null, className?: string | null, fontFamily?: string | null, fontSize?: string | null, textColor?: string | null, textAlign?: string | null, level: number, align?: string | null } | null } | { __typename?: 'CoreHomeLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreHtml', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreImage', name?: string | null, parentClientId?: string | null, clientId?: string | null, mediaDetails?: { __typename?: 'MediaDetails', sizes?: Array<{ __typename?: 'MediaSize', sourceUrl?: string | null, height?: string | null, width?: string | null, mimeType?: string | null, name?: string | null } | null> | null } | null, attributes?: { __typename?: 'CoreImageAttributes', title?: string | null, alt: string, url?: string | null, caption?: string | null } | null } | { __typename?: 'CoreLatestComments', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreLatestPosts', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreLegacyWidget', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreList', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreListAttributes', ordered: boolean, reversed?: boolean | null, start?: number | null, textColor?: string | null, type?: string | null } | null } | { __typename?: 'CoreListItem', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreListItemAttributes', content?: string | null, fontSize?: string | null, fontFamily?: string | null, textColor?: string | null } | null } | { __typename?: 'CoreLoginout', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreMediaText', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreMissing', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreMore', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreMoreAttributes', customText: string } | null } | { __typename?: 'CoreNavigation', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreNavigationLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreNavigationSubmenu', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreNextpage', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePageList', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePageListItem', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreParagraph', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreParagraphAttributes', content?: string | null, fontFamily?: string | null, fontSize?: string | null, textColor?: string | null, align?: string | null, className?: string | null } | null } | { __typename?: 'CorePattern', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostAuthor', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostAuthorBiography', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostAuthorName', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostComments', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostCommentsForm', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostContent', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostDate', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostExcerpt', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostFeaturedImage', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostNavigationLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostTemplate', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostTerms', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePostTitle', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePreformatted', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CorePullquote', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQuery', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryNoResults', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryPagination', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryPaginationNext', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQueryTitle', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreQuote', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreReadMore', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreRss', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSearch', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSeparator', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreShortcode', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSiteLogo', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSiteTagline', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSiteTitle', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSocialLink', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSocialLinks', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreSpacer', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreSpacerAttributes', height: string, style?: any | null } | null } | { __typename?: 'CoreTable', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreTagCloud', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreTemplatePart', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreTermDescription', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreTextColumns', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreVerse', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreVideo', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'CoreWidgetGroup', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'YoastFaqBlock', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'YoastHowToBlock', name?: string | null, parentClientId?: string | null, clientId?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', name?: string | null, parentClientId?: string | null, clientId?: string | null } | null> | null } | { __typename?: 'PostFormat' } | { __typename?: 'Tag' } | { __typename?: 'User' } | null };
 
 type CommonBlockFields_CoreArchives_Fragment = { __typename?: 'CoreArchives', name?: string | null, parentClientId?: string | null, clientId?: string | null };
 
@@ -20776,7 +16243,7 @@ type CommonBlockFields_CoreAvatar_Fragment = { __typename?: 'CoreAvatar', name?:
 
 type CommonBlockFields_CoreBlock_Fragment = { __typename?: 'CoreBlock', name?: string | null, parentClientId?: string | null, clientId?: string | null };
 
-type CommonBlockFields_CoreButton_Fragment = { __typename?: 'CoreButton', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreButtonAttributes', backgroundColor?: string | null, style?: any | null, fontSize?: string | null, linkTarget?: string | null, text?: string | null, url?: string | null } | null, innerBlocks?: Array<{ __typename?: 'AcfExhibitionRoom', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'AcfHomePageBlock', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'AcfHomePageSection', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreArchives', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreAudio', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreAvatar', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreBlock', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreButton', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreButtons', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCalendar', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCategories', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCode', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreColumn', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreColumns', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreComments', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCover', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreDetails', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreEmbed', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreFile', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreFootnotes', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreFreeform', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreGallery', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreGroup', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreHeading', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreHtml', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreImage', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreList', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreListItem', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLoginout', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreMediaText', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreMissing', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreMore', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNavigation', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNextpage', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePageList', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePageListItem', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreParagraph', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePattern', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostComments', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostContent', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostDate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostTerms', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePreformatted', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePullquote', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQuery', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQuote', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreReadMore', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreRss', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSearch', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSeparator', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreShortcode', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSpacer', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTable', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreVerse', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreVideo', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'WpmlLanguageSwitcher', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'WpmlNavigationLanguageSwitcher', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'YoastFaqBlock', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'YoastHowToBlock', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | null> | null };
+type CommonBlockFields_CoreButton_Fragment = { __typename?: 'CoreButton', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreButtonAttributes', backgroundColor?: string | null, style?: any | null, fontSize?: string | null, linkTarget?: string | null, text?: string | null, url?: string | null } | null, innerBlocks?: Array<{ __typename?: 'CoreArchives', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreAudio', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreAvatar', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreBlock', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreButton', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreButtons', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCalendar', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCategories', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCode', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreColumn', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreColumns', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreComments', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreCover', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreDetails', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreEmbed', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreFile', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreFootnotes', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreFreeform', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreGallery', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreGroup', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreHeading', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreHtml', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreImage', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreList', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreListItem', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreLoginout', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreMediaText', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreMissing', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreMore', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNavigation', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreNextpage', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePageList', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePageListItem', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreParagraph', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePattern', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostComments', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostContent', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostDate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostTerms', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePostTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePreformatted', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CorePullquote', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQuery', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreQuote', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreReadMore', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreRss', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSearch', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSeparator', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreShortcode', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreSpacer', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTable', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreVerse', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreVideo', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'YoastFaqBlock', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'YoastHowToBlock', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', apiVersion?: number | null, blockEditorCategoryName?: string | null, clientId?: string | null, name?: string | null, parentClientId?: string | null, renderedHtml?: string | null } | null> | null };
 
 type CommonBlockFields_CoreButtons_Fragment = { __typename?: 'CoreButtons', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreButtonsAttributes', align?: string | null, layout?: any | null } | null };
 
@@ -20822,7 +16289,7 @@ type CommonBlockFields_CoreEmbed_Fragment = { __typename?: 'CoreEmbed', rendered
 
 type CommonBlockFields_CoreFile_Fragment = { __typename?: 'CoreFile', name?: string | null, parentClientId?: string | null, clientId?: string | null };
 
-type CommonBlockFields_CoreFootnotes_Fragment = { __typename?: 'CoreFootnotes', renderedHtml?: string | null, name?: string | null, parentClientId?: string | null, clientId?: string | null, innerBlocks?: Array<{ __typename?: 'AcfExhibitionRoom', name?: string | null } | { __typename?: 'AcfHomePageBlock', name?: string | null } | { __typename?: 'AcfHomePageSection', name?: string | null } | { __typename?: 'CoreArchives', name?: string | null } | { __typename?: 'CoreAudio', name?: string | null } | { __typename?: 'CoreAvatar', name?: string | null } | { __typename?: 'CoreBlock', name?: string | null } | { __typename?: 'CoreButton', name?: string | null } | { __typename?: 'CoreButtons', name?: string | null } | { __typename?: 'CoreCalendar', name?: string | null } | { __typename?: 'CoreCategories', name?: string | null } | { __typename?: 'CoreCode', name?: string | null } | { __typename?: 'CoreColumn', name?: string | null } | { __typename?: 'CoreColumns', name?: string | null } | { __typename?: 'CoreCommentAuthorName', name?: string | null } | { __typename?: 'CoreCommentContent', name?: string | null } | { __typename?: 'CoreCommentDate', name?: string | null } | { __typename?: 'CoreCommentEditLink', name?: string | null } | { __typename?: 'CoreCommentReplyLink', name?: string | null } | { __typename?: 'CoreCommentTemplate', name?: string | null } | { __typename?: 'CoreComments', name?: string | null } | { __typename?: 'CoreCommentsPagination', name?: string | null } | { __typename?: 'CoreCommentsPaginationNext', name?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', name?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', name?: string | null } | { __typename?: 'CoreCommentsTitle', name?: string | null } | { __typename?: 'CoreCover', name?: string | null } | { __typename?: 'CoreDetails', name?: string | null } | { __typename?: 'CoreEmbed', name?: string | null } | { __typename?: 'CoreFile', name?: string | null } | { __typename?: 'CoreFootnotes', name?: string | null } | { __typename?: 'CoreFreeform', name?: string | null } | { __typename?: 'CoreGallery', name?: string | null } | { __typename?: 'CoreGroup', name?: string | null } | { __typename?: 'CoreHeading', name?: string | null } | { __typename?: 'CoreHomeLink', name?: string | null } | { __typename?: 'CoreHtml', name?: string | null } | { __typename?: 'CoreImage', name?: string | null } | { __typename?: 'CoreLatestComments', name?: string | null } | { __typename?: 'CoreLatestPosts', name?: string | null } | { __typename?: 'CoreLegacyWidget', name?: string | null } | { __typename?: 'CoreList', name?: string | null } | { __typename?: 'CoreListItem', name?: string | null } | { __typename?: 'CoreLoginout', name?: string | null } | { __typename?: 'CoreMediaText', name?: string | null } | { __typename?: 'CoreMissing', name?: string | null } | { __typename?: 'CoreMore', name?: string | null } | { __typename?: 'CoreNavigation', name?: string | null } | { __typename?: 'CoreNavigationLink', name?: string | null } | { __typename?: 'CoreNavigationSubmenu', name?: string | null } | { __typename?: 'CoreNextpage', name?: string | null } | { __typename?: 'CorePageList', name?: string | null } | { __typename?: 'CorePageListItem', name?: string | null } | { __typename?: 'CoreParagraph', name?: string | null } | { __typename?: 'CorePattern', name?: string | null } | { __typename?: 'CorePostAuthor', name?: string | null } | { __typename?: 'CorePostAuthorBiography', name?: string | null } | { __typename?: 'CorePostAuthorName', name?: string | null } | { __typename?: 'CorePostComments', name?: string | null } | { __typename?: 'CorePostCommentsForm', name?: string | null } | { __typename?: 'CorePostContent', name?: string | null } | { __typename?: 'CorePostDate', name?: string | null } | { __typename?: 'CorePostExcerpt', name?: string | null } | { __typename?: 'CorePostFeaturedImage', name?: string | null } | { __typename?: 'CorePostNavigationLink', name?: string | null } | { __typename?: 'CorePostTemplate', name?: string | null } | { __typename?: 'CorePostTerms', name?: string | null } | { __typename?: 'CorePostTitle', name?: string | null } | { __typename?: 'CorePreformatted', name?: string | null } | { __typename?: 'CorePullquote', name?: string | null } | { __typename?: 'CoreQuery', name?: string | null } | { __typename?: 'CoreQueryNoResults', name?: string | null } | { __typename?: 'CoreQueryPagination', name?: string | null } | { __typename?: 'CoreQueryPaginationNext', name?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', name?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', name?: string | null } | { __typename?: 'CoreQueryTitle', name?: string | null } | { __typename?: 'CoreQuote', name?: string | null } | { __typename?: 'CoreReadMore', name?: string | null } | { __typename?: 'CoreRss', name?: string | null } | { __typename?: 'CoreSearch', name?: string | null } | { __typename?: 'CoreSeparator', name?: string | null } | { __typename?: 'CoreShortcode', name?: string | null } | { __typename?: 'CoreSiteLogo', name?: string | null } | { __typename?: 'CoreSiteTagline', name?: string | null } | { __typename?: 'CoreSiteTitle', name?: string | null } | { __typename?: 'CoreSocialLink', name?: string | null } | { __typename?: 'CoreSocialLinks', name?: string | null } | { __typename?: 'CoreSpacer', name?: string | null } | { __typename?: 'CoreTable', name?: string | null } | { __typename?: 'CoreTagCloud', name?: string | null } | { __typename?: 'CoreTemplatePart', name?: string | null } | { __typename?: 'CoreTermDescription', name?: string | null } | { __typename?: 'CoreTextColumns', name?: string | null } | { __typename?: 'CoreVerse', name?: string | null } | { __typename?: 'CoreVideo', name?: string | null } | { __typename?: 'CoreWidgetGroup', name?: string | null } | { __typename?: 'WpmlLanguageSwitcher', name?: string | null } | { __typename?: 'WpmlNavigationLanguageSwitcher', name?: string | null } | { __typename?: 'YoastFaqBlock', name?: string | null } | { __typename?: 'YoastHowToBlock', name?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', name?: string | null } | null> | null, attributes?: { __typename?: 'CoreFootnotesAttributes', metadata?: any | null } | null };
+type CommonBlockFields_CoreFootnotes_Fragment = { __typename?: 'CoreFootnotes', renderedHtml?: string | null, name?: string | null, parentClientId?: string | null, clientId?: string | null, innerBlocks?: Array<{ __typename?: 'CoreArchives', name?: string | null } | { __typename?: 'CoreAudio', name?: string | null } | { __typename?: 'CoreAvatar', name?: string | null } | { __typename?: 'CoreBlock', name?: string | null } | { __typename?: 'CoreButton', name?: string | null } | { __typename?: 'CoreButtons', name?: string | null } | { __typename?: 'CoreCalendar', name?: string | null } | { __typename?: 'CoreCategories', name?: string | null } | { __typename?: 'CoreCode', name?: string | null } | { __typename?: 'CoreColumn', name?: string | null } | { __typename?: 'CoreColumns', name?: string | null } | { __typename?: 'CoreCommentAuthorName', name?: string | null } | { __typename?: 'CoreCommentContent', name?: string | null } | { __typename?: 'CoreCommentDate', name?: string | null } | { __typename?: 'CoreCommentEditLink', name?: string | null } | { __typename?: 'CoreCommentReplyLink', name?: string | null } | { __typename?: 'CoreCommentTemplate', name?: string | null } | { __typename?: 'CoreComments', name?: string | null } | { __typename?: 'CoreCommentsPagination', name?: string | null } | { __typename?: 'CoreCommentsPaginationNext', name?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', name?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', name?: string | null } | { __typename?: 'CoreCommentsTitle', name?: string | null } | { __typename?: 'CoreCover', name?: string | null } | { __typename?: 'CoreDetails', name?: string | null } | { __typename?: 'CoreEmbed', name?: string | null } | { __typename?: 'CoreFile', name?: string | null } | { __typename?: 'CoreFootnotes', name?: string | null } | { __typename?: 'CoreFreeform', name?: string | null } | { __typename?: 'CoreGallery', name?: string | null } | { __typename?: 'CoreGroup', name?: string | null } | { __typename?: 'CoreHeading', name?: string | null } | { __typename?: 'CoreHomeLink', name?: string | null } | { __typename?: 'CoreHtml', name?: string | null } | { __typename?: 'CoreImage', name?: string | null } | { __typename?: 'CoreLatestComments', name?: string | null } | { __typename?: 'CoreLatestPosts', name?: string | null } | { __typename?: 'CoreLegacyWidget', name?: string | null } | { __typename?: 'CoreList', name?: string | null } | { __typename?: 'CoreListItem', name?: string | null } | { __typename?: 'CoreLoginout', name?: string | null } | { __typename?: 'CoreMediaText', name?: string | null } | { __typename?: 'CoreMissing', name?: string | null } | { __typename?: 'CoreMore', name?: string | null } | { __typename?: 'CoreNavigation', name?: string | null } | { __typename?: 'CoreNavigationLink', name?: string | null } | { __typename?: 'CoreNavigationSubmenu', name?: string | null } | { __typename?: 'CoreNextpage', name?: string | null } | { __typename?: 'CorePageList', name?: string | null } | { __typename?: 'CorePageListItem', name?: string | null } | { __typename?: 'CoreParagraph', name?: string | null } | { __typename?: 'CorePattern', name?: string | null } | { __typename?: 'CorePostAuthor', name?: string | null } | { __typename?: 'CorePostAuthorBiography', name?: string | null } | { __typename?: 'CorePostAuthorName', name?: string | null } | { __typename?: 'CorePostComments', name?: string | null } | { __typename?: 'CorePostCommentsForm', name?: string | null } | { __typename?: 'CorePostContent', name?: string | null } | { __typename?: 'CorePostDate', name?: string | null } | { __typename?: 'CorePostExcerpt', name?: string | null } | { __typename?: 'CorePostFeaturedImage', name?: string | null } | { __typename?: 'CorePostNavigationLink', name?: string | null } | { __typename?: 'CorePostTemplate', name?: string | null } | { __typename?: 'CorePostTerms', name?: string | null } | { __typename?: 'CorePostTitle', name?: string | null } | { __typename?: 'CorePreformatted', name?: string | null } | { __typename?: 'CorePullquote', name?: string | null } | { __typename?: 'CoreQuery', name?: string | null } | { __typename?: 'CoreQueryNoResults', name?: string | null } | { __typename?: 'CoreQueryPagination', name?: string | null } | { __typename?: 'CoreQueryPaginationNext', name?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', name?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', name?: string | null } | { __typename?: 'CoreQueryTitle', name?: string | null } | { __typename?: 'CoreQuote', name?: string | null } | { __typename?: 'CoreReadMore', name?: string | null } | { __typename?: 'CoreRss', name?: string | null } | { __typename?: 'CoreSearch', name?: string | null } | { __typename?: 'CoreSeparator', name?: string | null } | { __typename?: 'CoreShortcode', name?: string | null } | { __typename?: 'CoreSiteLogo', name?: string | null } | { __typename?: 'CoreSiteTagline', name?: string | null } | { __typename?: 'CoreSiteTitle', name?: string | null } | { __typename?: 'CoreSocialLink', name?: string | null } | { __typename?: 'CoreSocialLinks', name?: string | null } | { __typename?: 'CoreSpacer', name?: string | null } | { __typename?: 'CoreTable', name?: string | null } | { __typename?: 'CoreTagCloud', name?: string | null } | { __typename?: 'CoreTemplatePart', name?: string | null } | { __typename?: 'CoreTermDescription', name?: string | null } | { __typename?: 'CoreTextColumns', name?: string | null } | { __typename?: 'CoreVerse', name?: string | null } | { __typename?: 'CoreVideo', name?: string | null } | { __typename?: 'CoreWidgetGroup', name?: string | null } | { __typename?: 'YoastFaqBlock', name?: string | null } | { __typename?: 'YoastHowToBlock', name?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', name?: string | null } | null> | null, attributes?: { __typename?: 'CoreFootnotesAttributes', metadata?: any | null } | null };
 
 type CommonBlockFields_CoreFreeform_Fragment = { __typename?: 'CoreFreeform', name?: string | null, parentClientId?: string | null, clientId?: string | null };
 
@@ -20844,9 +16311,9 @@ type CommonBlockFields_CoreLatestPosts_Fragment = { __typename?: 'CoreLatestPost
 
 type CommonBlockFields_CoreLegacyWidget_Fragment = { __typename?: 'CoreLegacyWidget', name?: string | null, parentClientId?: string | null, clientId?: string | null };
 
-type CommonBlockFields_CoreList_Fragment = { __typename?: 'CoreList', name?: string | null, parentClientId?: string | null, clientId?: string | null };
+type CommonBlockFields_CoreList_Fragment = { __typename?: 'CoreList', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreListAttributes', ordered: boolean, reversed?: boolean | null, start?: number | null, textColor?: string | null, type?: string | null } | null };
 
-type CommonBlockFields_CoreListItem_Fragment = { __typename?: 'CoreListItem', name?: string | null, parentClientId?: string | null, clientId?: string | null };
+type CommonBlockFields_CoreListItem_Fragment = { __typename?: 'CoreListItem', name?: string | null, parentClientId?: string | null, clientId?: string | null, attributes?: { __typename?: 'CoreListItemAttributes', content?: string | null, fontSize?: string | null, fontFamily?: string | null, textColor?: string | null } | null };
 
 type CommonBlockFields_CoreLoginout_Fragment = { __typename?: 'CoreLoginout', name?: string | null, parentClientId?: string | null, clientId?: string | null };
 
@@ -20956,17 +16423,13 @@ type CommonBlockFields_CoreVideo_Fragment = { __typename?: 'CoreVideo', name?: s
 
 type CommonBlockFields_CoreWidgetGroup_Fragment = { __typename?: 'CoreWidgetGroup', name?: string | null, parentClientId?: string | null, clientId?: string | null };
 
-type CommonBlockFields_WpmlLanguageSwitcher_Fragment = { __typename?: 'WpmlLanguageSwitcher', name?: string | null, parentClientId?: string | null, clientId?: string | null };
-
-type CommonBlockFields_WpmlNavigationLanguageSwitcher_Fragment = { __typename?: 'WpmlNavigationLanguageSwitcher', name?: string | null, parentClientId?: string | null, clientId?: string | null };
-
 type CommonBlockFields_YoastFaqBlock_Fragment = { __typename?: 'YoastFaqBlock', name?: string | null, parentClientId?: string | null, clientId?: string | null };
 
 type CommonBlockFields_YoastHowToBlock_Fragment = { __typename?: 'YoastHowToBlock', name?: string | null, parentClientId?: string | null, clientId?: string | null };
 
 type CommonBlockFields_YoastSeoBreadcrumbs_Fragment = { __typename?: 'YoastSeoBreadcrumbs', name?: string | null, parentClientId?: string | null, clientId?: string | null };
 
-export type CommonBlockFieldsFragment = CommonBlockFields_AcfExhibitionRoom_Fragment | CommonBlockFields_AcfHomePageBlock_Fragment | CommonBlockFields_AcfHomePageSection_Fragment | CommonBlockFields_CoreArchives_Fragment | CommonBlockFields_CoreAudio_Fragment | CommonBlockFields_CoreAvatar_Fragment | CommonBlockFields_CoreBlock_Fragment | CommonBlockFields_CoreButton_Fragment | CommonBlockFields_CoreButtons_Fragment | CommonBlockFields_CoreCalendar_Fragment | CommonBlockFields_CoreCategories_Fragment | CommonBlockFields_CoreCode_Fragment | CommonBlockFields_CoreColumn_Fragment | CommonBlockFields_CoreColumns_Fragment | CommonBlockFields_CoreCommentAuthorName_Fragment | CommonBlockFields_CoreCommentContent_Fragment | CommonBlockFields_CoreCommentDate_Fragment | CommonBlockFields_CoreCommentEditLink_Fragment | CommonBlockFields_CoreCommentReplyLink_Fragment | CommonBlockFields_CoreCommentTemplate_Fragment | CommonBlockFields_CoreComments_Fragment | CommonBlockFields_CoreCommentsPagination_Fragment | CommonBlockFields_CoreCommentsPaginationNext_Fragment | CommonBlockFields_CoreCommentsPaginationNumbers_Fragment | CommonBlockFields_CoreCommentsPaginationPrevious_Fragment | CommonBlockFields_CoreCommentsTitle_Fragment | CommonBlockFields_CoreCover_Fragment | CommonBlockFields_CoreDetails_Fragment | CommonBlockFields_CoreEmbed_Fragment | CommonBlockFields_CoreFile_Fragment | CommonBlockFields_CoreFootnotes_Fragment | CommonBlockFields_CoreFreeform_Fragment | CommonBlockFields_CoreGallery_Fragment | CommonBlockFields_CoreGroup_Fragment | CommonBlockFields_CoreHeading_Fragment | CommonBlockFields_CoreHomeLink_Fragment | CommonBlockFields_CoreHtml_Fragment | CommonBlockFields_CoreImage_Fragment | CommonBlockFields_CoreLatestComments_Fragment | CommonBlockFields_CoreLatestPosts_Fragment | CommonBlockFields_CoreLegacyWidget_Fragment | CommonBlockFields_CoreList_Fragment | CommonBlockFields_CoreListItem_Fragment | CommonBlockFields_CoreLoginout_Fragment | CommonBlockFields_CoreMediaText_Fragment | CommonBlockFields_CoreMissing_Fragment | CommonBlockFields_CoreMore_Fragment | CommonBlockFields_CoreNavigation_Fragment | CommonBlockFields_CoreNavigationLink_Fragment | CommonBlockFields_CoreNavigationSubmenu_Fragment | CommonBlockFields_CoreNextpage_Fragment | CommonBlockFields_CorePageList_Fragment | CommonBlockFields_CorePageListItem_Fragment | CommonBlockFields_CoreParagraph_Fragment | CommonBlockFields_CorePattern_Fragment | CommonBlockFields_CorePostAuthor_Fragment | CommonBlockFields_CorePostAuthorBiography_Fragment | CommonBlockFields_CorePostAuthorName_Fragment | CommonBlockFields_CorePostComments_Fragment | CommonBlockFields_CorePostCommentsForm_Fragment | CommonBlockFields_CorePostContent_Fragment | CommonBlockFields_CorePostDate_Fragment | CommonBlockFields_CorePostExcerpt_Fragment | CommonBlockFields_CorePostFeaturedImage_Fragment | CommonBlockFields_CorePostNavigationLink_Fragment | CommonBlockFields_CorePostTemplate_Fragment | CommonBlockFields_CorePostTerms_Fragment | CommonBlockFields_CorePostTitle_Fragment | CommonBlockFields_CorePreformatted_Fragment | CommonBlockFields_CorePullquote_Fragment | CommonBlockFields_CoreQuery_Fragment | CommonBlockFields_CoreQueryNoResults_Fragment | CommonBlockFields_CoreQueryPagination_Fragment | CommonBlockFields_CoreQueryPaginationNext_Fragment | CommonBlockFields_CoreQueryPaginationNumbers_Fragment | CommonBlockFields_CoreQueryPaginationPrevious_Fragment | CommonBlockFields_CoreQueryTitle_Fragment | CommonBlockFields_CoreQuote_Fragment | CommonBlockFields_CoreReadMore_Fragment | CommonBlockFields_CoreRss_Fragment | CommonBlockFields_CoreSearch_Fragment | CommonBlockFields_CoreSeparator_Fragment | CommonBlockFields_CoreShortcode_Fragment | CommonBlockFields_CoreSiteLogo_Fragment | CommonBlockFields_CoreSiteTagline_Fragment | CommonBlockFields_CoreSiteTitle_Fragment | CommonBlockFields_CoreSocialLink_Fragment | CommonBlockFields_CoreSocialLinks_Fragment | CommonBlockFields_CoreSpacer_Fragment | CommonBlockFields_CoreTable_Fragment | CommonBlockFields_CoreTagCloud_Fragment | CommonBlockFields_CoreTemplatePart_Fragment | CommonBlockFields_CoreTermDescription_Fragment | CommonBlockFields_CoreTextColumns_Fragment | CommonBlockFields_CoreVerse_Fragment | CommonBlockFields_CoreVideo_Fragment | CommonBlockFields_CoreWidgetGroup_Fragment | CommonBlockFields_WpmlLanguageSwitcher_Fragment | CommonBlockFields_WpmlNavigationLanguageSwitcher_Fragment | CommonBlockFields_YoastFaqBlock_Fragment | CommonBlockFields_YoastHowToBlock_Fragment | CommonBlockFields_YoastSeoBreadcrumbs_Fragment;
+export type CommonBlockFieldsFragment = CommonBlockFields_CoreArchives_Fragment | CommonBlockFields_CoreAudio_Fragment | CommonBlockFields_CoreAvatar_Fragment | CommonBlockFields_CoreBlock_Fragment | CommonBlockFields_CoreButton_Fragment | CommonBlockFields_CoreButtons_Fragment | CommonBlockFields_CoreCalendar_Fragment | CommonBlockFields_CoreCategories_Fragment | CommonBlockFields_CoreCode_Fragment | CommonBlockFields_CoreColumn_Fragment | CommonBlockFields_CoreColumns_Fragment | CommonBlockFields_CoreCommentAuthorName_Fragment | CommonBlockFields_CoreCommentContent_Fragment | CommonBlockFields_CoreCommentDate_Fragment | CommonBlockFields_CoreCommentEditLink_Fragment | CommonBlockFields_CoreCommentReplyLink_Fragment | CommonBlockFields_CoreCommentTemplate_Fragment | CommonBlockFields_CoreComments_Fragment | CommonBlockFields_CoreCommentsPagination_Fragment | CommonBlockFields_CoreCommentsPaginationNext_Fragment | CommonBlockFields_CoreCommentsPaginationNumbers_Fragment | CommonBlockFields_CoreCommentsPaginationPrevious_Fragment | CommonBlockFields_CoreCommentsTitle_Fragment | CommonBlockFields_CoreCover_Fragment | CommonBlockFields_CoreDetails_Fragment | CommonBlockFields_CoreEmbed_Fragment | CommonBlockFields_CoreFile_Fragment | CommonBlockFields_CoreFootnotes_Fragment | CommonBlockFields_CoreFreeform_Fragment | CommonBlockFields_CoreGallery_Fragment | CommonBlockFields_CoreGroup_Fragment | CommonBlockFields_CoreHeading_Fragment | CommonBlockFields_CoreHomeLink_Fragment | CommonBlockFields_CoreHtml_Fragment | CommonBlockFields_CoreImage_Fragment | CommonBlockFields_CoreLatestComments_Fragment | CommonBlockFields_CoreLatestPosts_Fragment | CommonBlockFields_CoreLegacyWidget_Fragment | CommonBlockFields_CoreList_Fragment | CommonBlockFields_CoreListItem_Fragment | CommonBlockFields_CoreLoginout_Fragment | CommonBlockFields_CoreMediaText_Fragment | CommonBlockFields_CoreMissing_Fragment | CommonBlockFields_CoreMore_Fragment | CommonBlockFields_CoreNavigation_Fragment | CommonBlockFields_CoreNavigationLink_Fragment | CommonBlockFields_CoreNavigationSubmenu_Fragment | CommonBlockFields_CoreNextpage_Fragment | CommonBlockFields_CorePageList_Fragment | CommonBlockFields_CorePageListItem_Fragment | CommonBlockFields_CoreParagraph_Fragment | CommonBlockFields_CorePattern_Fragment | CommonBlockFields_CorePostAuthor_Fragment | CommonBlockFields_CorePostAuthorBiography_Fragment | CommonBlockFields_CorePostAuthorName_Fragment | CommonBlockFields_CorePostComments_Fragment | CommonBlockFields_CorePostCommentsForm_Fragment | CommonBlockFields_CorePostContent_Fragment | CommonBlockFields_CorePostDate_Fragment | CommonBlockFields_CorePostExcerpt_Fragment | CommonBlockFields_CorePostFeaturedImage_Fragment | CommonBlockFields_CorePostNavigationLink_Fragment | CommonBlockFields_CorePostTemplate_Fragment | CommonBlockFields_CorePostTerms_Fragment | CommonBlockFields_CorePostTitle_Fragment | CommonBlockFields_CorePreformatted_Fragment | CommonBlockFields_CorePullquote_Fragment | CommonBlockFields_CoreQuery_Fragment | CommonBlockFields_CoreQueryNoResults_Fragment | CommonBlockFields_CoreQueryPagination_Fragment | CommonBlockFields_CoreQueryPaginationNext_Fragment | CommonBlockFields_CoreQueryPaginationNumbers_Fragment | CommonBlockFields_CoreQueryPaginationPrevious_Fragment | CommonBlockFields_CoreQueryTitle_Fragment | CommonBlockFields_CoreQuote_Fragment | CommonBlockFields_CoreReadMore_Fragment | CommonBlockFields_CoreRss_Fragment | CommonBlockFields_CoreSearch_Fragment | CommonBlockFields_CoreSeparator_Fragment | CommonBlockFields_CoreShortcode_Fragment | CommonBlockFields_CoreSiteLogo_Fragment | CommonBlockFields_CoreSiteTagline_Fragment | CommonBlockFields_CoreSiteTitle_Fragment | CommonBlockFields_CoreSocialLink_Fragment | CommonBlockFields_CoreSocialLinks_Fragment | CommonBlockFields_CoreSpacer_Fragment | CommonBlockFields_CoreTable_Fragment | CommonBlockFields_CoreTagCloud_Fragment | CommonBlockFields_CoreTemplatePart_Fragment | CommonBlockFields_CoreTermDescription_Fragment | CommonBlockFields_CoreTextColumns_Fragment | CommonBlockFields_CoreVerse_Fragment | CommonBlockFields_CoreVideo_Fragment | CommonBlockFields_CoreWidgetGroup_Fragment | CommonBlockFields_YoastFaqBlock_Fragment | CommonBlockFields_YoastHowToBlock_Fragment | CommonBlockFields_YoastSeoBreadcrumbs_Fragment;
 
 export type PostsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -21061,6 +16524,23 @@ export const CommonBlockFieldsFragmentDoc = gql`
   ... on CoreMore {
     attributes {
       customText
+    }
+  }
+  ... on CoreList {
+    attributes {
+      ordered
+      reversed
+      start
+      textColor
+      type
+    }
+  }
+  ... on CoreListItem {
+    attributes {
+      content
+      fontSize
+      fontFamily
+      textColor
     }
   }
   ... on CoreHeading {
