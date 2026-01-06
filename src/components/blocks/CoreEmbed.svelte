@@ -1,11 +1,13 @@
 <script lang="ts">
 	import type { CoreEmbed } from '$lib/graphql/generated'
+	import { onMount } from 'svelte'
 
 	interface Props {
-		block: CoreEmbed;
+		block: CoreEmbed
 	}
 
-	let { block }: Props = $props();
+	let { block }: Props = $props()
+	let flourishContainer: HTMLDivElement | undefined = $state()
 
 	const getEmbedUrl = (url: string) => {
 		// YouTube
@@ -36,13 +38,38 @@
 		return null
 	}
 
+	const checkFlourishEmbed = (url: string) => {
+		return url.includes('flourish.studio') || url.includes('flourish-embed')
+	}
+
 	const embedUrl = getEmbedUrl(block.attributes?.url ?? '') || ''
+	const rawUrl = block.attributes?.url ?? ''
+
+	// Determine if this is a Flourish embed
+	const isFlourishEmbed = checkFlourishEmbed(rawUrl)
+
+	// Handle Flourish embed initialization
+	onMount(() => {
+		if (isFlourishEmbed && flourishContainer) {
+			// Load the Flourish script if not already loaded
+			if (!document.querySelector('script[src="https://public.flourish.studio/resources/embed.js"]')) {
+				const script = document.createElement('script')
+				script.src = 'https://public.flourish.studio/resources/embed.js'
+				script.async = true
+				document.head.appendChild(script)
+			}
+		}
+	})
 </script>
 
-{#if embedUrl !== ''}
-	<div class="relative w-full {embedUrl.includes('soundcloud.com') ? 'h-[166px]' : 'pt-[56.25%]'} mb-4">
+{#if isFlourishEmbed}
+	<div bind:this={flourishContainer} class="w-full mb-4">{@html rawUrl}</div>
+{:else if embedUrl !== ''}
+	<div
+		class="relative w-full {embedUrl.includes('soundcloud.com') ? 'h-[166px]' : 'pt-[56.25%]'} mb-4"
+	>
 		<iframe
-			class="absolute top-0 left-0 w-full h-full"
+			class="absolute left-0 top-0 h-full w-full"
 			src={embedUrl}
 			title="Embedded content"
 			frameborder="0"

@@ -1,5 +1,5 @@
 <script lang="ts">
-		import type {
+	import type {
 		CoreParagraph as CoreParagraphType,
 		CoreHeading as CoreHeadingType,
 		CoreGroup as CoreGroupType,
@@ -12,7 +12,8 @@
 		CoreEmbed as CoreEmbedType,
 		CoreImage as CoreImageType,
 		CoreList as CoreListType,
-		CoreListItem as CoreListItemType
+		CoreListItem as CoreListItemType,
+		CoreVideo as CoreVideoType
 	} from '$lib/graphql/generated'
 
 	interface NormalizedBlock {
@@ -39,6 +40,7 @@
 		| (CoreImageType & NormalizedBlock)
 		| (CoreListType & NormalizedBlock)
 		| (CoreListItemType & NormalizedBlock)
+		| (CoreVideoType & NormalizedBlock)
 
 
 	import CoreParagraph from '$components/blocks/CoreParagraph.svelte'
@@ -54,6 +56,8 @@
 	import CoreButton from './blocks/CoreButton.svelte'
 	import CoreList from './blocks/CoreList.svelte'
 	import CoreListItem from './blocks/CoreListItem.svelte'
+	import CoreVideo from './blocks/CoreVideo.svelte'
+
 	interface Props {
 		/*
     this is the main component for outputting blocks.
@@ -228,6 +232,10 @@
 	{/if}
 	{#if block.name === 'core/list-item'}
 		<CoreListItem {block} />
+	{/if}
+
+	{#if block.name === 'core/video'}
+		<CoreVideo {block} />
 	{/if}
 </div>
 

@@ -1,5 +1,4 @@
 import { GRAPHQL_ENDPOINT } from '$env/static/private'
-
 import { error } from '@sveltejs/kit'
 
 export function checkResponse(response: Response) {
@@ -15,17 +14,23 @@ export function checkResponse(response: Response) {
 
 export async function graphqlQuery<TData = any, TVariables = any>(
 	query: string,
-	variables: TVariables
+	variables: TVariables,
+	options?: { requireAuth?: boolean }
 ): Promise<Response> {
+	const headers: HeadersInit = {
+		'content-type': 'application/json'
+	}
+
+	// Note: To enable authenticated requests, import WP_USERNAME and WP_APP_PW
+	// from $env/static/private and add them to your .env file
+
 	return fetch(GRAPHQL_ENDPOINT, {
 		method: 'POST',
-		headers: {
-			'content-type': 'application/json'
-		},
+		headers,
 		body: JSON.stringify({
 			query,
 			variables
 		}),
-		cache: 'no-cache' // This tells the fetch to bypass the cache
+		cache: 'no-cache'
 	})
 }
