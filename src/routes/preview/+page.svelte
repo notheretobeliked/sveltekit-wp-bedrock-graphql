@@ -1,7 +1,7 @@
 <script lang="ts">
 	import BlockRenderer from '$components/BlockRenderer.svelte'
 	import type { PageData } from './$types'
-	import PreviewBanner from '$lib/components/PreviewBanner.svelte'
+	import PreviewBanner from '$components/PreviewBanner.svelte'
 
 	interface Props {
 		data: PageData
