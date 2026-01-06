@@ -1,10 +1,14 @@
 query PageMeta($uri: String!) {
-	menu(id: "main-menu", idType: SLUG) {
-		menuItems {
-			nodes {
-				label
-				order
-				uri
+	menus(first: 1) {
+		nodes {
+			name
+			locations
+			menuItems {
+				nodes {
+					label
+					order
+					uri
+				}
 			}
 		}
 	}

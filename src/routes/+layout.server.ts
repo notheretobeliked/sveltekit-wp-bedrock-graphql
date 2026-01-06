@@ -3,41 +3,73 @@ import type { PageMetaQuery } from '$lib/graphql/generated'
 import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
 import type { LayoutServerLoad } from './$types'
 import { error } from '@sveltejs/kit'
-import { PUBLIC_SITE_URL } from '$env/static/public' // Ensure this import is correct
+import { PUBLIC_SITE_URL } from '$env/static/public'
+
+// Default empty menu structure for graceful fallback
+const emptyMenu = {
+	menuItems: {
+		nodes: [] as Array<{ label?: string | null; order?: number | null; uri?: string | null; current?: boolean }>
+	}
+}
+
 interface LoadReturn {
 	data: PageMetaQuery
-	menu: NonNullable<PageMetaQuery['menu']>
+	menu: typeof emptyMenu
 	seo: NonNullable<NonNullable<PageMetaQuery['page']>['seo']>
 	uri: string
 }
 
-export const load: LayoutServerLoad<LoadReturn> = async function load({ params, url }) {
-
+export const load: LayoutServerLoad<LoadReturn> = async function load({ url }) {
 	let uri = url.pathname
-	// Remove language prefix from URI before making the GraphQL query	
 	if (uri === '') {
 		uri = '/'
 	}
 
 	try {
-		const response = await graphqlQuery(PageMeta, { uri: uri })
+		const response = await graphqlQuery(PageMeta, { uri })
 		checkResponse(response)
 
-		const { data }: { data: PageMetaQuery } = await response.json()
+		const json = await response.json()
+
+		// Handle case where GraphQL returns errors or no data
+		if (!json || !json.data) {
+			console.error('GraphQL response missing data:', json)
+			return {
+				data: { menus: null, page: null } as unknown as PageMetaQuery,
+				menu: emptyMenu,
+				seo: {
+					title: 'Website',
+					metaDesc: '',
+					opengraphUrl: `${PUBLIC_SITE_URL}${uri}`,
+					opengraphImage: null
+				},
+				uri
+			} satisfies LoadReturn
+		}
+
+		const data: PageMetaQuery = json.data
+
+		// Extract menu from menus array (query by location returns array)
+		const firstMenu = data.menus?.nodes?.[0]
+		let menu = firstMenu ?? emptyMenu
 
 		// Modify menu items to add 'current' key
-		if (data.menu?.menuItems?.nodes) {
-			data.menu.menuItems.nodes = data.menu.menuItems.nodes.map((node) => ({
-				...node,
-				current: node.uri === uri
-			}))
+		if (menu.menuItems?.nodes) {
+			menu = {
+				...menu,
+				menuItems: {
+					...menu.menuItems,
+					nodes: menu.menuItems.nodes.map((node) => ({
+						...node,
+						current: node?.uri === uri
+					}))
+				}
+			}
 		}
 
-		if (!data.menu) {
-			console.error('Menu data check failed:', data.menu)
-			error(500, 'Missing menu data')
+		if (!firstMenu) {
+			console.warn('No menu found in WordPress. Using empty menu fallback. Create a menu in WordPress under Appearance > Menus.')
 		}
-
 
 		// Handle SEO data more gracefully
 		let seoData = data.page?.seo
@@ -54,13 +86,12 @@ export const load: LayoutServerLoad<LoadReturn> = async function load({ params, 
 				metaDesc: 'Meta data about the website',
 				opengraphUrl: `${PUBLIC_SITE_URL}${uri}`,
 				opengraphImage: null
-				// Add other required SEO fields with default values
 			}
 		}
 
 		return {
 			data,
-			menu: data.menu,
+			menu,
 			seo: seoData,
 			uri
 		} satisfies LoadReturn

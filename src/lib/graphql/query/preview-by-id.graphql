@@ -1,0 +1,218 @@
+query PreviewById($id: ID!) {
+	# Try as page first - simplified without asPreview (auth handled by token)
+	page(id: $id, idType: DATABASE_ID) {
+		__typename
+		id
+		databaseId
+		title
+		date
+		status
+		modified
+		editorBlocks {
+			...CommonBlockFields
+		}
+	}
+
+	# Also try as post - simplified without asPreview (auth handled by token)
+	post(id: $id, idType: DATABASE_ID) {
+		__typename
+		id
+		databaseId
+		title
+		date
+		status
+		modified
+		featuredImage {
+			node {
+				altText
+				mediaDetails {
+					sizes {
+						name
+						mimeType
+						height
+						width
+						sourceUrl
+					}
+				}
+			}
+		}
+		editorBlocks {
+			...CommonBlockFields
+		}
+	}
+}
+
+fragment BlockBasicFields on EditorBlock {
+	name
+	parentClientId
+	clientId
+	type
+}
+
+fragment CommonBlockFields on EditorBlock {
+	...BlockBasicFields
+	... on CoreVideo {
+		attributes {
+			autoplay
+			preload
+			src
+			metadata
+			muted
+			controls
+			caption
+			poster
+			align
+			loop
+			className
+		}
+	}
+	... on CorePostTitle {
+		renderedHtml
+		attributes {
+			className
+			fontFamily
+			fontSize
+			textColor
+			textAlign
+			level
+			align
+		}
+	}
+	... on CoreEmbed {
+		renderedHtml
+		attributes {
+			align
+			url
+		}
+	}
+	... on CoreImage {
+		mediaDetails {
+			sizes(exclude: [MEDIUM_LARGE, MEDIUM]) {
+				sourceUrl
+				height
+				width
+				mimeType
+				name
+			}
+		}
+		attributes {
+			title
+			alt
+			url
+			caption
+			aspectRatio
+			className
+		}
+	}
+	... on CoreParagraph {
+		attributes {
+			content
+			fontFamily
+			fontSize
+			textColor
+			align
+			className
+		}
+	}
+	... on CoreFootnotes {
+		renderedHtml
+		innerBlocks {
+			name
+		}
+		attributes {
+			metadata
+		}
+	}
+	... on CoreMore {
+		attributes {
+			customText
+		}
+	}
+	... on CoreList {
+		attributes {
+			ordered
+			reversed
+			start
+			textColor
+			type
+		}
+	}
+	... on CoreListItem {
+		attributes {
+			content
+			fontSize
+			fontFamily
+			textColor
+		}
+	}
+	... on CoreHeading {
+		attributes {
+			content
+			className
+			fontFamily
+			fontSize
+			textColor
+			textAlign
+			level
+			align
+		}
+	}
+	... on CoreColumns {
+		attributes {
+			backgroundColor
+			layout
+			className
+			verticalAlignment
+			style
+			align
+			isStackedOnMobile
+		}
+	}
+	... on CoreColumn {
+		attributes {
+			backgroundColor
+			layout
+			className
+			verticalAlignment
+			width
+			style
+		}
+	}
+	... on CoreGroup {
+		attributes {
+			backgroundColor
+			align
+			style
+		}
+	}
+	... on CoreButton {
+		attributes {
+			backgroundColor
+			style
+			fontSize
+			linkTarget
+			text
+			url
+		}
+		innerBlocks {
+			apiVersion
+			blockEditorCategoryName
+			clientId
+			name
+			parentClientId
+			renderedHtml
+		}
+	}
+	... on CoreButtons {
+		attributes {
+			align
+			layout
+		}
+	}
+	... on CoreSpacer {
+		attributes {
+			height
+			style
+		}
+	}
+}

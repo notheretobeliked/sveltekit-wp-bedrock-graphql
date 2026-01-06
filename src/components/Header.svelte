@@ -1,6 +1,18 @@
 <script lang="ts">
 	import { Hamburger } from 'svelte-hamburgers'
 
+	interface MenuItem {
+		label?: string | null
+		order?: number | null
+		uri?: string | null
+		current?: boolean
+	}
+
+	interface Props {
+		menuItems?: MenuItem[]
+	}
+
+	let { menuItems = [] }: Props = $props()
 
 	let showToast = $state(false)
 
@@ -74,7 +86,7 @@
 			class="flex flew-row gap-4 lg:gap-0 lg:grid lg:grid-cols-3 items-center h-full px-4 w-full max-w-screen-xl mx-auto text-black"
 		>
 			<h1
-				class="font-boogy text-lg whitespace-nowrap text-black">
+				class="text-base whitespace-nowrap text-blac text-center">
 				<a href="/" class="">Website title</a>
 			</h1>
 
@@ -89,6 +101,17 @@
 				? 'flex flex-col'
 				: 'hidden'}"
 		>
+			{#each menuItems as item}
+				<li>
+					<a
+						href={item.uri}
+						class="text-lg hover:underline {item.current ? 'font-bold' : ''}"
+						onclick={() => (open = false)}
+					>
+						{item.label}
+					</a>
+				</li>
+			{/each}
 		</ul>
 	</nav>
 </header>

@@ -4,6 +4,7 @@
 	import type { LayoutData } from './$types'
 	import Twitter from '$components/SEO/Twitter.svelte'
 	import OpenGraph from '$components/SEO/OpenGraph.svelte'
+	import Header from '$components/Header.svelte';
 
 	interface Props {
 		data: LayoutData;
@@ -21,7 +22,7 @@
 
 
 </script>
-
+<Header {menuItems} />
 {#key $page.url.pathname}
 	<OpenGraph {image} {metadescription} {pageTitle} {siteTitle} {siteUrl} />
 	<Twitter {image} {metadescription} {pageTitle} {siteUrl} />

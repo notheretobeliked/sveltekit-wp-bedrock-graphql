@@ -12,17 +12,36 @@ export function checkResponse(response: Response) {
 	}
 }
 
+interface GraphQLOptions {
+	/** Include authentication headers */
+	includeAuth?: boolean
+	/** Original request (for cookie forwarding) */
+	request?: Request
+	/** Preview token from WordPress */
+	token?: string
+}
+
 export async function graphqlQuery<TData = any, TVariables = any>(
 	query: string,
 	variables: TVariables,
-	options?: { requireAuth?: boolean }
+	options?: GraphQLOptions
 ): Promise<Response> {
 	const headers: HeadersInit = {
 		'content-type': 'application/json'
 	}
 
-	// Note: To enable authenticated requests, import WP_USERNAME and WP_APP_PW
-	// from $env/static/private and add them to your .env file
+	// Add preview token if provided
+	if (options?.token) {
+		headers['X-Preview-Token'] = options.token
+	}
+
+	// Forward cookies from request if includeAuth is set
+	if (options?.includeAuth && options?.request) {
+		const cookie = options.request.headers.get('cookie')
+		if (cookie) {
+			headers['Cookie'] = cookie
+		}
+	}
 
 	return fetch(GRAPHQL_ENDPOINT, {
 		method: 'POST',
