@@ -8,24 +8,19 @@
 
 	let { block }: Props = $props()
 
-	const {
-		content = '',
-		fontSize = 'base',
-		textColor = 'black',
-		fontFamily = null
-	} = block.attributes ?? {}
+	let content = $derived(block.attributes?.content ?? '')
+	let attrClasses = $derived(
+		classNames(
+			block.attributes?.fontSize,
+			block.attributes?.textColor,
+			null,
+			block.attributes?.fontFamily
+		)
+	)
 </script>
 
-<!-- Use the class directive in Svelte to dynamically set classes -->
 {#if content}
-	<li
-		class="{classNames(
-			fontSize || 'base',
-			textColor || 'black',
-            'none',
-			fontFamily || 'inter'
-		)} mb-4 mx-2 lg:mx-0"
-	>
+	<li class={attrClasses}>
 		{@html content}
-    </li>
+	</li>
 {/if}

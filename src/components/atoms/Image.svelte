@@ -2,14 +2,16 @@
 	import type { MediaItem, MediaSize } from '$lib/graphql/generated'
 	import type { ImageSize } from '$lib/types/wp-types'
 	import { findImageSizeData, getSrcSet } from '$lib/utilities/utilities'
-	type ImageSizeName = 'thumbnail' | 'medium' | 'medium_large' | 'large'  | 'x_large'
+
+	type ImageSizeName = 'thumbnail' | 'medium' | 'medium_large' | 'large' | 'x_large'
+
 	interface Props {
-		imageObject: MediaItem;
-		lazy?: boolean;
-		imageSize?: ImageSizeName;
-		fit?: 'cover' | 'contain' | 'fill' | 'none';
-		extraClasses?: string;
-		shadow?: boolean;
+		imageObject: MediaItem
+		lazy?: boolean
+		imageSize?: ImageSizeName
+		fit?: 'cover' | 'contain' | 'fill' | 'none'
+		extraClasses?: string
+		shadow?: boolean
 	}
 
 	let {
@@ -19,19 +21,23 @@
 		fit = 'none',
 		extraClasses = '',
 		shadow = false
-	}: Props = $props();
-	const sizes = imageObject?.mediaDetails?.sizes
-		?.filter((size): size is MediaSize => size !== null && typeof size.name === 'string')
-		.map(size => ({
-			sourceUrl: size.sourceUrl ?? '',
-			width: parseInt(size.width ?? '0'),
-			height: parseInt(size.height ?? '0'),
-			name: size.name as ImageSize['name']
-		})) ?? []
-	const src = findImageSizeData('sourceUrl', sizes, imageSize)
-	const width = findImageSizeData('width', sizes, imageSize)
-	const height = findImageSizeData('height', sizes, imageSize)
-	const altText = imageObject.altText ?? ''
+	}: Props = $props()
+
+	let sizes = $derived(
+		imageObject?.mediaDetails?.sizes
+			?.filter((size): size is MediaSize => size !== null && typeof size.name === 'string')
+			.map((size) => ({
+				sourceUrl: size.sourceUrl ?? '',
+				width: parseInt(size.width ?? '0'),
+				height: parseInt(size.height ?? '0'),
+				name: size.name as ImageSize['name']
+			})) ?? []
+	)
+
+	let src = $derived(findImageSizeData('sourceUrl', sizes, imageSize))
+	let width = $derived(findImageSizeData('width', sizes, imageSize))
+	let height = $derived(findImageSizeData('height', sizes, imageSize))
+	let altText = $derived(imageObject?.altText ?? '')
 
 	function determineSizes(sizeName: ImageSizeName): string {
 		switch (sizeName) {
@@ -44,13 +50,11 @@
 			case 'large':
 				return '(max-width: 1200px) 100vw, 50vw'
 			default:
-				return '100vw' // Fallback size for any unhandled cases
+				return '100vw'
 		}
 	}
 
-	const srcsetLabels = determineSizes(imageSize)
-
-
+	let srcsetLabels = $derived(determineSizes(imageSize))
 </script>
 <div class="relative w-full h-full max-w-none flex justify-center">
   <img

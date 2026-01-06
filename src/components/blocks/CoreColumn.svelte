@@ -8,9 +8,6 @@
 
 	let { block }: Props = $props()
 
-	// Handle vertical alignment from attributes
-	const verticalAlignment = block.attributes?.verticalAlignment || 'top'
-
 	// Map vertical alignment to CSS classes
 	const getAlignmentClass = (alignment: string) => {
 		switch (alignment) {
@@ -27,12 +24,14 @@
 		}
 	}
 
-	const alignmentClass = getAlignmentClass(verticalAlignment)
-	const customClasses = block.attributes?.className || ''
+	let verticalAlignment = $derived(block.attributes?.verticalAlignment || 'top')
+	let alignmentClass = $derived(getAlignmentClass(verticalAlignment))
+	let customClasses = $derived(block.attributes?.className || '')
+	let children = $derived(block.children || [])
 </script>
 
 <div class="flex flex-col h-full grow {alignmentClass} {customClasses}">
-	{#each block.children || [] as childBlock}
+	{#each children as childBlock}
 		<BlockRenderer block={childBlock} />
 	{/each}
 </div>

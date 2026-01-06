@@ -1,14 +1,15 @@
 <script lang="ts">
 	import type { CoreImage, MediaItem } from '$lib/graphql/generated'
 	import Image from '$components/atoms/Image.svelte'
+
 	interface Props {
-		block: CoreImage;
+		block: CoreImage
 	}
 
-	let { block }: Props = $props();
+	let { block }: Props = $props()
 
-	const imageObject = {
-		altText: block.attributes?.alt ? block.attributes.alt : '',
+	let imageObject = $derived({
+		altText: block.attributes?.alt ?? '',
 		mediaDetails: {
 			sizes: block.mediaDetails?.sizes ?? []
 		},
@@ -19,12 +20,14 @@
 		isTermNode: false,
 		slug: '',
 		uri: ''
-	} as MediaItem
+	} as MediaItem)
+
+	let caption = $derived(block.attributes?.caption)
 </script>
 
-<figure class="mb-4 w-full lg:w-3/4 mx-auto">
+<figure class="mb-4 w-full">
 	<Image {imageObject} imageSize="large" fit="contain" />
-    {#if block.attributes?.caption}
-        <figcaption class="font-inter text-sm mt-2 text-center">{block.attributes.caption}</figcaption>
-    {/if}
+	{#if caption}
+		<figcaption class="font-sans text-sm mt-2 text-center">{caption}</figcaption>
+	{/if}
 </figure>

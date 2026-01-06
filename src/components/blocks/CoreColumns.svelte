@@ -10,33 +10,28 @@
 
 	let { block }: Props = $props()
 
-	const isStackedOnMobile: boolean = block.attributes?.isStackedOnMobile ?? false
-
 	// Create CSS grid template columns from individual column widths
-	function getGridTemplateColumns(): string {
+	let gridTemplateColumns = $derived.by(() => {
 		const children = block.children || []
 		return children.map((child: CoreColumnExtended) => child.attributes?.width || '1fr').join(' ') || '1fr'
-	}
+	})
 
-	// Get the grid style object
-	function getGridStyle(): string {
-		const gridTemplateColumns = getGridTemplateColumns()
-		return `grid-template-columns: ${gridTemplateColumns};`
-	}
-
-	// Get CSS classes for responsive behavior
-	function getCssClasses(): string {
-		const baseClasses = `${block.attributes?.className || ''} corecolumns grid gap-7 mb-7`
-		return baseClasses.trim()
-	}
+	let isStackedOnMobile = $derived(block.attributes?.isStackedOnMobile ?? false)
+	let cssClasses = $derived(`${block.attributes?.className || ''} corecolumns grid gap-7 mb-7`.trim())
+	let gridStyle = $derived(
+		isStackedOnMobile
+			? `grid-template-columns: 1fr; --grid-columns: ${gridTemplateColumns};`
+			: `grid-template-columns: ${gridTemplateColumns};`
+	)
+	let children = $derived(block.children || [])
 </script>
 
 <div
-	class={getCssClasses()}
+	class={cssClasses}
 	data-stacked={isStackedOnMobile}
-	style={isStackedOnMobile ? `grid-template-columns: 1fr; --grid-columns: ${getGridTemplateColumns()};` : getGridStyle()}
+	style={gridStyle}
 >
-	{#each block.children || [] as childBlock}
+	{#each children as childBlock}
 		<BlockRenderer block={childBlock} />
 	{/each}
 </div>

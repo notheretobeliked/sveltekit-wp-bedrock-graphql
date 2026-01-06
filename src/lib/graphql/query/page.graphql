@@ -37,6 +37,7 @@ fragment BlockBasicFields on EditorBlock {
 	name
 	parentClientId
 	clientId
+	type
 }
 
 fragment CommonBlockFields on EditorBlock {

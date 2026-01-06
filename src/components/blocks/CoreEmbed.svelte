@@ -42,16 +42,13 @@
 		return url.includes('flourish.studio') || url.includes('flourish-embed')
 	}
 
-	const embedUrl = getEmbedUrl(block.attributes?.url ?? '') || ''
-	const rawUrl = block.attributes?.url ?? ''
-
-	// Determine if this is a Flourish embed
-	const isFlourishEmbed = checkFlourishEmbed(rawUrl)
+	let rawUrl = $derived(block.attributes?.url ?? '')
+	let embedUrl = $derived(getEmbedUrl(rawUrl) || '')
+	let isFlourishEmbed = $derived(checkFlourishEmbed(rawUrl))
 
 	// Handle Flourish embed initialization
 	onMount(() => {
 		if (isFlourishEmbed && flourishContainer) {
-			// Load the Flourish script if not already loaded
 			if (!document.querySelector('script[src="https://public.flourish.studio/resources/embed.js"]')) {
 				const script = document.createElement('script')
 				script.src = 'https://public.flourish.studio/resources/embed.js'

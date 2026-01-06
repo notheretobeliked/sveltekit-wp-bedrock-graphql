@@ -3,33 +3,24 @@
 	import { classNames } from '$lib/utilities/utilities'
 
 	interface Props {
-		block: CoreParagraph;
+		block: CoreParagraph
 	}
 
-	let { block }: Props = $props();
+	let { block }: Props = $props()
 
-    const {
-        content = '',
-        fontSize = 'base',
-        textColor = 'black',
-        align = 'left',
-        fontFamily = null
-    } = block.attributes ?? {}
-
-
+	let content = $derived(block.attributes?.content ?? '')
+	let attrClasses = $derived(
+		classNames(
+			block.attributes?.fontSize,
+			block.attributes?.textColor,
+			block.attributes?.align,
+			block.attributes?.fontFamily
+		)
+	)
 </script>
 
-<!-- Use the class directive in Svelte to dynamically set classes -->
 {#if content}
-	<p
-		class="{classNames(
-			fontSize || 'base',
-			textColor || 'black',
-			align || 'left',
-			fontFamily || 'inter',
-		)} mb-4 mx-2 lg:mx-0"
-	>
-	{@html content}
-</p>
-
+	<p class={attrClasses}>
+		{@html content}
+	</p>
 {/if}

@@ -7,25 +7,23 @@
 
 	let { block }: Props = $props()
 
-	// Extract video attributes with safe defaults
-	const src = block.attributes?.src || ''
-	const poster = block.attributes?.poster || ''
-	const autoplay = block.attributes?.autoplay || false
-	const muted = block.attributes?.muted || false
-	const controls = block.attributes?.controls !== false // Default to true if not specified
-	const loop = block.attributes?.loop || false
+	// Extract video attributes with safe defaults using $derived
+	let src = $derived(block.attributes?.src || '')
+	let poster = $derived(block.attributes?.poster || '')
+	let autoplay = $derived(block.attributes?.autoplay || false)
+	let muted = $derived(block.attributes?.muted || false)
+	let controls = $derived(block.attributes?.controls !== false)
+	let loop = $derived(block.attributes?.loop || false)
+	let caption = $derived(block.attributes?.caption || '')
+	let customClasses = $derived(block.attributes?.className || '')
 
 	// Make sure preload is a valid value
-	const rawPreload = block.attributes?.preload || 'metadata'
-	const preload: 'auto' | 'metadata' | 'none' =
-		['auto', 'metadata', 'none'].includes(rawPreload)
+	let preload = $derived.by(() => {
+		const rawPreload = block.attributes?.preload || 'metadata'
+		return ['auto', 'metadata', 'none'].includes(rawPreload)
 			? (rawPreload as 'auto' | 'metadata' | 'none')
 			: 'metadata'
-
-	const caption = block.attributes?.caption || ''
-
-	// Additional CSS classes
-	const customClasses = block.attributes?.className || ''
+	})
 </script>
 
 <figure class={`mb-4 w-full ${customClasses}`}>
@@ -50,7 +48,7 @@
 	{/if}
 
 	{#if caption}
-		<figcaption class="font-inter mt-2 text-center text-sm">
+		<figcaption class="font-sans mt-2 text-center text-sm">
 			{@html caption}
 		</figcaption>
 	{/if}

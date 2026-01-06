@@ -3,7 +3,7 @@
 
 @theme {
 	--font-sans: Inter, sans-serif;
-	--font-inter: Inter, sans-serif;
+	--font-sans: Inter, sans-serif;
 
 	/* Reset default colors and define custom palette */
 	--color-*: initial;
@@ -63,18 +63,75 @@
 	@apply max-w-[1100px] mx-auto;
 }
 
+/* Typography defaults - applied unless overridden by block attributes */
 p {
-	@apply text-lg;
+	@apply font-sans text-base mb-4;
 }
 
-p a {
+h1 {
+	@apply font-sans text-2xl md:text-3xl lg:text-4xl mb-4;
+}
+
+h2 {
+	@apply font-sans text-xl md:text-2xl mb-3;
+}
+
+h3 {
+	@apply font-sans text-lg md:text-xl mb-3;
+}
+
+h4 {
+	@apply font-sans text-base md:text-lg mb-2;
+}
+
+h5,
+h6 {
+	@apply font-sans text-sm md:text-base mb-2;
+}
+
+ul,
+ol {
+	@apply font-sans text-base mb-4 pl-6;
+}
+
+ul {
+	@apply list-disc;
+}
+
+ol {
+	@apply list-decimal;
+}
+
+li {
+	@apply mb-1;
+}
+
+/* Link styles */
+a {
 	@apply border-dotted border-b-blue border-b hover:text-blue;
 }
 
-p sup a {
+sup a {
 	@apply border-none text-blue;
 }
 
-p strong {
+strong {
 	@apply font-semibold;
+}
+
+/* Footnotes */
+.footnotes {
+	@apply border-t border-black mt-9 py-3;
+}
+
+.footnotes ol {
+	@apply list-none pl-0;
+}
+
+.footnotes li {
+	@apply text-sm;
+}
+
+.footnotes li::before {
+	content: counter(list-item) '— ';
 }

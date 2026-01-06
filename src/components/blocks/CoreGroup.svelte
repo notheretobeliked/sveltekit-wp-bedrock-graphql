@@ -7,8 +7,9 @@
 	}
 
 	let { block }: Props = $props()
-	const children = block.children || []
-	const bgColor = block.attributes?.backgroundColor ?? 'white'
+
+	let children = $derived(block.children || [])
+	let bgColor = $derived(block.attributes?.backgroundColor ?? 'white')
 </script>
 
 <div class="px-2 md:px-0">

@@ -1,11 +1,13 @@
 <script lang="ts">
-  import type {EditorBlock} from '$lib/types/wp-types.ts'
-  interface Props {
-    block: EditorBlock;
-  }
+	import type { CoreSpacer } from '$lib/graphql/generated'
 
-  let { block }: Props = $props();
-  const height:string = block.attributes.height ? block.attributes.height : '5px'
+	interface Props {
+		block: CoreSpacer
+	}
+
+	let { block }: Props = $props()
+
+	let height = $derived(block.attributes?.height ?? '5px')
 </script>
 
 <div style="height:{height}"></div>

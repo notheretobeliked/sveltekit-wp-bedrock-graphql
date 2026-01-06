@@ -1,20 +1,22 @@
 <script lang="ts">
 	import CoreButton from '$components/blocks/CoreButton.svelte'
 	import type { CoreButtonsBlock } from '$lib/types/wp-types'
+
 	interface Props {
-		block: CoreButtonsBlock;
+		block: CoreButtonsBlock
 	}
 
-	let { block }: Props = $props();
-	const children = block.children
-	const bgColor = block.attributes.backgroundColor ?? 'white'
-	const { justifyContent = 'left' } = block.attributes.layout ?? { justifyContent: 'left' }
+	let { block }: Props = $props()
+
+	let children = $derived(block.children || [])
+	let bgColor = $derived(block.attributes?.backgroundColor ?? 'white')
+	let justifyContent = $derived(block.attributes?.layout?.justifyContent ?? 'left')
 
 	// Utility to generate CSS classes based on justifyContent value
 	function justifyContentClass(
-		justifyContent: 'space-between' | 'left' | 'right' | 'center'
+		value: 'space-between' | 'left' | 'right' | 'center' | string
 	): string {
-		switch (justifyContent) {
+		switch (value) {
 			case 'left':
 				return 'justify-start'
 			case 'center':
@@ -31,10 +33,10 @@
 
 <div class="px-2 md:px-0">
 	<div
-		class={`m-auto flex ${justifyContentClass(justifyContent)} ${bgColor === 'black' ? '!text-white-pure' : ''}`}
+		class={`m-auto flex ${justifyContentClass(justifyContent)} ${bgColor === 'black' ? '!text-white' : ''}`}
 	>
-		{#each children as block, index}
-			<CoreButton {block} />
+		{#each children as buttonBlock}
+			<CoreButton block={buttonBlock} />
 		{/each}
 	</div>
 </div>

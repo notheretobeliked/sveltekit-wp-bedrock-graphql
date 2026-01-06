@@ -16,77 +16,73 @@ export const getSrcSet = (sizes: ImageSize[]): string => {
 	return sizes.map(({ sourceUrl, width }) => `${sourceUrl} ${width}w`).join(', ')
 }
 
+/**
+ * Generates Tailwind classes only for explicitly set block attributes.
+ * Returns empty strings for unset values, allowing global CSS to handle defaults.
+ */
 export const classNames = (
-	fontSize: string,
-	textColor: string,
-	align: string,
-	fontFamily: string
+	fontSize: string | null | undefined,
+	textColor: string | null | undefined,
+	align: string | null | undefined,
+	fontFamily: string | null | undefined
 ) => {
-	let sizeClasses: string = ''
-	let fontClasses: string = ''
-	let alignClasses: string = 'text-left'
-	let colorClasses: string = ''
+	const classes: string[] = []
 
-	// Handle font size
-	switch (fontSize) {
-		case 'xs':
-			sizeClasses = 'text-xs'
-			break
-		case 'sm':
-			sizeClasses = 'text-sm'
-			break
-		case 'base':
-			sizeClasses = 'text-base'
-			break
-		case 'lg':
-			sizeClasses = 'text-base md:text-lg'
-			break
-		case 'xl':
-			sizeClasses = 'text-lg md:text-xl'
-			break
-		case '2xl':
-			sizeClasses = 'text-lg md:text-xl md:text-2xl'
-			break
-		case '3xl':
-			sizeClasses = 'text-xl md:text-2xl lg:text-3xl'
-			break
-		case '4xl':
-			sizeClasses = 'text-2xl md:text-4xl'
-			break
-		case '':
-		default:
-			sizeClasses = 'text-sm md:text-base'
-			break
+	// Only add font size class if explicitly set
+	if (fontSize) {
+		switch (fontSize) {
+			case 'xs':
+				classes.push('text-xs')
+				break
+			case 'sm':
+				classes.push('text-sm')
+				break
+			case 'base':
+				classes.push('text-base')
+				break
+			case 'lg':
+				classes.push('text-base md:text-lg')
+				break
+			case 'xl':
+				classes.push('text-lg md:text-xl')
+				break
+			case '2xl':
+				classes.push('text-lg md:text-xl lg:text-2xl')
+				break
+			case '3xl':
+				classes.push('text-xl md:text-2xl lg:text-3xl')
+				break
+			case '4xl':
+				classes.push('text-2xl md:text-4xl')
+				break
+		}
 	}
 
-	// Handle font family
-	switch (fontFamily) {
-		case 'inter':
-			fontClasses = 'font-inter'
-			break
-		case '':
-		default:
-			fontClasses = 'font-inter'
-			break
+	// Only add font family class if explicitly set
+	if (fontFamily) {
+		switch (fontFamily) {
+			case 'inter':
+				classes.push('font-sans')
+				break
+		}
 	}
 
-	// Handle text alignment
-	switch (align) {
-		case 'center':
-			alignClasses = 'text-center'
-			break
-		case 'right':
-			alignClasses = 'text-right'
-			break
-		case '':
-		case 'left':
-		default:
-			alignClasses = 'text-left'
-			break
+	// Only add alignment class if explicitly set (and not default 'left')
+	if (align && align !== 'left') {
+		switch (align) {
+			case 'center':
+				classes.push('text-center')
+				break
+			case 'right':
+				classes.push('text-right')
+				break
+		}
 	}
 
-	// Handle text color
-	colorClasses = textColor ? `text-${textColor}` : ''
+	// Only add color class if explicitly set
+	if (textColor) {
+		classes.push(`text-${textColor}`)
+	}
 
-	return `${sizeClasses} ${fontClasses} ${alignClasses} ${colorClasses}`.trim()
+	return classes.join(' ')
 }
