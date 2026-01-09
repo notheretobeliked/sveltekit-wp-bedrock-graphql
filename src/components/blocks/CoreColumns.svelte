@@ -17,7 +17,23 @@
 	})
 
 	let isStackedOnMobile = $derived(block.attributes?.isStackedOnMobile ?? false)
-	let cssClasses = $derived(`${block.attributes?.className || ''} corecolumns grid gap-7 mb-7`.trim())
+	let align = $derived(block.attributes?.align)
+
+	let alignClass = $derived(
+		align === 'wide'
+			? 'alignwide'
+			: align === 'full'
+				? 'w-screen relative left-1/2 -translate-x-1/2'
+				: align === 'center'
+					? 'self-center'
+					: align === 'left'
+						? 'self-start'
+						: align === 'right'
+							? 'self-end'
+							: ''
+	)
+
+	let cssClasses = $derived(`${block.attributes?.className || ''} ${alignClass} corecolumns grid gap-7 mb-7`.trim())
 	let gridStyle = $derived(
 		isStackedOnMobile
 			? `grid-template-columns: 1fr; --grid-columns: ${gridTemplateColumns};`

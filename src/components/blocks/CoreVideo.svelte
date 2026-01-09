@@ -16,6 +16,21 @@
 	let loop = $derived(block.attributes?.loop || false)
 	let caption = $derived(block.attributes?.caption || '')
 	let customClasses = $derived(block.attributes?.className || '')
+	let align = $derived(block.attributes?.align)
+
+	let alignClass = $derived(
+		align === 'wide'
+			? 'alignwide'
+			: align === 'full'
+				? 'w-screen relative left-1/2 -translate-x-1/2'
+				: align === 'center'
+					? 'self-center'
+					: align === 'left'
+						? 'self-start'
+						: align === 'right'
+							? 'self-end'
+							: ''
+	)
 
 	// Make sure preload is a valid value
 	let preload = $derived.by(() => {
@@ -26,7 +41,7 @@
 	})
 </script>
 
-<figure class={`mb-4 w-full ${customClasses}`}>
+<figure class={`mb-4 w-full ${alignClass} ${customClasses}`}>
 	{#if src}
 		<video
 			{src}

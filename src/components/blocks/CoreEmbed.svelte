@@ -45,6 +45,21 @@
 	let rawUrl = $derived(block.attributes?.url ?? '')
 	let embedUrl = $derived(getEmbedUrl(rawUrl) || '')
 	let isFlourishEmbed = $derived(checkFlourishEmbed(rawUrl))
+	let align = $derived(block.attributes?.align)
+
+	let alignClass = $derived(
+		align === 'wide'
+			? 'alignwide'
+			: align === 'full'
+				? 'w-screen relative left-1/2 -translate-x-1/2'
+				: align === 'center'
+					? 'self-center'
+					: align === 'left'
+						? 'self-start'
+						: align === 'right'
+							? 'self-end'
+							: ''
+	)
 
 	// Handle Flourish embed initialization
 	onMount(() => {
@@ -60,10 +75,10 @@
 </script>
 
 {#if isFlourishEmbed}
-	<div bind:this={flourishContainer} class="w-full mb-4">{@html rawUrl}</div>
+	<div bind:this={flourishContainer} class="w-full mb-4 {alignClass}">{@html rawUrl}</div>
 {:else if embedUrl !== ''}
 	<div
-		class="relative w-full {embedUrl.includes('soundcloud.com') ? 'h-[166px]' : 'pt-[56.25%]'} mb-4"
+		class="relative w-full {alignClass} {embedUrl.includes('soundcloud.com') ? 'h-[166px]' : 'pt-[56.25%]'} mb-4"
 	>
 		<iframe
 			class="absolute left-0 top-0 h-full w-full"

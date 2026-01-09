@@ -93,6 +93,7 @@ fragment CommonBlockFields on EditorBlock {
 			caption
 			aspectRatio
 			className
+			align
 		}
 	}
 	... on CoreParagraph {

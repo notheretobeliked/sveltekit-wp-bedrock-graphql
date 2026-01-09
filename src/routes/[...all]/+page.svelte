@@ -12,7 +12,7 @@
 	let editorBlocks = $derived(data.editorBlocks ?? [])
 </script>
 
-<div class="{isHomePage ? 'pt-14 pb-0' : 'pt-24'} min-h-screen">
+<div class="{isHomePage ? 'pt-14 pb-0' : 'pt-24'} min-h-screen flex flex-col">
 	{#each editorBlocks as block (block.clientId)}
 		<BlockRenderer {block} />
 	{/each}

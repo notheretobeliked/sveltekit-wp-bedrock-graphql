@@ -1,18 +1,30 @@
 <script lang="ts">
 	import { Hamburger } from 'svelte-hamburgers'
+	import { page } from '$app/stores'
 
 	interface MenuItem {
 		label?: string | null
 		order?: number | null
 		uri?: string | null
-		current?: boolean
 	}
 
 	interface Props {
-		menuItems?: MenuItem[]
+		menuItems?: MenuItem[],
+		siteTitle: string
 	}
 
-	let { menuItems = [] }: Props = $props()
+	let { menuItems = [], siteTitle = "My website" }: Props = $props()
+
+	// Normalize paths by removing trailing slashes (except for root)
+	const normalizePath = (path: string) => {
+		if (path === '/') return path
+		return path.endsWith('/') ? path.slice(0, -1) : path
+	}
+
+	const isCurrent = (itemUri: string | null | undefined) => {
+		if (!itemUri) return false
+		return normalizePath($page.url.pathname) === normalizePath(itemUri)
+	}
 
 	let showToast = $state(false)
 
@@ -87,7 +99,7 @@
 		>
 			<h1
 				class="text-base whitespace-nowrap text-blac text-center">
-				<a href="/" class="">Website title</a>
+				<a href="/" class="">{siteTitle}</a>
 			</h1>
 
 		</div>
@@ -97,7 +109,7 @@
 		<ul
 			role="navigation"
 			aria-label="Main"
-			class="fixed w-full items-center h-screen inset-0 z-30 bg-white-off justify-center flex-row gap-6 text-black {open
+			class="fixed w-full items-center h-screen inset-0 z-30 bg-white-off justify-center flex-col gap-6 text-black list-none {open
 				? 'flex flex-col'
 				: 'hidden'}"
 		>
@@ -105,7 +117,7 @@
 				<li>
 					<a
 						href={item.uri}
-						class="text-lg hover:underline {item.current ? 'font-bold' : ''}"
+						class="text-lg hover:underline {isCurrent(item.uri) ? 'font-bold' : ''}"
 						onclick={() => (open = false)}
 					>
 						{item.label}

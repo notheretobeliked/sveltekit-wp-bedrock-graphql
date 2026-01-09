@@ -20,9 +20,8 @@
 	const siteUrl = seo.siteUrl
 	const siteTitle = seo.opengraphSiteName // Assuming this is used for og:site_name
 
-
 </script>
-<Header {menuItems} />
+<Header {menuItems} {siteTitle}/>
 {#key $page.url.pathname}
 	<OpenGraph {image} {metadescription} {pageTitle} {siteTitle} {siteUrl} />
 	<Twitter {image} {metadescription} {pageTitle} {siteUrl} />
