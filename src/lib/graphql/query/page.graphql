@@ -207,4 +207,17 @@ fragment CommonBlockFields on EditorBlock {
 			style
 		}
 	}
+	... on CoreQuote {
+		attributes {
+			citation
+			layout
+			textAlign
+			className
+			fontFamily
+			fontSize
+			textColor
+			align
+			value
+		}
+	}
 }

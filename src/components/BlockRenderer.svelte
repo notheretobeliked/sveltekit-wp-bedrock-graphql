@@ -15,6 +15,7 @@
 	import CoreList from './blocks/CoreList.svelte'
 	import CoreListItem from './blocks/CoreListItem.svelte'
 	import CoreParagraph from './blocks/CoreParagraph.svelte'
+	import CoreQuote from './blocks/CoreQuote.svelte'
 	import CoreSpacer from './blocks/CoreSpacer.svelte'
 	import CoreVideo from './blocks/CoreVideo.svelte'
 
@@ -33,6 +34,7 @@
 		CoreList,
 		CoreListItem,
 		CoreParagraph,
+		CoreQuote,
 		CoreSpacer,
 		CoreVideo
 	}
