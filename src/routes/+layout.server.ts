@@ -82,8 +82,8 @@ export const load: LayoutServerLoad<LoadReturn> = async function load({ url }) {
 		} else {
 			// Provide fallback SEO data
 			seoData = {
-				title: 'Website title',
-				metaDesc: 'Meta data about the website',
+				title: '',
+				metaDesc: '',
 				opengraphUrl: `${PUBLIC_SITE_URL}${uri}`,
 				opengraphImage: null
 			}

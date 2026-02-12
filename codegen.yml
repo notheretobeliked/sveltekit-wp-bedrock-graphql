@@ -1,4 +1,4 @@
-schema: http://heatstrike.test/wp/graphql
+schema: ${GRAPHQL_ENDPOINT:-http://example.test/wp/graphql}
 documents: 
   - './src/**/*.graphql'
   - '!./src/**/*preview*.graphql'

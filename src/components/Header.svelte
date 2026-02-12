@@ -36,7 +36,7 @@
 		if (navigator.share) {
 			try {
 				await navigator.share({
-					title: 'Website title',
+					title: siteTitle,
 					url: window.location.href
 				})
 			} catch (error) {
