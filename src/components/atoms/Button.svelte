@@ -26,7 +26,7 @@
 		textColourClass = 'text-black'
 	}: Props = $props();
 	run(() => {
-		colourClass = active ? 'bg-black text-white-pure' : 'bg-white-off'
+		if (active) colourClass = 'bg-black text-white'
 	});
 	function handleClick(event: MouseEvent) {
 		if (url === '#') {
@@ -38,7 +38,7 @@
 <a
 	href={url}
 	onclick={handlers(handleClick, bubble('click'))}
-	class="{colourClass} rounded-lg border-black transition-all duration-500 hover:bg-black hover:text-white-pure hover:border-white py-2 px-4 border-white border {textClass} {textColourClass} cursor-pointer {fullWidth ? 'w-full block text-center' : 'inline'}"
+	class="{colourClass} rounded-full transition-all duration-500 hover:bg-black hover:text-white py-2 px-[2.5rem] border-none {textClass} {textColourClass} cursor-pointer no-underline {fullWidth ? 'w-full block text-center' : 'inline'}"
 	role="button"
 >
 	{label}

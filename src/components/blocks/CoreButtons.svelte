@@ -9,7 +9,6 @@
 	let { block }: Props = $props()
 
 	let children = $derived(block.children || [])
-	let bgColor = $derived(block.attributes?.backgroundColor ?? 'white')
 	let justifyContent = $derived(block.attributes?.layout?.justifyContent ?? 'left')
 
 	// Utility to generate CSS classes based on justifyContent value
@@ -33,7 +32,7 @@
 
 <div class="px-2 md:px-0">
 	<div
-		class={`m-auto flex ${justifyContentClass(justifyContent)} ${bgColor === 'black' ? '!text-white' : ''}`}
+		class={`m-auto flex ${justifyContentClass(justifyContent)}`}
 	>
 		{#each children as buttonBlock}
 			<CoreButton block={buttonBlock} />

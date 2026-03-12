@@ -152,6 +152,7 @@ fragment CommonBlockFields on EditorBlock {
 	... on CoreColumns {
 		attributes {
 			backgroundColor
+			textColor
 			layout
 			className
 			verticalAlignment
@@ -163,6 +164,7 @@ fragment CommonBlockFields on EditorBlock {
 	... on CoreColumn {
 		attributes {
 			backgroundColor
+			textColor
 			layout
 			className
 			verticalAlignment
@@ -173,6 +175,7 @@ fragment CommonBlockFields on EditorBlock {
 	... on CoreGroup {
 		attributes {
 			backgroundColor
+			textColor
 			align
 			style
 		}
@@ -180,19 +183,15 @@ fragment CommonBlockFields on EditorBlock {
 	... on CoreButton {
 		attributes {
 			backgroundColor
+			textColor
+			borderColor
+			className
 			style
 			fontSize
+			fontFamily
 			linkTarget
 			text
 			url
-		}
-		innerBlocks {
-			apiVersion
-			blockEditorCategoryName
-			clientId
-			name
-			parentClientId
-			renderedHtml
 		}
 	}
 	... on CoreButtons {
@@ -218,6 +217,44 @@ fragment CommonBlockFields on EditorBlock {
 			textColor
 			align
 			value
+		}
+	}
+	... on CoreLatestPosts {
+		attributes {
+			postsToShow
+			displayPostDate
+			className
+			align
+		}
+		resolvedPosts {
+			...ResolvedPostFields
+		}
+	}
+	... on CoreQuery {
+		attributes {
+			align
+			className
+		}
+		resolvedPosts {
+			...ResolvedPostFields
+		}
+	}
+}
+
+fragment ResolvedPostFields on ResolvedPost {
+	title
+	date
+	uri
+	excerpt
+	featuredImage {
+		sourceUrl
+		altText
+		sizes {
+			sourceUrl
+			width
+			height
+			name
+			mimeType
 		}
 	}
 }

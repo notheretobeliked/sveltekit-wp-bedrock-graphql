@@ -17,6 +17,7 @@
 	import CoreParagraph from './blocks/CoreParagraph.svelte'
 	import CoreQuote from './blocks/CoreQuote.svelte'
 	import CoreSpacer from './blocks/CoreSpacer.svelte'
+	import CoreLatestPosts from './blocks/CoreLatestPosts.svelte'
 	import CoreVideo from './blocks/CoreVideo.svelte'
 
 	// Component map keyed by block type (matches GraphQL `type` field)
@@ -31,6 +32,7 @@
 		CoreGroup,
 		CoreHeading,
 		CoreImage,
+		CoreLatestPosts,
 		CoreList,
 		CoreListItem,
 		CoreParagraph,
@@ -54,37 +56,49 @@
 	)
 	let verticalAlignment = $derived(block.attributes?.verticalAlignment ?? null)
 	let bgColor = $derived(block.attributes?.backgroundColor ?? '')
+	let textColor = $derived(block.attributes?.textColor ?? '')
 
-	interface StyleObject {
-		spacing?: {
-			padding?: {
-				top?: string
-				bottom?: string
+	/**
+	 * Extracts a Tailwind spacing value from a WordPress preset string.
+	 * After server normalization, format is "spacing|50" → 5 (50 / 10).
+	 * Also handles raw "var:preset|spacing|50" as a fallback.
+	 */
+	function presetToSpacing(value: string): string | null {
+		const match = value.match(/(?:var:preset\|)?spacing\|(\d+)/)
+		if (match) return String(parseInt(match[1], 10) / 10)
+		return null
+	}
+
+	let spacingClasses = $derived.by(() => {
+		const raw = block.attributes?.style
+		if (!raw) return ''
+
+		try {
+			const style = typeof raw === 'string' ? JSON.parse(raw) : raw
+			const padding = style?.spacing?.padding
+			if (!padding) return ''
+
+			const classes: string[] = []
+			const sides = [
+				['top', 'pt'],
+				['right', 'pr'],
+				['bottom', 'pb'],
+				['left', 'pl']
+			] as const
+
+			for (const [side, prefix] of sides) {
+				const val = padding[side]
+				if (val) {
+					const tw = presetToSpacing(val)
+					if (tw) classes.push(`${prefix}-${tw}`)
+				}
 			}
+
+			return classes.join(' ')
+		} catch {
+			return ''
 		}
-	}
-
-	function mapSpacingToTailwind(styleObj: StyleObject): string {
-		let classes = ''
-		const topPadding = styleObj?.spacing?.padding?.top?.replace('spacing|', '')
-		const bottomPadding = styleObj?.spacing?.padding?.bottom?.replace('spacing|', '')
-
-		if (topPadding) {
-			const topValue = parseInt(topPadding, 10) / 10
-			classes += ` pt-${topValue}`
-		}
-
-		if (bottomPadding) {
-			const bottomValue = parseInt(bottomPadding, 10) / 10
-			classes += ` pb-${bottomValue}`
-		}
-
-		return classes.trim()
-	}
-
-	let spacingClasses = $derived(
-		block.attributes?.style ? mapSpacingToTailwind(block.attributes.style as StyleObject) : ''
-	)
+	})
 
 	let alignClasses = $derived.by(() => {
 		switch (align) {
@@ -94,7 +108,7 @@
 				return 'w-full max-w-screen-xl mx-auto'
 			case 'none':
 			case 'center':
-				return 'w-full max-w-screen-md mx-auto'
+				return 'w-full max-w-[1320px] mx-auto'
 			default:
 				return 'w-full'
 		}
@@ -115,29 +129,13 @@
 		}
 	})
 
-	let bgClasses = $derived.by(() => {
-		switch (bgColor) {
-			case 'green':
-				return 'bg-green'
-			case 'black':
-				return 'bg-black'
-			case 'yellow':
-				return 'bg-yellow'
-			case 'blue':
-				return 'bg-blue'
-			case 'red':
-				return 'bg-red'
-			case 'sand':
-				return 'bg-sand'
-			default:
-				return ''
-		}
-	})
+	let bgClasses = $derived(bgColor ? `bg-${bgColor}` : '')
+	let textClasses = $derived(textColor ? `text-${textColor}` : '')
 
 	let blockClass = $derived(block.name?.toLowerCase().replace('/', '-') ?? '')
 </script>
 
-<div class="{blockClass} {verticalAlignClasses} {alignClasses} {spacingClasses} {bgClasses} !px-0">
+<div class="{blockClass} {verticalAlignClasses} {alignClasses} {spacingClasses} {bgClasses} {textClasses}">
 	{#if component}
 		{@const Component = component}
 		<Component {block} />

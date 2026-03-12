@@ -10,10 +10,18 @@
 
 	let { block }: Props = $props()
 
-	// Create CSS grid template columns from individual column widths
+	// Create CSS grid template columns from individual column widths.
+	// Convert percentages to fr units so gaps don't cause overflow
+	// (e.g. "50% 50%" + gap = >100%, but "50fr 50fr" + gap = exactly 100%).
 	let gridTemplateColumns = $derived.by(() => {
 		const children = block.children || []
-		return children.map((child: CoreColumnExtended) => child.attributes?.width || '1fr').join(' ') || '1fr'
+		return children.map((child: CoreColumnExtended) => {
+			const width = child.attributes?.width
+			if (!width) return '1fr'
+			const pct = parseFloat(width)
+			if (!isNaN(pct)) return `${pct}fr`
+			return width
+		}).join(' ') || '1fr'
 	})
 
 	let isStackedOnMobile = $derived(block.attributes?.isStackedOnMobile ?? false)
@@ -53,6 +61,10 @@
 </div>
 
 <style>
+	.corecolumns > :global(*) {
+		min-width: 0;
+	}
+
 	@media (min-width: 768px) {
 		.corecolumns[data-stacked='true'] {
 			grid-template-columns: var(--grid-columns) !important;

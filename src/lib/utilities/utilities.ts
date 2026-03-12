@@ -61,6 +61,7 @@ export const classNames = (
 	// Only add font family class if explicitly set
 	if (fontFamily) {
 		switch (fontFamily) {
+			case 'sans':
 			case 'inter':
 				classes.push('font-sans')
 				break
