@@ -15,13 +15,13 @@
 </script>
 
 {#if isOrdered}
-	<ol class="mb-4 list-decimal list-inside">
+	<ol class="list-decimal list-outside">
 		{#each children as childBlock}
 			<BlockRenderer block={childBlock} />
 		{/each}
 	</ol>
 {:else}
-	<ul class="mb-4 list-disc list-inside">
+	<ul class="list-disc list-outside">
 		{#each children as childBlock}
 			<BlockRenderer block={childBlock} />
 		{/each}

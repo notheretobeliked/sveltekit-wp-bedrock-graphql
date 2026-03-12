@@ -9,17 +9,46 @@
 
 	let { block }: Props = $props()
 
+	let attrs = $derived(block.attributes)
+	let style = $derived.by(() => {
+		const raw = attrs?.style
+		if (!raw) return null
+		try {
+			return typeof raw === 'string' ? JSON.parse(raw) : raw
+		} catch {
+			return null
+		}
+	})
+	let borderRadius = $derived(style?.border?.radius ?? '')
+
 	let attrClasses = $derived(
-		classNames(block.attributes?.fontSize, null, null, null)
+		classNames(attrs?.fontSize, null, null, null)
 	)
-	let url = $derived(block.attributes?.url ?? '')
-	let label = $derived(block.attributes?.text ?? '')
+	let url = $derived(attrs?.url ?? '')
+	let label = $derived(attrs?.text ?? '')
 	let bgColor = $derived(
-		block.attributes?.backgroundColor ? `bg-${block.attributes.backgroundColor}` : undefined
+		attrs?.backgroundColor ? `bg-${attrs.backgroundColor}` : undefined
 	)
 	let txtColor = $derived(
-		block.attributes?.textColor ? `text-${block.attributes.textColor}` : undefined
+		attrs?.textColor ? `text-${attrs.textColor}` : undefined
 	)
+	let className = $derived(attrs?.className ?? '')
+	let combinedTextClass = $derived(`${attrClasses} ${className}`.trim())
+	let borderRadiusStyle = $derived(borderRadius ? `border-radius: ${borderRadius}` : '')
 </script>
 
-<Button textClass={attrClasses} colourClass={bgColor} textColourClass={txtColor} {url} {label} />
+<span class="core-button-wrap" style={borderRadiusStyle}>
+	<Button
+		textClass={combinedTextClass}
+		colourClass={bgColor}
+		textColourClass={txtColor}
+		{url}
+		{label}
+	/>
+</span>
+
+<style>
+	.core-button-wrap :global(a) {
+		border-radius: inherit;
+	}
+</style>

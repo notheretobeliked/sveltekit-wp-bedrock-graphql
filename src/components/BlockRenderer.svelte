@@ -103,9 +103,9 @@
 	let alignClasses = $derived.by(() => {
 		switch (align) {
 			case 'full':
-				return 'w-full max-w-full'
+				return 'alignfull w-full max-w-full'
 			case 'wide':
-				return 'w-full max-w-screen-xl mx-auto'
+				return 'alignwide w-full max-w-screen-xl mx-auto'
 			case 'none':
 			case 'center':
 				return 'w-full max-w-[1320px] mx-auto'

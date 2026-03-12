@@ -1,5 +1,5 @@
 query PageMeta($uri: String!) {
-	menus(first: 1) {
+	menus(where: { location: PRIMARY_NAVIGATION }, first: 1) {
 		nodes {
 			name
 			locations

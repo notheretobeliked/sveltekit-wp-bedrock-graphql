@@ -10,6 +10,12 @@
 
 	let { block }: Props = $props()
 
+	function presetToSpacing(value: string): string | null {
+		const match = value.match(/(?:var:preset\|)?spacing\|(\d+)/)
+		if (match) return String(parseInt(match[1], 10) / 10)
+		return null
+	}
+
 	// Create CSS grid template columns from individual column widths.
 	// Convert percentages to fr units so gaps don't cause overflow
 	// (e.g. "50% 50%" + gap = >100%, but "50fr 50fr" + gap = exactly 100%).
@@ -25,23 +31,22 @@
 	})
 
 	let isStackedOnMobile = $derived(block.attributes?.isStackedOnMobile ?? false)
-	let align = $derived(block.attributes?.align)
 
-	let alignClass = $derived(
-		align === 'wide'
-			? 'alignwide'
-			: align === 'full'
-				? 'w-screen relative left-1/2 -translate-x-1/2'
-				: align === 'center'
-					? 'self-center'
-					: align === 'left'
-						? 'self-start'
-						: align === 'right'
-							? 'self-end'
-							: ''
-	)
+	let gapClass = $derived.by(() => {
+		const raw = block.attributes?.style
+		if (!raw) return 'gap-4'
+		try {
+			const style = typeof raw === 'string' ? JSON.parse(raw) : raw
+			const blockGap = style?.spacing?.blockGap
+			if (blockGap) {
+				const tw = presetToSpacing(blockGap)
+				if (tw) return `gap-${tw}`
+			}
+		} catch { /* use default */ }
+		return 'gap-4'
+	})
 
-	let cssClasses = $derived(`${block.attributes?.className || ''} ${alignClass} corecolumns grid gap-7 mb-7`.trim())
+	let cssClasses = $derived(`${block.attributes?.className || ''} corecolumns grid ${gapClass}`.trim())
 	let gridStyle = $derived(
 		isStackedOnMobile
 			? `grid-template-columns: 1fr; --grid-columns: ${gridTemplateColumns};`

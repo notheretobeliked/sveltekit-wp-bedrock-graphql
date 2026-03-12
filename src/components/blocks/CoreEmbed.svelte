@@ -75,10 +75,10 @@
 </script>
 
 {#if isFlourishEmbed}
-	<div bind:this={flourishContainer} class="w-full mb-4 {alignClass}">{@html rawUrl}</div>
+	<div bind:this={flourishContainer} class="w-full {alignClass}">{@html rawUrl}</div>
 {:else if embedUrl !== ''}
 	<div
-		class="relative w-full {alignClass} {embedUrl.includes('soundcloud.com') ? 'h-[166px]' : 'pt-[56.25%]'} mb-4"
+		class="relative w-full {alignClass} {embedUrl.includes('soundcloud.com') ? 'h-[166px]' : 'pt-[56.25%]'}"
 	>
 		<iframe
 			class="absolute left-0 top-0 h-full w-full"

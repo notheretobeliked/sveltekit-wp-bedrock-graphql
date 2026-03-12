@@ -35,22 +35,45 @@
 	let customClasses = $derived(block.attributes?.className || '')
 	let children = $derived(block.children || [])
 
-	let gapClass = $derived.by(() => {
+	let spacingClasses = $derived.by(() => {
 		const raw = block.attributes?.style
-		if (!raw) return ''
+		if (!raw) return { gap: '', padding: '' }
 		try {
 			const style = typeof raw === 'string' ? JSON.parse(raw) : raw
-			const gap = style?.spacing?.blockGap
-			if (!gap) return ''
-			const tw = presetToSpacing(gap)
-			return tw ? `gap-${tw}` : ''
+			const spacing = style?.spacing
+
+			let gap = ''
+			if (spacing?.blockGap) {
+				const tw = presetToSpacing(spacing.blockGap)
+				if (tw) gap = `gap-${tw}`
+			}
+
+			const paddingClasses: string[] = []
+			const padding = spacing?.padding
+			if (padding) {
+				const sides = [
+					['top', 'pt'],
+					['right', 'pr'],
+					['bottom', 'pb'],
+					['left', 'pl']
+				] as const
+				for (const [side, prefix] of sides) {
+					const val = padding[side]
+					if (val) {
+						const tw = presetToSpacing(val)
+						if (tw) paddingClasses.push(`${prefix}-${tw}`)
+					}
+				}
+			}
+
+			return { gap, padding: paddingClasses.join(' ') }
 		} catch {
-			return ''
+			return { gap: '', padding: '' }
 		}
 	})
 </script>
 
-<div class="flex flex-col h-full grow min-w-0 {alignmentClass} {customClasses} {gapClass}">
+<div class="flex flex-col h-full grow min-w-0 {alignmentClass} {customClasses} {spacingClasses.gap} {spacingClasses.padding}">
 	{#each children as childBlock}
 		<BlockRenderer block={childBlock} />
 	{/each}

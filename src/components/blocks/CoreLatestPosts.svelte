@@ -25,6 +25,7 @@
 		block: {
 			attributes?: {
 				displayPostDate?: boolean
+				displayFeaturedImage?: boolean
 				className?: string
 			}
 			resolvedPosts?: ResolvedPost[]
@@ -35,6 +36,7 @@
 
 	let posts = $derived(block.resolvedPosts ?? [])
 	let showDate = $derived(block.attributes?.displayPostDate ?? false)
+	let showImage = $derived(block.attributes?.displayFeaturedImage ?? false)
 
 	function formatDate(dateStr: string): string {
 		const date = new Date(dateStr)
@@ -52,7 +54,7 @@
 		{#each posts as post}
 			<li>
 				<a href={post.uri} class="flex gap-4 items-start no-underline hover:opacity-75 transition-opacity duration-200">
-					{#if post.featuredImage}
+					{#if showImage && post.featuredImage}
 						<img
 							src={getThumbnail(post.featuredImage)}
 							alt={post.featuredImage.altText || post.title}
@@ -61,7 +63,7 @@
 						/>
 					{/if}
 					<div>
-						<span class="font-sans">{post.title}</span>
+						<span class="font-sans">{@html post.title}</span>
 						{#if showDate && post.date}
 							<span class="block text-sm opacity-50 font-sans">{formatDate(post.date)}</span>
 						{/if}

@@ -1,3 +1,5 @@
+import { WORDPRESS_URL, CDN_URL } from '$env/static/private'
+
 export interface HierarchicalOptions {
 	idKey?: string
 	parentKey?: string
@@ -39,7 +41,7 @@ export function flatListToHierarchical<T extends Record<string, any>>(
  * Returns a relative path if the URL matches the WordPress URL
  */
 export function normalizeUrl(url: string): string {
-	const wordpressUrl = process.env.WORDPRESS_URL || ''
+	const wordpressUrl = WORDPRESS_URL || ''
 	if (!wordpressUrl) return url
 
 	// Generate variations of the WordPress URL
@@ -67,7 +69,7 @@ export function normalizeUrl(url: string): string {
  * Only applies if CDN_URL environment variable is set
  */
 export function normalizeAssetUrl(url: string): string {
-	const cdnUrl = process.env.CDN_URL
+	const cdnUrl = CDN_URL
 	if (!cdnUrl) return url // No CDN configured, return original URL
 
 	const assetExtensions = [
@@ -87,7 +89,7 @@ export function normalizeAssetUrl(url: string): string {
 
 	if (!hasAssetExtension) return url
 
-	const wordpressUrl = process.env.WORDPRESS_URL || ''
+	const wordpressUrl = WORDPRESS_URL || ''
 	if (!wordpressUrl) return url
 
 	// Generate variations of the WordPress URL
@@ -110,8 +112,32 @@ export function normalizeAssetUrl(url: string): string {
 	return url
 }
 
+const assetExtensionSet = new Set([
+	'gif', 'jpg', 'jpeg', 'png', 'webp', 'svg', 'bmp', 'tiff', 'tif', 'ico', 'avif', 'heic', 'heif',
+	'mp4', 'm4v', 'mov', 'avi', 'mkv', 'wmv', 'flv', 'webm', '3gp', 'ogv',
+	'mp3', 'wav', 'ogg', 'flac', 'm4a', 'wma', 'aif', 'aiff',
+	'pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'rtf'
+])
+
+function isAssetUrl(url: string): boolean {
+	const ext = url.toLowerCase().split('.').pop()?.split('?')[0]
+	return ext ? assetExtensionSet.has(ext) : false
+}
+
 /**
- * Recursively normalize all URLs in an object that look like asset URLs
+ * Normalize any URL from the backend:
+ * - Asset URLs (images, videos, etc.) get CDN rewriting if configured, otherwise left as-is
+ * - All other WordPress URLs get converted to relative paths
+ */
+function normalizeAnyUrl(url: string): string {
+	if (isAssetUrl(url)) return normalizeAssetUrl(url)
+	return normalizeUrl(url)
+}
+
+/**
+ * Recursively normalize all URLs in an object
+ * - Asset URLs get CDN rewriting
+ * - WordPress backend URLs get converted to relative paths
  */
 export function normalizeAssetUrlsInObject(obj: any): void {
 	if (obj === null || obj === undefined) return
@@ -124,7 +150,7 @@ export function normalizeAssetUrlsInObject(obj: any): void {
 	if (typeof obj === 'object') {
 		Object.keys(obj).forEach(key => {
 			if (typeof obj[key] === 'string' && obj[key].match(/^https?:\/\//)) {
-				obj[key] = normalizeAssetUrl(obj[key])
+				obj[key] = normalizeAnyUrl(obj[key])
 			} else {
 				normalizeAssetUrlsInObject(obj[key])
 			}
@@ -139,7 +165,7 @@ function normalizeHtmlContent(htmlContent: string): string {
 	if (typeof htmlContent !== 'string') return htmlContent
 
 	return htmlContent.replace(/href=["']([^"']+)["']/g, (match, url) => {
-		const normalizedUrl = normalizeAssetUrl(url)
+		const normalizedUrl = normalizeAnyUrl(url)
 		return `href="${normalizedUrl}"`
 	})
 }

@@ -41,7 +41,7 @@
 	})
 </script>
 
-<figure class={`mb-4 w-full ${alignClass} ${customClasses}`}>
+<figure class={`w-full ${alignClass} ${customClasses}`}>
 	{#if src}
 		<video
 			{src}

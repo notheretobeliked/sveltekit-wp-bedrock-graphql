@@ -11,6 +11,7 @@
 
 	let children = $derived(block.children || [])
 	let citation = $derived(block.attributes?.citation ?? '')
+	let customClasses = $derived(block.attributes?.className ?? '')
 	let attrClasses = $derived(
 		classNames(
 			block.attributes?.fontSize,
@@ -21,11 +22,13 @@
 	)
 </script>
 
-<blockquote class={attrClasses}>
+<blockquote class="{attrClasses} {customClasses}">
 	{#each children as childBlock}
-		<BlockRenderer block={childBlock} />
+		<BlockRenderer block={childBlock} forceFull />
 	{/each}
 	{#if citation}
-		<cite>{@html citation}</cite>
+		<cite class="block mt-2 text-sm font-sans not-italic">
+			{@html citation}
+		</cite>
 	{/if}
 </blockquote>

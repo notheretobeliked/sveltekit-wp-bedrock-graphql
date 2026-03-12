@@ -9,27 +9,12 @@
 	let { block }: Props = $props()
 
 	let children = $derived(block.children || [])
-	let align = $derived(block.attributes?.align)
 
 	function presetToSpacing(value: string): string | null {
 		const match = value.match(/(?:var:preset\|)?spacing\|(\d+)/)
 		if (match) return String(parseInt(match[1], 10) / 10)
 		return null
 	}
-
-	let alignClass = $derived(
-		align === 'wide'
-			? 'alignwide'
-			: align === 'full'
-				? 'w-screen relative left-1/2 -translate-x-1/2'
-				: align === 'center'
-					? 'self-center'
-					: align === 'left'
-						? 'self-start'
-						: align === 'right'
-							? 'self-end'
-							: ''
-	)
 
 	let gapClass = $derived.by(() => {
 		const raw = block.attributes?.style
@@ -44,12 +29,23 @@
 			return ''
 		}
 	})
+
+	let layoutType = $derived.by(() => {
+		const raw = block.attributes?.layout
+		if (!raw) return null
+		try {
+			const layout = typeof raw === 'string' ? JSON.parse(raw) : raw
+			return layout?.type ?? null
+		} catch {
+			return null
+		}
+	})
+
+	let childForceFull = $derived(layoutType === 'default')
 </script>
 
-<div class="px-2 md:px-0 {alignClass}">
-	<div class="flex flex-col {gapClass} m-auto">
-		{#each children as childBlock}
-			<BlockRenderer block={childBlock} />
-		{/each}
-	</div>
+<div class="flex flex-col {gapClass}">
+	{#each children as childBlock}
+		<BlockRenderer block={childBlock} forceFull={childForceFull} />
+	{/each}
 </div>
