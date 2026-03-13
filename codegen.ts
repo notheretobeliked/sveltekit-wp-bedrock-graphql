@@ -6,7 +6,10 @@ const config: CodegenConfig = {
 	documents: ['./src/**/*.graphql', '!./src/**/*preview*.graphql'],
 	generates: {
 		'./src/lib/graphql/generated.ts': {
-			plugins: ['typescript', 'typescript-operations', 'typescript-generic-sdk']
+			plugins: ['typescript', 'typescript-operations', 'typescript-generic-sdk'],
+			config: {
+				useTypeImports: true
+			}
 		}
 	}
 }

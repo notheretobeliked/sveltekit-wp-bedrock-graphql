@@ -3,7 +3,7 @@
 	import type { ImageSize } from '$lib/types/wp-types'
 	import { findImageSizeData, getSrcSet } from '$lib/utilities/utilities'
 
-	type ImageSizeName = 'thumbnail' | 'medium' | 'medium_large' | 'large' | 'x_large'
+	type ImageSizeName = string
 
 	interface Props {
 		imageObject: MediaItem
@@ -26,11 +26,11 @@
 	let sizes = $derived(
 		imageObject?.mediaDetails?.sizes
 			?.filter((size): size is MediaSize => size !== null && typeof size.name === 'string')
-			.map((size) => ({
+			.map((size): ImageSize => ({
 				sourceUrl: size.sourceUrl ?? '',
 				width: parseInt(size.width ?? '0'),
 				height: parseInt(size.height ?? '0'),
-				name: size.name as ImageSize['name']
+				name: size.name ?? ''
 			})) ?? []
 	)
 

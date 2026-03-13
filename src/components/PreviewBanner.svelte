@@ -27,7 +27,7 @@
 </script>
 
 {#if isPreview}
-	<div class="preview-banner">
+	<div class="preview-banner" role="status" aria-live="polite">
 		<div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between text-sm font-medium">
 			<div class="flex items-center gap-3">
 				<div class="flex items-center gap-2">

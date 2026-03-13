@@ -1,4 +1,5 @@
 import { WORDPRESS_URL, CDN_URL } from '$env/static/private'
+import type { EditorBlock } from '$lib/types/wp-types'
 
 export interface HierarchicalOptions {
 	idKey?: string
@@ -6,24 +7,31 @@ export interface HierarchicalOptions {
 	childrenKey?: string
 }
 
-export function flatListToHierarchical<T extends Record<string, any>>(
-	data: T[] = [],
+interface PageData {
+	nodeByUri?: { title?: string }
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- dynamic key access required for generic hierarchy builder
+type HierarchicalItem = Record<string, any>
+
+export function flatListToHierarchical(
+	data: HierarchicalItem[] = [],
 	{
 		idKey = 'clientId',
 		parentKey = 'parentClientId',
 		childrenKey = 'children'
 	}: HierarchicalOptions = {},
-	pageData?: any
-): T[] {
-	const tree: T[] = []
-	const childrenOf: Record<string, T[]> = {}
+	pageData?: PageData
+): EditorBlock[] {
+	const tree: HierarchicalItem[] = []
+	const childrenOf: Record<string, HierarchicalItem[]> = {}
 
 	data.forEach((item) => {
-		const newItem: T = { ...item }
-		const parentId: string = (newItem as any)[parentKey] == null ? '0' : (newItem as any)[parentKey]
+		const newItem = { ...item }
+		const parentId: string = newItem[parentKey] == null ? '0' : newItem[parentKey]
 
-		childrenOf[(newItem as any)[idKey]] = childrenOf[(newItem as any)[idKey]] || []
-		;(newItem as any)[childrenKey] = childrenOf[(newItem as any)[idKey]]
+		childrenOf[newItem[idKey]] = childrenOf[newItem[idKey]] || []
+		newItem[childrenKey] = childrenOf[newItem[idKey]]
 
 		if (parentId !== '0') {
 			childrenOf[parentId] = childrenOf[parentId] || []
@@ -33,7 +41,9 @@ export function flatListToHierarchical<T extends Record<string, any>>(
 		}
 	})
 
-	return tree.map(block => normalizeEditorBlock(block, pageData)).filter(block => block !== null)
+	return tree
+		.map(block => normalizeEditorBlock(block as EditorBlock, pageData))
+		.filter((block): block is EditorBlock => block !== null)
 }
 
 /**
@@ -139,7 +149,7 @@ function normalizeAnyUrl(url: string): string {
  * - Asset URLs get CDN rewriting
  * - WordPress backend URLs get converted to relative paths
  */
-export function normalizeAssetUrlsInObject(obj: any): void {
+export function normalizeAssetUrlsInObject(obj: unknown): void {
 	if (obj === null || obj === undefined) return
 
 	if (Array.isArray(obj)) {
@@ -148,11 +158,13 @@ export function normalizeAssetUrlsInObject(obj: any): void {
 	}
 
 	if (typeof obj === 'object') {
-		Object.keys(obj).forEach(key => {
-			if (typeof obj[key] === 'string' && obj[key].match(/^https?:\/\//)) {
-				obj[key] = normalizeAnyUrl(obj[key])
+		const record = obj as Record<string, unknown>
+		Object.keys(record).forEach(key => {
+			const val = record[key]
+			if (typeof val === 'string' && val.match(/^https?:\/\//)) {
+				record[key] = normalizeAnyUrl(val)
 			} else {
-				normalizeAssetUrlsInObject(obj[key])
+				normalizeAssetUrlsInObject(val)
 			}
 		})
 	}
@@ -170,48 +182,51 @@ function normalizeHtmlContent(htmlContent: string): string {
 	})
 }
 
-export function normalizeEditorBlock(block: any, pageData?: any) {
-	// Ensure attributes exists before attempting to access it
-	if (!block.attributes) {
-		block.attributes = {}
-	}
+export function normalizeEditorBlock(block: EditorBlock, pageData?: PageData): EditorBlock | null {
+	// Block data from GraphQL is loosely structured — use record access for safe mutation
+	const attrs = block.attributes ?? ({} as EditorBlock['attributes'])
+	if (!block.attributes) block.attributes = attrs
 
 	// Remove empty core/image blocks that have no meaningful content
 	if (block.name === 'core/image') {
-		const hasUrl = block.attributes?.url && block.attributes.url.trim() !== ''
-		const hasMediaDetails = block.mediaDetails && block.mediaDetails.sizes && block.mediaDetails.sizes.length > 0
-		const hasAltText = block.attributes?.alt && block.attributes.alt.trim() !== ''
+		const hasUrl = attrs?.url && String(attrs.url).trim() !== ''
+		const hasMediaDetails = block.mediaDetails?.sizes?.length > 0
+		const hasAltText = attrs?.alt && String(attrs.alt).trim() !== ''
 
 		if (!hasUrl && !hasMediaDetails && !hasAltText) {
-			return null // Will be filtered out by parent
+			return null
 		}
 	}
 
 	// Handle core/post-title block by adding content from page title
-	if (block.name === 'core/post-title' && pageData?.nodeByUri?.title) {
-		block.attributes.content = pageData.nodeByUri.title
+	if (block.name === 'core/post-title' && pageData?.nodeByUri?.title && attrs) {
+		attrs.content = pageData.nodeByUri.title
 	}
 
 	// Normalize URLs for core/link and core/button blocks
-	if ((block.name === 'core/link' || block.name === 'core/button') && block.attributes.url) {
-		block.attributes.url = normalizeUrl(block.attributes.url)
+	if ((block.name === 'core/link' || block.name === 'core/button') && attrs?.url) {
+		attrs.url = normalizeUrl(String(attrs.url))
 	}
 
 	// Normalize asset URLs in various block attributes
-	if (block.attributes) {
-		if (block.attributes.src) {
-			block.attributes.src = normalizeAssetUrl(block.attributes.src)
+	if (attrs) {
+		if (attrs.src) {
+			attrs.src = normalizeAssetUrl(String(attrs.src))
 		}
 
-		if (block.attributes.style && typeof block.attributes.style === 'object' && block.attributes.style.backgroundImage) {
-			block.attributes.style.backgroundImage = block.attributes.style.backgroundImage.replace(
-				/url\(['"]?([^'"]+)['"]?\)/g,
-				(match: string, url: string) => `url('${normalizeAssetUrl(url)}')`
-			)
+		if (attrs.style && typeof attrs.style === 'object') {
+			const style = attrs.style as Record<string, unknown>
+			if (typeof style.backgroundImage === 'string') {
+				style.backgroundImage = style.backgroundImage.replace(
+					/url\(['"]?([^'"]+)['"]?\)/g,
+					(_match: string, url: string) => `url('${normalizeAssetUrl(url)}')`
+				)
+			}
 		}
 
-		if (block.attributes.mediaDetails && block.attributes.mediaDetails.sizes) {
-			block.attributes.mediaDetails.sizes.forEach((size: any) => {
+		const mediaDetails = attrs.mediaDetails as { sizes?: Array<Record<string, string>> } | undefined
+		if (mediaDetails?.sizes) {
+			mediaDetails.sizes.forEach((size) => {
 				if (size.sourceUrl) {
 					size.sourceUrl = normalizeAssetUrl(size.sourceUrl)
 				}
@@ -220,41 +235,35 @@ export function normalizeEditorBlock(block: any, pageData?: any) {
 	}
 
 	// Check if 'core/more' block and add necessary attributes
-	if (block.name === 'core/more') {
-		block.attributes = {
-			...block.attributes,
-			align: null,
-			verticalAlignment: null,
-			style: null
-		}
+	if (block.name === 'core/more' && attrs) {
+		attrs.align = null
+		attrs.verticalAlignment = null
+		attrs.style = null
 	}
 
-	// Check if 'style' attribute exists and is a string
-	if (typeof block.attributes.style === 'string') {
+	// Parse JSON 'style' attribute
+	if (attrs && typeof attrs.style === 'string') {
 		try {
-			block.attributes.style = JSON.parse(block.attributes.style.replace(/var:preset\|/g, ''))
+			const parsed = JSON.parse(attrs.style.replace(/var:preset\|/g, ''))
+			attrs.style = parsed
 
-			if (
-				block.attributes.style.elements &&
-				block.attributes.style.elements.link &&
-				block.attributes.style.elements.link.color &&
-				block.attributes.style.elements.link.color.text
-			) {
-				const colorValue = block.attributes.style.elements.link.color.text.split('|')[1]
-				block.attributes.textColor = colorValue
+			if (parsed?.elements?.link?.color?.text) {
+				const colorValue = String(parsed.elements.link.color.text).split('|')[1]
+				attrs.textColor = colorValue
 			}
-		} catch (error) {
-			console.error('Error parsing style attribute:', error)
-			block.attributes.style = null
+		} catch (err) {
+			console.error('Error parsing style attribute:', err)
+			attrs.style = null
 		}
 	}
 
-	if (typeof block.attributes.layout === 'string') {
+	// Parse JSON 'layout' attribute
+	if (attrs && typeof attrs.layout === 'string') {
 		try {
-			block.attributes.layout = JSON.parse(block.attributes.layout)
-		} catch (error) {
-			console.error('Error parsing layout attribute:', error)
-			block.attributes.layout = null
+			attrs.layout = JSON.parse(attrs.layout)
+		} catch (err) {
+			console.error('Error parsing layout attribute:', err)
+			attrs.layout = null
 		}
 	}
 
@@ -262,13 +271,13 @@ export function normalizeEditorBlock(block: any, pageData?: any) {
 	normalizeAssetUrlsInObject(block)
 
 	// Process HTML content in blocks (like core/paragraph with <a> tags)
-	if (block.attributes && block.attributes.content) {
-		block.attributes.content = normalizeHtmlContent(block.attributes.content)
+	if (attrs?.content && typeof attrs.content === 'string') {
+		attrs.content = normalizeHtmlContent(attrs.content)
 	}
 
 	// Normalize child blocks recursively
 	if (block.children) {
-		const moreIndex = block.children.findIndex((child: any) => child.name === 'core/more')
+		const moreIndex = block.children.findIndex((child) => child.name === 'core/more')
 		if (moreIndex !== -1) {
 			const beforeMore = block.children.slice(0, moreIndex)
 			const afterMore = block.children.slice(moreIndex + 1)
@@ -277,11 +286,15 @@ export function normalizeEditorBlock(block: any, pageData?: any) {
 				...beforeMore,
 				{
 					name: 'custom/read-more-wrapper',
-					children: afterMore.map((child: any) => normalizeEditorBlock(child, pageData)).filter((child: any) => child !== null)
-				}
+					children: afterMore
+						.map((child) => normalizeEditorBlock(child, pageData))
+						.filter((c): c is EditorBlock => c !== null)
+				} as EditorBlock
 			]
 		} else {
-			block.children = block.children.map((child: any) => normalizeEditorBlock(child, pageData)).filter((child: any) => child !== null)
+			block.children = block.children
+				.map((child) => normalizeEditorBlock(child, pageData))
+				.filter((c): c is EditorBlock => c !== null)
 		}
 	}
 

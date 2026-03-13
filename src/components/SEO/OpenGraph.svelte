@@ -25,12 +25,16 @@
   }: Props = $props();
 
   // Helper function to select an image size, defaults to 'large' or the first available size
-  function selectImageSize(sizes, preferredSize = 'large') {
+  type ImageSizeEntry = NonNullable<NonNullable<NonNullable<ImageObject['mediaDetails']>['sizes']>[number]>
+
+  function selectImageSize(sizes: ImageSizeEntry[], preferredSize = 'large'): ImageSizeEntry | undefined {
     return sizes.find(size => size.name === preferredSize) || sizes[0]
   }
 
-  // Use optional chaining (?) and nullish coalescing (??) operators to safely access properties
-  let imageUrl = $derived(image ? selectImageSize(image.mediaDetails.sizes ?? []).sourceUrl ?? undefined : undefined)
+  let validSizes = $derived(
+    image?.mediaDetails?.sizes?.filter((s): s is ImageSizeEntry => s != null) ?? []
+  )
+  let imageUrl = $derived(validSizes.length > 0 ? selectImageSize(validSizes)?.sourceUrl : undefined)
 </script>
 
 <svelte:head>
@@ -44,6 +48,8 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content={pageTitle} />
   <meta property="og:description" content={metadescription} />
-  <meta property="og:image" content={imageUrl} />
-  <meta property="og:image:alt" content={image?.altText} />
+  {#if imageUrl}
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content={image?.altText ?? ''} />
+  {/if}
 </svelte:head>

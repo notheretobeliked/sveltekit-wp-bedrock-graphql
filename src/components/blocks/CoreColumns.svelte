@@ -60,8 +60,8 @@
 	data-stacked={isStackedOnMobile}
 	style={gridStyle}
 >
-	{#each children as childBlock}
-		<BlockRenderer block={childBlock} />
+	{#each children as childBlock, i}
+		<BlockRenderer block={childBlock} staggerIndex={i} />
 	{/each}
 </div>
 

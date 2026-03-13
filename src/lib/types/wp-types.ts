@@ -1,135 +1,96 @@
-export type NonEmptyArray<T> = [T, ...T[]]
+import type { EditorBlock as GeneratedEditorBlock } from '$lib/graphql/generated'
 
-export interface LayoutAPIResponse {
-  menu: Menu
-  page: {
-    seo: SEO
-  }
-  uri: string
+/**
+ * Common block attributes accessible on any block via GraphQL.
+ * Specific block types (CoreParagraph, CoreGroup, etc.) have their own
+ * typed attributes, but BlockRenderer needs generic access to common fields.
+ */
+export interface BlockAttributes {
+	align?: string | null
+	backgroundColor?: string | null
+	textColor?: string | null
+	className?: string | null
+	fontSize?: string | null
+	fontFamily?: string | null
+	textAlign?: string | null
+	content?: string | null
+	verticalAlignment?: string | null
+	style?: string | Record<string, unknown> | null
+	layout?: string | Record<string, unknown> | null
+	height?: string | null
+	url?: string | null
+	alt?: string | null
+	src?: string | null
+	ordered?: boolean | null
+	level?: number | null
+	width?: string | null
+	isStackedOnMobile?: boolean | null
+	citation?: string | null
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	[key: string]: any
 }
 
-export interface Menu {
-  menuItems: {
-    nodes: MenuItem[] // You already have MenuItem defined
-  }
+/**
+ * Extended EditorBlock type that includes:
+ * - `children` added by flatListToHierarchical at runtime
+ * - `attributes` as a generic record (specific blocks narrow this further)
+ * - `mediaDetails` for image blocks
+ */
+export type EditorBlock = GeneratedEditorBlock & {
+	children?: EditorBlock[]
+	attributes?: BlockAttributes
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	mediaDetails?: any
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	resolvedPosts?: any[]
+	/** Pagination metadata attached by +page.server.ts for CoreQuery blocks */
+	paginationData?: {
+		currentPage: number
+		totalPages: number
+		baseUri: string
+		perPage: number
+		totalPosts: number
+	}
+	/** Post context fields attached by CorePostTemplate per iteration */
+	postTitle?: string
+	postDate?: string
+	postUri?: string
+	postFeaturedImage?: Record<string, unknown>
 }
 
-// Assuming SEO structure needs to be defined based on your new data
-export interface SEO {
-  metaDesc: string
-  metaKeywords: string
-  opengraphSiteName: string
-  opengraphTitle: string
-  opengraphPublisher: string
-  opengraphUrl: string
-  title: string
-  twitterDescription: string
-  twitterTitle: string
-  twitterImage: ImageObject | null // Adjust based on your actual data
-  opengraphImage: ImageObject | null
-}
-
-// Adjust or extend MediaDetails and MediaSize if necessary to match the new structure
-
-export interface HomePageContentResponse {
-  page: {
-    id: string
-    editorBlocks: EditorBlock[]
-  }
-}
-
+/**
+ * Menu item with `current` flag added by +layout.server.ts
+ */
 export interface MenuItem {
-  label: string
-  order: number
-  uri: string
-  current: boolean
+	label?: string | null
+	order?: number | null
+	uri?: string | null
+	current?: boolean
 }
 
-export interface CoreButtonsAttributes extends Attributes {
-  layout: {
-    justifyContent: 'space-between' | 'left' | 'right' | 'center'
-    type: 'flex'
-  }
-}
-
-export interface CoreButtonsBlock extends EditorBlock {
-  name: 'core/buttons'
-  attributes: CoreButtonsAttributes
-  children: CoreButtonBlock[]
-}
-
-export interface CoreButtonAttributes extends Attributes {
-  linkTarget?: '_blank' | '_self' | '_parent' | '_top'
-  text?: string
-  url?: string
-  fontSize?: string | null
-  align?: 'full' | 'wide ' | 'center' | 'right' | '' | null
-}
-
-export interface CoreButtonBlock extends EditorBlock {
-  name: 'core/button'
-  attributes: CoreButtonAttributes
-  children: [] // CoreButtonBlock does not have children
-}
-
-export interface EditorBlock {
-  name: string
-  parentClientId: string | null
-  clientId: string
-  attributes: Attributes
-  children?: EditorBlock[]
-}
-
-export interface Attributes {
-  backgroundColor?: string
-  content?: string
-  fontFamily?: string | null
-  fontSize?: string | null
-  textColor?: string | null
-  textAlign?: string | null
-  align?: 'full' | 'wide ' | 'center' | 'right' | '' | null
-  alignment?: 'full' | 'wide ' | 'center' | 'right' | '' | null
-  level?: number | null
-  height?: string
-  layout?: Layout | string | null
-  style?: string | null
-}
-
-export interface Layout {
-  type: string
-  justifyContent: string
-}
-
-export interface NameAndSlug {
-  slug: string
-  name: string
-}
-
-// Enum for known size names
-export type ImageSizeName = 'medium' | 'large' | 'thumbnail' | 'medium_large' | '1536x1536' | '2048x2048'
-
-// More specific ImageSize type with width and height as numbers and name as enum
+/**
+ * Image size data used by utilities (getSrcSet, findImageSizeData)
+ * and the Image atom component.
+ */
 export type ImageSize = {
-  name: ImageSizeName
-  sourceUrl: string
-  width: number // Assuming you might want to process these as numbers
-  height: number
+	name: string
+	sourceUrl: string
+	width: number
+	height: number
 }
 
-export type MediaSize = {
-  sourceUrl: string
-  width: number
-  height: number
-  name: ImageSizeName
-}
-
-export type MediaDetails = {
-  sizes: NonEmptyArray<MediaSize>
-}
-
+/**
+ * Image object from Yoast SEO data, used by OpenGraph and Twitter components.
+ */
 export type ImageObject = {
-  altText: string
-  caption: string | null
-  mediaDetails: MediaDetails
-  // Add optional properties here if needed
+	altText?: string | null
+	caption?: string | null
+	mediaDetails?: {
+		sizes?: Array<{
+			name?: string | null
+			sourceUrl?: string | null
+			width?: string | null
+			height?: string | null
+		} | null> | null
+	} | null
 }

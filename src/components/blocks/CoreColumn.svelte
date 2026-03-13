@@ -1,9 +1,10 @@
 <script lang="ts">
 	import type { CoreColumn } from '$lib/graphql/generated'
+	import type { EditorBlock } from '$lib/types/wp-types'
 	import BlockRenderer from '$components/BlockRenderer.svelte'
 
 	interface Props {
-		block: CoreColumn & { children?: any[] }
+		block: CoreColumn & { children?: EditorBlock[] }
 	}
 
 	let { block }: Props = $props()

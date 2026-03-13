@@ -1,16 +1,18 @@
 <script lang="ts">
-	interface ImageSize {
+	import type { CoreLatestPosts } from '$lib/graphql/generated'
+
+	interface ResolvedPostImageSize {
 		sourceUrl: string
 		width: string
 		height: string
 		name: string
-		mimeType: string
+		mimeType?: string
 	}
 
-	interface FeaturedImage {
+	interface ResolvedPostImage {
 		sourceUrl: string
 		altText: string
-		sizes: ImageSize[]
+		sizes: ResolvedPostImageSize[]
 	}
 
 	interface ResolvedPost {
@@ -18,18 +20,11 @@
 		date: string
 		uri: string
 		excerpt?: string
-		featuredImage?: FeaturedImage
+		featuredImage?: ResolvedPostImage
 	}
 
 	interface Props {
-		block: {
-			attributes?: {
-				displayPostDate?: boolean
-				displayFeaturedImage?: boolean
-				className?: string
-			}
-			resolvedPosts?: ResolvedPost[]
-		}
+		block: CoreLatestPosts & { resolvedPosts?: ResolvedPost[] }
 	}
 
 	let { block }: Props = $props()
@@ -43,7 +38,7 @@
 		return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
 	}
 
-	function getThumbnail(image: FeaturedImage): string {
+	function getThumbnail(image: ResolvedPostImage): string {
 		const medium = image.sizes?.find((s) => s.name === 'MEDIUM')
 		return medium?.sourceUrl ?? image.sourceUrl
 	}

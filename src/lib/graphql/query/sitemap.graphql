@@ -1,0 +1,14 @@
+query Sitemap {
+  pages: contentNodes(where: { contentTypes: [PAGE], status: PUBLISH }, first: 500) {
+    nodes {
+      uri
+      modifiedGmt
+    }
+  }
+  posts: contentNodes(where: { contentTypes: [POST], status: PUBLISH }, first: 500) {
+    nodes {
+      uri
+      modifiedGmt
+    }
+  }
+}

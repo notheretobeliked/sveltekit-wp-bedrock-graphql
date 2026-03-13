@@ -21,9 +21,9 @@ interface GraphQLOptions {
 	token?: string
 }
 
-export async function graphqlQuery<TData = any, TVariables = any>(
+export async function graphqlQuery(
 	query: string,
-	variables: TVariables,
+	variables: Record<string, unknown>,
 	options?: GraphQLOptions
 ): Promise<Response> {
 	const headers: HeadersInit = {

@@ -2,27 +2,72 @@ import PageMeta from '$lib/graphql/query/menu.graphql?raw'
 import type { PageMetaQuery } from '$lib/graphql/generated'
 import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
 import type { LayoutServerLoad } from './$types'
-import { error } from '@sveltejs/kit'
+import { error, isHttpError } from '@sveltejs/kit'
 import { PUBLIC_SITE_URL } from '$env/static/public'
 
-// Default empty menu structure for graceful fallback
-const emptyMenu = {
+interface MenuItemWithCurrent {
+	label?: string | null
+	order?: number | null
+	uri?: string | null
+	current?: boolean
+}
+
+interface NormalizedMenu {
+	menuItems?: {
+		nodes: MenuItemWithCurrent[]
+	} | null
+}
+
+const emptyMenu: NormalizedMenu = {
 	menuItems: {
-		nodes: [] as Array<{ label?: string | null; order?: number | null; uri?: string | null; current?: boolean }>
+		nodes: []
 	}
 }
 
 interface LoadReturn {
 	data: PageMetaQuery
-	menu: typeof emptyMenu
-	seo: NonNullable<NonNullable<PageMetaQuery['page']>['seo']>
+	menu: NormalizedMenu
+	seo: Record<string, unknown>
 	uri: string
+}
+
+/** Routes that should not trigger a GraphQL query */
+const systemRoutes = [
+	'/apple-touch-icon',
+	'/apple-touch-icon-precomposed',
+	'/.well-known',
+	'/favicon',
+	'/robots.txt',
+	'/sitemap.xml',
+	'/sitemap',
+]
+
+/** Normalize a path by stripping trailing slash (except root) */
+function normalizePath(path: string): string {
+	if (path === '/') return path
+	return path.endsWith('/') ? path.slice(0, -1) : path
 }
 
 export const load: LayoutServerLoad<LoadReturn> = async function load({ url }) {
 	let uri = url.pathname
 	if (uri === '') {
 		uri = '/'
+	}
+
+	// Skip GraphQL queries for system routes and static assets
+	const isSystemRoute = systemRoutes.some(route => uri.startsWith(route))
+	if (isSystemRoute) {
+		return {
+			data: { menus: null, page: null } as unknown as PageMetaQuery,
+			menu: emptyMenu,
+			seo: {
+				title: '',
+				metaDesc: '',
+				opengraphUrl: `${PUBLIC_SITE_URL}${uri}`,
+				opengraphImage: null
+			},
+			uri
+		} satisfies LoadReturn
 	}
 
 	try {
@@ -53,7 +98,7 @@ export const load: LayoutServerLoad<LoadReturn> = async function load({ url }) {
 		const firstMenu = data.menus?.nodes?.[0]
 		let menu = firstMenu ?? emptyMenu
 
-		// Modify menu items to add 'current' key
+		// Modify menu items to add 'current' key (with trailing slash normalization)
 		if (menu.menuItems?.nodes) {
 			menu = {
 				...menu,
@@ -61,7 +106,7 @@ export const load: LayoutServerLoad<LoadReturn> = async function load({ url }) {
 					...menu.menuItems,
 					nodes: menu.menuItems.nodes.map((node) => ({
 						...node,
-						current: node?.uri === uri
+						current: normalizePath(node?.uri ?? '') === normalizePath(uri)
 					}))
 				}
 			}
@@ -71,13 +116,13 @@ export const load: LayoutServerLoad<LoadReturn> = async function load({ url }) {
 			console.warn('No menu found in WordPress. Using empty menu fallback. Create a menu in WordPress under Appearance > Menus.')
 		}
 
-		// Handle SEO data more gracefully
-		let seoData = data.page?.seo
-		if (seoData?.opengraphUrl) {
-			const siteUrl = seoData.opengraphUrl.replace(
-				new URL(seoData.opengraphUrl).origin,
-				PUBLIC_SITE_URL
-			)
+		// Handle SEO data — nodeByUri returns a union; Page and Post have seo
+		type SeoNode = { seo?: Record<string, unknown> | null }
+		const pageNode = data.page as (SeoNode & Record<string, unknown>) | null | undefined
+		let seoData: Record<string, unknown> = pageNode?.seo ?? {}
+		const ogUrl = typeof seoData.opengraphUrl === 'string' ? seoData.opengraphUrl : undefined
+		if (ogUrl) {
+			const siteUrl = ogUrl.replace(new URL(ogUrl).origin, PUBLIC_SITE_URL)
 			seoData = { ...seoData, opengraphUrl: siteUrl }
 		} else {
 			// Provide fallback SEO data
@@ -96,25 +141,19 @@ export const load: LayoutServerLoad<LoadReturn> = async function load({ url }) {
 			uri
 		} satisfies LoadReturn
 	} catch (err: unknown) {
+		// Let SvelteKit HttpErrors propagate (e.g. 404 from +page.server.ts)
+		if (isHttpError(err)) {
+			throw err
+		}
+
 		// Check if it's a response error from the GraphQL query
 		if (err instanceof Response) {
 			error(err.status, await err.text())
 		}
 
-		// Check if it's a SvelteKit HttpError
-		if (err && typeof err === 'object' && 'status' in err && 'body' in err) {
-			const httpError = err as { status: number; body: { message: string } }
-			error(httpError.status, httpError.body.message)
-		}
-
-		// Check if it's our known error type
-		const httpError = err as { status?: number; message: string }
-		if (httpError.status && httpError.message) {
-			error(httpError.status, httpError.message)
-		}
-
 		// Fallback for unknown errors
-		console.error('Unhandled error:', err)
-		error(500, 'An unexpected error occurred')
+		const errorMessage = err instanceof Error ? err.message : 'An unexpected error occurred'
+		console.error('Unhandled error in layout:', errorMessage)
+		error(500, errorMessage)
 	}
 }

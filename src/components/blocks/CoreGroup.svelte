@@ -1,9 +1,10 @@
 <script lang="ts">
 	import type { CoreGroup } from '$lib/graphql/generated'
+	import type { EditorBlock } from '$lib/types/wp-types'
 	import BlockRenderer from '$components/BlockRenderer.svelte'
 
 	interface Props {
-		block: CoreGroup & { children?: any[] }
+		block: CoreGroup & { children?: EditorBlock[] }
 	}
 
 	let { block }: Props = $props()
@@ -45,7 +46,7 @@
 </script>
 
 <div class="flex flex-col {gapClass}">
-	{#each children as childBlock}
-		<BlockRenderer block={childBlock} forceFull={childForceFull} />
+	{#each children as childBlock, i}
+		<BlockRenderer block={childBlock} forceFull={childForceFull} staggerIndex={i} />
 	{/each}
 </div>
