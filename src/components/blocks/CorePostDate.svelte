@@ -1,14 +1,16 @@
 <script lang="ts">
 	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CorePostDateAttributes } from '$lib/graphql/generated'
 
 	interface Props {
 		block: EditorBlock
 	}
 
 	let { block }: Props = $props()
+	let attrs = $derived(block.attributes as CorePostDateAttributes | undefined)
 
-	let className = $derived(block.attributes?.className ?? '')
-	let format = $derived(block.attributes?.format ?? '')
+	let className = $derived(attrs?.className ?? '')
+	let format = $derived(attrs?.format ?? '')
 	let postDate = $derived(block.postDate)
 
 	/**

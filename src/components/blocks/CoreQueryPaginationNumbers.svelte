@@ -1,18 +1,20 @@
 <script lang="ts">
 	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CoreQueryPaginationNumbersAttributes } from '$lib/graphql/generated'
 
 	interface Props {
 		block: EditorBlock
 	}
 
 	let { block }: Props = $props()
+	let attrs = $derived(block.attributes as CoreQueryPaginationNumbersAttributes | undefined)
 
 	let paginationData = $derived(block.paginationData)
 
 	let currentPage = $derived(paginationData?.currentPage ?? 1)
 	let totalPages = $derived(paginationData?.totalPages ?? 1)
 	let baseUri = $derived(paginationData?.baseUri ?? '')
-	let midSize = $derived(block.attributes?.midSize ?? 2)
+	let midSize = $derived(attrs?.midSize ?? 2)
 
 	let pageNumbers = $derived.by(() => {
 		const pages: (number | string)[] = []

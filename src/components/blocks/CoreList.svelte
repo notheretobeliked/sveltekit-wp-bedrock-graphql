@@ -1,16 +1,16 @@
 <script lang="ts">
-	import type { CoreList, EditorBlock } from '$lib/graphql/generated'
+	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CoreListAttributes } from '$lib/graphql/generated'
 	import BlockRenderer from '$components/BlockRenderer.svelte'
 
 	interface Props {
-		block: CoreList & {
-			children: EditorBlock[]
-		}
+		block: EditorBlock
 	}
 
 	let { block }: Props = $props()
+	let attrs = $derived(block.attributes as CoreListAttributes | undefined)
 
-	let isOrdered = $derived(block.attributes?.ordered)
+	let isOrdered = $derived(attrs?.ordered)
 	let children = $derived(block.children || [])
 </script>
 

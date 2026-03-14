@@ -35,8 +35,7 @@
 	import CoreQueryPaginationNext from './blocks/CoreQueryPaginationNext.svelte'
 
 	// Component map keyed by block type (matches GraphQL `type` field)
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const blockComponents: Record<string, Component<any>> = {
+	const blockComponents: Record<string, Component<{ block: EditorBlock }>> = {
 		CoreAccordion,
 		CoreAccordionItem,
 		CoreButton,

@@ -1,13 +1,14 @@
 <script lang="ts">
-	import type { CoreColumn } from '$lib/graphql/generated'
 	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CoreColumnAttributes } from '$lib/graphql/generated'
 	import BlockRenderer from '$components/BlockRenderer.svelte'
 
 	interface Props {
-		block: CoreColumn & { children?: EditorBlock[] }
+		block: EditorBlock
 	}
 
 	let { block }: Props = $props()
+	let attrs = $derived(block.attributes as CoreColumnAttributes | undefined)
 
 	// Map vertical alignment to CSS classes
 	const getAlignmentClass = (alignment: string) => {
@@ -31,13 +32,13 @@
 		return null
 	}
 
-	let verticalAlignment = $derived(block.attributes?.verticalAlignment || 'top')
+	let verticalAlignment = $derived(attrs?.verticalAlignment || 'top')
 	let alignmentClass = $derived(getAlignmentClass(verticalAlignment))
-	let customClasses = $derived(block.attributes?.className || '')
+	let customClasses = $derived(attrs?.className || '')
 	let children = $derived(block.children || [])
 
 	let spacingClasses = $derived.by(() => {
-		const raw = block.attributes?.style
+		const raw = attrs?.style
 		if (!raw) return { gap: '', padding: '' }
 		try {
 			const style = typeof raw === 'string' ? JSON.parse(raw) : raw

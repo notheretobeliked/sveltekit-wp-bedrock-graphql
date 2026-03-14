@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CorePostTemplateAttributes } from '$lib/graphql/generated'
 	import BlockRenderer from '$components/BlockRenderer.svelte'
 
 	interface Props {
@@ -7,12 +8,13 @@
 	}
 
 	let { block }: Props = $props()
+	let attrs = $derived(block.attributes as CorePostTemplateAttributes | undefined)
 
 	let resolvedPosts = $derived(block.resolvedPosts ?? [])
 	let children = $derived(block.children ?? [])
 
 	let layout = $derived.by(() => {
-		const layoutAttr = block.attributes?.layout
+		const layoutAttr = attrs?.layout
 		if (!layoutAttr) return { type: 'default', columnCount: 1 }
 		try {
 			return typeof layoutAttr === 'string' ? JSON.parse(layoutAttr) : layoutAttr

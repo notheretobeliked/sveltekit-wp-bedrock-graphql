@@ -1,24 +1,25 @@
 <script lang="ts">
-	import type { CoreQuote } from '$lib/graphql/generated'
 	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CoreQuoteAttributes } from '$lib/graphql/generated'
 	import { classNames } from '$lib/utilities/utilities'
 	import BlockRenderer from '$components/BlockRenderer.svelte'
 
 	interface Props {
-		block: CoreQuote & { children?: EditorBlock[] }
+		block: EditorBlock
 	}
 
 	let { block }: Props = $props()
+	let attrs = $derived(block.attributes as CoreQuoteAttributes | undefined)
 
 	let children = $derived(block.children || [])
-	let citation = $derived(block.attributes?.citation ?? '')
-	let customClasses = $derived(block.attributes?.className ?? '')
+	let citation = $derived(attrs?.citation ?? '')
+	let customClasses = $derived(attrs?.className ?? '')
 	let attrClasses = $derived(
 		classNames(
-			block.attributes?.fontSize,
-			block.attributes?.textColor,
-			block.attributes?.textAlign,
-			block.attributes?.fontFamily
+			attrs?.fontSize,
+			attrs?.textColor,
+			attrs?.textAlign,
+			attrs?.fontFamily
 		)
 	)
 </script>

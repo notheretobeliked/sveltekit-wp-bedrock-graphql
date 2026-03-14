@@ -1,20 +1,22 @@
 <script lang="ts">
-	import type { CoreListItem } from '$lib/graphql/generated'
+	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CoreListItemAttributes } from '$lib/graphql/generated'
 	import { classNames } from '$lib/utilities/utilities'
 
 	interface Props {
-		block: CoreListItem
+		block: EditorBlock
 	}
 
 	let { block }: Props = $props()
+	let attrs = $derived(block.attributes as CoreListItemAttributes | undefined)
 
-	let content = $derived(block.attributes?.content ?? '')
+	let content = $derived(attrs?.content ?? '')
 	let attrClasses = $derived(
 		classNames(
-			block.attributes?.fontSize,
-			block.attributes?.textColor,
+			attrs?.fontSize,
+			attrs?.textColor,
 			null,
-			block.attributes?.fontFamily
+			attrs?.fontFamily
 		)
 	)
 </script>

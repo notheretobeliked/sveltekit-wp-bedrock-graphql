@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CoreQueryPaginationAttributes } from '$lib/graphql/generated'
 	import BlockRenderer from '$components/BlockRenderer.svelte'
 
 	interface Props {
@@ -7,11 +8,12 @@
 	}
 
 	let { block }: Props = $props()
+	let attrs = $derived(block.attributes as CoreQueryPaginationAttributes | undefined)
 
 	let children = $derived(block.children ?? [])
 	let paginationData = $derived(block.paginationData)
 	let layout = $derived.by(() => {
-		const layoutAttr = block.attributes?.layout
+		const layoutAttr = attrs?.layout
 		if (!layoutAttr) return { type: 'flex', justifyContent: 'space-between' }
 		try {
 			return typeof layoutAttr === 'string' ? JSON.parse(layoutAttr) : layoutAttr

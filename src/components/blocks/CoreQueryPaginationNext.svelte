@@ -1,15 +1,17 @@
 <script lang="ts">
 	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CoreQueryPaginationNextAttributes } from '$lib/graphql/generated'
 
 	interface Props {
 		block: EditorBlock
 	}
 
 	let { block }: Props = $props()
+	let attrs = $derived(block.attributes as CoreQueryPaginationNextAttributes | undefined)
 
 	let paginationData = $derived(block.paginationData)
 
-	let label = $derived(block.attributes?.label ?? 'Next')
+	let label = $derived(attrs?.label ?? 'Next')
 	let currentPage = $derived(paginationData?.currentPage ?? 1)
 	let totalPages = $derived(paginationData?.totalPages ?? 1)
 	let baseUri = $derived(paginationData?.baseUri ?? '')

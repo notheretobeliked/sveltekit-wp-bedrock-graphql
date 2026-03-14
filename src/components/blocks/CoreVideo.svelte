@@ -1,22 +1,24 @@
 <script lang="ts">
-	import type { CoreVideo } from '$lib/graphql/generated'
+	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CoreVideoAttributes } from '$lib/graphql/generated'
 
 	interface Props {
-		block: CoreVideo
+		block: EditorBlock
 	}
 
 	let { block }: Props = $props()
+	let attrs = $derived(block.attributes as CoreVideoAttributes | undefined)
 
 	// Extract video attributes with safe defaults using $derived
-	let src = $derived(block.attributes?.src || '')
-	let poster = $derived(block.attributes?.poster || '')
-	let autoplay = $derived(block.attributes?.autoplay || false)
-	let muted = $derived(block.attributes?.muted || false)
-	let controls = $derived(block.attributes?.controls !== false)
-	let loop = $derived(block.attributes?.loop || false)
-	let caption = $derived(block.attributes?.caption || '')
-	let customClasses = $derived(block.attributes?.className || '')
-	let align = $derived(block.attributes?.align)
+	let src = $derived(attrs?.src || '')
+	let poster = $derived(attrs?.poster || '')
+	let autoplay = $derived(attrs?.autoplay || false)
+	let muted = $derived(attrs?.muted || false)
+	let controls = $derived(attrs?.controls !== false)
+	let loop = $derived(attrs?.loop || false)
+	let caption = $derived(attrs?.caption || '')
+	let customClasses = $derived(attrs?.className || '')
+	let align = $derived(attrs?.align)
 
 	let alignClass = $derived(
 		align === 'wide'
@@ -34,7 +36,7 @@
 
 	// Make sure preload is a valid value
 	let preload = $derived.by(() => {
-		const rawPreload = block.attributes?.preload || 'metadata'
+		const rawPreload = attrs?.preload || 'metadata'
 		return ['auto', 'metadata', 'none'].includes(rawPreload)
 			? (rawPreload as 'auto' | 'metadata' | 'none')
 			: 'metadata'

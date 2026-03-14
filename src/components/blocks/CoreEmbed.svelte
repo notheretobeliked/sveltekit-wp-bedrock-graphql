@@ -1,12 +1,14 @@
 <script lang="ts">
-	import type { CoreEmbed } from '$lib/graphql/generated'
+	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CoreEmbedAttributes } from '$lib/graphql/generated'
 	import { onMount } from 'svelte'
 
 	interface Props {
-		block: CoreEmbed
+		block: EditorBlock
 	}
 
 	let { block }: Props = $props()
+	let attrs = $derived(block.attributes as CoreEmbedAttributes | undefined)
 	let flourishContainer: HTMLDivElement | undefined = $state()
 
 	const getEmbedUrl = (url: string) => {
@@ -42,10 +44,10 @@
 		return url.includes('flourish.studio') || url.includes('flourish-embed')
 	}
 
-	let rawUrl = $derived(block.attributes?.url ?? '')
+	let rawUrl = $derived(attrs?.url ?? '')
 	let embedUrl = $derived(getEmbedUrl(rawUrl) || '')
 	let isFlourishEmbed = $derived(checkFlourishEmbed(rawUrl))
-	let align = $derived(block.attributes?.align)
+	let align = $derived(attrs?.align)
 
 	let alignClass = $derived(
 		align === 'wide'

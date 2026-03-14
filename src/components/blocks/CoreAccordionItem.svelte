@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CoreAccordionHeadingAttributes, CoreAccordionPanelAttributes } from '$lib/graphql/generated'
 	import BlockRenderer from '$components/BlockRenderer.svelte'
 	import { classNames } from '$lib/utilities/utilities'
 
@@ -13,12 +14,15 @@
 	let heading = $derived(children.find((c) => c.type === 'CoreAccordionHeading'))
 	let panel = $derived(children.find((c) => c.type === 'CoreAccordionPanel'))
 
-	let title = $derived(heading?.attributes?.title ?? '')
-	let showIcon = $derived(heading?.attributes?.showIcon ?? true)
-	let fontSize = $derived(heading?.attributes?.fontSize ?? '')
-	let fontFamily = $derived(heading?.attributes?.fontFamily ?? '')
-	let openByDefault = $derived(panel?.attributes?.openByDefault ?? false)
-	let panelChildren = $derived((panel as EditorBlock | undefined)?.children ?? [])
+	let headingAttrs = $derived(heading?.attributes as CoreAccordionHeadingAttributes | undefined)
+	let panelAttrs = $derived(panel?.attributes as CoreAccordionPanelAttributes | undefined)
+
+	let title = $derived(headingAttrs?.title ?? '')
+	let showIcon = $derived(headingAttrs?.showIcon ?? true)
+	let fontSize = $derived(headingAttrs?.fontSize ?? '')
+	let fontFamily = $derived(headingAttrs?.fontFamily ?? '')
+	let openByDefault = $derived(panelAttrs?.openByDefault ?? false)
+	let panelChildren = $derived(panel?.children ?? [])
 
 	let isOpen = $state(false)
 

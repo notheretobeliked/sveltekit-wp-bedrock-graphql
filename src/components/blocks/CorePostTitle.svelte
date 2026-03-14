@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CorePostTitleAttributes } from '$lib/graphql/generated'
 	import { classNames } from '$lib/utilities/utilities'
 
 	interface Props {
@@ -7,14 +8,15 @@
 	}
 
 	let { block }: Props = $props()
+	let attrs = $derived(block.attributes as CorePostTitleAttributes | undefined)
 
-	let level = $derived(block.attributes?.level ?? 1)
-	let fontSize = $derived(block.attributes?.fontSize ?? '')
-	let textColor = $derived(block.attributes?.textColor ?? '')
-	let textAlign = $derived(block.attributes?.textAlign ?? '')
-	let fontFamily = $derived(block.attributes?.fontFamily ?? '')
-	let className = $derived(block.attributes?.className ?? '')
-	let title = $derived(block.postTitle ?? block.attributes?.content ?? '')
+	let level = $derived(attrs?.level ?? 1)
+	let fontSize = $derived(attrs?.fontSize ?? '')
+	let textColor = $derived(attrs?.textColor ?? '')
+	let textAlign = $derived(attrs?.textAlign ?? '')
+	let fontFamily = $derived(attrs?.fontFamily ?? '')
+	let className = $derived(attrs?.className ?? '')
+	let title = $derived(block.postTitle ?? (block.attributes as Record<string, unknown>)?.content as string ?? '')
 
 	let classes = $derived(
 		[classNames(fontSize, textColor, textAlign, fontFamily), className].filter(Boolean).join(' ')

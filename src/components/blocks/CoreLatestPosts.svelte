@@ -1,5 +1,6 @@
 <script lang="ts">
-	import type { CoreLatestPosts } from '$lib/graphql/generated'
+	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CoreLatestPostsAttributes } from '$lib/graphql/generated'
 
 	interface ResolvedPostImageSize {
 		sourceUrl: string
@@ -24,14 +25,15 @@
 	}
 
 	interface Props {
-		block: CoreLatestPosts & { resolvedPosts?: ResolvedPost[] }
+		block: EditorBlock
 	}
 
 	let { block }: Props = $props()
+	let attrs = $derived(block.attributes as CoreLatestPostsAttributes | undefined)
 
-	let posts = $derived(block.resolvedPosts ?? [])
-	let showDate = $derived(block.attributes?.displayPostDate ?? false)
-	let showImage = $derived(block.attributes?.displayFeaturedImage ?? false)
+	let posts = $derived((block.resolvedPosts ?? []) as ResolvedPost[])
+	let showDate = $derived(attrs?.displayPostDate ?? false)
+	let showImage = $derived(attrs?.displayFeaturedImage ?? false)
 
 	function formatDate(dateStr: string): string {
 		const date = new Date(dateStr)
@@ -45,7 +47,7 @@
 </script>
 
 {#if posts.length > 0}
-	<ul class="list-none p-0 m-0 flex flex-col gap-4 {block.attributes?.className ?? ''}">
+	<ul class="list-none p-0 m-0 flex flex-col gap-4 {attrs?.className ?? ''}">
 		{#each posts as post}
 			<li>
 				<a href={post.uri} class="flex gap-4 items-start no-underline hover:opacity-75 transition-opacity duration-200">

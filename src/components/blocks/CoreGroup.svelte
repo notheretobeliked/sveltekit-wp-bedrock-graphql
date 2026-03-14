@@ -1,13 +1,14 @@
 <script lang="ts">
-	import type { CoreGroup } from '$lib/graphql/generated'
 	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CoreGroupAttributes } from '$lib/graphql/generated'
 	import BlockRenderer from '$components/BlockRenderer.svelte'
 
 	interface Props {
-		block: CoreGroup & { children?: EditorBlock[] }
+		block: EditorBlock
 	}
 
 	let { block }: Props = $props()
+	let attrs = $derived(block.attributes as CoreGroupAttributes | undefined)
 
 	let children = $derived(block.children || [])
 
@@ -18,7 +19,7 @@
 	}
 
 	let gapClass = $derived.by(() => {
-		const raw = block.attributes?.style
+		const raw = attrs?.style
 		if (!raw) return ''
 		try {
 			const style = typeof raw === 'string' ? JSON.parse(raw) : raw
@@ -32,7 +33,7 @@
 	})
 
 	let layoutType = $derived.by(() => {
-		const raw = block.attributes?.layout
+		const raw = attrs?.layout
 		if (!raw) return null
 		try {
 			const layout = typeof raw === 'string' ? JSON.parse(raw) : raw

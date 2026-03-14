@@ -1,15 +1,17 @@
 <script lang="ts">
-	import type { CoreParagraph } from '$lib/graphql/generated'
+	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CoreParagraphAttributes } from '$lib/graphql/generated'
 	import { classNames } from '$lib/utilities/utilities'
 
 	interface Props {
-		block: CoreParagraph
+		block: EditorBlock
 	}
 
 	let { block }: Props = $props()
+	let attrs = $derived(block.attributes as CoreParagraphAttributes | undefined)
 
-	let content = $derived(block.attributes?.content ?? '')
-	let className = $derived(block.attributes?.className ?? '')
+	let content = $derived(attrs?.content ?? '')
+	let className = $derived(attrs?.className ?? '')
 
 	// Map WordPress has-text-align-* classes to Tailwind
 	let textAlignClass = $derived(
@@ -31,10 +33,10 @@
 
 	let attrClasses = $derived(
 		classNames(
-			block.attributes?.fontSize,
-			block.attributes?.textColor,
+			attrs?.fontSize,
+			attrs?.textColor,
 			null,
-			block.attributes?.fontFamily
+			attrs?.fontFamily
 		)
 	)
 </script>

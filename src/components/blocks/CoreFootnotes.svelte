@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { CoreFootnotes } from '$lib/graphql/generated'
+	import type { EditorBlock } from '$lib/types/wp-types'
 
 	interface Props {
-		block: CoreFootnotes
+		block: EditorBlock
 	}
 
 	let { block }: Props = $props()

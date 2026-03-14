@@ -1,17 +1,18 @@
 <script lang="ts">
-	import CoreButton from '$components/blocks/CoreButton.svelte'
-	import type { CoreButtons as CoreButtonsType, CoreButton as CoreButtonType } from '$lib/graphql/generated'
 	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CoreButtonsAttributes } from '$lib/graphql/generated'
+	import CoreButton from '$components/blocks/CoreButton.svelte'
 
 	interface Props {
-		block: CoreButtonsType & { children?: EditorBlock[] }
+		block: EditorBlock
 	}
 
 	let { block }: Props = $props()
+	let attrs = $derived(block.attributes as CoreButtonsAttributes | undefined)
 
 	let children = $derived(block.children || [])
 	let justifyContent = $derived(
-		(block.attributes?.layout as { justifyContent?: string } | null)?.justifyContent ?? 'left'
+		(attrs?.layout as { justifyContent?: string } | null)?.justifyContent ?? 'left'
 	)
 
 	// Utility to generate CSS classes based on justifyContent value
@@ -38,7 +39,7 @@
 		class={`m-auto flex ${justifyContentClass(justifyContent)}`}
 	>
 		{#each children as buttonBlock}
-			<CoreButton block={buttonBlock as unknown as CoreButtonType} />
+			<CoreButton block={buttonBlock} />
 		{/each}
 	</div>
 </div>

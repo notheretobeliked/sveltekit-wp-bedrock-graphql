@@ -1,6 +1,8 @@
 <script lang="ts">
+	import type { EditorBlock } from '$lib/types/wp-types'
+
 	interface Props {
-		block: { renderedHtml?: string | null }
+		block: EditorBlock
 	}
 
 	let { block }: Props = $props()

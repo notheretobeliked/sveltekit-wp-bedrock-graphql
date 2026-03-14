@@ -1,15 +1,16 @@
 <script lang="ts">
-	import type { CoreButton } from '$lib/graphql/generated'
+	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CoreButtonAttributes } from '$lib/graphql/generated'
 	import Button from '$components/atoms/Button.svelte'
 	import { classNames } from '$lib/utilities/utilities'
 
 	interface Props {
-		block: CoreButton
+		block: EditorBlock
 	}
 
 	let { block }: Props = $props()
 
-	let attrs = $derived(block.attributes)
+	let attrs = $derived(block.attributes as CoreButtonAttributes | undefined)
 	let style = $derived.by(() => {
 		const raw = attrs?.style
 		if (!raw) return null

@@ -50,9 +50,9 @@ describe('classNames', () => {
 
 describe('findImageSizeData', () => {
 	const sizes: ImageSize[] = [
-		{ name: 'thumbnail', sourceUrl: '/thumb.jpg', width: '150', height: '150', mimeType: 'image/jpeg' },
-		{ name: 'medium', sourceUrl: '/medium.jpg', width: '300', height: '200', mimeType: 'image/jpeg' },
-		{ name: 'large', sourceUrl: '/large.jpg', width: '1024', height: '768', mimeType: 'image/jpeg' }
+		{ name: 'thumbnail', sourceUrl: '/thumb.jpg', width: 150, height: 150 },
+		{ name: 'medium', sourceUrl: '/medium.jpg', width: 300, height: 200 },
+		{ name: 'large', sourceUrl: '/large.jpg', width: 1024, height: 768 }
 	]
 
 	it('returns the requested property for a matching size', () => {
@@ -72,8 +72,8 @@ describe('findImageSizeData', () => {
 describe('getSrcSet', () => {
 	it('builds a srcset string from image sizes', () => {
 		const sizes: ImageSize[] = [
-			{ name: 'small', sourceUrl: '/small.jpg', width: '300', height: '200', mimeType: 'image/jpeg' },
-			{ name: 'large', sourceUrl: '/large.jpg', width: '1024', height: '768', mimeType: 'image/jpeg' }
+			{ name: 'small', sourceUrl: '/small.jpg', width: 300, height: 200 },
+			{ name: 'large', sourceUrl: '/large.jpg', width: 1024, height: 768 }
 		]
 		expect(getSrcSet(sizes)).toBe('/small.jpg 300w, /large.jpg 1024w')
 	})

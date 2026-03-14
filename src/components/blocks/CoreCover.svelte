@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CoreCoverAttributes } from '$lib/graphql/generated'
 	import BlockRenderer from '$components/BlockRenderer.svelte'
 
 	interface Props {
@@ -7,18 +8,19 @@
 	}
 
 	let { block }: Props = $props()
+	let attrs = $derived(block.attributes as CoreCoverAttributes | undefined)
 
 	let children = $derived(block.children ?? [])
-	let url = $derived(block.attributes?.url ?? '')
-	let isDark = $derived(block.attributes?.isDark ?? false)
-	let hasParallax = $derived(block.attributes?.hasParallax ?? false)
-	let textColor = $derived(block.attributes?.textColor ?? '')
-	let backgroundType = $derived(block.attributes?.backgroundType ?? 'image')
-	let gradient = $derived(block.attributes?.gradient ?? '')
+	let url = $derived(attrs?.url ?? '')
+	let isDark = $derived(attrs?.isDark ?? false)
+	let hasParallax = $derived(attrs?.hasParallax ?? false)
+	let textColor = $derived(attrs?.textColor ?? '')
+	let backgroundType = $derived(attrs?.backgroundType ?? 'image')
+	let gradient = $derived(attrs?.gradient ?? '')
 	let hasImage = $derived(backgroundType === 'image' && !!url)
 
 	let focalPoint = $derived.by(() => {
-		const raw = block.attributes?.focalPoint
+		const raw = attrs?.focalPoint
 		if (!raw) return null
 		try {
 			return typeof raw === 'string' ? JSON.parse(raw) : raw
@@ -34,7 +36,7 @@
 	}
 
 	let spacingClasses = $derived.by(() => {
-		const raw = block.attributes?.style
+		const raw = attrs?.style
 		if (!raw) return { padding: '', gap: '' }
 		try {
 			const style = typeof raw === 'string' ? JSON.parse(raw) : raw
@@ -84,9 +86,9 @@
 			parts.push(`background: ${gradient};`)
 		}
 
-		const minHeight = block.attributes?.minHeight
+		const minHeight = attrs?.minHeight
 		if (minHeight != null) {
-			const unit = block.attributes?.minHeightUnit ?? 'px'
+			const unit = attrs?.minHeightUnit ?? 'px'
 			parts.push(`min-height: ${minHeight}${unit};`)
 		}
 

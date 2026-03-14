@@ -1,22 +1,24 @@
 <script lang="ts">
-	import type { CoreHeading } from '$lib/graphql/generated'
+	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CoreHeadingAttributes } from '$lib/graphql/generated'
 	import { classNames } from '$lib/utilities/utilities'
 
 	interface Props {
-		block: CoreHeading
+		block: EditorBlock
 	}
 
 	let { block }: Props = $props()
+	let attrs = $derived(block.attributes as CoreHeadingAttributes | undefined)
 
-	let content = $derived(block.attributes?.content ?? '')
-	let level = $derived(block.attributes?.level ?? 2)
-	let customClassName = $derived(block.attributes?.className ?? '')
+	let content = $derived(attrs?.content ?? '')
+	let level = $derived(attrs?.level ?? 2)
+	let customClassName = $derived(attrs?.className ?? '')
 	let attrClasses = $derived(
 		classNames(
-			block.attributes?.fontSize,
-			block.attributes?.textColor,
-			block.attributes?.textAlign,
-			block.attributes?.fontFamily
+			attrs?.fontSize,
+			attrs?.textColor,
+			attrs?.textAlign,
+			attrs?.fontFamily
 		)
 	)
 </script>

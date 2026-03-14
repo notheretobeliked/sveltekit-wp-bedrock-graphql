@@ -1,20 +1,22 @@
 <script lang="ts">
-	import type { CoreImage } from '$lib/graphql/generated'
+	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CoreImageAttributes } from '$lib/graphql/generated'
 
 	interface Props {
-		block: CoreImage
+		block: EditorBlock
 	}
 
 	let { block }: Props = $props()
+	let attrs = $derived(block.attributes as CoreImageAttributes | undefined)
 
-	let sizes = $derived(block.mediaDetails?.sizes ?? [])
-	let src = $derived(block.attributes?.url ?? '')
-	let alt = $derived(block.attributes?.alt ?? '')
-	let caption = $derived(block.attributes?.caption)
-	let align = $derived(block.attributes?.align)
-	let aspectRatio = $derived(block.attributes?.aspectRatio)
-	let customWidth = $derived(block.attributes?.width)
-	let customHeight = $derived(block.attributes?.height)
+	let sizes = $derived((block.mediaDetails?.sizes ?? []) as Array<{ sourceUrl?: string; width?: string }>)
+	let src = $derived(attrs?.url ?? '')
+	let alt = $derived(attrs?.alt ?? '')
+	let caption = $derived(attrs?.caption)
+	let align = $derived(attrs?.align)
+	let aspectRatio = $derived(attrs?.aspectRatio)
+	let customWidth = $derived(attrs?.width)
+	let customHeight = $derived(attrs?.height)
 
 	// Only use srcset if the full-size src is represented in the sizes array.
 	// Otherwise the browser picks a small thumbnail instead of the full original.
@@ -29,7 +31,7 @@
 	)
 
 	let borderRadius = $derived.by(() => {
-		const raw = block.attributes?.style
+		const raw = attrs?.style
 		if (!raw) return ''
 		try {
 			const style = typeof raw === 'string' ? JSON.parse(raw) : raw

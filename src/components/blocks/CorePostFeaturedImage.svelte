@@ -1,15 +1,17 @@
 <script lang="ts">
 	import type { EditorBlock } from '$lib/types/wp-types'
+	import type { CorePostFeaturedImageAttributes } from '$lib/graphql/generated'
 
 	interface Props {
 		block: EditorBlock
 	}
 
 	let { block }: Props = $props()
+	let attrs = $derived(block.attributes as CorePostFeaturedImageAttributes | undefined)
 
-	let className = $derived(block.attributes?.className ?? '')
-	let aspectRatio = $derived(block.attributes?.aspectRatio ?? '')
-	let isLink = $derived(block.attributes?.isLink ?? false)
+	let className = $derived(attrs?.className ?? '')
+	let aspectRatio = $derived(attrs?.aspectRatio ?? '')
+	let isLink = $derived(attrs?.isLink ?? false)
 	let postUri = $derived(block.postUri)
 	let postFeaturedImage = $derived(block.postFeaturedImage)
 
