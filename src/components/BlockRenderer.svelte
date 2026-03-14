@@ -74,11 +74,12 @@
 
 	interface Props {
 		forceFull?: boolean
+		forceFullHeight?: boolean
 		block: EditorBlock
 		staggerIndex?: number
 	}
 
-	let { forceFull = false, block, staggerIndex }: Props = $props()
+	let { forceFull = false, forceFullHeight = false, block, staggerIndex }: Props = $props()
 
 	// Derived values for reactivity
 	let blockType = $derived(block.type ?? '')
@@ -239,7 +240,7 @@
 </script>
 
 <div
-	class="{blockClass} {verticalAlignClasses} {alignClasses} {spacingClasses} {bgClasses} {textClasses} {className}"
+	class="{blockClass} {verticalAlignClasses} {alignClasses} {spacingClasses} {bgClasses} {textClasses} {className} {forceFullHeight ? 'h-full' : ''}"
 	class:block-reveal={shouldAnimate}
 	class:block-visible={visible}
 	style:transition-delay={shouldAnimate && staggerIndex !== undefined ? staggerDelay : undefined}
