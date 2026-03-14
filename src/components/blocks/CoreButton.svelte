@@ -2,7 +2,6 @@
 	import type { EditorBlock } from '$lib/types/wp-types'
 	import type { CoreButtonAttributes } from '$lib/graphql/generated'
 	import Button from '$components/atoms/Button.svelte'
-	import { classNames } from '$lib/utilities/utilities'
 
 	interface Props {
 		block: EditorBlock
@@ -20,36 +19,17 @@
 			return null
 		}
 	})
-	let borderRadius = $derived(style?.border?.radius ?? '')
-
-	let attrClasses = $derived(
-		classNames(attrs?.fontSize, null, null, null)
-	)
-	let url = $derived(attrs?.url ?? '')
-	let label = $derived(attrs?.text ?? '')
-	let bgColor = $derived(
-		attrs?.backgroundColor ? `bg-${attrs.backgroundColor}` : undefined
-	)
-	let txtColor = $derived(
-		attrs?.textColor ? `text-${attrs.textColor}` : undefined
-	)
-	let className = $derived(attrs?.className ?? '')
-	let combinedTextClass = $derived(`${attrClasses} ${className}`.trim())
-	let borderRadiusStyle = $derived(borderRadius ? `border-radius: ${borderRadius}` : '')
+	let borderRadius = $derived(style?.border?.radius ?? undefined)
 </script>
 
-<span class="core-button-wrap" style={borderRadiusStyle}>
-	<Button
-		textClass={combinedTextClass}
-		colourClass={bgColor}
-		textColourClass={txtColor}
-		{url}
-		{label}
-	/>
-</span>
-
-<style>
-	.core-button-wrap :global(a) {
-		border-radius: inherit;
-	}
-</style>
+<Button
+	label={attrs?.text ?? ''}
+	url={attrs?.url ?? '/'}
+	linkTarget={attrs?.linkTarget ?? undefined}
+	backgroundColor={attrs?.backgroundColor ?? undefined}
+	textColor={attrs?.textColor ?? undefined}
+	{borderRadius}
+	fontSize={attrs?.fontSize ?? undefined}
+	fontFamily={attrs?.fontFamily ?? undefined}
+	className={attrs?.className ?? ''}
+/>
