@@ -36,14 +36,15 @@
 		return 'grid grid-cols-1 gap-4'
 	})
 
-	/** Attach current post context onto each child block */
+	/** Recursively attach current post context onto a block and all its descendants */
 	function withPostContext(childBlock: EditorBlock, post: Record<string, unknown>): EditorBlock {
 		return {
 			...childBlock,
 			postTitle: post.title as string,
 			postDate: post.date as string,
 			postUri: post.uri as string,
-			postFeaturedImage: post.featuredImage as Record<string, unknown>
+			postFeaturedImage: post.featuredImage as Record<string, unknown>,
+			children: childBlock.children?.map((child) => withPostContext(child, post))
 		}
 	}
 </script>
