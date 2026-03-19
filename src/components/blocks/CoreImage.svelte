@@ -1,13 +1,17 @@
 <script lang="ts">
 	import type { EditorBlock } from '$lib/types/wp-types'
 	import type { CoreImageAttributes } from '$lib/graphql/generated'
+	import { extractBlockClasses } from '$lib/utilities/block-attributes'
+	import { blockReveal } from '$lib/actions/block-reveal'
 
 	interface Props {
 		block: EditorBlock
+		animation?: { delay?: string }
 	}
 
-	let { block }: Props = $props()
+	let { block, animation }: Props = $props()
 	let attrs = $derived(block.attributes as CoreImageAttributes | undefined)
+	let bc = $derived(extractBlockClasses(block.attributes as Record<string, unknown>))
 
 	let sizes = $derived((block.mediaDetails?.sizes ?? []) as Array<{ sourceUrl?: string; width?: string }>)
 	let src = $derived(attrs?.url ?? '')
@@ -80,7 +84,10 @@
 </script>
 
 {#if src}
-	<figure class="{alignClass} {isFullWidth ? 'w-full' : ''} relative @container">
+	<figure
+		class="{alignClass} {isFullWidth ? 'w-full' : ''} {bc.spacingClasses} {bc.bgClasses} {bc.textColorClasses} relative @container"
+		use:blockReveal={animation}
+	>
 		<img
 			{src}
 			{alt}

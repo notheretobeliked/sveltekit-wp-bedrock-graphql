@@ -5,6 +5,7 @@
 
 	interface Props {
 		block: EditorBlock
+		animation?: { delay?: string }
 	}
 
 	let { block }: Props = $props()

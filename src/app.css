@@ -134,6 +134,32 @@
 	@apply max-w-[1100px] mx-auto;
 }
 
+/* Structural block spacing — divs get mb-8, prose elements render bare */
+.page-main > div {
+	@apply mb-8;
+}
+.page-main > *:last-child {
+	@apply mb-0;
+}
+
+/* Block-reveal animation */
+.block-reveal {
+	opacity: 0;
+	transform: translateY(12px);
+	transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.block-reveal.block-visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+	.block-reveal {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+}
+
 /* Footnotes */
 .footnotes {
 	@apply border-t border-black mt-9 py-3;

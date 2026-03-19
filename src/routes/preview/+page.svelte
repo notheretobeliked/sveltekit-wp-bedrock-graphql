@@ -17,7 +17,7 @@
 	canEdit={data.previewData?.canEdit}
 />
 
-<div class="pt-24 min-h-screen">
+<div class="page-main pt-24 min-h-screen flex flex-col">
 	{#each editorBlocks as block (block.clientId)}
 		<BlockRenderer {block} />
 	{/each}
