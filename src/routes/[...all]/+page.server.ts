@@ -39,9 +39,31 @@ export const load: PageServerLoad = async function load({ params, url, fetch }) 
 		// Normalize asset URLs in page data if CDN is configured
 		normalizeAssetUrlsInObject(pageData)
 
-		let editorBlocks: EditorBlock[] = pageData.data.nodeByUri.editorBlocks
-			? flatListToHierarchical(pageData.data.nodeByUri.editorBlocks, {}, pageData.data)
+		const node = pageData.data.nodeByUri
+
+		let editorBlocks: EditorBlock[] = node.editorBlocks
+			? flatListToHierarchical(node.editorBlocks, {}, pageData.data)
 			: []
+
+		// Attach post-level context to blocks (for CorePostDate, CorePostFeaturedImage on single pages)
+		const rawFeaturedImage = node.featuredImage as Record<string, unknown> | undefined
+		const postContext = {
+			postTitle: node.title as string | undefined,
+			postDate: node.date as string | undefined,
+			postUri: uri,
+			postFeaturedImage: (rawFeaturedImage?.node ?? rawFeaturedImage) as Record<string, unknown> | undefined,
+		}
+
+		function attachPostContext(blocks: EditorBlock[]): void {
+			for (const block of blocks) {
+				Object.assign(block, postContext)
+				if (block.children) attachPostContext(block.children)
+			}
+		}
+
+		if (postContext.postDate || postContext.postFeaturedImage) {
+			attachPostContext(editorBlocks)
+		}
 
 		return {
 			data: pageData.data,
