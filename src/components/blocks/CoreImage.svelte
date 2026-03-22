@@ -19,6 +19,7 @@
 	let caption = $derived(attrs?.caption)
 	let align = $derived(attrs?.align)
 	let aspectRatio = $derived(attrs?.aspectRatio)
+	let scale = $derived(attrs?.scale)
 	let customWidth = $derived(attrs?.width)
 	let customHeight = $derived(attrs?.height)
 
@@ -53,7 +54,10 @@
 		const parts: string[] = []
 		if (customWidth) parts.push(`width:${customWidth}`)
 		if (customHeight) parts.push(`height:${customHeight}`)
-		if (aspectRatio) parts.push(`aspect-ratio:${aspectRatio}`)
+		if (aspectRatio) {
+			parts.push(`aspect-ratio:${aspectRatio}`)
+			parts.push(`object-fit:${scale || 'cover'}`)
+		}
 		if (borderRadius) parts.push(`border-radius:${borderRadius}`)
 		return parts.join(';')
 	})

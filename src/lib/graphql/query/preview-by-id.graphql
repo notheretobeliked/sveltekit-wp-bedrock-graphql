@@ -101,6 +101,7 @@ fragment CommonBlockFields on EditorBlock {
 			url
 			caption
 			aspectRatio
+			scale
 			className
 		}
 	}
