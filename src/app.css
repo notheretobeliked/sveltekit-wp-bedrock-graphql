@@ -133,8 +133,10 @@
    Every top-level block (wrapper divs and bare prose alike) is capped at the
    content width and centered, unless it opts into a wider/full bucket via
    alignwide/alignfull. This keeps wrapped and unwrapped blocks consistent.
-   768px matches theme.json settings.layout.contentSize so the Gutenberg editor
-   and the live site render at the same width — keep the two in sync. */
+   768px matches the backend content width so the Gutenberg editor and the live
+   site render at the same width. Backend source of truth is the theme's
+   bud.config.js (app.wpjson layout.contentSize), which generates theme.json on
+   build — keep the two in sync there, not in theme.json directly. */
 .page-main > *:not(.alignfull):not(.alignwide) {
 	@apply max-w-[768px] mx-auto;
 }
