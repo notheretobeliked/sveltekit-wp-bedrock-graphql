@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { EditorBlock } from '$lib/types/wp-types'
-	import type { CoreAccordionHeadingAttributes, CoreAccordionPanelAttributes } from '$lib/graphql/generated'
+	import type { CoreAccordionHeadingAttributes } from '$lib/graphql/generated'
 	import BlockRenderer from '$components/BlockRenderer.svelte'
 	import { classNames } from '$lib/utilities/utilities'
 
@@ -15,20 +15,21 @@
 	let panel = $derived(children.find((c) => c.type === 'CoreAccordionPanel'))
 
 	let headingAttrs = $derived(heading?.attributes as CoreAccordionHeadingAttributes | undefined)
-	let panelAttrs = $derived(panel?.attributes as CoreAccordionPanelAttributes | undefined)
 
 	let title = $derived(headingAttrs?.title ?? '')
 	let showIcon = $derived(headingAttrs?.showIcon ?? true)
 	let fontSize = $derived(headingAttrs?.fontSize ?? '')
 	let fontFamily = $derived(headingAttrs?.fontFamily ?? '')
-	let openByDefault = $derived(panelAttrs?.openByDefault ?? false)
+	let openByDefault = $derived(block.attributes?.openByDefault ?? false)
 	let panelChildren = $derived(panel?.children ?? [])
 
-	let isOpen = $state(false)
+	// Seeded rather than assigned from an $effect so the server-rendered markup
+	// already reflects openByDefault. An effect only runs after hydration, which
+	// left every item collapsed in the prerendered HTML and for anyone without JS.
+	// Capturing only the initial value is the intent here.
+	// svelte-ignore state_referenced_locally
+	let isOpen = $state(openByDefault)
 
-	$effect(() => {
-		isOpen = openByDefault
-	})
 	let typographyClasses = $derived(classNames(fontSize, null, null, fontFamily))
 </script>
 

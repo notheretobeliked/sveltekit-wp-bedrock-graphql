@@ -37,11 +37,14 @@
 		customClassName.replace(/has-text-align-(center|right|left)/g, '').trim()
 	)
 
+	// WP 7.0 removed the `textAlign` attribute from core/heading — alignment now
+	// lives in style.typography and reaches us via the has-text-align-* class on
+	// cssClassName, which textAlignClass above handles.
 	let attrClasses = $derived(
 		classNames(
 			attrs?.fontSize,
 			attrs?.textColor,
-			attrs?.textAlign,
+			null,
 			attrs?.fontFamily
 		)
 	)

@@ -1,6 +1,6 @@
 import { WORDPRESS_URL } from '$env/static/private'
 import PreviewById from '$lib/graphql/query/preview-by-id.graphql?raw'
-import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
+import { checkResponse, graphqlQuery, reportGraphQLErrors } from '$lib/utilities/graphql'
 import { error, isHttpError, redirect } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
 import type { EditorBlock } from '$lib/types/wp-types'
@@ -48,9 +48,9 @@ export const load: PageServerLoad = async function load({ url }) {
 		checkResponse(pageResponse)
 		const pageData = await pageResponse.json()
 
-		// Handle GraphQL errors
-		if (pageData.errors) {
-			console.error('GraphQL errors:', pageData.errors)
+		// Handle GraphQL errors. Preview is not prerendered and is the surface where
+		// a broken query needs to be obvious, so any error here is fatal.
+		if (reportGraphQLErrors(pageData, 'preview').length > 0) {
 			error(500, 'GraphQL query failed')
 		}
 

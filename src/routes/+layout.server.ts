@@ -1,6 +1,6 @@
 import PageMeta from '$lib/graphql/query/menu.graphql?raw'
 import type { PageMetaQuery } from '$lib/graphql/generated'
-import { checkResponse, graphqlQuery } from '$lib/utilities/graphql'
+import { checkResponse, graphqlQuery, reportGraphQLErrors } from '$lib/utilities/graphql'
 import type { LayoutServerLoad } from './$types'
 import { error, isHttpError } from '@sveltejs/kit'
 import { PUBLIC_SITE_URL } from '$env/static/public'
@@ -75,6 +75,9 @@ export const load: LayoutServerLoad<LoadReturn> = async function load({ url }) {
 		checkResponse(response)
 
 		const json = await response.json()
+
+		// Partial failures come back as HTTP 200 with a populated `errors` array.
+		reportGraphQLErrors(json, `layout ${uri}`)
 
 		// Handle case where GraphQL returns errors or no data
 		if (!json || !json.data) {

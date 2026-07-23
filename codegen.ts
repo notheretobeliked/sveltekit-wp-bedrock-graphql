@@ -1,8 +1,11 @@
-import 'dotenv/config'
 import type { CodegenConfig } from '@graphql-codegen/cli'
 
 const config: CodegenConfig = {
-	schema: process.env.GRAPHQL_ENDPOINT,
+	// Generated from the committed schema snapshot rather than the live endpoint, so
+	// generated.ts and schema.graphql can never drift apart and types can be
+	// regenerated without a running WordPress. `pnpm codegen` refreshes the snapshot
+	// first; `pnpm schema` refreshes it on its own.
+	schema: './src/lib/graphql/schema.graphql',
 	documents: ['./src/**/*.graphql', '!./src/**/*preview*.graphql'],
 	generates: {
 		'./src/lib/graphql/generated.ts': {
