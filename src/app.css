@@ -132,9 +132,11 @@
 /* Content width is owned here, on the page container, rather than per block.
    Every top-level block (wrapper divs and bare prose alike) is capped at the
    content width and centered, unless it opts into a wider/full bucket via
-   alignwide/alignfull. This keeps wrapped and unwrapped blocks consistent. */
+   alignwide/alignfull. This keeps wrapped and unwrapped blocks consistent.
+   768px matches theme.json settings.layout.contentSize so the Gutenberg editor
+   and the live site render at the same width — keep the two in sync. */
 .page-main > *:not(.alignfull):not(.alignwide) {
-	@apply max-w-[1320px] mx-auto;
+	@apply max-w-[768px] mx-auto;
 }
 
 /* Bare prose elements (paragraphs, headings, lists, quotes) render without a
@@ -145,9 +147,10 @@
 	@apply w-full;
 }
 
-/* Layout utilities — wide blocks carry `.alignwide`; this is their cap. */
+/* Layout utilities — wide blocks carry `.alignwide`; this is their cap.
+   Matches theme.json wideSize (1100px) so the editor and live site agree. */
 .alignwide {
-	@apply max-w-screen-xl mx-auto;
+	@apply max-w-[1100px] mx-auto;
 }
 
 /* Structural block spacing — divs get mb-8, prose elements render bare */
@@ -163,7 +166,7 @@
    Children are capped to the site content width; alignfull/alignwide opt out.
    !important because the wrapper also sets a max-width via utilities. */
 .section-group-constrained > *:not(.alignfull):not(.alignwide) {
-	@apply !w-full !max-w-[1320px] !mx-auto;
+	@apply !w-full !max-w-[768px] !mx-auto;
 }
 
 /* Block-reveal animation */
