@@ -62,6 +62,30 @@ export function reportGraphQLErrors(json: unknown, context: string): string[] {
 	return messages
 }
 
+/**
+ * Throws 502 when the backend rejected the query outright.
+ *
+ * A rejected query — a field that no longer exists, a malformed document — comes
+ * back as HTTP 200 with `errors` and no `data`, which is indistinguishable from
+ * "no such page" and surfaces as a 404. WordPress keeps moving block attributes
+ * between releases (7.0 dropped `textAlign` from core/heading, 7.1 dropped it from
+ * core/post-title), and because the queries share one fragment a single removed
+ * field takes down every route at once.
+ *
+ * Unlike reportGraphQLErrors this does throw, including during prerendering. That
+ * is deliberate: a query the backend refuses yields no page to build, so failing
+ * the build beats shipping a site of 404s. Partial failures — `errors` alongside
+ * usable `data` — remain non-fatal and stay with reportGraphQLErrors.
+ */
+export function assertGraphQLSucceeded(json: unknown, context: string): void {
+	const payload = json as GraphQLResponse | null | undefined
+	const messages = describeGraphQLErrors(payload)
+
+	if (messages.length > 0 && payload?.data == null) {
+		error(502, `GraphQL backend rejected the query (${context}): ${messages.join('; ')}`)
+	}
+}
+
 interface GraphQLOptions {
 	/** Include authentication headers */
 	includeAuth?: boolean

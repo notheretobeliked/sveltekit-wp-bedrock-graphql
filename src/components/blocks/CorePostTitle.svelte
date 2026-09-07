@@ -13,13 +13,15 @@
 	let level = $derived(attrs?.level ?? 1)
 	let fontSize = $derived(attrs?.fontSize ?? '')
 	let textColor = $derived(attrs?.textColor ?? '')
-	let textAlign = $derived(attrs?.textAlign ?? '')
 	let fontFamily = $derived(attrs?.fontFamily ?? '')
 	let className = $derived(attrs?.className ?? '')
 	let title = $derived(block.postTitle ?? (block.attributes as Record<string, unknown>)?.content as string ?? '')
 
+	// WP 7.1 removed the `textAlign` attribute from core/post-title, following
+	// core/heading in 7.0. Unlike heading, this block exposes no `cssClassName`
+	// to recover the has-text-align-* class from, so alignment is not applied here.
 	let classes = $derived(
-		[classNames(fontSize, textColor, textAlign, fontFamily), className].filter(Boolean).join(' ')
+		[classNames(fontSize, textColor, null, fontFamily), className].filter(Boolean).join(' ')
 	)
 </script>
 

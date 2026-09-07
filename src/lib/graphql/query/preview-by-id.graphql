@@ -74,7 +74,6 @@ fragment CommonBlockFields on EditorBlock {
 			fontFamily
 			fontSize
 			textColor
-			textAlign
 			level
 			align
 		}

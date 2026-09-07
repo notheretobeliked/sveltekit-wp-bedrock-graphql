@@ -1,5 +1,5 @@
 import SitemapQuery from '$lib/graphql/query/sitemap.graphql?raw'
-import { graphqlQuery, checkResponse } from '$lib/utilities/graphql'
+import { assertGraphQLSucceeded, checkResponse, graphqlQuery } from '$lib/utilities/graphql'
 import { PUBLIC_SITE_URL } from '$env/static/public'
 import type { RequestHandler } from './$types'
 
@@ -18,6 +18,8 @@ export const GET: RequestHandler = async () => {
 	checkResponse(response)
 
 	const json = await response.json()
+	assertGraphQLSucceeded(json, 'sitemap')
+
 	const data: SitemapData = json.data
 
 	const siteUrl = PUBLIC_SITE_URL.replace(/\/$/, '')
